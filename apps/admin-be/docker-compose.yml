@@ -97,6 +97,15 @@ services:
     env_file:
       - .env
 
+  redistest:
+    container_name: nest-admin-portal-template-redis-test
+    image: redis
+    restart: always
+    ports:
+      - 6380:6379
+    env_file:
+      - .env.test
+
 volumes:
   postgres:
   postgrestest:

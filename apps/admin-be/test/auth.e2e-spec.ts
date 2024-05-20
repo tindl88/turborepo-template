@@ -133,7 +133,8 @@ describe('AuthController (e2e)', () => {
         password: process.env.AP_USER_PASSWORD
       });
 
-      const refreshTokenNode = loginResponse.headers['set-cookie']?.filter((x: string) => x.includes('refreshToken='));
+      const cookies = Array.from(loginResponse.headers['set-cookie']);
+      const refreshTokenNode = cookies?.filter(x => x.includes('refreshToken='));
       const refreshToken = refreshTokenNode?.[0].split('=')[1].split(';')[0];
 
       const response = await logout(myApp, { token: refreshToken });
