@@ -1,37 +1,24 @@
 const { resolve } = require('node:path');
 
-const project = resolve(process.cwd(), 'tsconfig.json');
-
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'prettier',
-    require.resolve('@vercel/style-guide/eslint/next'),
-    'eslint-config-turbo'
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'eslint-config-turbo'],
   plugins: ['only-warn', '@typescript-eslint', 'simple-import-sort', 'import'],
-  globals: {
-    React: true,
-    JSX: true
-  },
   env: {
-    node: true,
-    browser: true
+    node: true
   },
   ignorePatterns: [
     // Ignore dotfiles
     '.*.js',
-    'node_modules/'
+    'node_modules/',
+    'dist/'
   ],
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
+      '@typescript-eslint/parser': ['.ts']
     }
   },
-  overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
+  overrides: [{ files: ['*.js', '*.ts'] }],
   rules: {
     'no-console': 'error',
     'prefer-const': 'error',
@@ -62,8 +49,7 @@ module.exports = {
         format: ['PascalCase'],
         prefix: ['is', 'should', 'has', 'can', 'did', 'will'],
         filter: {
-          // NextJs|Next-Intl
-          regex: '^(dynamicParams|revalidate|localeDetection)$',
+          regex: '^(ssl|secure)$',
           match: false
         }
       },
@@ -71,7 +57,10 @@ module.exports = {
         selector: 'interface',
         format: ['PascalCase'],
         custom: { regex: '^I[A-Z]', match: true },
-        filter: { regex: '^(Window)$', match: false }
+        filter: {
+          regex: '^(ProcessEnv)$',
+          match: false
+        }
       },
       { selector: 'class', format: ['PascalCase'] },
       { selector: 'parameter', format: ['camelCase'], leadingUnderscore: 'allow' },
@@ -91,43 +80,27 @@ module.exports = {
       'error',
       {
         groups: [
-          // `react` first, `next` second, then packages starting with a character
-          ['^react$', '^next', '^[a-z]', '^@', '^@/libs', '^@ui'],
-          ['^@/navigation'],
-          ['^@/interfaces', '^\\.\\./interfaces'],
-          ['^@/constants', '^\\.\\./constants'],
-          ['^@/hooks', '^\\.\\./hooks'],
-          ['^@/components', '^\\.\\./components'],
-          ['^@/modules'],
-          ['^@/utils', '^\\.\\./utils'],
-          ['^@/http'],
-          ['^@/stores'],
-          ['^@/locales'],
-          ['^@/assets'],
-          ['^@mocks', '^@tests'],
+          ['^@nestjs', '^[a-z]', '^@'],
+          ['^@/'],
           // Packages starting with `~`
           ['^~'],
-          // Imports starting with `../`
-          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          ['^@/configs'],
+          ['^@/common/interfaces'],
+          ['^@/common/constants'],
+          ['^@/common/utils'],
+          ['^@/common/interceptors'],
+          ['^@/common/decorators'],
+          ['^@/common/validators'],
+          ['^@/common/middlewares'],
+          ['^@/database'],
+          ['^@/modules'],
           // Imports starting with `./`
           ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-          // Style imports
-          ['^.+\\.s?css$'],
+          // Imports starting with `../`
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
           // Side effect imports
           ['^\\u0000']
         ]
-      }
-    ],
-    'react-hooks/exhaustive-deps': 'off',
-    'react/prop-types': 'off',
-    'react/jsx-sort-props': [
-      'warn',
-      {
-        callbacksLast: true,
-        shorthandFirst: true,
-        ignoreCase: true,
-        reservedFirst: true,
-        noSortAlphabetically: true
       }
     ]
   }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "NextJs - Demo Web",
+  "license": "MIT",
   "author": {
     "name": "Tin Tran",
     "email": "tindl88@gmail.com",

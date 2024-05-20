@@ -4,6 +4,7 @@
   "private": true,
   "files": [
     "library.js",
+    "node.js",
     "next.js",
     "react-internal.js"
   ],
