@@ -1,0 +1,35 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_SITE_URL",
+    "NEXT_PUBLIC_MESSENGER_PAGE_ID",
+    "NEXT_PUBLIC_GOOGLE_TRACKING",
+    "NEXT_PUBLIC_SEGMENT_TRACKING",
+    "NEXT_PUBLIC_API_URL",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "FACEBOOK_CLIENT_ID",
+    "FACEBOOK_CLIENT_SECRET"
+  ],
+  "globalDotEnv": [".env"],
+  "pipeline": {
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "build": {
+      "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"],
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dotEnv": [".env.test.local", ".env.test", ".env"]
+    }
+  }
+}
