@@ -1,0 +1,102 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: nestjs-admin-portal-template
+    image: nest-app-admin-portal
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # APP
+        AP_HOST: ${AP_HOST}
+        AP_PORT: ${AP_PORT}
+        # HTTP
+        AP_REQUEST_TIMEOUT: ${AP_REQUEST_TIMEOUT}
+        # CORS
+        # ...
+        # RATE LIMIT
+        AP_THROTTLE_TTL: ${AP_THROTTLE_TTL}
+        AP_THROTTLE_LIMIT: ${AP_THROTTLE_LIMIT}
+        # CACHE
+        AP_CACHE_TIME_TO_LIVE: ${AP_CACHE_TIME_TO_LIVE}
+        # DATABASE
+        AP_DB_HOST: ${AP_DB_HOST}
+        AP_DB_SSL: ${AP_DB_SSL}
+        AP_DB_PORT: ${AP_DB_PORT}
+        AP_DB_NAME: ${AP_DB_NAME}
+        AP_DB_USERNAME: ${AP_DB_USERNAME}
+        AP_DB_PASSWORD: ${AP_DB_PASSWORD}
+        AP_DB_SCHEMA: ${AP_DB_SCHEMA}
+        AP_DB_LOGS: ${AP_DB_LOGS}
+        # REDIS
+        AP_REDIS_HOST: ${AP_REDIS_HOST}
+        AP_REDIS_PORT: ${AP_REDIS_PORT}
+        # AUTH
+        AP_JWT_SECRET_KEY: ${AP_JWT_SECRET_KEY}
+        AP_JWT_EXPIRES_IN: ${AP_JWT_EXPIRES_IN}
+        AP_JWT_REFRESH_SECRET_KEY: ${AP_JWT_REFRESH_SECRET_KEY}
+        AP_JWT_REFRESH_EXPIRES_IN: ${AP_JWT_REFRESH_EXPIRES_IN}
+        # EMAIL
+        AP_EMAIL_HOST: ${AP_EMAIL_HOST}
+        AP_EMAIL_PORT: ${AP_EMAIL_PORT}
+        AP_EMAIL_SECURE: ${AP_EMAIL_SECURE}
+        AP_EMAIL_USERNAME: ${AP_EMAIL_USERNAME}
+        AP_EMAIL_PASSWORD: ${AP_EMAIL_PASSWORD}
+        # DOCUMENT
+        AP_DOCUMENTATION_ENABLED: ${AP_DOCUMENTATION_ENABLED}
+        # DEFAULT USER
+        AP_USER_EMAIL: ${AP_USER_EMAIL}
+        AP_USER_PASSWORD: ${AP_USER_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - 3500:3500
+    depends_on:
+      - db
+      - redis
+    command: ['./start.sh']
+
+  db:
+    container_name: nestjs-admin-portal-template-db
+    image: postgres
+    restart: always
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_DB=${AP_DB_NAME}
+      - POSTGRES_USER=${AP_DB_USERNAME}
+      - POSTGRES_PASSWORD=${AP_DB_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  dbtest:
+    container_name: nest-admin-portal-template-db-test
+    image: postgres
+    restart: always
+    ports:
+      - 5436:5432
+    environment:
+      - POSTGRES_DB=${AP_DB_NAME}
+      - POSTGRES_USER=${AP_DB_USERNAME}
+      - POSTGRES_PASSWORD=${AP_DB_PASSWORD}
+    env_file:
+      - .env.test
+    volumes:
+      - postgrestest:/var/lib/postgresql/data
+
+  redis:
+    container_name: nest-admin-portal-template-redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    env_file:
+      - .env
+
+volumes:
+  postgres:
+  postgrestest:

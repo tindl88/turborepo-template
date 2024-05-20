@@ -1,5 +1,6 @@
-import { PreferenceEntity } from '@/modules/auth/interfaces/auth.interface';
 import { DefaultSession } from 'next-auth';
+
+import { PreferenceEntity } from '@/modules/auth/interfaces/auth.interface';
 
 declare module 'next-auth' {
   interface User {
