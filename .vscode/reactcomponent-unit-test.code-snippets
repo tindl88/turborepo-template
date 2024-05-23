@@ -24,8 +24,8 @@
       "    expect(linkElm).toBeInTheDocument();",
       "  });",
       "});",
-      "",
+      ""
     ],
-    "description": "Create React Function Component Unit Test - Typescript",
-  },
+    "description": "Create React Function Component Unit Test - Typescript"
+  }
 }

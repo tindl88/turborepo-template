@@ -1,0 +1,7 @@
+node_modules
+.next
+public
+patches
+e2e-results
+unit-coverage
+src/libs

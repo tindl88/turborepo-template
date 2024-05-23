@@ -6,6 +6,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
+  "explorer.compactFolders": false,
   "eslint.validate": ["typescript"],
   "eslint.format.enable": true,
   "css.lint.unknownAtRules": "ignore",

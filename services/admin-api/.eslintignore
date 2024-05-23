@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.github
+patches
+unit-coverage
+e2e-results
+dist

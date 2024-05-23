@@ -1,0 +1,15 @@
+node_modules
+.next
+i18n.ts
+next.config.mjs
+playwright.config.ts
+postcss.config.mjs
+prettier.config.js
+tailwind.config.ts
+vitest.config.ts
+public
+patches
+cli
+e2e-results
+unit-coverage
+src/libs

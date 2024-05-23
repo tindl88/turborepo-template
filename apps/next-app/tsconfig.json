@@ -1,0 +1,24 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@tests/*": ["./__tests__/*"],
+      "@mocks/*": ["./__mocks__/*"],
+      "~ui/*": ["../../packages/ui/src/*"],
+      "~shared-client/*": ["../../packages/shared-client/src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "src",
+    "types",
+    "__tests__",
+    "__mocks__",
+    "../../packages/ui/src",
+    "../../packages/shared-client/src"
+  ],
+  "exclude": ["node_modules"]
+}
