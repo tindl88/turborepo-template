@@ -4,8 +4,14 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ['eslint:recommended', 'prettier', 'eslint-config-turbo'],
-  plugins: ['only-warn'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'prettier',
+    'eslint-config-turbo'
+  ],
+  plugins: ['only-warn', '@typescript-eslint', 'simple-import-sort', 'import'],
   globals: {
     React: true,
     JSX: true
@@ -18,6 +24,9 @@ module.exports = {
       typescript: {
         project
       }
+    },
+    react: {
+      version: 'detect'
     }
   },
   ignorePatterns: [

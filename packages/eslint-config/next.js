@@ -21,16 +21,21 @@ module.exports = {
     node: true,
     browser: true
   },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project
+      }
+    },
+    react: {
+      version: 'detect'
+    }
+  },
   ignorePatterns: [
     // Ignore dotfiles
     '.*.js',
     'node_modules/'
   ],
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
-    }
-  },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
   rules: {
     'no-console': 'error',
@@ -71,7 +76,7 @@ module.exports = {
         selector: 'interface',
         format: ['PascalCase'],
         custom: { regex: '^I[A-Z]', match: true },
-        filter: { regex: '^(Window)$', match: false }
+        filter: { regex: '^(ProcessEnv|Window)$', match: false }
       },
       { selector: 'class', format: ['PascalCase'] },
       { selector: 'parameter', format: ['camelCase'], leadingUnderscore: 'allow' },
@@ -92,7 +97,7 @@ module.exports = {
       {
         groups: [
           // `react` first, `next` second, then packages starting with a character
-          ['^react$', '^next', '^[a-z]', '^@', '^@/libs', '^@ui'],
+          ['^react$', '^next', '^[a-z]', '^@', '^~ui', '^@/libs', '^~shared-client'],
           ['^@/navigation'],
           ['^@/interfaces', '^\\.\\./interfaces'],
           ['^@/constants', '^\\.\\./constants'],

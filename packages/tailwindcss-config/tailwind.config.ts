@@ -1,24 +1,16 @@
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
 import tailwindcssTypography from '@tailwindcss/typography';
-import { screens, spacing, transitionProperty } from 'tailwindcss/defaultTheme';
+import { screens, transitionProperty } from 'tailwindcss/defaultTheme';
 
-const customSpacing = Object.fromEntries(Object.entries(spacing));
 const customTransitionProperty = Object.fromEntries(Object.entries(transitionProperty));
 
-const config = {
+const config: Omit<Config, 'content'> = {
   darkMode: ['class'],
   prefix: '',
   corePlugins: {
     preflight: true
   },
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    '../../packages/ui/src/**/*.{ts,tsx}'
-  ],
   theme: {
     container: {
       center: true,
@@ -47,15 +39,6 @@ const config = {
         base: ['1rem', { lineHeight: '1.5rem', letterSpacing: '0' }], // 16/24
         base2: ['0.875rem', { lineHeight: '1.375rem', letterSpacing: '0' }], // 14/22
         caption: ['0.625rem', { lineHeight: '1rem', letterSpacing: '0' }] // 10/16
-      },
-      letterSpacing: {
-        4: '0.04em', // -4%
-        3: '0.03em', // -3%
-        2: '0.02em', // -2%
-        1: '0.01em' // -1%
-      },
-      lineHeight: {
-        0: '0'
       },
       colors: {
         // https://uicolors.app/create
@@ -114,6 +97,15 @@ const config = {
           foreground: 'hsl(var(--card-foreground))'
         }
       },
+      letterSpacing: {
+        4: '0.04em', // -4%
+        3: '0.03em', // -3%
+        2: '0.02em', // -2%
+        1: '0.01em' // -1%
+      },
+      lineHeight: {
+        0: '0'
+      },
       borderRadius: {
         xl: `calc(var(--radius) + 4px)`,
         lg: `var(--radius)`,
@@ -122,30 +114,6 @@ const config = {
       },
       backgroundImage: {
         'gradient-45deg': 'linear-gradient(45deg, var(--tw-gradient-stops))'
-      },
-      minWidth: { ...customSpacing },
-      maxWidth: {
-        ...customSpacing,
-        '1/2': '50%',
-        '2/3': '66.666667%'
-      },
-      minHeight: { ...customSpacing },
-      zIndex: {
-        1: '1',
-        2: '2',
-        3: '3',
-        4: '4',
-        5: '5',
-        dropdown: '1000',
-        sticky: '1020',
-        fixed: '1030',
-        drawerBackdrop: '1040',
-        drawer: '1045',
-        modalBackdrop: '1050',
-        modal: '1055',
-        popover: '1070',
-        tooltip: '1080',
-        toast: '1090'
       },
       transitionProperty: {
         ...customTransitionProperty,
@@ -213,7 +181,7 @@ const config = {
           to: { height: '0' }
         }
       },
-      typography: (theme: any) => ({
+      typography: (theme: (param: string) => any) => ({
         DEFAULT: {
           css: {
             lineHeight: theme('lineHeight.normal'),
@@ -259,6 +227,6 @@ const config = {
     }
   },
   plugins: [tailwindcssTypography, tailwindcssAnimate]
-} satisfies Config;
+};
 
 export default config;

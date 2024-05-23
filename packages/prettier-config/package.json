@@ -2,7 +2,10 @@
   "name": "@repo/prettier-config",
   "version": "0.0.0",
   "private": true,
+  "files": [
+    "prettier.config.js"
+  ],
   "exports": {
-    ".": "./index.js"
+    ".": "./prettier.config.js"
   }
 }

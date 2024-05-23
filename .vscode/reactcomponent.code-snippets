@@ -26,8 +26,8 @@
       "};",
       "",
       "export default ${1:Name};",
-      "",
+      ""
     ],
-    "description": "Create React Function Component - Typescript",
-  },
+    "description": "Create React Function Component - Typescript"
+  }
 }
