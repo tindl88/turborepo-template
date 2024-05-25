@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) Meta Platforms, Inc. and affiliates.
+    All rights reserved.
+
+    This source code is licensed under the license found in the
+    LICENSE file in the root directory of this source tree.
+-->
+
+<resources>
+    <declare-styleable name="com_facebook_login_view">
+        <attr name="com_facebook_confirm_logout" format="boolean"/>
+        <attr name="com_facebook_login_text" format="string"/>
+        <attr name="com_facebook_logout_text" format="string"/>
+        <attr name="com_facebook_tooltip_mode">
+            <!-- Keep in sync with Enums in LoginButton -->
+            <enum name="automatic" value="0" />
+            <enum name="display_always" value="1" />
+            <enum name="never_display" value="2" />
+        </attr>
+        <attr name="com_facebook_login_button_radius" format="dimension"/>
+        <attr name="com_facebook_login_button_transparency" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="com_facebook_profile_picture_view">
+        <attr name="com_facebook_preset_size">
+            <!-- Keep in sync with constants in ProfilePictureView -->
+            <enum name="small" value="-2" />
+            <enum name="normal" value="-3" />
+            <enum name="large" value="-4" />
+        </attr>
+        <attr name="com_facebook_is_cropped" format="boolean" />
+    </declare-styleable>
+</resources>
