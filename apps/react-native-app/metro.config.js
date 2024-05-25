@@ -8,7 +8,11 @@ const {withNativeWind} = require('nativewind/metro');
  */
 
 const config = mergeConfig(getDefaultConfig(__dirname), {
-  /* your config */
+  /*************************************************
+  TODO: Support Monorepo
+  Add watchFolders
+  **************************************************/
+  watchFolders: [path.resolve(__dirname, '../../node_modules')]
 });
 
 module.exports = withNativeWind(config, {input: './src/global.css'});
