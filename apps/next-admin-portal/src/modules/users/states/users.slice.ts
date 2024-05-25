@@ -18,9 +18,9 @@ export const entityAdapter = createEntityAdapter<UserEntity, EntityId>({
 });
 
 export interface IInitialState extends ReduxBaseState {
-  ids: string[];
+  ids: EntityId[];
   entities: { [key: string]: UserEntity };
-  selected: string[];
+  selected: EntityId[];
   filter?: UserFilter;
   detail?: UserEntity;
 }
