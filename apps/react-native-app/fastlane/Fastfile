@@ -1,0 +1,42 @@
+# Version
+lane :increment_version_android do
+	package = load_json(json_path: "./package.json")
+
+	increment_version_name(
+		gradle_file_path: "./android/app/build.gradle",
+		version_name: package['version']
+	)
+end
+
+lane :increment_version_ios do
+	package = load_json(json_path: "./package.json")
+
+	increment_version_number(
+		xcodeproj: './ios/Bully.xcodeproj',
+		version_number: package['version']
+	)
+end
+
+# Build number
+lane :increment_build_number_android do
+	increment_version_code(
+		gradle_file_path: "./android/app/build.gradle",
+	)
+end
+
+lane :increment_build_number_ios do
+	increment_build_number(
+		skip_info_plist: true,
+		xcodeproj: './ios/Bully.xcodeproj'
+	)
+end
+
+lane :bump_version do
+	increment_version_ios
+	increment_version_android
+end
+
+lane :bump_build_number do
+	increment_build_number_android
+  increment_build_number_ios
+end

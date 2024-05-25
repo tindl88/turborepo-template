@@ -1,0 +1,16 @@
+node_modules
+android
+ios
+vendor
+docs
+.watchmanconfig
+.bundle
+.yarnrc
+.editorconfig
+.node-version
+.nvmrc
+.buckconfig
+.watchmanconfig
+.ruby-version
+Gemfile
+Gemfile.lock

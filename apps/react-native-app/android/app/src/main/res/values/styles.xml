@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">#FFFFFF</item>
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="BootTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/bootsplash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/bootsplash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
+    </style>
+
+    <style name="tooltip_bubble_text">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">0.25</item>
+        <item name="android:shadowColor">#40000000</item>
+    </style>
+
+    <style name="com_facebook_loginview_default_style" parent="com_facebook_button" />
+
+</resources>

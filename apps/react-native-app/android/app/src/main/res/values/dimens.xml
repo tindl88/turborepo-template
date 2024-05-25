@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) Meta Platforms, Inc. and affiliates.
+    All rights reserved.
+
+    This source code is licensed under the license found in the
+    LICENSE file in the root directory of this source tree.
+-->
+
+<resources>
+    <dimen name="com_facebook_button_login_corner_radius">3dp</dimen>
+
+    <dimen name="com_facebook_profilepictureview_preset_size_small">50dp</dimen>
+    <dimen name="com_facebook_profilepictureview_preset_size_normal">100dp</dimen>
+    <dimen name="com_facebook_profilepictureview_preset_size_large">180dp</dimen>
+
+</resources>
