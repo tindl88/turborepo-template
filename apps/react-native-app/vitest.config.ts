@@ -13,9 +13,7 @@ export default defineConfig({
     }
   },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./__tests__/unit/setup/index.ts'],
+    setupFiles: ['./__tests__/unit/setup/vitest/index.ts'],
     include: ['./src/**/*.{test,spec}.{ts,tsx}', './__tests__/unit/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
       all: true,
