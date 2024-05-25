@@ -2,7 +2,7 @@ require 'json'
 
 DEVELOPMENT_TEAM = "5D655C442Y";
 
-appPackage = JSON.parse(File.read(File.join('..', 'node_modules', '@react-native-firebase', 'app', 'package.json')))
+# appPackage = JSON.parse(File.read(File.join('..', 'node_modules', '@react-native-firebase', 'app', 'package.json')))
 # react-native 0.73 is currently iOS 13.4 as a minimum
 min_ios_version_supported = 13.4
 
@@ -28,8 +28,12 @@ def node_require(script)
     )", __dir__]).strip
 end
 
-node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
+#*************************************************
+# TODO: Support Monorepo
+# Add ../../../
+#*************************************************
+node_require('../../../react-native/scripts/react_native_pods.rb')
+node_require('../../../react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
