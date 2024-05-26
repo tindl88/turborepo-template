@@ -1,22 +1,22 @@
-import {ScrollView} from 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {useTranslation} from 'react-i18next';
-import {KeyboardAvoidingView, View} from 'react-native';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { KeyboardAvoidingView, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import VerifyOtpForm from '@/modules/auth/components/form-verify-otp';
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import {Heading, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Heading, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {UnauthenticatedParamList} from '@/common/interfaces';
+import VerifyOtpForm from '@/modules/auth/components/form-verify-otp';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'VerifyOtp'>;
 
-function RegisterScreen({navigation}: Props) {
-  const {t} = useTranslation();
+function RegisterScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const authState = useAuthState();
 
   useEffect(() => {

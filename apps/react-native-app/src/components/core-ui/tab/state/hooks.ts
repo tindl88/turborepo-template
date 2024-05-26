@@ -1,7 +1,7 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 
 import * as actions from './actions';
-import {Context, DispatchContext} from './context';
+import { Context, DispatchContext } from './context';
 
 function useTabState() {
   const context = useContext(Context);
@@ -24,5 +24,5 @@ export function useTab() {
   const dispatch = useTabDispatch();
   const setActiveTab = (label: string) => dispatch(actions.setActiveTab(label));
 
-  return {state, dispatch, setActiveTab};
+  return { state, dispatch, setActiveTab };
 }

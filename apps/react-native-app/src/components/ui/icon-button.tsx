@@ -1,8 +1,8 @@
-import React, {ReactNode} from 'react';
-import {type VariantProps, cva} from 'class-variance-authority';
-import {Pressable} from 'react-native';
+import React, { ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Pressable } from 'react-native';
 
-import {cn} from './utils';
+import { cn } from './utils';
 
 const iconButtonVariants = cva('items-center justify-center rounded-md', {
   variants: {
@@ -26,12 +26,12 @@ interface IButtonProps
     VariantProps<typeof iconButtonVariants> {
   children: ReactNode;
 }
-function IconButton({children, className, variant, size, ...props}: IButtonProps) {
+function IconButton({ children, className, variant, size, ...props }: IButtonProps) {
   return (
-    <Pressable className={cn(iconButtonVariants({variant, size, className}))} {...props}>
+    <Pressable className={cn(iconButtonVariants({ variant, size, className }))} {...props}>
       {children}
     </Pressable>
   );
 }
 
-export {IconButton, iconButtonVariants};
+export { IconButton, iconButtonVariants };

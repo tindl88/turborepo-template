@@ -1,10 +1,10 @@
 import React from 'react';
-import {ScrollView, useWindowDimensions, View} from 'react-native';
+import { ScrollView, useWindowDimensions, View } from 'react-native';
 
 import LongContent from './long-content';
 
 const ScrollingContent = () => {
-  const {height} = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   return (
     <View

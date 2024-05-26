@@ -1,27 +1,27 @@
-import React, {useCallback, useMemo, useRef} from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
-import Animated, {Extrapolation, interpolate, useAnimatedStyle} from 'react-native-reanimated';
-import {BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { View } from 'react-native';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import { BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
+
+import { Divider, Heading, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
+
+import { useAuthState } from '@/modules/auth/states/auth.state';
 import CarouselBanner from '@/modules/home/components/carousel';
 import HomeNavigationHeader from '@/modules/home/components/header';
-
-import {Divider, Heading, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
-
-import {AuthenticatedParamList, HomeBottomTabParamList} from '@/common/interfaces';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Home'>,
   StackScreenProps<AuthenticatedParamList>
 >;
 
-const CustomBackdrop = ({animatedIndex, style}: BottomSheetBackdropProps) => {
+const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
   // animated variables
   const containerAnimatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(animatedIndex.value, [0, 1], [0, 1], Extrapolation.CLAMP)

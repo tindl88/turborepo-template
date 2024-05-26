@@ -1,21 +1,21 @@
 import React from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { UnauthenticatedParamList } from '@/interfaces';
+
+// import WelcomeSlideshow from '@/modules/welcome/components/slide';
+import { StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
 import WelcomePageSlider from '@/modules/welcome/components/page-slider';
 
-// import WelcomeSlideshow from '@/modules/welcome/components/slide';
-import {StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
-
-import {UnauthenticatedParamList} from '@/common/interfaces';
-
 type Props = StackScreenProps<UnauthenticatedParamList, 'Welcome'>;
 
-function WelcomeScreen({navigation}: Props) {
-  const {t} = useTranslation();
+function WelcomeScreen({ navigation }: Props) {
+  const { t } = useTranslation();
 
   return (
     <View style={ds.flex1}>

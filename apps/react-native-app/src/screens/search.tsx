@@ -1,16 +1,16 @@
-import {ScrollView} from 'react-native-gesture-handler';
 import React from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList } from '@/interfaces';
 
 // import {useThemeState} from '@/modules/themes/states/themes.state';
 import NavigationHeader from '@/components/common/header/general';
-import {StatusBar} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { StatusBar } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {AuthenticatedParamList} from '@/common/interfaces';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = StackScreenProps<AuthenticatedParamList, 'Search'>;
 

@@ -1,9 +1,9 @@
-import React, {FC, memo, ReactNode} from 'react';
-import {StyleProp, StyleSheet, TextStyle} from 'react-native';
+import React, { FC, memo, ReactNode } from 'react';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
-import {DesignSystem as ds} from '../themes';
-import {HeadingType, ICoreUIBaseProps} from '../types';
 import Text from '../text';
+import { DesignSystem as ds } from '../themes';
+import { HeadingType, ICoreUIBaseProps } from '../types';
 
 interface IHeadingProps extends ICoreUIBaseProps {
   as?: HeadingType;
@@ -13,7 +13,7 @@ interface IHeadingProps extends ICoreUIBaseProps {
   style?: StyleProp<TextStyle>;
 }
 
-const Heading: FC<IHeadingProps> = ({text, children, as = 'h1', color, visible = true, style}) => {
+const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color, visible = true, style }) => {
   const content = text || children;
 
   if (!visible) return null;
@@ -37,10 +37,10 @@ const styles = StyleSheet.create<{
       color: color
     };
   },
-  h1: {...ds.text32},
-  h2: {...ds.text28},
-  h3: {...ds.text24},
-  h4: {...ds.text20},
-  h5: {...ds.text18},
-  h6: {...ds.text16}
+  h1: { ...ds.text32 },
+  h2: { ...ds.text28 },
+  h3: { ...ds.text24 },
+  h4: { ...ds.text20 },
+  h5: { ...ds.text18 },
+  h6: { ...ds.text16 }
 });

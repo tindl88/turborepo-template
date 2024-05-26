@@ -1,9 +1,9 @@
-import React, {FC, memo, ReactNode, useState} from 'react';
-import {Platform, Pressable, PressableProps, StyleProp, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import React, { FC, memo, ReactNode, useState } from 'react';
+import { Platform, Pressable, PressableProps, StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import Text from '../text';
-import {DesignSystem as ds} from '../themes';
-import {ButtonColorType, ButtonVariantType, ICoreUIBaseProps, RoundedType} from '../types';
+import { DesignSystem as ds } from '../themes';
+import { ButtonColorType, ButtonVariantType, ICoreUIBaseProps, RoundedType } from '../types';
 
 interface IButtonProps extends PressableProps {
   variant?: ButtonVariantType;
@@ -36,7 +36,7 @@ const Button: FC<IButtonProps & ICoreUIBaseProps> = ({
       disabled={disabled}
       testID={'button'}
       accessibilityLabel={'button'}
-      accessibilityRole={Platform.select({ios: 'button', default: 'tab'})}
+      accessibilityRole={Platform.select({ ios: 'button', default: 'tab' })}
       style={[
         styles.component,
         styles.rounded(rounded),
@@ -77,98 +77,130 @@ export default memo(Button);
 const themes: any = {
   default: {
     primary: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textPrimary500}, pressed: {...ds.textPrimary600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textPrimary500 }, pressed: { ...ds.textPrimary600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     },
     secondary: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textSlate500}, pressed: {...ds.textSlate600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textSlate500 }, pressed: { ...ds.textSlate600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     },
     success: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textGreen500}, pressed: {...ds.textGreen600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textGreen500 }, pressed: { ...ds.textGreen600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     },
     danger: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textRed500}, pressed: {...ds.textRed600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textRed500 }, pressed: { ...ds.textRed600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     },
     warning: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textAmber500}, pressed: {...ds.textAmber600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textAmber500 }, pressed: { ...ds.textAmber600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     },
     info: {
-      background: {normal: {}, pressed: {}, disabled: {}},
-      text: {normal: {...ds.textSky500}, pressed: {...ds.textSky600}, disabled: {...ds.textGray200}},
-      border: {normal: {}, pressed: {}, disabled: {}}
+      background: { normal: {}, pressed: {}, disabled: {} },
+      text: { normal: { ...ds.textSky500 }, pressed: { ...ds.textSky600 }, disabled: { ...ds.textGray200 } },
+      border: { normal: {}, pressed: {}, disabled: {} }
     }
   },
   contained: {
     primary: {
-      background: {normal: {...ds.bgPrimary500}, pressed: {...ds.bgPrimary600}, disabled: {...ds.bgPrimary200}},
-      text: {normal: {...ds.textWhite}, pressed: {}, disabled: {}},
-      border: {normal: {...ds.borderPrimary500}, pressed: {...ds.borderPrimary600}, disabled: {...ds.borderPrimary200}}
+      background: { normal: { ...ds.bgPrimary500 }, pressed: { ...ds.bgPrimary600 }, disabled: { ...ds.bgPrimary200 } },
+      text: { normal: { ...ds.textWhite }, pressed: {}, disabled: {} },
+      border: {
+        normal: { ...ds.borderPrimary500 },
+        pressed: { ...ds.borderPrimary600 },
+        disabled: { ...ds.borderPrimary200 }
+      }
     },
     secondary: {
-      background: {normal: {...ds.bgSlate500}, pressed: {...ds.bgSlate600}, disabled: {...ds.bgSlate200}},
-      text: {normal: {...ds.textWhite}, pressed: {}, disabled: {}},
-      border: {normal: {...ds.borderSlate500}, pressed: {...ds.borderSlate600}, disabled: {...ds.borderSlate200}}
+      background: { normal: { ...ds.bgSlate500 }, pressed: { ...ds.bgSlate600 }, disabled: { ...ds.bgSlate200 } },
+      text: { normal: { ...ds.textWhite }, pressed: {}, disabled: {} },
+      border: {
+        normal: { ...ds.borderSlate500 },
+        pressed: { ...ds.borderSlate600 },
+        disabled: { ...ds.borderSlate200 }
+      }
     },
     success: {
-      background: {normal: {...ds.bgGreen500}, pressed: {...ds.bgGreen600}, disabled: {...ds.bgGreen200}},
-      text: {normal: {...ds.textWhite}, pressed: {}, disabled: {}},
-      border: {normal: {...ds.borderGreen500}, pressed: {...ds.borderGreen600}, disabled: {...ds.borderGreen200}}
+      background: { normal: { ...ds.bgGreen500 }, pressed: { ...ds.bgGreen600 }, disabled: { ...ds.bgGreen200 } },
+      text: { normal: { ...ds.textWhite }, pressed: {}, disabled: {} },
+      border: {
+        normal: { ...ds.borderGreen500 },
+        pressed: { ...ds.borderGreen600 },
+        disabled: { ...ds.borderGreen200 }
+      }
     },
     danger: {
-      background: {normal: {...ds.bgRed500}, pressed: {...ds.bgRed600}, disabled: {...ds.bgRed200}},
-      text: {normal: {...ds.textWhite}, pressed: {}, disabled: {}},
-      border: {normal: {...ds.borderRed500}, pressed: {...ds.borderRed600}, disabled: {...ds.borderRed200}}
+      background: { normal: { ...ds.bgRed500 }, pressed: { ...ds.bgRed600 }, disabled: { ...ds.bgRed200 } },
+      text: { normal: { ...ds.textWhite }, pressed: {}, disabled: {} },
+      border: { normal: { ...ds.borderRed500 }, pressed: { ...ds.borderRed600 }, disabled: { ...ds.borderRed200 } }
     },
     warning: {
-      background: {normal: {...ds.bgAmber500}, pressed: {...ds.bgAmber600}, disabled: {...ds.bgAmber200}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderAmber500}, pressed: {...ds.borderAmber600}, disabled: {...ds.borderAmber200}}
+      background: { normal: { ...ds.bgAmber500 }, pressed: { ...ds.bgAmber600 }, disabled: { ...ds.bgAmber200 } },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: {
+        normal: { ...ds.borderAmber500 },
+        pressed: { ...ds.borderAmber600 },
+        disabled: { ...ds.borderAmber200 }
+      }
     },
     info: {
-      background: {normal: {...ds.bgSky500}, pressed: {...ds.bgSky600}, disabled: {...ds.bgSky200}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderSky500}, pressed: {...ds.borderSky600}, disabled: {...ds.borderSky200}}
+      background: { normal: { ...ds.bgSky500 }, pressed: { ...ds.bgSky600 }, disabled: { ...ds.bgSky200 } },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: { normal: { ...ds.borderSky500 }, pressed: { ...ds.borderSky600 }, disabled: { ...ds.borderSky200 } }
     }
   },
   outlined: {
     primary: {
-      background: {normal: {}, pressed: {...ds.bgPrimary200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderPrimary500}, pressed: {...ds.borderPrimary300}, disabled: {...ds.borderPrimary100}}
+      background: { normal: {}, pressed: { ...ds.bgPrimary200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: {
+        normal: { ...ds.borderPrimary500 },
+        pressed: { ...ds.borderPrimary300 },
+        disabled: { ...ds.borderPrimary100 }
+      }
     },
     secondary: {
-      background: {normal: {}, pressed: {...ds.bgSlate200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderSlate500}, pressed: {...ds.borderSlate300}, disabled: {...ds.borderSlate100}}
+      background: { normal: {}, pressed: { ...ds.bgSlate200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: {
+        normal: { ...ds.borderSlate500 },
+        pressed: { ...ds.borderSlate300 },
+        disabled: { ...ds.borderSlate100 }
+      }
     },
     success: {
-      background: {normal: {}, pressed: {...ds.bgGreen200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderGreen500}, pressed: {...ds.borderGreen300}, disabled: {...ds.borderGreen100}}
+      background: { normal: {}, pressed: { ...ds.bgGreen200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: {
+        normal: { ...ds.borderGreen500 },
+        pressed: { ...ds.borderGreen300 },
+        disabled: { ...ds.borderGreen100 }
+      }
     },
     danger: {
-      background: {normal: {}, pressed: {...ds.bgRed200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderRed500}, pressed: {...ds.borderRed300}, disabled: {...ds.borderRed100}}
+      background: { normal: {}, pressed: { ...ds.bgRed200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: { normal: { ...ds.borderRed500 }, pressed: { ...ds.borderRed300 }, disabled: { ...ds.borderRed100 } }
     },
     warning: {
-      background: {normal: {}, pressed: {...ds.bgAmber200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderAmber500}, pressed: {...ds.borderAmber300}, disabled: {...ds.borderAmber100}}
+      background: { normal: {}, pressed: { ...ds.bgAmber200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: {
+        normal: { ...ds.borderAmber500 },
+        pressed: { ...ds.borderAmber300 },
+        disabled: { ...ds.borderAmber100 }
+      }
     },
     info: {
-      background: {normal: {}, pressed: {...ds.bgSky200}, disabled: {}},
-      text: {normal: {...ds.textBlack}, pressed: {}, disabled: {...ds.textSlate300}},
-      border: {normal: {...ds.borderSky500}, pressed: {...ds.borderSky300}, disabled: {...ds.borderSky100}}
+      background: { normal: {}, pressed: { ...ds.bgSky200 }, disabled: {} },
+      text: { normal: { ...ds.textBlack }, pressed: {}, disabled: { ...ds.textSlate300 } },
+      border: { normal: { ...ds.borderSky500 }, pressed: { ...ds.borderSky300 }, disabled: { ...ds.borderSky100 } }
     }
   }
 };

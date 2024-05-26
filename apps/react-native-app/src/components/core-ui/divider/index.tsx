@@ -1,14 +1,14 @@
-import React, {FC} from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import React, { FC } from 'react';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import {ICoreUIBaseProps} from '../types';
+import { ICoreUIBaseProps } from '../types';
 
 interface IDividerProps extends ICoreUIBaseProps {
   height?: number;
   style?: StyleProp<ViewStyle>;
 }
 
-const Divider: FC<IDividerProps> = ({height = 10, visible = true}) => {
+const Divider: FC<IDividerProps> = ({ height = 10, visible = true }) => {
   if (!visible) return null;
 
   return <View style={styles.component(height)} />;

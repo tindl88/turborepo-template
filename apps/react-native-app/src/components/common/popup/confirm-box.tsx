@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
 
-import {Heading, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { Heading, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
 interface IConfirmBoxProps {
   title?: string | null;
@@ -15,8 +15,8 @@ interface IConfirmBoxProps {
   onCancel: () => void;
 }
 
-const ConfirmBox: FC<IConfirmBoxProps> = ({title, message, btnConfirmText, btnCancelText, onConfirm, onCancel}) => {
-  const {t} = useTranslation();
+const ConfirmBox: FC<IConfirmBoxProps> = ({ title, message, btnConfirmText, btnCancelText, onConfirm, onCancel }) => {
+  const { t } = useTranslation();
 
   return (
     <View>

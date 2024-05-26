@@ -1,23 +1,23 @@
-import {ScrollView} from 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {useTranslation} from 'react-i18next';
-import {KeyboardAvoidingView, View} from 'react-native';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { KeyboardAvoidingView, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import ResetPasswordForm from '@/modules/auth/components/form-reset-password';
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 // import GeneralNavigationHeader from '@/components/common/header/general';
-import {Divider, Heading, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Divider, Heading, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {UnauthenticatedParamList} from '@/common/interfaces';
+import ResetPasswordForm from '@/modules/auth/components/form-reset-password';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'ResetPassword'>;
 
-function ResetPasswordScreen({navigation}: Props) {
-  const {t} = useTranslation();
+function ResetPasswordScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const authState = useAuthState();
 
   useEffect(() => {

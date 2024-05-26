@@ -1,14 +1,14 @@
 import React from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import {StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {AuthenticatedParamList} from '@/common/interfaces';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = StackScreenProps<AuthenticatedParamList, 'PostDetail'>;
 

@@ -1,10 +1,10 @@
-import {useState} from 'react';
-import {useQuery} from '@tanstack/react-query';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import {PostScreenParams, ResponseMeta} from '@/common/interfaces';
+import { PostScreenParams, ResponseMeta } from '@/interfaces';
+import { PostEntity, PostFilter } from '../interfaces/post.interface';
 
 import PostApi from '../api/post.api';
-import {PostEntity, PostFilter} from '../interfaces/post.interface';
 
 type UsePostProps = {
   data?: PostEntity[];
@@ -16,8 +16,8 @@ type UsePostProps = {
 };
 
 export function usePost(filters: PostScreenParams): UsePostProps {
-  const {q, page, limit} = filters;
-  const [filter, setFilter] = useState<PostFilter>({q, page, limit});
+  const { q, page, limit } = filters;
+  const [filter, setFilter] = useState<PostFilter>({ q, page, limit });
 
   const fetchData = async (params: PostFilter) => {
     try {

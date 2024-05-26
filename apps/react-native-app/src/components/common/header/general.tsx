@@ -1,17 +1,17 @@
-import React, {FC, ReactNode} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Pressable, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
+import React, { FC, ReactNode } from 'react';
+import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { useNavigation } from '@react-navigation/native';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
-import {useThemeState} from '@/modules/themes/states/themes.state';
-
-import {Heading} from '@/components/core-ui';
+import { Heading } from '@/components/core-ui';
 import Text from '@/components/core-ui/text';
-import {Colors, DesignSystem as ds} from '@/components/core-ui/themes';
+import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
-interface IGeneralNavigationHeaderProps {
+import { useScreenState } from '@/modules/screen/states/screen.state';
+import { useThemeState } from '@/modules/themes/states/themes.state';
+
+type GeneralNavigationHeaderProps = {
   title?: string;
   titleColor?: string;
   subTitle?: string;
@@ -23,9 +23,9 @@ interface IGeneralNavigationHeaderProps {
   rightIcon?: ReactNode;
   leftFunc?: () => void;
   rightFunc?: () => void;
-}
+};
 
-const GeneralNavigationHeader: FC<IGeneralNavigationHeaderProps> = ({
+const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
   title = '',
   titleColor,
   subTitle = '',
@@ -64,7 +64,7 @@ const GeneralNavigationHeader: FC<IGeneralNavigationHeaderProps> = ({
           {renderLeftIcon()}
         </Pressable>
         <View style={[ds.column, ds.itemsCenter, ds.justifyCenter, ds.grow, ds.h56]}>
-          {backgroundImage && <FastImage source={{uri: backgroundImage}} />}
+          {backgroundImage && <FastImage source={{ uri: backgroundImage }} />}
           {title && <Heading text={title} as={'h5'} color={titleColor ? titleColor : foregroundColor} />}
           {subTitle && <Text text={subTitle} color={subTitleColor ? subTitleColor : foregroundColor} />}
         </View>
@@ -79,7 +79,6 @@ const GeneralNavigationHeader: FC<IGeneralNavigationHeaderProps> = ({
 export default GeneralNavigationHeader;
 
 const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   background(color: string): ViewStyle;
   border(color?: string): ViewStyle;
@@ -92,7 +91,7 @@ const styles = StyleSheet.create<{
     };
   },
   border: color => {
-    return {borderColor: color};
+    return { borderColor: color };
   },
   heading: color => {
     return {

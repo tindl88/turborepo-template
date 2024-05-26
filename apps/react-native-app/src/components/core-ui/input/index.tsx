@@ -1,8 +1,14 @@
-import React, {FC, forwardRef, memo, Ref, useEffect, useState} from 'react';
-import {NativeSyntheticEvent, TextInput, TextInputChangeEventData, TextInputProps, useColorScheme} from 'react-native';
+import React, { FC, forwardRef, memo, Ref, useEffect, useState } from 'react';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputProps,
+  useColorScheme
+} from 'react-native';
 
-import {Colors, DesignSystem as ds} from '../themes';
-import {ICoreUIBaseProps} from '../types';
+import { Colors, DesignSystem as ds } from '../themes';
+import { ICoreUIBaseProps } from '../types';
 
 interface IInputTextProps extends ICoreUIBaseProps, TextInputProps {
   placeholder?: string;

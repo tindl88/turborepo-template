@@ -1,3 +1,3 @@
-import DesignSystem, {Colors, Sizing} from './design-system';
+import DesignSystem, { Colors, Sizing } from './design-system';
 
-export {Colors, DesignSystem, Sizing};
+export { Colors, DesignSystem, Sizing };

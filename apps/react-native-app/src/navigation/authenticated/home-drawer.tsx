@@ -1,18 +1,18 @@
 import React from 'react';
-import {createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView} from '@react-navigation/drawer';
-import {Pressable, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
+import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
-import {useThemeState} from '@/modules/themes/states/themes.state';
+import { DrawerParamList } from '@/interfaces';
 
-import {Heading, Text} from '@/components/core-ui';
-import {Colors, DesignSystem as ds} from '@/components/core-ui/themes';
+import { Heading, Text } from '@/components/core-ui';
+import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';
 import IconUser from '@/components/svgs/ico-user';
 
-import {DrawerParamList} from '@/common/interfaces';
+import { useScreenState } from '@/modules/screen/states/screen.state';
+import { useThemeState } from '@/modules/themes/states/themes.state';
 
 import HomeBottomTabNavigator from './home-bottom-tab';
 
@@ -94,7 +94,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => <DrawerConte
 
 const HomeDrawer = () => {
   return (
-    <Drawer.Navigator drawerContent={CustomDrawerContent} screenOptions={{headerShown: false, drawerType: 'front'}}>
+    <Drawer.Navigator drawerContent={CustomDrawerContent} screenOptions={{ headerShown: false, drawerType: 'front' }}>
       <Drawer.Screen name="HomeBottomTabStack" component={HomeBottomTabNavigator} />
     </Drawer.Navigator>
   );
@@ -109,9 +109,9 @@ const styles = StyleSheet.create<{
   text(color?: string): TextStyle;
 }>({
   background: color => {
-    return {backgroundColor: color};
+    return { backgroundColor: color };
   },
   text: color => {
-    return {color: color};
+    return { color: color };
   }
 });

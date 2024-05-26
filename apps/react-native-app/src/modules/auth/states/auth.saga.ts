@@ -1,14 +1,10 @@
+import { AxiosResponse } from 'axios';
+import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import Auth from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {AxiosResponse} from 'axios';
-import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
-import {all, call, put, takeLatest} from 'redux-saga/effects';
-import {PayloadAction} from '@reduxjs/toolkit';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-import {getErrorMessage} from '@/common/utils/error-handle';
-import {sleep} from '@/common/utils/miscs';
-
-import AuthApi from '../api/auth.api';
 import {
   NativeFirebaseError,
   ResetPasswordDto,
@@ -18,13 +14,18 @@ import {
   SignOutResponse
 } from '../interfaces/auth.interface';
 
+import { getErrorMessage } from '@/utils/error-handle.util';
+import { sleep } from '@/utils/miscs.util';
+
+import AuthApi from '../api/auth.api';
+
 import slices from './auth.slice';
 
 const LOGIN_DELAY = 1000;
 
 export function* login(action: PayloadAction<SignInDto>) {
   try {
-    const {provider} = action.payload;
+    const { provider } = action.payload;
 
     const regularSignInActions = async () => {
       await sleep(LOGIN_DELAY);
@@ -63,10 +64,10 @@ export function* login(action: PayloadAction<SignInDto>) {
       });
 
       // Check if your device supports Google Play
-      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
       // Get the users ID token
-      const {idToken} = await GoogleSignin.signIn();
+      const { idToken } = await GoogleSignin.signIn();
 
       if (!idToken) throw 'Something went wrong idToken';
 
@@ -107,14 +108,14 @@ export function* login(action: PayloadAction<SignInDto>) {
     console.log(err);
     // Ref: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth
 
-    yield put(slices.actions.loginFailure({statusCode: 400, error: err.code || 'Bad Request', message: message}));
+    yield put(slices.actions.loginFailure({ statusCode: 400, error: err.code || 'Bad Request', message: message }));
   }
 }
 
 export function* logout(action: PayloadAction<SignOutDto>) {
   try {
     const signOutActions = async () => {
-      return AuthApi.signOut({token: action.payload.token});
+      return AuthApi.signOut({ token: action.payload.token });
     };
 
     const response: SignOutResponse = yield call(signOutActions);

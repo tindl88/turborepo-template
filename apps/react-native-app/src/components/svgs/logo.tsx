@@ -1,6 +1,6 @@
-import React, {FC, useEffect, useRef} from 'react';
-import {Animated, Easing, StyleProp, ViewStyle} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import React, { FC, useEffect, useRef } from 'react';
+import { Animated, Easing, StyleProp, ViewStyle } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 interface ILogoProps {
   scaleSpeed?: number;
@@ -11,7 +11,7 @@ interface ILogoProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const Logo: FC<ILogoProps> = ({fadeSpeed = 600, width = 144, height = 132, visible = true, ...props}) => {
+const Logo: FC<ILogoProps> = ({ fadeSpeed = 600, width = 144, height = 132, visible = true, ...props }) => {
   const fade = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Logo: FC<ILogoProps> = ({fadeSpeed = 600, width = 144, height = 132, visib
       accessibilityRole="image"
       style={[
         {
-          opacity: fade.interpolate({inputRange: [0, 1], outputRange: [0, 1]})
+          opacity: fade.interpolate({ inputRange: [0, 1], outputRange: [0, 1] })
         }
       ]}
     >
@@ -46,5 +46,5 @@ const Logo: FC<ILogoProps> = ({fadeSpeed = 600, width = 144, height = 132, visib
 export default Logo;
 
 function startAnimation(fadeSpeed: number, fade: Animated.Value) {
-  Animated.timing(fade, {toValue: 1, duration: fadeSpeed, easing: Easing.ease, useNativeDriver: true}).start();
+  Animated.timing(fade, { toValue: 1, duration: fadeSpeed, easing: Easing.ease, useNativeDriver: true }).start();
 }

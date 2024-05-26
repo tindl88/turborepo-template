@@ -1,7 +1,7 @@
-import {createContext, Dispatch} from 'react';
+import { createContext, Dispatch } from 'react';
 
 import initialState from './state';
-import {IAction, IState} from './types';
+import { IAction, IState } from './types';
 
 export const Context = createContext<IState>(initialState);
 export const DispatchContext = createContext<Dispatch<IAction>>(() => null);

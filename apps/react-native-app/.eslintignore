@@ -2,5 +2,4 @@ node_modules
 android
 ios
 vendor
-docs
-*.d.ts
+

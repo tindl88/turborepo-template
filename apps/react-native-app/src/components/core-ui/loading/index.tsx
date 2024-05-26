@@ -1,8 +1,8 @@
-import React, {FC, memo, useEffect, useRef} from 'react';
-import {Animated, Easing, StyleSheet, View, ViewStyle} from 'react-native';
+import React, { FC, memo, useEffect, useRef } from 'react';
+import { Animated, Easing, StyleSheet, View, ViewStyle } from 'react-native';
 
-import {Colors} from '../themes';
-import {ICoreUIBaseProps} from '../types';
+import { Colors } from '../themes';
+import { ICoreUIBaseProps } from '../types';
 
 interface ILoadingProps extends ICoreUIBaseProps {
   animationSpeed?: number;
@@ -37,8 +37,8 @@ const Loading: FC<ILoadingProps> = ({
       style={[
         styles.component(size),
         {
-          opacity: fade.interpolate({inputRange: [0, 1], outputRange: [0, 1]}),
-          transform: [{rotateZ: rotation.interpolate({inputRange: [0, 360], outputRange: ['0deg', '360deg']})}]
+          opacity: fade.interpolate({ inputRange: [0, 1], outputRange: [0, 1] }),
+          transform: [{ rotateZ: rotation.interpolate({ inputRange: [0, 360], outputRange: ['0deg', '360deg'] }) }]
         }
       ]}
     >
@@ -80,9 +80,9 @@ const styles = StyleSheet.create<{
 function startAnimation(rotateSpeed: number, fadeSpeed: number, fade: Animated.Value, rotation: Animated.Value) {
   Animated.sequence([
     Animated.delay(50),
-    Animated.timing(fade, {toValue: 1, duration: fadeSpeed, easing: Easing.linear, useNativeDriver: true})
+    Animated.timing(fade, { toValue: 1, duration: fadeSpeed, easing: Easing.linear, useNativeDriver: true })
   ]).start();
   Animated.loop(
-    Animated.timing(rotation, {toValue: 360, duration: rotateSpeed, easing: Easing.linear, useNativeDriver: true})
+    Animated.timing(rotation, { toValue: 360, duration: rotateSpeed, easing: Easing.linear, useNativeDriver: true })
   ).start();
 }

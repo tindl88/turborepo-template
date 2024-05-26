@@ -1,26 +1,26 @@
-import {ScrollView} from 'react-native-gesture-handler';
 import React from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {useTranslation} from 'react-i18next';
-import {KeyboardAvoidingView, View} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { KeyboardAvoidingView, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { UnauthenticatedParamList } from '@/interfaces';
+
+import GeneralNavigationHeader from '@/components/common/header/general';
+import { Heading, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Line } from '@/components/ui/line';
 
 import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import LoginForm from '@/modules/auth/components/form-login';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
-import {useThemeState} from '@/modules/themes/states/themes.state';
-
-import GeneralNavigationHeader from '@/components/common/header/general';
-import {Heading, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Line} from '@/components/ui/line';
-
-import {UnauthenticatedParamList} from '@/common/interfaces';
+import { useThemeState } from '@/modules/themes/states/themes.state';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Login'>;
 
-function LoginScreen({navigation}: Props) {
-  const {t} = useTranslation();
+function LoginScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const themeState = useThemeState();
 
   const backgroundColor = themeState.configs?.background;
@@ -38,7 +38,7 @@ function LoginScreen({navigation}: Props) {
         </View>
         <Line style={ds.mt32} />
         <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt12ne]}>
-          <Text style={[ds.textCenter, ds.fontBold, ds.mt10ne, ds.p10, {backgroundColor}]}>
+          <Text style={[ds.textCenter, ds.fontBold, ds.mt10ne, ds.p10, { backgroundColor }]}>
             {t('or_continue_with')}
           </Text>
         </View>

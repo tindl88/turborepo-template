@@ -1,8 +1,8 @@
-import {create} from 'zustand';
-import {createJSONStorage, devtools, persist} from 'zustand/middleware';
-import {immer} from 'zustand/middleware/immer';
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
-import {MMKVStorage} from '@/common/utils/mmkv-storage';
+import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 interface ILanguageState {
   language?: string;

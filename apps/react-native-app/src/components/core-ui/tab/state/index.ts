@@ -1,4 +1,4 @@
-import {useTab} from './hooks';
+import { useTab } from './hooks';
 import Provider from './provider';
 
-export {Provider, useTab};
+export { Provider, useTab };

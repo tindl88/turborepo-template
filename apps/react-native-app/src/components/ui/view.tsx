@@ -1,8 +1,8 @@
-import React, {ReactNode} from 'react';
-import {type VariantProps, cva} from 'class-variance-authority';
-import {View as RNView} from 'react-native';
+import React, { ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { View as RNView } from 'react-native';
 
-import {cn} from './utils';
+import { cn } from './utils';
 
 const viewVariants = cva('items-center justify-center rounded-md', {
   variants: {
@@ -18,13 +18,13 @@ const viewVariants = cva('items-center justify-center rounded-md', {
 interface IViewProps extends React.ComponentPropsWithoutRef<typeof RNView>, VariantProps<typeof viewVariants> {
   children: ReactNode;
 }
-function View({children, className, variant, ...props}: IViewProps) {
+function View({ children, className, variant, ...props }: IViewProps) {
   return (
-    <RNView className={cn(viewVariants({variant, className}))} {...props}>
+    <RNView className={cn(viewVariants({ variant, className }))} {...props}>
       {children}
     </RNView>
   );
 }
 
-export {viewVariants};
+export { viewVariants };
 export default View;

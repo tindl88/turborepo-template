@@ -1,12 +1,12 @@
-import React, {FC, useEffect} from 'react';
-import {Pressable, View} from 'react-native';
-
-import {useThemeState} from '@/modules/themes/states/themes.state';
+import React, { FC, useEffect } from 'react';
+import { Pressable, View } from 'react-native';
 
 import Loading from '@/components/core-ui/loading';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {hideGlobalModal, showGlobalModal} from '../modal/global-modal';
+import { useThemeState } from '@/modules/themes/states/themes.state';
+
+import { hideGlobalModal, showGlobalModal } from '../modal/global-modal';
 
 interface ILoadingBoxProps {
   visible?: boolean;
@@ -16,13 +16,13 @@ interface ILoadingBoxProps {
 type LoadingProps = {
   visible?: boolean;
 };
-const Indicator: FC<LoadingProps> = ({visible}) => {
+const Indicator: FC<LoadingProps> = ({ visible }) => {
   const themeState = useThemeState();
 
   const cardColor = themeState.configs?.card;
 
   return (
-    <View style={[ds.p24, {backgroundColor: cardColor}]}>
+    <View style={[ds.p24, { backgroundColor: cardColor }]}>
       <Pressable onPress={() => hideGlobalModal('loading-modal')}>
         <Loading visible={visible} size={44} thickness={6} />
       </Pressable>
@@ -30,10 +30,10 @@ const Indicator: FC<LoadingProps> = ({visible}) => {
   );
 };
 
-const LoadingBox: FC<ILoadingBoxProps> = ({visible = false}) => {
+const LoadingBox: FC<ILoadingBoxProps> = ({ visible = false }) => {
   useEffect(() => {
     if (visible) {
-      showGlobalModal({modalKey: 'loading-modal', Component: Indicator, hideClose: true});
+      showGlobalModal({ modalKey: 'loading-modal', Component: Indicator, hideClose: true });
     } else {
       hideGlobalModal('loading-modal');
     }

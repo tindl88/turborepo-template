@@ -1,4 +1,4 @@
-import {IAction, IState, Types} from './types';
+import { IAction, IState, Types } from './types';
 
 export default function reducer(state: IState, action: IAction): IState {
   switch (action.type) {

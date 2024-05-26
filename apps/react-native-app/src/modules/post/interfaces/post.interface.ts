@@ -1,4 +1,4 @@
-import {BaseFilter, ResponseFormat} from '@/common/interfaces';
+import { BaseFilter, ResponseFormat } from '@/interfaces';
 
 export type PostEntity = {
   id: number;

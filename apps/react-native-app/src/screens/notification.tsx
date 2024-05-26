@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {Pressable, StyleSheet, View, ViewStyle} from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {FlashList} from '@shopify/flash-list';
+import { StackScreenProps } from '@react-navigation/stack';
+import { FlashList } from '@shopify/flash-list';
 
-import {useThemeState} from '@/modules/themes/states/themes.state';
+import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import {StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {AuthenticatedParamList} from '@/common/interfaces';
+import { useThemeState } from '@/modules/themes/states/themes.state';
 
 const data = [
   {
@@ -80,7 +80,7 @@ function NotificationScreen({}: Props) {
           return (
             <View style={styles.container}>
               <Pressable onPress={() => {}}>
-                <FastImage style={styles.image} source={{uri: notification.image}} />
+                <FastImage style={styles.image} source={{ uri: notification.image }} />
               </Pressable>
               <View style={styles.content}>
                 <View style={styles.contentHeader}>
@@ -105,6 +105,6 @@ const styles = StyleSheet.create<{
   background(color?: string): ViewStyle;
 }>({
   background: color => {
-    return {backgroundColor: color};
+    return { backgroundColor: color };
   }
 });

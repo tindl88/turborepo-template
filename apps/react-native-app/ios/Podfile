@@ -28,12 +28,8 @@ def node_require(script)
     )", __dir__]).strip
 end
 
-#*************************************************
-# TODO: Support Monorepo
-# Add ../../../
-#*************************************************
-node_require('../../../react-native/scripts/react_native_pods.rb')
-node_require('../../../react-native-permissions/scripts/setup.rb')
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!

@@ -1,8 +1,8 @@
 import React from 'react';
-import {type VariantProps, cva} from 'class-variance-authority';
-import {Pressable, Text} from 'react-native';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Pressable, Text } from 'react-native';
 
-import {cn} from './utils';
+import { cn } from './utils';
 
 const buttonVariants = cva('items-center justify-center rounded', {
   variants: {
@@ -50,12 +50,12 @@ interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable>,
   label: string;
   labelClasses?: string;
 }
-function Button({label, labelClasses, className, variant, size, ...props}: IButtonProps) {
+function Button({ label, labelClasses, className, variant, size, ...props }: IButtonProps) {
   return (
-    <Pressable className={cn(buttonVariants({variant, size, className}))} {...props}>
-      <Text className={cn(buttonTextVariants({variant, size, className: labelClasses}))}>{label}</Text>
+    <Pressable className={cn(buttonVariants({ variant, size, className }))} {...props}>
+      <Text className={cn(buttonTextVariants({ variant, size, className: labelClasses }))}>{label}</Text>
     </Pressable>
   );
 }
 
-export {Button, buttonTextVariants, buttonVariants};
+export { Button, buttonTextVariants, buttonVariants };

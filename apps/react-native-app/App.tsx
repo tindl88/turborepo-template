@@ -1,15 +1,15 @@
 import React from 'react';
 import CodePush from 'react-native-code-push';
-import {Provider} from 'react-redux';
-import {createSyncStoragePersister} from '@tanstack/query-sync-storage-persister';
-import {QueryClient} from '@tanstack/react-query';
-import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
+import { Provider } from 'react-redux';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+import { QueryClient } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
 import NavContainer from '@/navigation/container';
 
-import {store} from '@/common/redux/store';
+import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
-import {MMKVStorage} from '@/common/utils/mmkv-storage';
+import { store } from '@/stores/redux/store';
 
 import '@/global.css';
 
@@ -24,13 +24,11 @@ const queryClient = new QueryClient({
   }
 });
 
-const syncStoragePersister = createSyncStoragePersister({
-  storage: MMKVStorage
-});
+const syncStoragePersister = createSyncStoragePersister({ storage: MMKVStorage });
 
 const App = () => {
   return (
-    <PersistQueryClientProvider client={queryClient} persistOptions={{persister: syncStoragePersister}}>
+    <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: syncStoragePersister }}>
       <Provider store={store}>
         <NavContainer />
       </Provider>

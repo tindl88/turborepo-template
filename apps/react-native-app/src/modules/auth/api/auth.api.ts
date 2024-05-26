@@ -1,9 +1,3 @@
-import {CreateUserDto, UserEntity} from '@/modules/users/interfaces/users.interface';
-
-import {API_ENDPOINTS} from '@/common/constants/api-endpoint.constant';
-
-import HttpRequest from '@/common/http/http-request';
-
 import {
   RefreshTokenResponse,
   SignInDto,
@@ -11,6 +5,12 @@ import {
   SignOutDto,
   SignOutResponse
 } from '../interfaces/auth.interface';
+
+import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
+
+import { CreateUserDto, UserEntity } from '@/modules/users/interfaces/users.interface';
+
+import HttpRequest from '@/http/http-request';
 
 export const signUp = (userDto: CreateUserDto) => {
   return HttpRequest.post<UserEntity>(API_ENDPOINTS.SIGN_UP, userDto);
@@ -28,17 +28,17 @@ export const signOut = (sighOutDto: SignOutDto) => {
 };
 
 export const googleSignIn = (token: string) => {
-  return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_GOOGLE, {token});
+  return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_GOOGLE, { token });
 };
 
 export const facebookSignIn = (token: string) => {
-  return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_FACEBOOK, {token});
+  return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_FACEBOOK, { token });
 };
 
 export const refreshToken = (token: string) => {
-  return HttpRequest.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {token});
+  return HttpRequest.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, { token });
 };
 
-const AuthApi = {signUp, signIn, signOut, googleSignIn, facebookSignIn, refreshToken};
+const AuthApi = { signUp, signIn, signOut, googleSignIn, facebookSignIn, refreshToken };
 
 export default AuthApi;

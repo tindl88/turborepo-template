@@ -1,14 +1,14 @@
-import {ReactNode} from 'react';
-import {create} from 'zustand';
-import {devtools} from 'zustand/middleware';
-import {immer} from 'zustand/middleware/immer';
+import { ReactNode } from 'react';
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
 interface IErrorState {
   visible: boolean;
   icon: ReactNode;
   title: string;
   message?: string;
-  show: (params: {icon?: ReactNode; title: string; message?: string}) => void;
+  show: (params: { icon?: ReactNode; title: string; message?: string }) => void;
   hide: () => void;
 }
 

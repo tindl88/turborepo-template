@@ -1,4 +1,4 @@
-import {Pagination} from './pagination.interface';
+import { Pagination } from './pagination.interface';
 
 export type ResponseMeta = {
   paging?: Pagination;

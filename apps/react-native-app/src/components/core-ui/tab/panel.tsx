@@ -1,10 +1,10 @@
-import React, {FC, ReactNode} from 'react';
+import React, { FC, ReactNode } from 'react';
 
 export interface ITabPanelProps {
   children: ReactNode;
 }
 
-export const Panel: FC<ITabPanelProps> = ({children}) => {
+export const Panel: FC<ITabPanelProps> = ({ children }) => {
   return <>{children}</>;
 };
 

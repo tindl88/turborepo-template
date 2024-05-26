@@ -1,25 +1,25 @@
 import React from 'react';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import {useAuthState} from '@/modules/auth/states/auth.state';
-import {CreateUserDto} from '@/modules/users/interfaces/users.interface';
+import { Input } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
+import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 
-import {Input} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
-import {Form, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
+import { useAuthState } from '@/modules/auth/states/auth.state';
+import { CreateUserDto } from '@/modules/users/interfaces/users.interface';
 
-import {signUpValidator} from '../validators/sign-up.validator';
+import { signUpValidator } from '../validators/sign-up.validator';
 
 type FormData = CreateUserDto & {
   confirmPassword?: string;
 };
 
 const RegisterForm = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const auth = useAuthState();
 
   const defaultValues = {
@@ -48,8 +48,8 @@ const RegisterForm = () => {
           <FormField
             name="name"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
@@ -62,8 +62,8 @@ const RegisterForm = () => {
           <FormField
             name="email"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>Email address</FormLabel>
                 <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
@@ -76,8 +76,8 @@ const RegisterForm = () => {
           <FormField
             name="password"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>{t('password')}</FormLabel>
                 <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
@@ -90,8 +90,8 @@ const RegisterForm = () => {
           <FormField
             name="confirmPassword"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>{t('confirm_password')}</FormLabel>
                 <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />

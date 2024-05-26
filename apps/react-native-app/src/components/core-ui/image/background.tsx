@@ -1,12 +1,12 @@
-import React, {ComponentProps, FC} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, { ComponentProps, FC } from 'react';
+import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-import {ICoreUIBaseProps} from '../types';
+import { ICoreUIBaseProps } from '../types';
 
 interface IImageBackgroundProps extends ComponentProps<typeof FastImage> {}
 
-const ImageBackground: FC<IImageBackgroundProps & ICoreUIBaseProps> = ({visible = true, style, ...props}) => {
+const ImageBackground: FC<IImageBackgroundProps & ICoreUIBaseProps> = ({ visible = true, style, ...props }) => {
   if (!visible) return null;
 
   return (

@@ -1,10 +1,10 @@
-import React, {FC, ReactNode} from 'react';
-import {StyleSheet, View, ViewProps, ViewStyle} from 'react-native';
-import {EdgeInsets, useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, { FC, ReactNode } from 'react';
+import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 interface ISafeViewAreaProps extends ViewProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ interface ISafeViewAreaProps extends ViewProps {
   spacingLeft?: boolean;
 }
 
-const SafeViewArea: FC<ISafeViewAreaProps> = ({children, ...rest}) => {
+const SafeViewArea: FC<ISafeViewAreaProps> = ({ children, ...rest }) => {
   const insets = useSafeAreaInsets();
   const screenState = useScreenState();
 
@@ -45,15 +45,15 @@ const styles = StyleSheet.create<{
   spacingLeft(insets: EdgeInsets): ViewStyle;
 }>({
   spacingTop: insets => {
-    return {paddingTop: insets.top};
+    return { paddingTop: insets.top };
   },
   spacingRight: insets => {
-    return {paddingRight: insets.right};
+    return { paddingRight: insets.right };
   },
   spacingBottom: insets => {
-    return {paddingBottom: insets.bottom};
+    return { paddingBottom: insets.bottom };
   },
   spacingLeft: insets => {
-    return {paddingLeft: insets.left};
+    return { paddingLeft: insets.left };
   }
 });

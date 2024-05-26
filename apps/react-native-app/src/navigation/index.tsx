@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {MMKV} from 'react-native-mmkv';
+import React, { useEffect } from 'react';
+import { MMKV } from 'react-native-mmkv';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {useAppState} from '@/modules/app/states/app.state';
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { RootStackParamList } from '@/interfaces/navigation.interface';
 
-import {RootStackParamList} from '@/common/interfaces/navigation.interface';
+import { useAppState } from '@/modules/app/states/app.state';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import Anthenticated from './authenticated';
 import Unanthenticated from './unauthenticated';
@@ -29,7 +29,7 @@ const InitNavigator = () => {
   if (!appState.ready) return null;
 
   return (
-    <Stack.Navigator screenOptions={{headerShown: false, presentation: 'transparentModal'}}>
+    <Stack.Navigator screenOptions={{ headerShown: false, presentation: 'transparentModal' }}>
       {authState.isAuthenticated ? (
         <Stack.Screen name="Anthenticated" component={Anthenticated} />
       ) : (

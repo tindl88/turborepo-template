@@ -36,8 +36,10 @@ function copyFile(sourceFilePath, destinationFilePath) {
     // Write the contents to the destination file
     fs.writeFileSync(destinationFilePath, data);
 
+    // eslint-disable-next-line no-console
     console.log(ENV.toUpperCase() + '::' + path.basename(sourceFilePath) + ' copied successfully!');
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('Error:', err);
   }
 }

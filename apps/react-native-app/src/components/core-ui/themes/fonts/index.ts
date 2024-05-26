@@ -2,9 +2,9 @@
 IOS result: { fontFamily: 'OpenSans', fontWeight: '600', style: 'italic' }
 Android result: { fontFamily: 'OpenSans-SemiBoldItalic' }
 */
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 
-import {FontStyle, FontWeight} from '../../types';
+import { FontStyle, FontWeight } from '../../types';
 
 export type FontMakerOptions = {
   name?: string;
@@ -30,7 +30,7 @@ const fontWeightMapping: Record<FontWeight, number> = {
 };
 
 export const fontMaker = (options: FontMakerOptions = {}): FontMakerResult => {
-  const {name = 'Quicksand', weight = 'Regular', style = 'Normal', separator = '_'} = options;
+  const { name = 'Quicksand', weight = 'Regular', style = 'Normal', separator = '_' } = options;
   const isIOS = Platform.OS === 'ios';
   const mappedFontWeight = fontWeightMapping[weight] || fontWeightMapping.Regular;
 

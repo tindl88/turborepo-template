@@ -1,6 +1,6 @@
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
-import {useAppDispatch, useAppSelector} from '@/common/redux/store';
+import { useAppDispatch, useAppSelector } from '@/stores/redux/store';
 
 import slice from './auth.slice';
 
@@ -10,5 +10,5 @@ export function useAuthState() {
 
   const actionCreators = bindActionCreators(slice.actions, dispatch);
 
-  return {dispatch, ...state, ...actionCreators};
+  return { dispatch, ...state, ...actionCreators };
 }

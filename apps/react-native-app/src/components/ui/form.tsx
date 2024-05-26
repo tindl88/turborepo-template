@@ -1,9 +1,9 @@
 import React from 'react';
-import {Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext} from 'react-hook-form';
-import {View} from 'react-native';
+import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
+import { View } from 'react-native';
 
 import Text from '../core-ui/text';
-import {DesignSystem as ds} from '../core-ui/themes';
+import { DesignSystem as ds } from '../core-ui/themes';
 
 const Form = FormProvider;
 
@@ -23,7 +23,7 @@ const FormField = <
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
   return (
-    <FormFieldContext.Provider value={{name: props.name}}>
+    <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
     </FormFieldContext.Provider>
   );
@@ -32,7 +32,7 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
   const itemContext = React.useContext(FormItemContext);
-  const {getFieldState, formState} = useFormContext();
+  const { getFieldState, formState } = useFormContext();
 
   const fieldState = getFieldState(fieldContext.name, formState);
 
@@ -40,7 +40,7 @@ const useFormField = () => {
     throw new Error('useFormField should be used within <FormField>');
   }
 
-  const {id} = itemContext;
+  const { id } = itemContext;
 
   return {
     id,
@@ -62,7 +62,7 @@ const FormItem = React.forwardRef<View, React.ComponentPropsWithoutRef<typeof Vi
   const id = React.useId();
 
   return (
-    <FormItemContext.Provider value={{id}}>
+    <FormItemContext.Provider value={{ id }}>
       <View ref={ref} {...props} />
     </FormItemContext.Provider>
   );
@@ -72,7 +72,7 @@ FormItem.displayName = 'FormItem';
 
 const FormLabel = React.forwardRef<React.ElementRef<typeof Text>, React.ComponentPropsWithoutRef<typeof Text>>(
   (props, ref) => {
-    const {error, formItemId} = useFormField();
+    const { error, formItemId } = useFormField();
 
     return <Text key={formItemId} ref={ref} style={[ds.mb6, error && ds.textRed500]} {...props} />;
   }
@@ -81,8 +81,8 @@ const FormLabel = React.forwardRef<React.ElementRef<typeof Text>, React.Componen
 FormLabel.displayName = 'FormLabel';
 
 const FormMessage = React.forwardRef<React.ElementRef<typeof Text>, React.ComponentPropsWithoutRef<typeof Text>>(
-  ({children, ...props}, ref) => {
-    const {error, formMessageId} = useFormField();
+  ({ children, ...props }, ref) => {
+    const { error, formMessageId } = useFormField();
     const body = error ? String(error?.message) : children;
 
     if (!body) {
@@ -99,4 +99,4 @@ const FormMessage = React.forwardRef<React.ElementRef<typeof Text>, React.Compon
 
 FormMessage.displayName = 'FormMessage';
 
-export {Form, FormField, FormItem, FormLabel, FormMessage, useFormField};
+export { Form, FormField, FormItem, FormLabel, FormMessage, useFormField };

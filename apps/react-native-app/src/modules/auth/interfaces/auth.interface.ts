@@ -1,4 +1,4 @@
-import {ResponseFormat} from '@/common/interfaces';
+import { ResponseFormat } from '@/interfaces';
 
 export type AuthEntity = {
   user: {

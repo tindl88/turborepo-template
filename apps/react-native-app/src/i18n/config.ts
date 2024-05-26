@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 import commonEN from './locales/en/common.json';
 import commonVI from './locales/vi/common.json';

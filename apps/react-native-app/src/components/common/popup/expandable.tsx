@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Button, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 const Expandable = () => {

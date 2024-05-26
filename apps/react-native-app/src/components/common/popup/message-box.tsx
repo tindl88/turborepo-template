@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
-import {View} from 'react-native';
+import React, { FC } from 'react';
+import { View } from 'react-native';
 
-import {Button, Heading, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Button, Heading, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 interface IMessageBoxProps {
   title?: string | null;
@@ -11,7 +11,7 @@ interface IMessageBoxProps {
   onClose: () => void;
 }
 
-const MessageBox: FC<IMessageBoxProps> = ({title = '', message = '', btnClose = 'Close', onClose}) => {
+const MessageBox: FC<IMessageBoxProps> = ({ title = '', message = '', btnClose = 'Close', onClose }) => {
   return (
     <View>
       <Heading>{title}</Heading>

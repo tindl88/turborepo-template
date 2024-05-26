@@ -1,10 +1,10 @@
-import React, {FC, ReactNode} from 'react';
-import {Pressable, StyleProp, View, ViewStyle} from 'react-native';
+import React, { FC, ReactNode } from 'react';
+import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
 
 import Text from '../text';
-import {DesignSystem as ds} from '../themes';
+import { DesignSystem as ds } from '../themes';
 
-import {useTab} from './state';
+import { useTab } from './state';
 
 export interface ITabItemProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ export interface ITabItemProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Item: FC<ITabItemProps> = ({label, children, style}) => {
+export const Item: FC<ITabItemProps> = ({ label, children, style }) => {
   const tab = useTab();
 
   return (

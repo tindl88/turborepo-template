@@ -1,16 +1,16 @@
-import React, {FC} from 'react';
-import {View} from 'react-native';
+import React, { FC } from 'react';
+import { View } from 'react-native';
 
-import {Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { PostEntity } from '../interfaces/post.interface';
 
-import {PostEntity} from '../interfaces/post.interface';
+import { Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 interface IPostItemProps {
   item: PostEntity;
 }
 
-export const PostItem: FC<IPostItemProps> = ({item}) => {
+export const PostItem: FC<IPostItemProps> = ({ item }) => {
   return (
     <View style={[ds.p10, ds.borderB1, ds.borderCyan100]}>
       <View>

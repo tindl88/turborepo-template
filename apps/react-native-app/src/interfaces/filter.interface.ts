@@ -4,5 +4,5 @@ export type BaseFilter = {
   limit?: number;
   sort?: string;
   order?: string;
-  status?: string;
+  status?: string[];
 };

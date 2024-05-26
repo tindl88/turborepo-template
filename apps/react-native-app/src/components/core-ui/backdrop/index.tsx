@@ -1,14 +1,14 @@
-import React, {FC} from 'react';
-import {Pressable} from 'react-native';
+import React, { FC } from 'react';
+import { Pressable } from 'react-native';
 
-import {DesignSystem as ds} from '../themes';
-import {ICoreUIBaseProps} from '../types';
+import { DesignSystem as ds } from '../themes';
+import { ICoreUIBaseProps } from '../types';
 
 interface IBackdropProps extends ICoreUIBaseProps {
   onPress?: () => void;
 }
 
-const Backdrop: FC<IBackdropProps> = ({visible = false, onPress}) => {
+const Backdrop: FC<IBackdropProps> = ({ visible = false, onPress }) => {
   if (!visible) return null;
 
   return (

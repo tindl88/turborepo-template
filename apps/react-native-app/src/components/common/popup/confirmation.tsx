@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
 
-import {Button} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Button } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 type Props = {
   title?: string | null;
@@ -13,7 +13,7 @@ type Props = {
   onNo: () => void;
 };
 
-const Confirmation: FC<Props> = ({message, btnYes = 'Yes', btnNo = 'No', onYes, onNo}) => {
+const Confirmation: FC<Props> = ({ message, btnYes = 'Yes', btnNo = 'No', onYes, onNo }) => {
   return (
     <View style={ds.wFull}>
       <Text>{message}</Text>

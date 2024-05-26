@@ -1,22 +1,22 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import {borderStyles} from './border';
-import {Colors, colorStyles} from './colors';
-import {effectStyles} from './effect';
-import {flexStyles} from './flex';
-import {imageStyles} from './image';
-import {layoutStyles} from './layout';
-import {Sizing, sizingStyles} from './sizing';
+import { borderStyles } from './border';
+import { Colors, colorStyles } from './colors';
+import { effectStyles } from './effect';
+import { flexStyles } from './flex';
+import { imageStyles } from './image';
+import { layoutStyles } from './layout';
+import { Sizing, sizingStyles } from './sizing';
 import Spacing from './spacing';
-import {typographyStyle} from './typography';
+import { typographyStyle } from './typography';
 
 const styles = StyleSheet.create<any>({
-  heading1: {...typographyStyle.fontSize.text36},
-  heading2: {...typographyStyle.fontSize.text32},
-  heading3: {...typographyStyle.fontSize.text28},
-  heading4: {...typographyStyle.fontSize.text24},
-  heading5: {...typographyStyle.fontSize.text20},
-  heading6: {...typographyStyle.fontSize.text16},
+  heading1: { ...typographyStyle.fontSize.text36 },
+  heading2: { ...typographyStyle.fontSize.text32 },
+  heading3: { ...typographyStyle.fontSize.text28 },
+  heading4: { ...typographyStyle.fontSize.text24 },
+  heading5: { ...typographyStyle.fontSize.text20 },
+  heading6: { ...typographyStyle.fontSize.text16 },
   // COLOR
   ...colorStyles.background,
   ...colorStyles.border,
@@ -72,4 +72,4 @@ const styles = StyleSheet.create<any>({
 
 export default styles;
 
-export {Colors, Sizing};
+export { Colors, Sizing };
