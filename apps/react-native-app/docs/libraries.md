@@ -1,6 +1,7 @@
 # Libraries
 
 ## Quick update
+
 ```bash
 yarn add \
 @gorhom/bottom-sheet \
@@ -61,69 +62,87 @@ zod \
 zustand
 ```
 
-
 ## Splash Screen
+
 1. https://github.com/zoontek/react-native-bootsplash
 
 ## Navigation
+
 1. https://github.com/react-navigation/react-navigation
-  - https://github.com/th3rdwave/react-native-safe-area-context
-  - https://github.com/software-mansion/react-native-screens
-  - https://github.com/react-navigation/react-navigation/tree/main/packages/bottom-tabs
-  - https://github.com/react-navigation/react-navigation/tree/main/packages/drawer
-  - https://github.com/react-navigation/react-navigation/tree/main/packages/native
-  - https://github.com/react-navigation/react-navigation/tree/main/packages/native-stack
-  - https://github.com/react-navigation/react-navigation/tree/main/packages/stack
+
+- https://github.com/th3rdwave/react-native-safe-area-context
+- https://github.com/software-mansion/react-native-screens
+- https://github.com/react-navigation/react-navigation/tree/main/packages/bottom-tabs
+- https://github.com/react-navigation/react-navigation/tree/main/packages/drawer
+- https://github.com/react-navigation/react-navigation/tree/main/packages/native
+- https://github.com/react-navigation/react-navigation/tree/main/packages/native-stack
+- https://github.com/react-navigation/react-navigation/tree/main/packages/stack
 
 # Geo location
+
 1. https://www.npmjs.com/package/@react-native-community/geolocation
 
 # Authentication
-  1.https://github.com/invertase/react-native-firebase/tree/main/packages/auth
-  - https://github.com/thebergamo/react-native-fbsdk-next
-  - https://github.com/react-native-google-signin/google-signin
+
+1.https://github.com/invertase/react-native-firebase/tree/main/packages/auth
+
+- https://github.com/thebergamo/react-native-fbsdk-next
+- https://github.com/react-native-google-signin/google-signin
 
 ## Permission
+
 1. https://github.com/zoontek/react-native-permissions
 
 ## Icon
+
 1. https://github.com/oblador/react-native-vector-icons
 
 ## Image
+
 1. https://github.com/DylanVann/react-native-fast-image
 2. https://github.com/andresribeiro/react-native-reanimated-image-viewer
 
 ## Animation
+
 1. https://github.com/software-mansion/react-native-reanimated
 
 ## Camera
+
 1. https://github.com/mrousavy/react-native-vision-camera
 
 ## International
+
 1. https://github.com/i18next/i18next
 2. https://github.com/i18next/react-i18next
 
 ## Device Information
+
 1. https://github.com/react-native-device-info/react-native-device-info
 
 ## State Management
+
 1. https://github.com/pmndrs/zustand (Docs: https://docs.pmnd.rs/zustand/getting-started/introduction)
 2. Redux
-  - https://github.com/reduxjs/redux
-  - https://github.com/reduxjs/react-redux
-  - https://github.com/reduxjs/redux-toolkit
-  - https://github.com/redux-saga/redux-saga
+
+- https://github.com/reduxjs/redux
+- https://github.com/reduxjs/react-redux
+- https://github.com/reduxjs/redux-toolkit
+- https://github.com/redux-saga/redux-saga
 
 ## Network
+
 1. https://github.com/react-native-netinfo/react-native-netinfo
 
 ## Clipboard
+
 1. https://github.com/react-native-clipboard/clipboard
 
 ## Validation
+
 1. https://github.com/colinhacks/zod
 
 ## UI Components
 
 ## Release & Versioning
+
 1. https://github.com/microsoft/react-native-code-push
