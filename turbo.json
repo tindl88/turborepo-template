@@ -48,6 +48,9 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "format": {
+      "dependsOn": ["^format"]
+    },
     "build": {
       "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
       "dependsOn": ["^build"],
