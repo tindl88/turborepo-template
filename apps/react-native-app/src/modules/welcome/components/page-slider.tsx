@@ -3,10 +3,10 @@ import { Animated, Dimensions, View } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
+import { Colors, ds } from '@/design-system';
 
 import { Text } from '@/components/core-ui';
 import Heading from '@/components/core-ui/heading';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 
 import Images from '@/assets/images';
 

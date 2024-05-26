@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
 import { StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

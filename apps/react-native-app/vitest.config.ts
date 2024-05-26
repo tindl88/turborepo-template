@@ -9,7 +9,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@tests': path.resolve(__dirname, './__tests__'),
-      '@mocks': path.resolve(__dirname, './__mocks__')
+      '@mocks': path.resolve(__dirname, './__mocks__'),
+      '~shared-client': path.resolve(__dirname, '../../packages/shared-client/src')
     }
   },
   test: {

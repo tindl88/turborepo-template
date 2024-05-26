@@ -1,8 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { ds } from '@/design-system';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 
@@ -38,6 +37,8 @@ const SafeViewArea: FC<ISafeViewAreaProps> = ({ children, ...rest }) => {
 export default SafeViewArea;
 
 const styles = StyleSheet.create<{
+  // FIXME: Fix style
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   spacingTop(insets: EdgeInsets): ViewStyle;
   spacingRight(insets: EdgeInsets): ViewStyle;

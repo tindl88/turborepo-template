@@ -1,6 +1,8 @@
 import Colors from 'tailwindcss/colors';
 
-export const colorStyles = {
+import { ColorStyles } from './interfaces/color.interface';
+
+export const colorStyles: ColorStyles = {
   background: {
     bgTransparent: { backgroundColor: 'transparent' },
     bgWhite: { backgroundColor: '#ffffff' },
@@ -237,6 +239,7 @@ export const colorStyles = {
     bgRose900: { backgroundColor: Colors.rose[900] }
   },
   color: {
+    textTransparent: { color: 'transparent' },
     textWhite: { color: '#ffffff' },
     textBlack: { color: '#000000' },
     textPrimary50: { color: Colors.blue[50] },
@@ -798,5 +801,3 @@ export const colorStyles = {
     borderRose900: { borderColor: Colors.rose[900] }
   }
 };
-
-export { Colors };

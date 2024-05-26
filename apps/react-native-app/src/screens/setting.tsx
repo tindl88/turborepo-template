@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
@@ -9,9 +10,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList, DrawerParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Divider, StatusBar } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, Divider, StatusBar } from '@/components/core-ui';
 
 import { useLanguageState } from '@/modules/language/states/language.state';
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -33,11 +32,11 @@ function SettingScreen({}: Props) {
       <GeneralNavigationHeader title={screenState.name} />
       <Divider />
       <ScrollView style={ds.flex1}>
-        <Button label="Tiếng Việt" onPress={() => languageState.setLanguage('vi')} />
-        <Button label="English" onPress={() => languageState.setLanguage('en')} />
+        <Button onPress={() => languageState.setLanguage('vi')}>Tiếng Việt</Button>
+        <Button onPress={() => languageState.setLanguage('en')}>English</Button>
         <Divider />
-        <Button label="Dark Theme" onPress={() => themeState.setColorScheme('dark')} />
-        <Button label="Light Theme" onPress={() => themeState.setColorScheme('light')} />
+        <Button onPress={() => themeState.setColorScheme('dark')}>Dark Theme</Button>
+        <Button onPress={() => themeState.setColorScheme('light')}>Light Theme</Button>
       </ScrollView>
     </View>
   );

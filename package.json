@@ -7,6 +7,8 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "format": "turbo format",
+    "check:format": "turbo check:format",
+    "check:types": "turbo check:types",
     "clean": "rimraf {apps,packages}/**/{node_modules,dist,.next,.turbo} -g && rimraf node_modules",
     "postinstall": "manypkg check",
     "prepare": "husky",

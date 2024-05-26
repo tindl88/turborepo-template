@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { View } from 'react-native';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import { ds } from '@/design-system';
 import { BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
@@ -8,9 +9,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
-import { Divider, Heading, StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, Divider, Heading, StatusBar, Text } from '@/components/core-ui';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import CarouselBanner from '@/modules/home/components/carousel';
@@ -48,8 +47,8 @@ function HomeScreen({}: Props) {
       <CarouselBanner />
       <View style={ds.flex1}>
         <Heading as={'h2'} text={'Name: ' + authState.auth?.user?.email} />
-        <Button label="Sign Out" onPress={() => authState.logoutRequest()} />
-        <Button label="Present Modal" onPress={handlePresentModalPress} />
+        <Button onPress={() => authState.logoutRequest()}>Sign Out</Button>
+        <Button onPress={handlePresentModalPress}>Present Modal</Button>
       </View>
       <BottomSheetModalProvider>
         <View style={[ds.flex1, ds.p24, ds.justifyCenter]}>

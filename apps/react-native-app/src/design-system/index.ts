@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
+import Colors from 'tailwindcss/colors';
 
 import { borderStyles } from './border';
-import { Colors, colorStyles } from './colors';
+import { colorStyles } from './colors';
 import { effectStyles } from './effect';
 import { flexStyles } from './flex';
 import { imageStyles } from './image';
 import { layoutStyles } from './layout';
-import { Sizing, sizingStyles } from './sizing';
+import { sizingStyles } from './sizing';
 import Spacing from './spacing';
 import { typographyStyle } from './typography';
 
-const styles = StyleSheet.create<any>({
+const styles = StyleSheet.create({
   heading1: { ...typographyStyle.fontSize.text36 },
   heading2: { ...typographyStyle.fontSize.text32 },
   heading3: { ...typographyStyle.fontSize.text28 },
@@ -43,9 +44,9 @@ const styles = StyleSheet.create<any>({
   ...typographyStyle.letterSpacing,
   ...typographyStyle.lineHeight,
   ...typographyStyle.textDecorationLine,
-  ...typographyStyle.textShadowColor,
-  ...typographyStyle.textShadowOffset,
-  ...typographyStyle.textShadowRadius,
+  // ...typographyStyle.textShadowColor,
+  // ...typographyStyle.textShadowOffset,
+  // ...typographyStyle.textShadowRadius,
   ...typographyStyle.textTransform,
   // FLEX
   ...flexStyles.gap,
@@ -59,8 +60,8 @@ const styles = StyleSheet.create<any>({
   ...flexStyles.alignSelf,
   // LAYOUT
   ...layoutStyles.overflow,
-  ...layoutStyles.position,
   ...layoutStyles.display,
+  ...layoutStyles.position,
   ...layoutStyles.top,
   ...layoutStyles.right,
   ...layoutStyles.bottom,
@@ -70,6 +71,5 @@ const styles = StyleSheet.create<any>({
   ...effectStyles.opacity
 });
 
-export default styles;
-
-export { Colors, Sizing };
+export { Colors };
+export { styles as ds };

@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from '../text';
-import { DesignSystem as ds } from '../themes';
 
 import { useTab } from './state';
 

@@ -6,6 +6,8 @@ export type PostEntity = {
   url: string;
   description: string;
   body: string;
+  // FIXME: Fix user type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   creator: any;
 };
 

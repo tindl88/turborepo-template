@@ -1,9 +1,9 @@
 import React from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 import { View } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from '../core-ui/text';
-import { DesignSystem as ds } from '../core-ui/themes';
 
 const Form = FormProvider;
 

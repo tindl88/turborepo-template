@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
+import { Button } from '@/components/core-ui';
 // import {useAuthState} from '@/modules/auth/states/auth.state';
 import BrandApple from '@/components/svgs/brand-apple';
-import { IconButton } from '@/components/ui/icon-button';
 
 interface IAppleSignInProps {
   style?: StyleProp<PressableProps | ViewStyle>;
@@ -14,17 +14,16 @@ const AppleSignIn: FC<IAppleSignInProps> = ({ style }) => {
 
   const onPress = async () => {
     try {
-      console.log('Apple Sign');
       // auth.loginRequest({provider: 'apple'});
     } catch (error) {
-      console.log('AUTH-FACEBOOK:', error);
+      throw error;
     }
   };
 
   return (
-    <IconButton style={style} onPress={onPress}>
+    <Button style={style} onPress={onPress}>
       <BrandApple />
-    </IconButton>
+    </Button>
   );
 };
 

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList } from '@/interfaces';
 
 import { Loading, StatusBar } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 type Props = StackScreenProps<AuthenticatedParamList, 'Preload'>;
 

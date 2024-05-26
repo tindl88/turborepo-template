@@ -1,8 +1,8 @@
 import React, { FC, memo, ReactNode } from 'react';
 import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from '../text';
-import { DesignSystem as ds } from '../themes';
 import { HeadingType, ICoreUIBaseProps } from '../types';
 
 interface IHeadingProps extends ICoreUIBaseProps {

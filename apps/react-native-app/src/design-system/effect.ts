@@ -1,4 +1,6 @@
-export const effectStyles = {
+import { EffectStyles } from './interfaces/effect.interface';
+
+export const effectStyles: EffectStyles = {
   opacity: {
     opacity0: { opacity: 0 },
     opacity5: { opacity: 0.05 },

@@ -1,4 +1,6 @@
-export const layoutStyles = {
+import { LayoutStyles } from './interfaces/layout.interface';
+
+export const layoutStyles: LayoutStyles = {
   overflow: {
     overflowHidden: { overflow: 'hidden' },
     overflowVisible: { overflow: 'visible' },

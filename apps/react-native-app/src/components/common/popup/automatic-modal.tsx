@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 

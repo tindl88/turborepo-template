@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList } from '@/interfaces';
@@ -8,7 +9,6 @@ import { AuthenticatedParamList } from '@/interfaces';
 // import {useThemeState} from '@/modules/themes/states/themes.state';
 import NavigationHeader from '@/components/common/header/general';
 import { StatusBar } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

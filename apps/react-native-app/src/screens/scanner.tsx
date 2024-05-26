@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
 import { PERMISSIONS, request } from 'react-native-permissions';
+import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, useNavigation } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -8,9 +9,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { StatusBar } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, StatusBar } from '@/components/core-ui';
 
 import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -41,7 +40,7 @@ function ScanCodeScreen({}: Props) {
             <GoogleMLKitScanner />
           </View>
         )}
-        {permissionResult === 'blocked' && <Button label="Back" onPress={() => navigation.goBack()} />}
+        {permissionResult === 'blocked' && <Button onPress={() => navigation.goBack()}>Back</Button>}
       </View>
     </View>
   );

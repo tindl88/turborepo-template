@@ -1,8 +1,8 @@
 import React, { FC, memo, ReactNode, useState } from 'react';
 import { Platform, Pressable, PressableProps, StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from '../text';
-import { DesignSystem as ds } from '../themes';
 import { ButtonColorType, ButtonVariantType, ICoreUIBaseProps, RoundedType } from '../types';
 
 interface IButtonProps extends PressableProps {
@@ -74,7 +74,7 @@ const Button: FC<IButtonProps & ICoreUIBaseProps> = ({
 
 export default memo(Button);
 
-const themes: any = {
+const themes = {
   default: {
     primary: {
       background: { normal: {}, pressed: {}, disabled: {} },
@@ -206,8 +206,12 @@ const themes: any = {
 };
 
 const styles = StyleSheet.create<{
+  // FIXME: Fix type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   rounded(value: RoundedType): ViewStyle;
+  // FIXME: Fix type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   theme(variant: ButtonVariantType, themeColor: ButtonColorType): any;
 }>({
   component: {

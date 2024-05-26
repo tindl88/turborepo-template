@@ -1,14 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { UnauthenticatedParamList } from '@/interfaces';
 
 // import WelcomeSlideshow from '@/modules/welcome/components/slide';
-import { StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, StatusBar, Text } from '@/components/core-ui';
 
 import WelcomePageSlider from '@/modules/welcome/components/page-slider';
 
@@ -25,11 +24,9 @@ function WelcomeScreen({ navigation }: Props) {
           <WelcomePageSlider />
         </View>
         <View style={ds.mb56}>
-          <Button
-            label={t('get_started').toUpperCase()}
-            style={ds.wFull}
-            onPress={() => navigation.navigate('Login')}
-          />
+          <Button style={ds.wFull} onPress={() => navigation.navigate('Login')}>
+            {t('get_started').toUpperCase()}
+          </Button>
           <Text style={[ds.wFull, ds.textCenter, ds.mt20]} onPress={() => navigation.navigate('Login')}>
             {t('i_already_have_account')}
           </Text>

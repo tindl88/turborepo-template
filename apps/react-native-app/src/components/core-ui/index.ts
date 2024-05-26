@@ -6,6 +6,7 @@ export { default as Heading } from './heading';
 export { default as ImageBackground } from './image/background';
 export { default as Image } from './image/image';
 export { default as Input } from './input';
+export { default as Line } from './line';
 export { default as Loading } from './loading';
 export { default as OtpInput } from './otp-input';
 export { default as Pagination } from './pagination';

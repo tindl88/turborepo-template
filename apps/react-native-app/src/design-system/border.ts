@@ -1,4 +1,6 @@
-export const borderStyles = {
+import { BorderStyles } from './interfaces/border.interface';
+
+export const borderStyles: BorderStyles = {
   borderWidth: {
     border0: { borderWidth: 0 },
     border1: { borderWidth: 1 },

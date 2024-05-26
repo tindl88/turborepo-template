@@ -6,8 +6,8 @@ import {
   TextInputProps,
   useColorScheme
 } from 'react-native';
+import { Colors, ds } from '@/design-system';
 
-import { Colors, DesignSystem as ds } from '../themes';
 import { ICoreUIBaseProps } from '../types';
 
 interface IInputTextProps extends ICoreUIBaseProps, TextInputProps {

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Pressable, TextInput, useColorScheme, View } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from './text';
-import { DesignSystem as ds } from './themes';
 
 interface IOTPInputProps {
   code: string;

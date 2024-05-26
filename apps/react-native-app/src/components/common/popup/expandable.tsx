@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -19,7 +20,7 @@ const Expandable = () => {
       >
         This is the starting of a long content
       </Text>
-      <Button title="Toggle" onPress={() => setIsExpanded(isExpanded => !isExpanded)} />
+      <Button title="Toggle" onPress={() => setIsExpanded(isExpd => !isExpd)} />
       {isExpanded && (
         <Animated.View>
           <View

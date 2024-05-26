@@ -4,7 +4,7 @@ Android result: { fontFamily: 'OpenSans-SemiBoldItalic' }
 */
 import { Platform } from 'react-native';
 
-import { FontStyle, FontWeight } from '../../types';
+import { FontStyle, FontWeight } from '../interfaces/font.interface';
 
 export type FontMakerOptions = {
   name?: string;

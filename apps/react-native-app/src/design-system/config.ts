@@ -6,7 +6,7 @@ export type ColorConfig = {
   [key: string]: string;
 };
 
-const spacing: SpacingConfig = {
+export const spacing: SpacingConfig = {
   0: 0,
   1: 1,
   2: 2,
@@ -44,7 +44,7 @@ const spacing: SpacingConfig = {
   384: 384
 };
 
-const colors: ColorConfig = {
+export const colors: ColorConfig = {
   primary: '#fb923c',
   secondary: '#eab308',
   slate: '#64748b',
@@ -70,5 +70,3 @@ const colors: ColorConfig = {
   pink: '#ec4899',
   rose: '#f43f5e'
 };
-
-export default { colors, spacing };

@@ -1,6 +1,7 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { withNativeWind } = require('nativewind/metro');
 const path = require('path');
+
 /**
  * Metro configuration
  * https://facebook.github.io/metro/docs/configuration
@@ -8,15 +9,21 @@ const path = require('path');
  * @type {import('metro-config').MetroConfig}
  */
 
-const config = mergeConfig(getDefaultConfig(__dirname), {
-  /*************************************************
-  TODO: Support Monorepo
-  Add watchFolders
-  **************************************************/
-  watchFolders: [
-    path.resolve(__dirname, '../../node_modules'),
-    path.resolve(__dirname, '../../node_modules/@repo/shared-client')
-  ]
-});
+const workspaceRoot = path.resolve(__dirname, '../..');
+const projectRoot = __dirname;
 
-module.exports = withNativeWind(config, { input: './src/global.css' });
+const config = getDefaultConfig(projectRoot, { requireConfigFile: false });
+
+config.watchFolders = [workspaceRoot];
+
+config.resolver.nodeModulesPaths = [
+  path.resolve(workspaceRoot, 'node_modules'),
+  path.resolve(projectRoot, 'node_modules'),
+  path.resolve(projectRoot, 'node_modules/@repo/shared-client')
+];
+
+// config.resolver.disableHierarchicalLookup = true;
+
+const customConfig = mergeConfig(getDefaultConfig(projectRoot), config);
+
+module.exports = withNativeWind(customConfig, { input: './src/global.css' });

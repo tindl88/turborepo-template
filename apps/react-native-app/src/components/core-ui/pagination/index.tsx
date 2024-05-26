@@ -1,8 +1,8 @@
 import React, { FC, memo, useMemo } from 'react';
 import { Pressable } from 'react-native';
+import { ds } from '@/design-system';
 
 import Text from '../text';
-import { DesignSystem as ds } from '../themes';
 import { ICoreUIBaseProps } from '../types';
 import View from '../view';
 

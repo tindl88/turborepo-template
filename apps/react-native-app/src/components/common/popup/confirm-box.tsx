@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import { ds } from '@/design-system';
 
-import { Heading, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, Heading, Text } from '@/components/core-ui';
 
 interface IConfirmBoxProps {
   title?: string | null;
@@ -25,12 +24,12 @@ const ConfirmBox: FC<IConfirmBoxProps> = ({ title, message, btnConfirmText, btnC
         <Text>{message}</Text>
       </View>
       <View style={[ds.row]}>
-        <Button
-          label={btnCancelText || t('calcel')}
-          style={[ds.grow, ds.border1, ds.borderRSlate200]}
-          onPress={onCancel}
-        />
-        <Button label={btnConfirmText || t('confirm')} style={[ds.grow]} onPress={onConfirm} />
+        <Button style={[ds.grow, ds.border1, ds.borderRSlate200]} onPress={onCancel}>
+          {btnCancelText || t('calcel')}
+        </Button>
+        <Button style={[ds.grow]} onPress={onConfirm}>
+          {btnConfirmText || t('confirm')}
+        </Button>
       </View>
     </View>
   );

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { ImageStyle } from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
+import { Colors, ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -20,6 +21,7 @@ import NestedModal from '@/components/common/popup/nest-modal';
 import Progress from '@/components/common/popup/progress';
 import ScrollingContent from '@/components/common/popup/scrolling-content';
 import {
+  Button,
   Divider,
   Heading,
   Image,
@@ -31,8 +33,6 @@ import {
   Tab,
   Text
 } from '@/components/core-ui';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 
@@ -130,29 +130,26 @@ function UIScreen({}: Props) {
           <Tab.Content label="tab-components">
             <View>
               <Button
-                label="Hiện lỗi"
                 onPress={() => showGlobalModal({ modalKey: 'modal-error', Component: ErrorBox1, hideClose: true })}
-              />
-              <Button label="Open 3 Modals" onPress={() => showGlobalModal({ Component: AutomaticModal })} />
-              <Button label="Nested Modal" onPress={() => showGlobalModal({ Component: NestedModal })} />
-              <Button label="Progress Modal" onPress={() => showGlobalModal({ Component: Progress })} />
+              >
+                Hiện lỗi
+              </Button>
+              <Button onPress={() => showGlobalModal({ Component: AutomaticModal })}>Open 3 Modals</Button>
+              <Button onPress={() => showGlobalModal({ Component: NestedModal })}>Nested Modal</Button>
+              <Button onPress={() => showGlobalModal({ Component: Progress })}>Progress Modal</Button>
               <Button
-                label="Confirmation Modal"
                 onPress={() =>
                   showGlobalModal({ modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true })
                 }
-              />
-              <Button label="Long Content Modal" onPress={() => showGlobalModal({ Component: LongContent })} />
+              >
+                Confirmation Modal
+              </Button>
+              <Button onPress={() => showGlobalModal({ Component: LongContent })}>Long Content Modal</Button>
+              <Button onPress={() => showGlobalModal({ Component: ScrollingContent })}>Scrolling Content Modal</Button>
+              <Button onPress={() => showGlobalModal({ Component: Expandable, disableLayoutChangeAnimation: true })}>
+                Expandable
+              </Button>
               <Button
-                label="Scrolling Content Modal"
-                onPress={() => showGlobalModal({ Component: ScrollingContent })}
-              />
-              <Button
-                label="Expandable"
-                onPress={() => showGlobalModal({ Component: Expandable, disableLayoutChangeAnimation: true })}
-              />
-              <Button
-                label="Show All"
                 onPress={() => {
                   showGlobalModal({ Component: NestedModal });
                   setTimeout(() => {
@@ -171,7 +168,9 @@ function UIScreen({}: Props) {
                     }, 1000);
                   }, 1000);
                 }}
-              />
+              >
+                Show All
+              </Button>
             </View>
           </Tab.Content>
         </Tab>

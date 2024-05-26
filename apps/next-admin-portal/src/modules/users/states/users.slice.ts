@@ -92,7 +92,7 @@ const slice = createSlice({
     /*****************************************************************
     READ
     *****************************************************************/
-    readRequest: (state, _action: PayloadAction<string>) => {
+    readRequest: (state, _action: PayloadAction<EntityId>) => {
       state.isReading = true;
     },
     readSuccess: (state, action: PayloadAction<UserResponse>) => {
@@ -117,7 +117,7 @@ const slice = createSlice({
     /*****************************************************************
     UPDATE
     *****************************************************************/
-    updateRequest: (state, _action: PayloadAction<{ id: string; data: UpdateUserDto }>) => {
+    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: UpdateUserDto }>) => {
       state.isUpdating = true;
       state.error = undefined;
       state.message = undefined;
@@ -151,7 +151,7 @@ const slice = createSlice({
     /*****************************************************************
     DELETE
     *****************************************************************/
-    destroyRequest: (state, _action: PayloadAction<string>) => {
+    destroyRequest: (state, _action: PayloadAction<EntityId>) => {
       state.isDeleting = true;
     },
     destroySuccess: (state, action: PayloadAction<UserResponse>) => {
@@ -181,7 +181,7 @@ const slice = createSlice({
     /*****************************************************************
     BULK DELETE
     *****************************************************************/
-    bulkDestroyRequest(state, _action: PayloadAction<{ ids: string[] }>) {
+    bulkDestroyRequest(state, _action: PayloadAction<{ ids: EntityId[] }>) {
       state.isDeleting = true;
     },
     bulkDestroySuccess(state, action: PayloadAction<UsersResponse>) {
@@ -249,10 +249,10 @@ const slice = createSlice({
     /*****************************************************************
     SELLECT
     *****************************************************************/
-    selectAll(state, action: PayloadAction<string[]>) {
+    selectAll(state, action: PayloadAction<EntityId[]>) {
       state.selected = action.payload;
     },
-    selectSingle(state, action: PayloadAction<string>) {
+    selectSingle(state, action: PayloadAction<EntityId>) {
       const id = action.payload;
       const index = state.selected.indexOf(id);
 

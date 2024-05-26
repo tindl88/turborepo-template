@@ -1,6 +1,6 @@
-import config from '../config';
+import { SizingStyles } from './interfaces/sizing.interface';
 
-export const sizingStyles = {
+export const sizingStyles: SizingStyles = {
   width: {
     w5Percent: { width: '5%' },
     w10Percent: { width: '10%' },
@@ -151,7 +151,6 @@ export const sizingStyles = {
     h20Percent: { height: '20%' },
     h25Percent: { height: '25%' },
     h30Percent: { height: '30%' },
-    h35Percent: { height: '35%' },
     h40Percent: { height: '40%' },
     h45Percent: { height: '45%' },
     h50Percent: { height: '50%' },
@@ -290,8 +289,6 @@ export const sizingStyles = {
     maxH384: { maxHeight: 384 }
   }
 };
-
-export const Sizing = { ...config.spacing };
 
 // height = Object.assign(height, sizingToStyle('h', true));
 // width = Object.assign(width, sizingToStyle('w', true));

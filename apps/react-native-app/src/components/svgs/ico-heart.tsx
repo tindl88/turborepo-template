@@ -1,8 +1,7 @@
 /* Magicoon - Regular */
 import React, { FC } from 'react';
 import Svg, { Path } from 'react-native-svg';
-
-import { Colors } from '@/components/core-ui/themes';
+import { Colors } from '@/design-system';
 
 import { ISvgBaseProps } from './types';
 

@@ -1,4 +1,6 @@
-export const typographyStyle = {
+import { TypographyStyles } from './interfaces/typography.interface';
+
+export const typographyStyle: TypographyStyles = {
   fontFamily: {
     fontSans: { fontFamily: 'Quicksand' },
     fontSerif: { fontFamily: 'Times New Roman' },

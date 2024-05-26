@@ -1,11 +1,11 @@
 import React, { FC, ReactNode } from 'react';
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { Colors, ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 
 import { Heading } from '@/components/core-ui';
 import Text from '@/components/core-ui/text';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';

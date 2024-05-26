@@ -1,13 +1,12 @@
 import React, { forwardRef, ReactNode } from 'react';
 import { StyleProp, StyleSheet, Text as RNText, TextStyle, useColorScheme } from 'react-native';
+import { Colors } from '@/design-system';
+import { FontStyle, FontWeight } from '@/design-system/interfaces/font.interface';
+import { fontMaker, FontMakerOptions } from '@/design-system/utils/font.util';
 
-import { Colors } from '@/components/core-ui/themes';
-
-import { fontMaker, FontMakerOptions } from '../themes/fonts';
-import { FontStyle, FontWeight, ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from '../types';
 
 interface ITextProps extends ICoreUIBaseProps {
-  className?: string;
   text?: string;
   fontName?: string;
   fontWeight?: FontWeight;
@@ -23,7 +22,6 @@ interface ITextProps extends ICoreUIBaseProps {
 const Text = forwardRef<RNText, ITextProps>(
   (
     {
-      className,
       text,
       children,
       style,
@@ -52,7 +50,7 @@ const Text = forwardRef<RNText, ITextProps>(
     if (!visible) return null;
 
     return (
-      <RNText ref={ref} className={className} style={[dStyle.font, dStyle.text, style]} onPress={onPress}>
+      <RNText ref={ref} style={[dStyle.font, dStyle.text, style]} onPress={onPress}>
         {content}
       </RNText>
     );

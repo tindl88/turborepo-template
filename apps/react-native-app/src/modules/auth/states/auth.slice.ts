@@ -73,9 +73,8 @@ const slice = createSlice({
 
       MMKVStorage.removeItem('@auth');
     },
-    createAccountRequest(state, action: PayloadAction<CreateUserDto>) {
+    createAccountRequest(state, _action: PayloadAction<CreateUserDto>) {
       state.isFetching = true;
-      console.log(action.payload);
     },
     createAccountSuccess(state, _action: PayloadAction<CreateUserResponse>) {
       state.isFetching = false;
@@ -88,9 +87,8 @@ const slice = createSlice({
       state.isAuthenticated = false;
       state.message = message;
     },
-    resetPasswordRequest(state, action: PayloadAction<ResetPasswordDto>) {
+    resetPasswordRequest(state, _action: PayloadAction<ResetPasswordDto>) {
       state.isFetching = true;
-      console.log(action.payload);
     },
     resetPasswordSuccess(state, _action: PayloadAction<ResetPasswordResponse>) {
       state.isFetching = false;

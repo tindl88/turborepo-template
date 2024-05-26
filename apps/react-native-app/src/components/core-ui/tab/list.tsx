@@ -1,8 +1,7 @@
-import { ScrollView } from 'react-native-gesture-handler';
 import React, { FC, ReactNode, useEffect } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-
-import { DesignSystem as ds } from '../themes';
+import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 
 import { useTab } from './state';
 

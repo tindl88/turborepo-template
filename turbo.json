@@ -51,6 +51,12 @@
     "format": {
       "dependsOn": ["^format"]
     },
+    "check:format": {
+      "dependsOn": ["^check:format"]
+    },
+    "check:types": {
+      "dependsOn": ["^check:types"]
+    },
     "build": {
       "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
       "dependsOn": ["^build"],

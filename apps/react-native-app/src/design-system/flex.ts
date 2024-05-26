@@ -1,4 +1,6 @@
-export const flexStyles = {
+import { FlexStyle } from './interfaces/flex.interface';
+
+export const flexStyles: FlexStyle = {
   gap: {
     gap2: { gap: 2 },
     gap4: { gap: 4 },

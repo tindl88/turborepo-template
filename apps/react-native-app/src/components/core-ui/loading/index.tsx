@@ -1,7 +1,7 @@
 import React, { FC, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View, ViewStyle } from 'react-native';
+import { Colors } from '@/design-system';
 
-import { Colors } from '../themes';
 import { ICoreUIBaseProps } from '../types';
 
 interface ILoadingProps extends ICoreUIBaseProps {

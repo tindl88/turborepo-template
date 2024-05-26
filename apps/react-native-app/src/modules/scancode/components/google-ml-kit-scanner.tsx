@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Alert, AlertButton, Linking, View } from 'react-native';
 import { Camera, Code, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
+import { ds } from '@/design-system';
 import { useIsFocused } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/native';
 
 import { useIsForeground } from '@/hooks/use-is-foreground';
 
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/core-ui';
 
 const showCodeAlert = (value: string, onDismissed: () => void): void => {
   const buttons: AlertButton[] = [
@@ -46,7 +46,6 @@ const GoogleMLKitScanner = () => {
   // 4. On code scanned, we show an aler to the user
   const isShowingAlert = useRef(false);
   const onCodeScanned = useCallback((codes: Code[]) => {
-    console.log(`Scanned ${codes.length} codes:`, codes);
     const value = codes[0]?.value;
 
     if (value == null) return;
@@ -77,8 +76,8 @@ const GoogleMLKitScanner = () => {
       />
 
       <View>
-        <Button label="Back" onPress={() => navigation.goBack()} />
-        <Button label={`Flash: ${isTorch ? 'ON' : 'OFF'}`} onPress={() => setIsTorch(!isTorch)} />
+        <Button onPress={() => navigation.goBack()}>Back</Button>
+        <Button onPress={() => setIsTorch(!isTorch)}>{`Flash: ${isTorch ? 'ON' : 'OFF'}`}</Button>
       </View>
     </>
   );
