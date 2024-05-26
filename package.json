@@ -7,9 +7,11 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "format": "turbo format",
+    "clean": "rimraf {apps,packages}/**/{node_modules,dist,.next,.turbo} -g && rimraf node_modules",
+    "postinstall": "manypkg check",
+    "prepare": "husky",
     "next-admin:dev": "turbo dev --filter=next-admin --filter=admin-api",
-    "next-app:dev": "turbo dev --filter=next-app --filter=admin-api",
-    "postinstall": "manypkg check"
+    "next-app:dev": "turbo dev --filter=next-app --filter=admin-api"
   },
   "engines": {
     "node": ">=20"
@@ -26,6 +28,7 @@
     "@repo/prettier-config": "*",
     "@repo/typescript-config": "*",
     "dotenv-cli": "^7.4.2",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "turbo": "latest"

@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo '🧼 Cleanup...'
-yarn clean
+# yarn clean
 
 echo '🏗️👷 Styling, testing your project before committing'
 
@@ -12,7 +12,7 @@ yarn lint || (echo ' ❌ ESLint Check Failed. Make the required changes listed a
 # Check Prettier standards
 yarn check:format || (echo '❌ Prettier Check Failed. Run yarn format, add changes and try commit again.'; false;)
 
-# Check tsconfig standards
+# Check TSconfig standards
 yarn check:types || (echo '❌ Type Check Failed. Are you seriously trying to write that? Make the changes required above.'; false;)
 
 # If everything passes... Now we can build
