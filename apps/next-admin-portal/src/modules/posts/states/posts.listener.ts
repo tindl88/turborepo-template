@@ -6,9 +6,7 @@ import { AppStartListening } from '@/stores/redux/store';
 
 import slice from './posts.slice';
 
-function onListRequest(action: PayloadAction<{ filter?: PostFilter }>) {
-  console.log('onListRequest', action);
-}
+function onListRequest(_action: PayloadAction<{ filter?: PostFilter }>) {}
 
 export function setupPostListeners(startListening: AppStartListening): Unsubscribe {
   const listeners = [startListening({ actionCreator: slice.actions.listRequest, effect: onListRequest })];

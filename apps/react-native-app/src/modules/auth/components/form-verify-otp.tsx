@@ -14,7 +14,6 @@ const VerifyOtpForm = () => {
 
   useEffect(() => {
     if (isPinReady) {
-      console.log('Verifying');
       authState.verifyEmailOtpRequest(otpCode as any);
     }
   }, [isPinReady]);

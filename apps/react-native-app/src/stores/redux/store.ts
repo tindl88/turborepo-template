@@ -1,6 +1,6 @@
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { combineReducers, Middleware } from 'redux';
+import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {
   addListener,

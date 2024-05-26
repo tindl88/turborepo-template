@@ -71,7 +71,6 @@ function UIScreen({}: Props) {
               totalItems={100}
               currentPage={currentPage}
               onChange={page => {
-                console.log('CURRENT_PAGE', page);
                 setCurrentPage(page);
               }}
             />
@@ -81,7 +80,6 @@ function UIScreen({}: Props) {
               totalItems={100}
               currentPage={currentPage}
               onChange={page => {
-                console.log('CURRENT_PAGE', page);
                 setCurrentPage(page);
               }}
             />

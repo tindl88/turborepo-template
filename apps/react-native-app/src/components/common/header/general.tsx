@@ -79,6 +79,8 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 export default GeneralNavigationHeader;
 
 const styles = StyleSheet.create<{
+  // FIXME: Fix StyleSheet
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   background(color: string): ViewStyle;
   border(color?: string): ViewStyle;

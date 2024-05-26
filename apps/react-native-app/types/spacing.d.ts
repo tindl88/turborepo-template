@@ -1,5 +1,5 @@
 declare module 'spacing' {
-  export interface SpacingStyles {
+  export type SpacingStyles = {
     background: {
       tin: { backgroundColor: string };
       bgTransparent: { backgroundColor: string };
@@ -26,7 +26,7 @@ declare module 'spacing' {
       bgSecondary800: { backgroundColor: string };
       bgSecondary900: { backgroundColor: string };
     };
-  }
+  };
 
   const spacingStyles: SpacingStyles;
 

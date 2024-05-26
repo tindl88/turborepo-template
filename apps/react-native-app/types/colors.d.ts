@@ -1,5 +1,5 @@
 declare module 'colors' {
-  export interface ColorStyles {
+  export type ColorStyles = {
     background: {
       tin: { backgroundColor: string };
       bgTransparent: { backgroundColor: string };
@@ -26,7 +26,7 @@ declare module 'colors' {
       bgSecondary800: { backgroundColor: string };
       bgSecondary900: { backgroundColor: string };
     };
-  }
+  };
 
   const colorStyles: ColorStyles;
 
