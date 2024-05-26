@@ -69,6 +69,9 @@
     },
     "test": {
       "dotEnv": [".env.test.local", ".env.test", ".env"]
+    },
+    "test:cov": {
+      "dependsOn": ["^test:cov"]
     }
   }
 }
