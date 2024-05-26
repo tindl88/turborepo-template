@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Text, View } from 'react-native';
+import { ds } from '@/design-system';
 
 import { Button } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 type Props = {
   title?: string | null;

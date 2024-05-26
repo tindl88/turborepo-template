@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo '🧼 Cleanup...'
+# yarn clean
+
+echo '🏗️👷 Styling, testing your project before committing'
+
+yarn test:cov || (echo '❌ Unit Test Failed: View the errors above to see why.'; false;)
+
+yarn build || (echo '❌ Next Build Failed: View the errors above to see why.'; false;)
+
+# If build success... Now we can commit
+echo '✅ It is perfect!... I am pushing this now.'

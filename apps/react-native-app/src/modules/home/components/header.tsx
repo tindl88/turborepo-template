@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, View, ViewStyle } from 'react-native';
+import { Colors, ds } from '@/design-system';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -7,7 +8,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import { Avatar, Text } from '@/components/core-ui';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';

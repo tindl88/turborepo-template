@@ -23,4 +23,4 @@ export type UpdateUserDto = Partial<CreateUserDto>;
 export type UsersResponse = ResponseFormat<UserEntity[]>;
 export type UserResponse = ResponseFormat<UserEntity>;
 
-export type CreateUserResponse = ResponseFormat<any>;
+export type CreateUserResponse = ResponseFormat<{ email: string }>;

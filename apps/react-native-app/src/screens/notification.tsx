@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 import { FlashList } from '@shopify/flash-list';
 
@@ -8,7 +9,6 @@ import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
 import { StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import { useThemeState } from '@/modules/themes/states/themes.state';
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
+import { Button } from '@/components/core-ui';
 import BrandFacebook from '@/components/svgs/brand-facebook';
-import { IconButton } from '@/components/ui/icon-button';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
@@ -17,14 +17,14 @@ const FacebookSignIn: FC<IFacebookSignInProps> = ({ style }) => {
     try {
       auth.loginRequest({ provider: 'facebook', facebook: { permissions: ['public_profile', 'email'] } });
     } catch (error) {
-      console.log('AUTH-FACEBOOK:', error);
+      throw error;
     }
   };
 
   return (
-    <IconButton style={style} onPress={onPress}>
+    <Button style={style} onPress={onPress}>
       <BrandFacebook />
-    </IconButton>
+    </Button>
   );
 };
 

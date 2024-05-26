@@ -4,9 +4,9 @@ import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import { useSharedValue } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import VersionCheck from 'react-native-version-check';
+import { ds } from '@/design-system';
 
 import { Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import Images from '@/assets/images';
 
@@ -77,7 +77,7 @@ const WelcomeSlideshow: FC<IWelcomeSlideshowProps> = () => {
         data={slides}
         renderItem={({ item }) => (
           <View style={[ds.justifyBetween]}>
-            <FastImage source={item.image} resizeMode="contain" style={[ds.wFull, ds.h35Percent] as ImageStyle} />
+            <FastImage source={item.image} resizeMode="contain" style={[ds.wFull, ds.h40Percent] as ImageStyle} />
             <View>
               <Text text={item.title} style={[ds.textCenter, ds.text36]} />
               <Text text={VersionCheck.getCurrentVersion()} style={ds.textCenter} />

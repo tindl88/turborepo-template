@@ -104,8 +104,6 @@ export function* login(action: PayloadAction<SignInDto>) {
   } catch (error: unknown) {
     const err = error as NativeFirebaseError;
     const message = getErrorMessage(err);
-
-    console.log(err);
     // Ref: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth
 
     yield put(slices.actions.loginFailure({ statusCode: 400, error: err.code || 'Bad Request', message: message }));
@@ -132,6 +130,8 @@ export function* resetPassword(action: PayloadAction<ResetPasswordDto>) {
   try {
     const response = action.payload;
 
+    // FIXME: Fix response type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     yield put(slices.actions.resetPasswordSuccess(response as any));
   } catch (error) {
     const err = error as Error;

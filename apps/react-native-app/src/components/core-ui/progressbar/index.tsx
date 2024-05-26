@@ -1,8 +1,8 @@
 import React, { FC, memo } from 'react';
 import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { Colors, ds } from '@/design-system';
 
 import Text from '../text';
-import { Colors, DesignSystem as ds } from '../themes';
 import { ICoreUIBaseProps, RoundedType } from '../types';
 
 interface IProgressBarProps extends ICoreUIBaseProps {

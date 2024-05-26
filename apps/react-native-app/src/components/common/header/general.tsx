@@ -1,11 +1,11 @@
 import React, { FC, ReactNode } from 'react';
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { Colors, ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 
 import { Heading } from '@/components/core-ui';
 import Text from '@/components/core-ui/text';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -79,6 +79,8 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 export default GeneralNavigationHeader;
 
 const styles = StyleSheet.create<{
+  // FIXME: Fix StyleSheet
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   background(color: string): ViewStyle;
   border(color?: string): ViewStyle;

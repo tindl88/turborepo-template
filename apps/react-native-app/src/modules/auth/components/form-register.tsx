@@ -2,12 +2,11 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Input } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
-import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Button, Input } from '@/components/core-ui';
+import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/core-ui/form';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import { CreateUserDto } from '@/modules/users/interfaces/users.interface';
@@ -101,7 +100,7 @@ const RegisterForm = () => {
           />
         </View>
         <View style={ds.mt20}>
-          <Button label={t('create_account').toUpperCase()} onPress={form.handleSubmit(onSubmit)} />
+          <Button onPress={form.handleSubmit(onSubmit)}>{t('create_account').toUpperCase()}</Button>
         </View>
       </Form>
     </View>

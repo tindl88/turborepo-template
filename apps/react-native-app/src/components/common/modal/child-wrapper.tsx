@@ -10,8 +10,7 @@ import Animated, {
   withDelay,
   withTiming
 } from 'react-native-reanimated';
-
-import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { ds } from '@/design-system';
 
 import { CHILD_ANIM_DURATION, LAYOUT_ANIM_DURATION, MODAL_ANIM_DURATION } from './constants';
 

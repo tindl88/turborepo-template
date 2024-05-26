@@ -1,10 +1,9 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, View } from 'react-native';
+import { Colors, ds } from '@/design-system';
 
-import { Heading } from '@/components/core-ui';
-import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
-import { Button } from '@/components/ui/button';
+import { Button, Heading } from '@/components/core-ui';
 
 interface IErrorBoxProps {
   icon?: ReactNode;
@@ -36,8 +35,12 @@ const ErrorBox: FC<IErrorBoxProps> = ({
         <Heading as="h4" text={message} color={Colors.white} style={ds.mt14} />
       </View>
       <View style={[ds.row]}>
-        <Button label={btnActionText} style={[ds.grow, ds.mr8]} onPress={onAction} />
-        <Button label={btnCloseText || t('close')} style={[ds.grow, ds.ml8]} onPress={onClose} />
+        <Button style={[ds.grow, ds.mr8]} onPress={onAction}>
+          {btnActionText}
+        </Button>
+        <Button style={[ds.grow, ds.ml8]} onPress={onClose}>
+          {btnCloseText || t('close')}
+        </Button>
       </View>
     </View>
   );

@@ -14,7 +14,8 @@ const VerifyOtpForm = () => {
 
   useEffect(() => {
     if (isPinReady) {
-      console.log('Verifying');
+      // FIXME: Fix type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       authState.verifyEmailOtpRequest(otpCode as any);
     }
   }, [isPinReady]);

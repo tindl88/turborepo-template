@@ -9,8 +9,7 @@ import {
   ViewStyle
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import { Colors } from '@/components/core-ui/themes';
+import { Colors } from '@/design-system';
 
 import { ICoreUIBaseProps } from '../types';
 

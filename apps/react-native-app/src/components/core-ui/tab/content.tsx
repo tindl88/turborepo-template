@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-
-import { DesignSystem as ds } from '../themes';
+import { ds } from '@/design-system';
 
 import { useTab } from './state';
 

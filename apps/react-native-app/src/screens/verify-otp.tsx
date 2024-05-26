@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import { Heading, StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import VerifyOtpForm from '@/modules/auth/components/form-verify-otp';
 import { useAuthState } from '@/modules/auth/states/auth.state';

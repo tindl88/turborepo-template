@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -10,7 +11,6 @@ import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import { Divider, StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

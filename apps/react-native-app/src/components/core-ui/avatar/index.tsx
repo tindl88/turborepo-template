@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
+import { Colors, ds } from '@/design-system';
 
 import Text from '../text';
-import { Colors, DesignSystem as ds } from '../themes';
 import { ICoreUIBaseProps } from '../types';
 
 interface IAvatarProps extends ICoreUIBaseProps {

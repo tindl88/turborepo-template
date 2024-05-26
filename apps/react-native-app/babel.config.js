@@ -7,7 +7,8 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '@': './src'
+          '@': './src',
+          '~shared-client': '../../packages/shared-client/src'
         }
       }
     ]

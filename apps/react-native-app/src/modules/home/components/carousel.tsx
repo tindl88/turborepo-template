@@ -2,8 +2,7 @@ import React, { FC, useMemo } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import Carousel from 'react-native-reanimated-carousel';
-
-import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { ds } from '@/design-system';
 
 import Images from '@/assets/images';
 

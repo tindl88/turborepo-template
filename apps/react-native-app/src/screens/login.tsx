@@ -2,14 +2,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Heading, StatusBar, Text } from '@/components/core-ui';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
-import { Line } from '@/components/ui/line';
+import { Heading, Line, StatusBar, Text } from '@/components/core-ui';
 
 import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';

@@ -2,8 +2,7 @@ import { Appearance, ColorSchemeName } from 'react-native';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-
-import { Colors } from '@/components/core-ui/themes';
+import { Colors } from '@/design-system';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 

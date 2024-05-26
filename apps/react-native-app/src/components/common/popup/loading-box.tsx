@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { Pressable, View } from 'react-native';
+import { ds } from '@/design-system';
 
 import Loading from '@/components/core-ui/loading';
-import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import { useThemeState } from '@/modules/themes/states/themes.state';
 
