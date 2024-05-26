@@ -1,6 +1,6 @@
-import {ResponseFormat} from '@/common/interfaces';
+import { ResponseFormat } from '@/interfaces';
 
-import {USER_STATUS} from '../constants/users.constant';
+import { USER_STATUS } from '../constants/users.constant';
 
 export type UserEntity = {
   id: string;

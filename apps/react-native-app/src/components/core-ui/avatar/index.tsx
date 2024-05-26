@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
-import {Pressable, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import FastImage, {ImageStyle} from 'react-native-fast-image';
+import React, { FC } from 'react';
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import FastImage, { ImageStyle } from 'react-native-fast-image';
 
 import Text from '../text';
-import {Colors, DesignSystem as ds} from '../themes';
-import {ICoreUIBaseProps} from '../types';
+import { Colors, DesignSystem as ds } from '../themes';
+import { ICoreUIBaseProps } from '../types';
 
 interface IAvatarProps extends ICoreUIBaseProps {
   size?: number;
@@ -34,7 +34,7 @@ const Avatar: FC<IAvatarProps> = ({
       onPress={onPress}
     >
       {src ? (
-        <FastImage source={{uri: src}} style={[ds.wFull, ds.hFull, ds.roundedFull] as ImageStyle} />
+        <FastImage source={{ uri: src }} style={[ds.wFull, ds.hFull, ds.roundedFull] as ImageStyle} />
       ) : (
         <Text style={[ds.fontBlack, ds.text20]} color={color}>
           {text}

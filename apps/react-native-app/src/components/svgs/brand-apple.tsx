@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
-import Svg, {Path} from 'react-native-svg';
+import React, { FC } from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-import {ISvgBaseProps} from './types';
+import { ISvgBaseProps } from './types';
 
 interface IBrandAppleProps {}
 
-const BrandApple: FC<IBrandAppleProps & ISvgBaseProps> = ({width = 32, height = 32, ...props}) => {
+const BrandApple: FC<IBrandAppleProps & ISvgBaseProps> = ({ width = 32, height = 32, ...props }) => {
   return (
     <Svg height={height} width={width} viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet" {...props}>
       <Path

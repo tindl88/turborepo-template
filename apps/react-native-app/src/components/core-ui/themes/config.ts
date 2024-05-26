@@ -71,4 +71,4 @@ const colors: ColorConfig = {
   rose: '#f43f5e'
 };
 
-export default {colors, spacing};
+export default { colors, spacing };

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import { Button, Text, View } from 'react-native';
 
-import {showGlobalModal} from '../modal/global-modal';
+import { showGlobalModal } from '../modal/global-modal';
 
 import Expandable from './expandable';
 

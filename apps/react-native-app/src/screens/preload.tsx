@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {Loading, StatusBar} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { AuthenticatedParamList } from '@/interfaces';
 
-import {AuthenticatedParamList} from '@/common/interfaces';
+import { Loading, StatusBar } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 type Props = StackScreenProps<AuthenticatedParamList, 'Preload'>;
 
-function PreloadScreen({navigation}: Props) {
+function PreloadScreen({ navigation }: Props) {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('HomeStack');

@@ -1,10 +1,10 @@
-import React, {FC, ReactNode} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Dimensions, View} from 'react-native';
+import React, { FC, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, View } from 'react-native';
 
-import {Heading} from '@/components/core-ui';
-import {Colors, DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { Heading } from '@/components/core-ui';
+import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
 interface IErrorBoxProps {
   icon?: ReactNode;
@@ -15,7 +15,7 @@ interface IErrorBoxProps {
   onClose?: () => void;
   onAction?: () => void;
 }
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const ErrorBox: FC<IErrorBoxProps> = ({
   icon,
@@ -26,10 +26,10 @@ const ErrorBox: FC<IErrorBoxProps> = ({
   onClose,
   onAction
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <View style={[ds.px4, ds.bgBlue600, {width, height}]}>
+    <View style={[ds.px4, ds.bgBlue600, { width, height }]}>
       <View>
         {icon}
         <Heading as="h2" text={title} color={Colors.white} style={ds.mt20} />

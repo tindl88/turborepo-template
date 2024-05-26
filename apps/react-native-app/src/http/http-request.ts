@@ -1,15 +1,15 @@
-import {AxiosError, AxiosResponse, InternalAxiosRequestConfig} from 'axios';
+import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import AuthApi from '@/modules/auth/api/auth.api';
 import slice from '@/modules/auth/states/auth.slice';
 
-import {store} from '@/common/redux/store';
+import { MMKVStorage } from '../utils/mmkv-storage.util';
 
-import {MMKVStorage} from '../utils/mmkv-storage';
+import { store } from '@/stores/redux/store';
 
-import {createAxiosInstance} from './http-client';
+import { createAxiosInstance } from './http-client';
 
-export const axiosClient = createAxiosInstance('http://localhost:3500');
+const axiosClient = createAxiosInstance();
 
 const getSession = async () => {
   const sessionJson = MMKVStorage.getItem('@auth');
@@ -31,7 +31,7 @@ const interceptors = {
   onRequestError: (error: AxiosError): Promise<AxiosError> => Promise.reject(error),
   onResponse: (response: AxiosResponse): AxiosResponse => response,
   onResponseError: async (error: AxiosError): Promise<AxiosError> => {
-    const originalConfig = error.config as InternalAxiosRequestConfig & {_retry: boolean};
+    const originalConfig = error.config as InternalAxiosRequestConfig & { _retry: boolean };
     const shouldCallRefreshToken = error.response && error.response.status === 401 && !originalConfig._retry;
 
     if (shouldCallRefreshToken) {
@@ -39,17 +39,15 @@ const interceptors = {
 
       try {
         const session = await getSession();
+
         const newTokens = await AuthApi.refreshToken(session.refreshToken);
 
         store.dispatch(slice.actions.updateUserData(newTokens.data.data));
-        originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
-        console.log('Call refresh token API');
+        originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
         return axiosClient(originalConfig);
       } catch (err) {
-        console.log('Call refresh token API failed');
-
         store.dispatch(slice.actions.logoutRequest());
       }
     }
@@ -60,3 +58,5 @@ const interceptors = {
 
 axiosClient.interceptors.request.use(interceptors.onRequest, interceptors.onRequestError);
 axiosClient.interceptors.response.use(interceptors.onResponse, interceptors.onResponseError);
+
+export default axiosClient;

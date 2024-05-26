@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 
-import {OtpInput} from '@/components/core-ui';
+import { OtpInput } from '@/components/core-ui';
 
-import {useAuthState} from '../states/auth.state';
+import { useAuthState } from '../states/auth.state';
 
 const MAXIMUM_CODE_LENGTH = 5;
 

@@ -1,28 +1,28 @@
 import React from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
+import { View } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import PostFilters from '@/modules/post/components/post-filter';
-import {PostList} from '@/modules/post/components/post-list';
-import {usePost} from '@/modules/post/hooks/use-post';
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import {Loading, Pagination, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Loading, Pagination, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {AuthenticatedParamList, HomeBottomTabParamList} from '@/common/interfaces';
+import PostFilters from '@/modules/post/components/post-filter';
+import { PostList } from '@/modules/post/components/post-list';
+import { usePost } from '@/modules/post/hooks/use-post';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Post'>,
   StackScreenProps<AuthenticatedParamList>
 >;
 
-function PostScreen({route}: Props) {
+function PostScreen({ route }: Props) {
   const screenState = useScreenState();
-  const {isLoading, error, data, meta, filter, setFilter} = usePost(route.params);
+  const { isLoading, error, data, meta, filter, setFilter } = usePost(route.params);
 
   return (
     <View style={ds.flex1}>
@@ -42,13 +42,13 @@ function PostScreen({route}: Props) {
 
       {!isLoading && !error && (
         <>
-          <PostFilters value={filter.q} onTextChange={text => setFilter({...filter, q: text, page: 1})} />
+          <PostFilters value={filter.q} onTextChange={text => setFilter({ ...filter, q: text, page: 1 })} />
           <PostList items={data} />
           <Pagination
             totalItems={meta?.paging?.totalItems}
             currentPage={filter.page}
             itemPerPage={filter.limit}
-            onChange={page => setFilter({...filter, page})}
+            onChange={page => setFilter({ ...filter, page })}
           />
         </>
       )}

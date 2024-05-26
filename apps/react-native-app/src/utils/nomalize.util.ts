@@ -1,9 +1,9 @@
 /**
  * Ref: https://medium.com/nerd-for-tech/react-native-styles-normalization-e8ce77a3110c
  */
-import {Dimensions, PixelRatio} from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
 
-const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 // Based on iPhone 11 scale
 const WIDTH_BASE_SCALE = SCREEN_WIDTH / 414;
@@ -39,7 +39,7 @@ const pixelSizeHorizontal = (size: number) => {
   return widthPixel(size);
 };
 
-export {fontPixel, heightPixel, pixelSizeHorizontal, pixelSizeVertical, widthPixel};
+export { fontPixel, heightPixel, pixelSizeHorizontal, pixelSizeVertical, widthPixel };
 
 /**
  * Usage Example

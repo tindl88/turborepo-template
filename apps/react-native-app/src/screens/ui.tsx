@@ -1,16 +1,16 @@
-import {ScrollView} from 'react-native-gesture-handler';
-import React, {useState} from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
-import {ImageStyle} from 'react-native-fast-image';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { ImageStyle } from 'react-native-fast-image';
+import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import {hideGlobalModal, showGlobalModal} from '@/components/common/modal/global-modal';
+import { hideGlobalModal, showGlobalModal } from '@/components/common/modal/global-modal';
 import AutomaticModal from '@/components/common/popup/automatic-modal';
 import ConfirmBox from '@/components/common/popup/confirm-box';
 import ErrorBox from '@/components/common/popup/error-box';
@@ -31,10 +31,10 @@ import {
   Tab,
   Text
 } from '@/components/core-ui';
-import {Colors, DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
-import {AuthenticatedParamList, HomeBottomTabParamList} from '@/common/interfaces';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'UI'>,
@@ -133,37 +133,40 @@ function UIScreen({}: Props) {
             <View>
               <Button
                 label="Hiện lỗi"
-                onPress={() => showGlobalModal({modalKey: 'modal-error', Component: ErrorBox1, hideClose: true})}
+                onPress={() => showGlobalModal({ modalKey: 'modal-error', Component: ErrorBox1, hideClose: true })}
               />
-              <Button label="Open 3 Modals" onPress={() => showGlobalModal({Component: AutomaticModal})} />
-              <Button label="Nested Modal" onPress={() => showGlobalModal({Component: NestedModal})} />
-              <Button label="Progress Modal" onPress={() => showGlobalModal({Component: Progress})} />
+              <Button label="Open 3 Modals" onPress={() => showGlobalModal({ Component: AutomaticModal })} />
+              <Button label="Nested Modal" onPress={() => showGlobalModal({ Component: NestedModal })} />
+              <Button label="Progress Modal" onPress={() => showGlobalModal({ Component: Progress })} />
               <Button
                 label="Confirmation Modal"
                 onPress={() =>
-                  showGlobalModal({modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true})
+                  showGlobalModal({ modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true })
                 }
               />
-              <Button label="Long Content Modal" onPress={() => showGlobalModal({Component: LongContent})} />
-              <Button label="Scrolling Content Modal" onPress={() => showGlobalModal({Component: ScrollingContent})} />
+              <Button label="Long Content Modal" onPress={() => showGlobalModal({ Component: LongContent })} />
+              <Button
+                label="Scrolling Content Modal"
+                onPress={() => showGlobalModal({ Component: ScrollingContent })}
+              />
               <Button
                 label="Expandable"
-                onPress={() => showGlobalModal({Component: Expandable, disableLayoutChangeAnimation: true})}
+                onPress={() => showGlobalModal({ Component: Expandable, disableLayoutChangeAnimation: true })}
               />
               <Button
                 label="Show All"
                 onPress={() => {
-                  showGlobalModal({Component: NestedModal});
+                  showGlobalModal({ Component: NestedModal });
                   setTimeout(() => {
-                    showGlobalModal({Component: Progress});
+                    showGlobalModal({ Component: Progress });
                     setTimeout(() => {
-                      showGlobalModal({modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true});
+                      showGlobalModal({ modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true });
                       setTimeout(() => {
-                        showGlobalModal({Component: LongContent});
+                        showGlobalModal({ Component: LongContent });
                         setTimeout(() => {
-                          showGlobalModal({Component: ScrollingContent});
+                          showGlobalModal({ Component: ScrollingContent });
                           setTimeout(() => {
-                            showGlobalModal({Component: Expandable});
+                            showGlobalModal({ Component: Expandable });
                           });
                         }, 1000);
                       }, 1000);

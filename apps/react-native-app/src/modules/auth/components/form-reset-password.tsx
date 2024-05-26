@@ -1,24 +1,24 @@
 import React from 'react';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { Input } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
+import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 
-import {Input} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
-import {Form, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
-import {resetPasswordValidator} from '../validators/reset-password.validator';
+import { resetPasswordValidator } from '../validators/reset-password.validator';
 
 interface IFormData {
   email: string;
 }
 
 const ResetPasswordForm = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const auth = useAuthState();
 
   const defaultValues = {
@@ -43,8 +43,8 @@ const ResetPasswordForm = () => {
           <FormField
             name="email"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>{t('email_address')}</FormLabel>
                 <Input

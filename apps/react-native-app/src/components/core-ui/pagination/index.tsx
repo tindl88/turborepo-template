@@ -1,9 +1,9 @@
-import React, {FC, memo, useMemo} from 'react';
-import {Pressable} from 'react-native';
+import React, { FC, memo, useMemo } from 'react';
+import { Pressable } from 'react-native';
 
 import Text from '../text';
-import {DesignSystem as ds} from '../themes';
-import {ICoreUIBaseProps} from '../types';
+import { DesignSystem as ds } from '../themes';
+import { ICoreUIBaseProps } from '../types';
 import View from '../view';
 
 interface IPagination extends ICoreUIBaseProps {
@@ -25,7 +25,7 @@ const Pagination: FC<IPagination> = ({
   onChange
 }) => {
   const pager = useMemo(
-    () => generatePagination({totalItems, currentPage, itemPerPage, pageVisible}),
+    () => generatePagination({ totalItems, currentPage, itemPerPage, pageVisible }),
     [totalItems, currentPage, itemPerPage, pageVisible]
   );
 
@@ -124,7 +124,7 @@ export interface IPageParams {
   pageVisible: number;
 }
 
-export const generatePagination = ({totalItems, currentPage, itemPerPage, pageVisible}: IPageParams): IPager => {
+export const generatePagination = ({ totalItems, currentPage, itemPerPage, pageVisible }: IPageParams): IPager => {
   const totalPages = Math.ceil(totalItems / itemPerPage);
   const middle = Math.floor(pageVisible / 2);
   const preMiddle = middle - 1;
@@ -150,7 +150,7 @@ export const generatePagination = ({totalItems, currentPage, itemPerPage, pageVi
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = Math.min(startIndex + itemPerPage - 1, totalItems - 1);
 
-  const pages = Array.apply(null, {length: endPage + 1 - startPage} as unknown[]).map((_, i) => startPage + i);
+  const pages = Array.apply(null, { length: endPage + 1 - startPage } as unknown[]).map((_, i) => startPage + i);
 
   return {
     totalItems: totalItems,

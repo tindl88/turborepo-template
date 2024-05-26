@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, View } from 'react-native';
 
-import {showGlobalModal} from '../modal/global-modal';
+import { showGlobalModal } from '../modal/global-modal';
 
 const AutomaticModal = () => {
   useEffect(() => {
@@ -16,7 +16,7 @@ const AutomaticModal = () => {
               }}
             >
               <Text>This is the Second Dialog</Text>
-              <View style={{width: 100, height: 100, backgroundColor: 'yellow'}} />
+              <View style={{ width: 100, height: 100, backgroundColor: 'yellow' }} />
               <Text
                 style={{
                   fontSize: 20,
@@ -40,7 +40,7 @@ const AutomaticModal = () => {
                 padding: 36
               }}
             >
-              <View style={{width: 100, height: 200, backgroundColor: 'pink'}} />
+              <View style={{ width: 100, height: 200, backgroundColor: 'pink' }} />
               <Text
                 style={{
                   fontSize: 20,

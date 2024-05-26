@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import {
   StatusBar as RNStatusBar,
   StyleProp,
@@ -8,11 +8,11 @@ import {
   ViewProps,
   ViewStyle
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import {Colors} from '@/components/core-ui/themes';
+import { Colors } from '@/components/core-ui/themes';
 
-import {ICoreUIBaseProps} from '../types';
+import { ICoreUIBaseProps } from '../types';
 
 interface IStatusBarProps extends ICoreUIBaseProps {
   background?: string;
@@ -20,7 +20,7 @@ interface IStatusBarProps extends ICoreUIBaseProps {
   style?: StyleProp<ViewProps>;
 }
 
-const StatusBar: FC<IStatusBarProps> = ({style, background = Colors.transparent, visible = true}) => {
+const StatusBar: FC<IStatusBarProps> = ({ style, background = Colors.transparent, visible = true }) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
 
@@ -29,7 +29,7 @@ const StatusBar: FC<IStatusBarProps> = ({style, background = Colors.transparent,
   return (
     <>
       <RNStatusBar barStyle={textColor} hidden={!visible} translucent={true} backgroundColor={Colors.transparent} />
-      {visible && <View style={[{height: insets.top}, styles.background(background), style]} />}
+      {visible && <View style={[{ height: insets.top }, styles.background(background), style]} />}
     </>
   );
 };
@@ -42,6 +42,6 @@ const styles = StyleSheet.create<{
   background(color: string): ViewStyle;
 }>({
   background: color => {
-    return {backgroundColor: color};
+    return { backgroundColor: color };
   }
 });

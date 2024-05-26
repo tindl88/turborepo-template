@@ -1,13 +1,13 @@
-import React, {useCallback, useRef, useState} from 'react';
-import {useIsFocused} from '@react-navigation/core';
-import {useNavigation} from '@react-navigation/native';
-import {Alert, AlertButton, Linking, View} from 'react-native';
-import {Camera, Code, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
+import React, { useCallback, useRef, useState } from 'react';
+import { Alert, AlertButton, Linking, View } from 'react-native';
+import { Camera, Code, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
+import { useIsFocused } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { useIsForeground } from '@/hooks/use-is-foreground';
 
-import {useIsForeground} from '@/common/hooks/use-is-foreground';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
 const showCodeAlert = (value: string, onDismissed: () => void): void => {
   const buttons: AlertButton[] = [

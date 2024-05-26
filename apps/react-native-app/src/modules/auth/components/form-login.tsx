@@ -1,17 +1,17 @@
 import React from 'react';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import {useAuthState} from '@/modules/auth/states/auth.state';
+import { Input } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
+import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
 
-import {Input} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
-import {Form, FormField, FormItem, FormMessage} from '@/components/ui/form';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
-import {signInValidator} from '../validators/sign-in.validator';
+import { signInValidator } from '../validators/sign-in.validator';
 
 interface IFormData {
   email: string;
@@ -19,7 +19,7 @@ interface IFormData {
 }
 
 const LoginForm = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const auth = useAuthState();
 
   const defaultValues = {
@@ -34,7 +34,7 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<IFormData> = async data => {
     try {
-      auth.loginRequest({provider: 'password', credentials: data});
+      auth.loginRequest({ provider: 'password', credentials: data });
     } catch (error) {}
   };
 
@@ -45,8 +45,8 @@ const LoginForm = () => {
           <FormField
             name="email"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <Input
                   {...field}
@@ -63,8 +63,8 @@ const LoginForm = () => {
           <FormField
             name="password"
             control={form.control}
-            rules={{required: true}}
-            render={({field, fieldState}) => (
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
               <FormItem>
                 <Input
                   {...field}

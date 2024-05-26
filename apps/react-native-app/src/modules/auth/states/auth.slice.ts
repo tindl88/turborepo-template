@@ -1,11 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import {CreateUserDto, CreateUserResponse} from '@/modules/users/interfaces/users.interface';
-
-import {MMKVStorage} from '@/common/utils/mmkv-storage';
-
-import {ResponseError} from '@/common/interfaces';
-
+import { ResponseError } from '@/interfaces';
 import {
   AuthEntity,
   RefreshTokenEntity,
@@ -15,6 +10,10 @@ import {
   SignInResponse,
   SignOutResponse
 } from '../interfaces/auth.interface';
+
+import { CreateUserDto, CreateUserResponse } from '@/modules/users/interfaces/users.interface';
+
+import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 type AuthInitialState = {
   isFetching: boolean;
@@ -46,7 +45,7 @@ const slice = createSlice({
       MMKVStorage.setItem('@auth', JSON.stringify(state.auth));
     },
     loginFailure(state, action: PayloadAction<ResponseError>) {
-      const {message, error, statusCode} = action.payload;
+      const { message, error, statusCode } = action.payload;
 
       const errMsgs = ['User cancelled the login process'];
 
@@ -66,7 +65,7 @@ const slice = createSlice({
       MMKVStorage.removeItem('@auth');
     },
     logoutFailure(state, action: PayloadAction<ResponseError>) {
-      const {message} = action.payload;
+      const { message } = action.payload;
 
       state.isFetching = false;
       state.isAuthenticated = false;
@@ -83,7 +82,7 @@ const slice = createSlice({
       state.isAuthenticated = false;
     },
     createAccountFailure(state, action: PayloadAction<ResponseError>) {
-      const {message} = action.payload;
+      const { message } = action.payload;
 
       state.isFetching = false;
       state.isAuthenticated = false;
@@ -99,7 +98,7 @@ const slice = createSlice({
       state.resetPasswordAt = new Date().toISOString();
     },
     resetPasswordFailure(state, action: PayloadAction<ResponseError>) {
-      const {message} = action.payload;
+      const { message } = action.payload;
 
       state.isFetching = false;
       state.isAuthenticated = false;
@@ -114,7 +113,7 @@ const slice = createSlice({
       state.verifyEmailOtpAt = new Date().toISOString();
     },
     verifyEmailOtpFailure(state, action: PayloadAction<ResponseError>) {
-      const {message} = action.payload;
+      const { message } = action.payload;
 
       state.isFetching = false;
       state.isAuthenticated = false;

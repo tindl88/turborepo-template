@@ -1,9 +1,9 @@
-import React, {FC, memo, ReactNode} from 'react';
-import {StyleProp, StyleSheet, TextStyle} from 'react-native';
+import React, { FC, memo, ReactNode } from 'react';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
 import Text from '../text';
-import {Colors, DesignSystem as ds} from '../themes';
-import {CaptionType, ICoreUIBaseProps} from '../types';
+import { Colors, DesignSystem as ds } from '../themes';
+import { CaptionType, ICoreUIBaseProps } from '../types';
 
 interface ICaptionProps extends ICoreUIBaseProps {
   as?: CaptionType;
@@ -41,5 +41,5 @@ const styles = StyleSheet.create<{
       color: color
     };
   },
-  size: {...ds.text14}
+  size: { ...ds.text14 }
 });

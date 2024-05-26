@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {CompositeScreenProps, useNavigation} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {Platform, View} from 'react-native';
-import {PERMISSIONS, request} from 'react-native-permissions';
+import React, { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
+import { PERMISSIONS, request } from 'react-native-permissions';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps, useNavigation } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import {StatusBar} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { StatusBar } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
-import {AuthenticatedParamList, HomeBottomTabParamList} from '@/common/interfaces';
+import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'ScanCode'>,

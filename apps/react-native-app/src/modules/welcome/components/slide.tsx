@@ -1,16 +1,16 @@
-import React, {FC, useEffect, useState} from 'react';
-import {Animated, Dimensions, FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import FastImage, {ImageStyle, Source} from 'react-native-fast-image';
-import {useSharedValue} from 'react-native-reanimated';
+import React, { FC, useEffect, useState } from 'react';
+import { Animated, Dimensions, FlatList, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
+import { useSharedValue } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import VersionCheck from 'react-native-version-check';
 
-import {Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
 import Images from '@/assets/images';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 interface IDotData {
   id: string;
@@ -75,7 +75,7 @@ const WelcomeSlideshow: FC<IWelcomeSlideshowProps> = () => {
         pagingEnabled={true}
         snapEnabled={true}
         data={slides}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View style={[ds.justifyBetween]}>
             <FastImage source={item.image} resizeMode="contain" style={[ds.wFull, ds.h35Percent] as ImageStyle} />
             <View>
@@ -95,13 +95,13 @@ const WelcomeSlideshow: FC<IWelcomeSlideshowProps> = () => {
   );
 };
 
-const Dots: FC<{data: ISlideItem[]; activeIndex: number}> = ({data, activeIndex}) => {
-  const animatedList: IDotData[] = data.map(item => ({id: item.id, width: new Animated.Value(10)}));
+const Dots: FC<{ data: ISlideItem[]; activeIndex: number }> = ({ data, activeIndex }) => {
+  const animatedList: IDotData[] = data.map(item => ({ id: item.id, width: new Animated.Value(10) }));
 
   useEffect(() => {
     animatedList.forEach(item => item.width.setValue(10));
 
-    Animated.timing(animatedList[activeIndex].width, {toValue: 20, duration: 250, useNativeDriver: false}).start();
+    Animated.timing(animatedList[activeIndex].width, { toValue: 20, duration: 250, useNativeDriver: false }).start();
   }, [data, activeIndex]);
 
   return (
@@ -109,14 +109,14 @@ const Dots: FC<{data: ISlideItem[]; activeIndex: number}> = ({data, activeIndex}
       horizontal
       data={animatedList}
       keyExtractor={item => item.id}
-      renderItem={({item}) => <DotItem item={item} />}
+      renderItem={({ item }) => <DotItem item={item} />}
       showsHorizontalScrollIndicator={false}
     />
   );
 };
 
-const DotItem: FC<{item: IDotData}> = ({item}) => {
-  const animatedStyle = {width: item.width};
+const DotItem: FC<{ item: IDotData }> = ({ item }) => {
+  const animatedStyle = { width: item.width };
 
   return <Animated.View style={[styles.dotItem, animatedStyle]} />;
 };

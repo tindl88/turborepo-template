@@ -1,21 +1,21 @@
-import {ScrollView} from 'react-native-gesture-handler';
 import React from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {DrawerScreenProps} from '@react-navigation/drawer';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {View} from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useLanguageState} from '@/modules/language/states/language.state';
-import {useScreenState} from '@/modules/screen/states/screen.state';
-import {useThemeState} from '@/modules/themes/states/themes.state';
+import { AuthenticatedParamList, DrawerParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import {Divider, StatusBar} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
-import {Button} from '@/components/ui/button';
+import { Divider, StatusBar } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
+import { Button } from '@/components/ui/button';
 
-import {AuthenticatedParamList, DrawerParamList, HomeBottomTabParamList} from '@/common/interfaces';
+import { useLanguageState } from '@/modules/language/states/language.state';
+import { useScreenState } from '@/modules/screen/states/screen.state';
+import { useThemeState } from '@/modules/themes/states/themes.state';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Setting'>,

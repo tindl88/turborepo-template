@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {DeviceEventEmitter, Modal, StyleSheet} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { DeviceEventEmitter, Modal, StyleSheet } from 'react-native';
 import Animated, {
   Easing,
   interpolate,
@@ -14,7 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import ChildWrapper from './child-wrapper';
-import {CHILD_ANIM_DURATION, LAYOUT_ANIM_DURATION, MODAL_ANIM_DURATION} from './constants';
+import { CHILD_ANIM_DURATION, LAYOUT_ANIM_DURATION, MODAL_ANIM_DURATION } from './constants';
 
 const SHOW_GLOBAL_MODAL = 'show_global_modal';
 const HIDE_GLOBAL_MODAL = 'hide_global_modal';
@@ -51,10 +51,10 @@ enum LayoutChangeAnimationType {
 function GlobalModal() {
   const opacityValue = useSharedValue(0);
   const backdropOpacityStyle = useAnimatedStyle(() => {
-    return {opacity: interpolate(opacityValue.value, [0, 1], [0, 0.7])};
+    return { opacity: interpolate(opacityValue.value, [0, 1], [0, 0.7]) };
   });
   const containerOpacityStyle = useAnimatedStyle(() => {
-    return {opacity: opacityValue.value};
+    return { opacity: opacityValue.value };
   });
 
   const [modalProps, setModalProps] = useState<GlobalModalProps[]>([]);
@@ -70,7 +70,7 @@ function GlobalModal() {
         layoutAnimationType.value = LayoutChangeAnimationType.DEFAULT;
         setIsVisible(true);
 
-        return [...oldProps.filter(it => !it.skipQueue), {...prop, modalKey: prop.modalKey ?? Date.now().toString()}];
+        return [...oldProps.filter(it => !it.skipQueue), { ...prop, modalKey: prop.modalKey ?? Date.now().toString() }];
       });
     });
     const hideSub = DeviceEventEmitter.addListener(HIDE_GLOBAL_MODAL, (key: string) => {
@@ -128,9 +128,9 @@ function GlobalModal() {
   useEffect(() => {
     if (isVisible) {
       setIsModalVisible(true);
-      opacityValue.value = withTiming(1, {duration: MODAL_ANIM_DURATION, easing: Easing.ease});
+      opacityValue.value = withTiming(1, { duration: MODAL_ANIM_DURATION, easing: Easing.ease });
     } else {
-      opacityValue.value = withTiming(0, {duration: MODAL_ANIM_DURATION, easing: Easing.ease}, finished => {
+      opacityValue.value = withTiming(0, { duration: MODAL_ANIM_DURATION, easing: Easing.ease }, finished => {
         if (finished) {
           runOnJS(onModalHide)();
         }

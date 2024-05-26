@@ -7,7 +7,7 @@ interface IScreenProps {
   };
 }
 
-export const Screen: {[key: string]: IScreenProps} = {
+export const Screen: { [key: string]: IScreenProps } = {
   Preload: {},
   Login: {},
   Register: {},

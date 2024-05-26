@@ -1,8 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Pressable, TextInput, useColorScheme, View} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Pressable, TextInput, useColorScheme, View } from 'react-native';
 
 import Text from './text';
-import {DesignSystem as ds} from './themes';
+import { DesignSystem as ds } from './themes';
 
 interface IOTPInputProps {
   code: string;
@@ -11,7 +11,7 @@ interface IOTPInputProps {
   setIsPinReady: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const OTPInput: React.FC<IOTPInputProps> = ({code, setCode, maximumLength, setIsPinReady}) => {
+const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setIsPinReady }) => {
   const colorScheme = useColorScheme();
   const inputRef = useRef<TextInput>(null);
 

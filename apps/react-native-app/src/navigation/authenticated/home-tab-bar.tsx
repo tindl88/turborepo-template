@@ -1,15 +1,15 @@
 import React from 'react';
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {Platform, Pressable, StyleSheet, View, ViewStyle} from 'react-native';
+import { Platform, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import {useThemeState} from '@/modules/themes/states/themes.state';
-
-import {Text} from '@/components/core-ui';
-import {Colors, DesignSystem as ds} from '@/components/core-ui/themes';
+import { Text } from '@/components/core-ui';
+import { Colors, DesignSystem as ds } from '@/components/core-ui/themes';
 import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';
 import IconUser from '@/components/svgs/ico-user';
+
+import { useThemeState } from '@/modules/themes/states/themes.state';
 
 const HomeTabBar = (props: BottomTabBarProps) => {
   const themeState = useThemeState();
@@ -44,7 +44,7 @@ const HomeTabBar = (props: BottomTabBarProps) => {
   return (
     <View style={[ds.row, ds.justifyEvenly, ds.borderT1, styles.border(borderColor), Platform.OS === 'ios' && ds.h80]}>
       {props.state.routes.map((route, index) => {
-        const {options} = props.descriptors[route.key];
+        const { options } = props.descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
@@ -55,10 +55,10 @@ const HomeTabBar = (props: BottomTabBarProps) => {
         const isFocused = props.state.index === index;
         const color = isFocused ? Colors.blue[500] : foregroundColor;
         const onPress = () => {
-          const event = props.navigation.emit({type: 'tabPress', target: route.key, canPreventDefault: true});
+          const event = props.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
 
           if (!isFocused && !event.defaultPrevented) {
-            props.navigation.navigate({name: route.name, params: route.params, merge: true});
+            props.navigation.navigate({ name: route.name, params: route.params, merge: true });
           }
         };
 
@@ -66,7 +66,7 @@ const HomeTabBar = (props: BottomTabBarProps) => {
           <Pressable
             key={index}
             accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
+            accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             style={[ds.itemsCenter, ds.p12]}
@@ -89,6 +89,6 @@ const styles = StyleSheet.create<{
   border(color?: string): ViewStyle;
 }>({
   border: color => {
-    return {borderColor: color};
+    return { borderColor: color };
   }
 });

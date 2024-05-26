@@ -1,10 +1,10 @@
-import {ScrollView} from 'react-native-gesture-handler';
-import React, {FC, ReactNode, useEffect} from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import React, { FC, ReactNode, useEffect } from 'react';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import {DesignSystem as ds} from '../themes';
+import { DesignSystem as ds } from '../themes';
 
-import {useTab} from './state';
+import { useTab } from './state';
 
 export interface ITabListProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ export interface ITabListProps {
   onChange?: (activeTab: string) => void;
 }
 
-export const List: FC<ITabListProps> = ({children, active = '', style, onChange}) => {
+export const List: FC<ITabListProps> = ({ children, active = '', style, onChange }) => {
   const tab = useTab();
 
   useEffect(() => {

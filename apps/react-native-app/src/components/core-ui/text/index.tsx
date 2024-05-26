@@ -1,10 +1,10 @@
-import React, {forwardRef, ReactNode, Ref} from 'react';
-import {StyleProp, StyleSheet, Text as RNText, TextStyle, useColorScheme} from 'react-native';
+import React, { forwardRef, ReactNode } from 'react';
+import { StyleProp, StyleSheet, Text as RNText, TextStyle, useColorScheme } from 'react-native';
 
-import {Colors} from '@/components/core-ui/themes';
+import { Colors } from '@/components/core-ui/themes';
 
-import {fontMaker, FontMakerOptions} from '../themes/fonts';
-import {FontStyle, FontWeight, ICoreUIBaseProps} from '../types';
+import { fontMaker, FontMakerOptions } from '../themes/fonts';
+import { FontStyle, FontWeight, ICoreUIBaseProps } from '../types';
 
 interface ITextProps extends ICoreUIBaseProps {
   className?: string;
@@ -45,8 +45,8 @@ const Text = forwardRef<RNText, ITextProps>(
     const textColor = isDark ? Colors.white : Colors.black;
     const content = text || children;
     const dStyle = dynamicStyles(
-      {name: fontName, weight: fontWeight, style: fontStyle},
-      {fontSize, lineHeight, color: color ? color : textColor}
+      { name: fontName, weight: fontWeight, style: fontStyle },
+      { fontSize, lineHeight, color: color ? color : textColor }
     );
 
     if (!visible) return null;
@@ -68,7 +68,7 @@ interface IDynamicStyles {
 
 const dynamicStyles = (
   font: FontMakerOptions,
-  text: {color: string; fontSize: number; lineHeight: number}
+  text: { color: string; fontSize: number; lineHeight: number }
 ): IDynamicStyles => {
   return StyleSheet.create({
     font: {

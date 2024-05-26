@@ -1,4 +1,4 @@
-import {NavigatorScreenParams} from '@react-navigation/native';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Anthenticated: NavigatorScreenParams<AuthenticatedParamList>;
@@ -36,4 +36,4 @@ export type HomeBottomTabParamList = {
   UI: undefined;
 };
 
-export type PostScreenParams = {q: string; page: number; limit: number};
+export type PostScreenParams = { q: string; page: number; limit: number };

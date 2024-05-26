@@ -1,18 +1,18 @@
-import {ScrollView} from 'react-native-gesture-handler';
-import React, {useState} from 'react';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {StyleSheet, View} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { ScrollView } from 'react-native-gesture-handler';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import {useScreenState} from '@/modules/screen/states/screen.state';
+import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import {Divider, StatusBar, Text} from '@/components/core-ui';
-import {DesignSystem as ds} from '@/components/core-ui/themes';
+import { Divider, StatusBar, Text } from '@/components/core-ui';
+import { DesignSystem as ds } from '@/components/core-ui/themes';
 
-import {AuthenticatedParamList, HomeBottomTabParamList} from '@/common/interfaces';
+import { useScreenState } from '@/modules/screen/states/screen.state';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Profile'>,
@@ -40,7 +40,7 @@ function ProfileScreen({}: Props) {
       <Divider />
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <FastImage style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar1.png'}} />
+          <FastImage style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar1.png' }} />
           <Text style={styles.name}>John Doe</Text>
           <View style={styles.statsContainer}>
             <View style={styles.statsBox}>
@@ -61,7 +61,7 @@ function ProfileScreen({}: Props) {
       <ScrollView contentContainerStyle={styles.body}>
         {images.map((image, index) => (
           <View key={index} style={styles.imageContainer}>
-            <FastImage style={styles.image} source={{uri: image}} />
+            <FastImage style={styles.image} source={{ uri: image }} />
           </View>
         ))}
       </ScrollView>
