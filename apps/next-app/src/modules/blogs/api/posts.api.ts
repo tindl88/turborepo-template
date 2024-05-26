@@ -1,10 +1,9 @@
 import { EntityId } from '@reduxjs/toolkit';
+import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
 import { PostEntity, PostFilter, PostResponse, PostsResponse } from '../interfaces/posts.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
-
-import { objectToQueryString } from '@/utils/querystring.util';
 
 import HttpRequest from '@/http/http-request';
 
