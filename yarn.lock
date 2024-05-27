@@ -3233,12 +3233,12 @@
     path-to-regexp "3.2.0"
     swagger-ui-dist "4.18.2"
 
-"@nestjs/testing@^9.0.0":
-  version "9.4.3"
-  resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-9.4.3.tgz"
-  integrity sha512-LDT8Ai2eKnTzvnPaJwWOK03qTaFap5uHHsJCv6dL0uKWk6hyF9jms8DjyVaGsaujCaXDG8izl1mDEER0OmxaZA==
+"@nestjs/testing@^10.3.8":
+  version "10.3.8"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.3.8.tgz#44df73ede43c47801400d59a8ebd6ab1fe7df34c"
+  integrity sha512-hpX9das2TdFTKQ4/2ojhjI6YgXtCfXRKui3A4Qaj54VVzc5+mtK502Jj18Vzji98o9MVS6skmYu+S/UvW3U6Fw==
   dependencies:
-    tslib "2.5.3"
+    tslib "2.6.2"
 
 "@nestjs/throttler@^5.1.1":
   version "5.1.2"
