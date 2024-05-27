@@ -8,7 +8,7 @@ import { AuthenticatedParamList } from '@/interfaces';
 
 // import {useThemeState} from '@/modules/themes/states/themes.state';
 import NavigationHeader from '@/components/common/header/general';
-import { StatusBar } from '@/components/core-ui';
+import StatusBar from '@/components/core-ui/statusbar';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

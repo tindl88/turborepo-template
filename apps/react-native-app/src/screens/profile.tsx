@@ -10,7 +10,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Divider, StatusBar, Text } from '@/components/core-ui';
+import Divider from '@/components/core-ui/divider';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

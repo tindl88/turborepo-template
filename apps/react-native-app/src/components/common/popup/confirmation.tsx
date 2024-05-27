@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 import { ds } from '@/design-system';
 
-import { Button } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
 
 type Props = {
   title?: string | null;
@@ -18,14 +18,12 @@ const Confirmation: FC<Props> = ({ message, btnYes = 'Yes', btnNo = 'No', onYes,
     <View style={ds.wFull}>
       <Text>{message}</Text>
       <View style={ds.row}>
-        <Button
-          color="secondary"
-          text={btnNo}
-          rounded={0}
-          style={[ds.grow, ds.border1, ds.borderRSlate200]}
-          onPress={onNo}
-        />
-        <Button color="primary" text={btnYes} rounded={0} style={[ds.grow]} onPress={onYes} />
+        <Button style={[ds.grow, ds.border1, ds.borderRSlate200]} onPress={onNo}>
+          {btnNo}
+        </Button>
+        <Button style={[ds.grow]} onPress={onYes}>
+          {btnYes}
+        </Button>
       </View>
     </View>
   );

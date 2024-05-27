@@ -1,6 +1,6 @@
 import { TextStyle, ViewStyle } from 'react-native';
 
-type BackgroundColorType = {
+export type BackgroundColorType = {
   bgTransparent: ViewStyle;
   bgWhite: ViewStyle;
   bgBlack: ViewStyle;
@@ -236,7 +236,7 @@ type BackgroundColorType = {
   bgRose900: ViewStyle;
 };
 
-type TextColorType = {
+export type TextColorType = {
   textTransparent: TextStyle;
   textWhite: TextStyle;
   textBlack: TextStyle;
@@ -472,7 +472,7 @@ type TextColorType = {
   textRose900: TextStyle;
 };
 
-type BorderColorType = {
+export type BorderColorType = {
   borderTransparent: ViewStyle;
   borderWhite: ViewStyle;
   borderBlack: ViewStyle;

@@ -20,19 +20,17 @@ import LongContent from '@/components/common/popup/long-content';
 import NestedModal from '@/components/common/popup/nest-modal';
 import Progress from '@/components/common/popup/progress';
 import ScrollingContent from '@/components/common/popup/scrolling-content';
-import {
-  Button,
-  Divider,
-  Heading,
-  Image,
-  Input,
-  Loading,
-  Pagination,
-  ProgressBar,
-  StatusBar,
-  Tab,
-  Text
-} from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
+import Divider from '@/components/core-ui/divider';
+import Heading from '@/components/core-ui/heading';
+import Image from '@/components/core-ui/image/image';
+import Input from '@/components/core-ui/input';
+import Loading from '@/components/core-ui/loading';
+import Pagination from '@/components/core-ui/pagination';
+import ProgressBar from '@/components/core-ui/progressbar';
+import StatusBar from '@/components/core-ui/statusbar';
+import Tab from '@/components/core-ui/tab';
+import Text from '@/components/core-ui/text';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

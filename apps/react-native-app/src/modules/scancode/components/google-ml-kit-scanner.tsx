@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useIsForeground } from '@/hooks/use-is-foreground';
 
-import { Button } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
 
 const showCodeAlert = (value: string, onDismissed: () => void): void => {
   const buttons: AlertButton[] = [

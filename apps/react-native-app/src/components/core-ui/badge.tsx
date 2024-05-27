@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import Text from '../text';
-import { ICoreUIBaseProps } from '../types';
+import Text from './text';
+import { ICoreUIBaseProps } from './types';
 
 interface IBadgeProps extends ICoreUIBaseProps {
   size?: number;

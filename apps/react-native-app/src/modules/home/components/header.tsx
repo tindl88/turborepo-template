@@ -7,7 +7,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
-import { Avatar, Text } from '@/components/core-ui';
+import Avatar from '@/components/core-ui/avatar';
+import Text from '@/components/core-ui/text';
 import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';

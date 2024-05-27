@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, memo, Ref, useEffect, useState } from 'react';
+import React, { FC, forwardRef, Ref, useEffect, useState } from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
-import { ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from './types';
 
 interface IInputTextProps extends ICoreUIBaseProps, TextInputProps {
   placeholder?: string;
@@ -89,4 +89,4 @@ const InputText: FC<IInputTextProps> = forwardRef(
   }
 );
 
-export default memo(InputText);
+export default InputText;

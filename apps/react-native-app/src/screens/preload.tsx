@@ -5,7 +5,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList } from '@/interfaces';
 
-import { Loading, StatusBar } from '@/components/core-ui';
+import Loading from '@/components/core-ui/loading';
+import StatusBar from '@/components/core-ui/statusbar';
 
 type Props = StackScreenProps<AuthenticatedParamList, 'Preload'>;
 

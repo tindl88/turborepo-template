@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Pressable } from 'react-native';
 import { ds } from '@/design-system';
 
-import { ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from './types';
 
 interface IBackdropProps extends ICoreUIBaseProps {
   onPress?: () => void;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from './types';
 
 interface IDividerProps extends ICoreUIBaseProps {
   height?: number;

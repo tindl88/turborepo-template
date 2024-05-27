@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
-import Colors from 'tailwindcss/colors';
 
-import { borderStyles } from './border';
-import { colorStyles } from './colors';
+import borderStyles from './border';
+import colorStyles from './colors';
+import { colors } from './config';
 import { effectStyles } from './effect';
 import { flexStyles } from './flex';
 import { imageStyles } from './image';
 import { layoutStyles } from './layout';
-import { sizingStyles } from './sizing';
+import sizingStyles from './sizing';
 import Spacing from './spacing';
 import { typographyStyle } from './typography';
 
@@ -71,5 +71,4 @@ const styles = StyleSheet.create({
   ...effectStyles.opacity
 });
 
-export { Colors };
-export { styles as ds };
+export { colors as Colors, styles as ds };

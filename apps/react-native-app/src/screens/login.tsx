@@ -8,7 +8,10 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Heading, Line, StatusBar, Text } from '@/components/core-ui';
+import Heading from '@/components/core-ui/heading';
+import Line from '@/components/core-ui/line';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';

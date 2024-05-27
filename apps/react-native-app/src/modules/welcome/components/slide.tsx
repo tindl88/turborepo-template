@@ -6,7 +6,7 @@ import Carousel from 'react-native-reanimated-carousel';
 import VersionCheck from 'react-native-version-check';
 import { ds } from '@/design-system';
 
-import { Text } from '@/components/core-ui';
+import Text from '@/components/core-ui/text';
 
 import Images from '@/assets/images';
 

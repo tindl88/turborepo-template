@@ -5,7 +5,8 @@ import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScroll
 
 import { DrawerParamList } from '@/interfaces';
 
-import { Heading, Text } from '@/components/core-ui';
+import Heading from '@/components/core-ui/heading';
+import Text from '@/components/core-ui/text';
 import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';

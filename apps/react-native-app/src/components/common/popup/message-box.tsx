@@ -2,7 +2,9 @@ import React, { FC } from 'react';
 import { View } from 'react-native';
 import { ds } from '@/design-system';
 
-import { Button, Heading, Text } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
+import Heading from '@/components/core-ui/heading';
+import Text from '@/components/core-ui/text';
 
 interface IMessageBoxProps {
   title?: string | null;
@@ -19,7 +21,9 @@ const MessageBox: FC<IMessageBoxProps> = ({ title = '', message = '', btnClose =
         <Text>{message}</Text>
       </View>
       <View>
-        <Button color="secondary" text={btnClose} style={[ds.wFull]} onPress={onClose} />
+        <Button style={[ds.wFull]} onPress={onClose}>
+          {btnClose}
+        </Button>
       </View>
     </View>
   );

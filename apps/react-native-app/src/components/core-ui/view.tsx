@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { View as RNView, ViewProps } from 'react-native';
 
-import { ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from './types';
 
 interface IViewProps extends ViewProps, ICoreUIBaseProps {
   children?: ReactNode;

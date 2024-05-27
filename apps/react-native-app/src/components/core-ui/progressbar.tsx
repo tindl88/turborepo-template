@@ -1,9 +1,9 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
-import Text from '../text';
-import { ICoreUIBaseProps, RoundedType } from '../types';
+import Text from './text';
+import { ICoreUIBaseProps, RoundedType } from './types';
 
 interface IProgressBarProps extends ICoreUIBaseProps {
   value?: number;
@@ -45,7 +45,7 @@ const ProgressBar: FC<IProgressBarProps> = ({
   );
 };
 
-export default memo(ProgressBar);
+export default ProgressBar;
 
 const styles = StyleSheet.create<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

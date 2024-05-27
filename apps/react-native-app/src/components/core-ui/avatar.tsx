@@ -3,8 +3,8 @@ import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
 
-import Text from '../text';
-import { ICoreUIBaseProps } from '../types';
+import Text from './text';
+import { ICoreUIBaseProps } from './types';
 
 interface IAvatarProps extends ICoreUIBaseProps {
   size?: number;

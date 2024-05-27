@@ -5,8 +5,8 @@ import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
 import { Colors, ds } from '@/design-system';
 
-import { Text } from '@/components/core-ui';
 import Heading from '@/components/core-ui/heading';
+import Text from '@/components/core-ui/text';
 
 import Images from '@/assets/images';
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
-import { Button } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
 import BrandFacebook from '@/components/svgs/brand-facebook';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';

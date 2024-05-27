@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 
 import { PostEntity } from '../interfaces/post.interface';
 
-import { Text } from '@/components/core-ui';
+import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 interface IPostItemProps {
   item: PostEntity;

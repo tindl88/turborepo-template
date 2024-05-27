@@ -6,9 +6,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { UnauthenticatedParamList } from '@/interfaces';
 
-// import WelcomeSlideshow from '@/modules/welcome/components/slide';
-import { Button, StatusBar, Text } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
+// import WelcomeSlideshow from '@/modules/welcome/components/slide';
 import WelcomePageSlider from '@/modules/welcome/components/page-slider';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Welcome'>;

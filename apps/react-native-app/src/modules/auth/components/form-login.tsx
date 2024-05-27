@@ -5,8 +5,9 @@ import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button, Input } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
+import Input from '@/components/core-ui/input';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
