@@ -2,4 +2,5 @@ node_modules
 android
 ios
 vendor
-
+e2e-results
+unit-coverage
