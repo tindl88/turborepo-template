@@ -8,7 +8,10 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Divider, Heading, StatusBar, Text } from '@/components/core-ui';
+import Divider from '@/components/core-ui/divider';
+import Heading from '@/components/core-ui/heading';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import ResetPasswordForm from '@/modules/auth/components/form-reset-password';
 import { useAuthState } from '@/modules/auth/states/auth.state';

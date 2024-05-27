@@ -4,7 +4,7 @@ import { Colors } from '@/design-system';
 import { FontStyle, FontWeight } from '@/design-system/interfaces/font.interface';
 import { fontMaker, FontMakerOptions } from '@/design-system/utils/font.util';
 
-import { ICoreUIBaseProps } from '../types';
+import { ICoreUIBaseProps } from './types';
 
 interface ITextProps extends ICoreUIBaseProps {
   text?: string;

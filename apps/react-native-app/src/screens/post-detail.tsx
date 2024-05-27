@@ -6,7 +6,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import { StatusBar, Text } from '@/components/core-ui';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 

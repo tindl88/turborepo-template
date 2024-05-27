@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
@@ -8,7 +7,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import { Loading, Pagination, StatusBar, Text } from '@/components/core-ui';
+import Loading from '@/components/core-ui/loading';
+import Pagination from '@/components/core-ui/pagination';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 import PostFilters from '@/modules/post/components/post-filter';
 import { PostList } from '@/modules/post/components/post-list';

@@ -1,163 +1,50 @@
-import { BorderStyles } from './interfaces/border.interface';
+import { BorderRadiusType, BorderStyles, BorderStyleType, BorderWidthType } from './interfaces/border.interface';
 
-export const borderStyles: BorderStyles = {
-  borderWidth: {
-    border0: { borderWidth: 0 },
-    border1: { borderWidth: 1 },
-    borderT0: { borderTopWidth: 0 },
-    borderR0: { borderRightWidth: 0 },
-    borderB0: { borderBottomWidth: 0 },
-    borderL0: { borderLeftWidth: 0 },
-    borderT1: { borderTopWidth: 1 },
-    borderR1: { borderRightWidth: 1 },
-    borderB1: { borderBottomWidth: 1 },
-    borderL1: { borderLeftWidth: 1 },
-    borderStart1: { borderStartWidth: 1 },
-    borderEnd1: { borderEndWidth: 1 },
-    border2: { borderWidth: 2 },
-    borderT2: { borderTopWidth: 2 },
-    borderR2: { borderRightWidth: 2 },
-    borderB2: { borderBottomWidth: 2 },
-    borderL2: { borderLeftWidth: 2 },
-    borderStart2: { borderStartWidth: 2 },
-    borderEnd2: { borderEndWidth: 2 },
-    border3: { borderWidth: 3 },
-    borderT3: { borderTopWidth: 3 },
-    borderR3: { borderRightWidth: 3 },
-    borderB3: { borderBottomWidth: 3 },
-    borderL3: { borderLeftWidth: 3 },
-    borderStart3: { borderStartWidth: 3 },
-    borderEnd3: { borderEndWidth: 3 },
-    border4: { borderWidth: 4 },
-    borderT4: { borderTopWidth: 4 },
-    borderR4: { borderRightWidth: 4 },
-    borderB4: { borderBottomWidth: 4 },
-    borderL4: { borderLeftWidth: 4 },
-    borderStart4: { borderStartWidth: 4 },
-    borderEnd4: { borderEndWidth: 4 },
-    border5: { borderWidth: 5 },
-    borderT5: { borderTopWidth: 5 },
-    borderR5: { borderRightWidth: 5 },
-    borderB5: { borderBottomWidth: 5 },
-    borderL5: { borderLeftWidth: 5 },
-    borderStart5: { borderStartWidth: 5 },
-    borderEnd5: { borderEndWidth: 5 },
-    border6: { borderWidth: 6 },
-    borderT6: { borderTopWidth: 6 },
-    borderR6: { borderRightWidth: 6 },
-    borderB6: { borderBottomWidth: 6 },
-    borderL6: { borderLeftWidth: 6 },
-    borderStart6: { borderStartWidth: 6 },
-    borderEnd6: { borderEndWidth: 6 },
-    border7: { borderWidth: 7 },
-    borderT7: { borderTopWidth: 7 },
-    borderR7: { borderRightWidth: 7 },
-    borderB7: { borderBottomWidth: 7 },
-    borderL7: { borderLeftWidth: 7 },
-    borderStart7: { borderStartWidth: 7 },
-    borderEnd7: { borderEndWidth: 7 },
-    border8: { borderWidth: 8 },
-    borderT8: { borderTopWidth: 8 },
-    borderR8: { borderRightWidth: 8 },
-    borderB8: { borderBottomWidth: 8 },
-    borderL8: { borderLeftWidth: 8 },
-    borderStart8: { borderStartWidth: 8 },
-    borderEnd8: { borderEndWidth: 8 },
-    border9: { borderWidth: 9 },
-    borderT9: { borderTopWidth: 9 },
-    borderR9: { borderRightWidth: 9 },
-    borderB9: { borderBottomWidth: 9 },
-    borderL9: { borderLeftWidth: 9 },
-    borderStart9: { borderStartWidth: 9 },
-    borderEnd9: { borderEndWidth: 9 },
-    border10: { borderWidth: 10 },
-    borderT10: { borderTopWidth: 10 },
-    borderR10: { borderRightWidth: 10 },
-    borderB10: { borderBottomWidth: 10 },
-    borderL10: { borderLeftWidth: 10 },
-    borderStart10: { borderStartWidth: 10 },
-    borderEnd10: { borderEndWidth: 10 },
-    border11: { borderWidth: 11 },
-    borderT11: { borderTopWidth: 11 },
-    borderR11: { borderRightWidth: 11 },
-    borderB11: { borderBottomWidth: 11 },
-    borderL11: { borderLeftWidth: 11 },
-    borderStart11: { borderStartWidth: 11 },
-    borderEnd11: { borderEndWidth: 11 },
-    border12: { borderWidth: 12 },
-    borderT12: { borderTopWidth: 12 },
-    borderR12: { borderRightWidth: 12 },
-    borderB12: { borderBottomWidth: 12 },
-    borderL12: { borderLeftWidth: 12 },
-    borderStart12: { borderStartWidth: 12 },
-    borderEnd12: { borderEndWidth: 12 }
-  },
-  borderStyle: {
-    borderSolid: { borderStyle: 'solid' },
-    borderDashed: { borderStyle: 'dashed' },
-    borderDotted: { borderStyle: 'dotted' }
-  },
-  borderRadius: {
-    rounded0: { borderRadius: 0 },
-    rounded2: { borderRadius: 2 },
-    rounded4: { borderRadius: 4 },
-    rounded6: { borderRadius: 6 },
-    rounded8: { borderRadius: 8 },
-    rounded10: { borderRadius: 10 },
-    rounded12: { borderRadius: 12 },
-    rounded14: { borderRadius: 14 },
-    rounded16: { borderRadius: 16 },
-    rounded20: { borderRadius: 20 },
-    rounded24: { borderRadius: 24 },
-    roundedFull: { borderRadius: 9999 },
-
-    roundedT0: { borderTopLeftRadius: 0, borderTopRightRadius: 0 },
-    roundedT2: { borderTopLeftRadius: 2, borderTopRightRadius: 2 },
-    roundedT4: { borderTopLeftRadius: 4, borderTopRightRadius: 4 },
-    roundedT6: { borderTopLeftRadius: 6, borderTopRightRadius: 6 },
-    roundedT8: { borderTopLeftRadius: 8, borderTopRightRadius: 8 },
-    roundedT10: { borderTopLeftRadius: 10, borderTopRightRadius: 10 },
-    roundedT12: { borderTopLeftRadius: 12, borderTopRightRadius: 12 },
-    roundedT14: { borderTopLeftRadius: 14, borderTopRightRadius: 14 },
-    roundedT16: { borderTopLeftRadius: 16, borderTopRightRadius: 16 },
-    roundedT20: { borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-    roundedT24: { borderTopLeftRadius: 24, borderTopRightRadius: 24 },
-    roundedTFull: { borderTopLeftRadius: 9999, borderTopRightRadius: 9999 },
-
-    roundedR0: { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
-    roundedR2: { borderTopRightRadius: 2, borderBottomRightRadius: 2 },
-    roundedR4: { borderTopRightRadius: 4, borderBottomRightRadius: 4 },
-    roundedR6: { borderTopRightRadius: 6, borderBottomRightRadius: 6 },
-    roundedR8: { borderTopRightRadius: 8, borderBottomRightRadius: 8 },
-    roundedR12: { borderTopRightRadius: 12, borderBottomRightRadius: 12 },
-    roundedR14: { borderTopRightRadius: 14, borderBottomRightRadius: 14 },
-    roundedR16: { borderTopRightRadius: 16, borderBottomRightRadius: 16 },
-    roundedR20: { borderTopRightRadius: 20, borderBottomRightRadius: 20 },
-    roundedR24: { borderTopRightRadius: 24, borderBottomRightRadius: 24 },
-    roundedRFull: { borderTopRightRadius: 9999, borderBottomRightRadius: 9999 },
-
-    roundedB0: { borderBottomRightRadius: 0, borderBottomLeftRadius: 0 },
-    roundedB2: { borderBottomRightRadius: 2, borderBottomLeftRadius: 2 },
-    roundedB4: { borderBottomRightRadius: 4, borderBottomLeftRadius: 4 },
-    roundedB6: { borderBottomRightRadius: 6, borderBottomLeftRadius: 6 },
-    roundedB8: { borderBottomRightRadius: 8, borderBottomLeftRadius: 8 },
-    roundedB12: { borderBottomRightRadius: 12, borderBottomLeftRadius: 12 },
-    roundedB14: { borderBottomRightRadius: 14, borderBottomLeftRadius: 14 },
-    roundedB16: { borderBottomRightRadius: 16, borderBottomLeftRadius: 16 },
-    roundedB20: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
-    roundedB24: { borderBottomRightRadius: 24, borderBottomLeftRadius: 24 },
-    roundedBFull: { borderBottomRightRadius: 9999, borderBottomLeftRadius: 9999 },
-
-    roundedL0: { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
-    roundedL2: { borderTopLeftRadius: 2, borderBottomLeftRadius: 2 },
-    roundedL4: { borderTopLeftRadius: 4, borderBottomLeftRadius: 4 },
-    roundedL6: { borderTopLeftRadius: 6, borderBottomLeftRadius: 6 },
-    roundedL8: { borderTopLeftRadius: 8, borderBottomLeftRadius: 8 },
-    roundedL12: { borderTopLeftRadius: 12, borderBottomLeftRadius: 12 },
-    roundedL16: { borderTopLeftRadius: 16, borderBottomLeftRadius: 16 },
-    roundedL18: { borderTopLeftRadius: 18, borderBottomLeftRadius: 18 },
-    roundedL20: { borderTopLeftRadius: 20, borderBottomLeftRadius: 20 },
-    roundedL24: { borderTopLeftRadius: 24, borderBottomLeftRadius: 24 },
-    roundedLFull: { borderTopLeftRadius: 9999, borderBottomLeftRadius: 9999 }
-  }
+const borderStyle: BorderStyleType = {
+  borderSolid: { borderStyle: 'solid' },
+  borderDashed: { borderStyle: 'dashed' },
+  borderDotted: { borderStyle: 'dotted' }
 };
+
+const generateBorderRadius = (steps: number[]) => {
+  const borderRadius: Record<string, { [key: string]: number }> = {};
+
+  steps.forEach(step => {
+    borderRadius[`rounded${step}`] = { borderRadius: step };
+    borderRadius[`roundedT${step}`] = { borderTopLeftRadius: step, borderTopRightRadius: step };
+    borderRadius[`roundedR${step}`] = { borderTopRightRadius: step, borderBottomRightRadius: step };
+    borderRadius[`roundedB${step}`] = { borderBottomRightRadius: step, borderBottomLeftRadius: step };
+    borderRadius[`roundedL${step}`] = { borderTopLeftRadius: step, borderBottomLeftRadius: step };
+  });
+  borderRadius.roundedFull = { borderRadius: 9999 };
+  borderRadius.roundedTFull = { borderTopLeftRadius: 9999, borderTopRightRadius: 9999 };
+  borderRadius.roundedRFull = { borderTopRightRadius: 9999, borderBottomRightRadius: 9999 };
+  borderRadius.roundedBFull = { borderBottomRightRadius: 9999, borderBottomLeftRadius: 9999 };
+  borderRadius.roundedLFull = { borderTopLeftRadius: 9999, borderBottomLeftRadius: 9999 };
+
+  return borderRadius as unknown as BorderRadiusType;
+};
+
+const generateBorderWidth = (max: number) => {
+  const borderWidth: Record<string, { [key: string]: number }> = {};
+
+  for (let i = 0; i <= max; i++) {
+    borderWidth[`border${i}`] = { borderWidth: i };
+    borderWidth[`borderT${i}`] = { borderTopWidth: i };
+    borderWidth[`borderR${i}`] = { borderRightWidth: i };
+    borderWidth[`borderB${i}`] = { borderBottomWidth: i };
+    borderWidth[`borderL${i}`] = { borderLeftWidth: i };
+    borderWidth[`borderStart${i}`] = { borderStartWidth: i };
+    borderWidth[`borderEnd${i}`] = { borderEndWidth: i };
+  }
+
+  return borderWidth as unknown as BorderWidthType;
+};
+
+const borderStyles: BorderStyles = {
+  borderStyle: borderStyle,
+  borderWidth: generateBorderWidth(8),
+  borderRadius: generateBorderRadius([0, 2, 4, 6, 8, 10, 12, 14, 16, 20, 24])
+};
+
+export default borderStyles;

@@ -1,6 +1,6 @@
 import { ViewStyle } from 'react-native';
 
-type BorderWidthStyles = {
+export type BorderWidthType = {
   border0: ViewStyle;
   border1: ViewStyle;
   borderT0: ViewStyle;
@@ -91,12 +91,14 @@ type BorderWidthStyles = {
   borderStart12: ViewStyle;
   borderEnd12: ViewStyle;
 };
-type BorderStyleStyles = {
+
+export type BorderStyleType = {
   borderSolid: ViewStyle;
   borderDashed: ViewStyle;
   borderDotted: ViewStyle;
 };
-type BorderRadiusStyles = {
+
+export type BorderRadiusType = {
   rounded0: ViewStyle;
   rounded2: ViewStyle;
   rounded4: ViewStyle;
@@ -109,7 +111,6 @@ type BorderRadiusStyles = {
   rounded20: ViewStyle;
   rounded24: ViewStyle;
   roundedFull: ViewStyle;
-
   roundedT0: ViewStyle;
   roundedT2: ViewStyle;
   roundedT4: ViewStyle;
@@ -122,7 +123,6 @@ type BorderRadiusStyles = {
   roundedT20: ViewStyle;
   roundedT24: ViewStyle;
   roundedTFull: ViewStyle;
-
   roundedR0: ViewStyle;
   roundedR2: ViewStyle;
   roundedR4: ViewStyle;
@@ -134,7 +134,6 @@ type BorderRadiusStyles = {
   roundedR20: ViewStyle;
   roundedR24: ViewStyle;
   roundedRFull: ViewStyle;
-
   roundedB0: ViewStyle;
   roundedB2: ViewStyle;
   roundedB4: ViewStyle;
@@ -146,7 +145,6 @@ type BorderRadiusStyles = {
   roundedB20: ViewStyle;
   roundedB24: ViewStyle;
   roundedBFull: ViewStyle;
-
   roundedL0: ViewStyle;
   roundedL2: ViewStyle;
   roundedL4: ViewStyle;
@@ -161,7 +159,7 @@ type BorderRadiusStyles = {
 };
 
 export type BorderStyles = {
-  borderWidth: BorderWidthStyles;
-  borderStyle: BorderStyleStyles;
-  borderRadius: BorderRadiusStyles;
+  borderWidth: BorderWidthType;
+  borderStyle: BorderStyleType;
+  borderRadius: BorderRadiusType;
 };

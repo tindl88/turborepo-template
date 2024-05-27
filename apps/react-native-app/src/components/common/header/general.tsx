@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 
-import { Heading } from '@/components/core-ui';
+import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 

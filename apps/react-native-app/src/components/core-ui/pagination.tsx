@@ -2,9 +2,9 @@ import React, { FC, memo, useMemo } from 'react';
 import { Pressable } from 'react-native';
 import { ds } from '@/design-system';
 
-import Text from '../text';
-import { ICoreUIBaseProps } from '../types';
-import View from '../view';
+import Text from './text';
+import { ICoreUIBaseProps } from './types';
+import View from './view';
 
 interface IPagination extends ICoreUIBaseProps {
   type?: 'minimal';

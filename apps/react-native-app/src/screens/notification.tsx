@@ -8,7 +8,8 @@ import { FlashList } from '@shopify/flash-list';
 import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
-import { StatusBar, Text } from '@/components/core-ui';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import { useThemeState } from '@/modules/themes/states/themes.state';
 

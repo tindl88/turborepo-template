@@ -8,7 +8,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Heading, StatusBar, Text } from '@/components/core-ui';
+import Heading from '@/components/core-ui/heading';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
 
 import VerifyOtpForm from '@/modules/auth/components/form-verify-otp';
 import { useAuthState } from '@/modules/auth/states/auth.state';

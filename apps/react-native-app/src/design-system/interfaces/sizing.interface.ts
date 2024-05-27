@@ -3,9 +3,11 @@ import { ViewStyle } from 'react-native';
 type WidthType = {
   w5Percent: ViewStyle;
   w10Percent: ViewStyle;
+  w15Percent: ViewStyle;
   w20Percent: ViewStyle;
   w25Percent: ViewStyle;
   w30Percent: ViewStyle;
+  w35Percent: ViewStyle;
   w40Percent: ViewStyle;
   w45Percent: ViewStyle;
   w50Percent: ViewStyle;
@@ -150,6 +152,7 @@ type HeightType = {
   h20Percent: ViewStyle;
   h25Percent: ViewStyle;
   h30Percent: ViewStyle;
+  h35Percent: ViewStyle;
   h40Percent: ViewStyle;
   h45Percent: ViewStyle;
   h50Percent: ViewStyle;

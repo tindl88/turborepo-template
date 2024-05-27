@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { View } from 'react-native';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { ds } from '@/design-system';
 import { BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -9,7 +8,12 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
-import { Button, Divider, Heading, StatusBar, Text } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
+import Divider from '@/components/core-ui/divider';
+import Heading from '@/components/core-ui/heading';
+import StatusBar from '@/components/core-ui/statusbar';
+import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import CarouselBanner from '@/modules/home/components/carousel';

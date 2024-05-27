@@ -3,7 +3,7 @@ import { Platform, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import { Text } from '@/components/core-ui';
+import Text from '@/components/core-ui/text';
 import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';

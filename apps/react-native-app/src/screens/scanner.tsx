@@ -9,7 +9,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import { Button, StatusBar } from '@/components/core-ui';
+import Button from '@/components/core-ui/button';
+import StatusBar from '@/components/core-ui/statusbar';
 
 import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
 import { useScreenState } from '@/modules/screen/states/screen.state';

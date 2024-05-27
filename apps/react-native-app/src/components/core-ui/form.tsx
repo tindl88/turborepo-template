@@ -3,7 +3,7 @@ import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useF
 import { View } from 'react-native';
 import { ds } from '@/design-system';
 
-import Text from '../core-ui/text';
+import Text from './text';
 
 const Form = FormProvider;
 

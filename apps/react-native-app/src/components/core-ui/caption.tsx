@@ -2,8 +2,8 @@ import React, { FC, memo, ReactNode } from 'react';
 import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
-import Text from '../text';
-import { CaptionType, ICoreUIBaseProps } from '../types';
+import Text from './text';
+import { CaptionType, ICoreUIBaseProps } from './types';
 
 interface ICaptionProps extends ICoreUIBaseProps {
   as?: CaptionType;
