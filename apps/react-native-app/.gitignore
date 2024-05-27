@@ -65,6 +65,8 @@ yarn-error.log
 
 # testing
 /coverage
+/e2e-results
+/unit-coverage
 
 # Keys
 /keystores
