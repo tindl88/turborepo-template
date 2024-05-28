@@ -13,31 +13,27 @@ import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';
 
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 function HomeNavigationHeader() {
   const navigation =
     useNavigation<
       CompositeNavigationProp<StackNavigationProp<HomeBottomTabParamList>, DrawerNavigationProp<AuthenticatedParamList>>
     >();
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
 
-  const foregroundColor = themeState.configs?.foreground;
+  const foregroundColor = themeConfigs.foreground;
 
   return (
     <View style={[ds.mx12, ds.mt10]}>
-      <View style={[styles.background(themeState.configs?.card), ds.relative, ds.roundedFull]}>
+      <View style={[styles.background(themeConfigs.card), ds.relative, ds.roundedFull]}>
         <View style={[ds.row, ds.justifyBetween, ds.itemsCenter, ds.pl16, ds.pr4, ds.py4]}>
           <View style={[ds.row, ds.shrink, ds.justifyBetween]}>
             <View style={[ds.row, ds.shrink, ds.itemsCenter]}>
               <Pressable style={ds.shrink} onPress={() => navigation.toggleDrawer()}>
                 <IconMenu color={foregroundColor} />
               </Pressable>
-              <Text
-                style={[ds.grow, ds.pl12]}
-                color={themeState.configs?.foreground}
-                onPress={() => navigation.navigate('Search')}
-              >
+              <Text style={[ds.grow, ds.pl12]} color={foregroundColor} onPress={() => navigation.navigate('Search')}>
                 Search
               </Text>
             </View>

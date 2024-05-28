@@ -11,7 +11,7 @@ import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 const data = [
   {
@@ -62,9 +62,9 @@ type Props = StackScreenProps<AuthenticatedParamList, 'Notification'>;
 
 function NotificationScreen({}: Props) {
   const [comments] = useState(data);
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
 
-  const backgroundColor = themeState.configs?.background;
+  const backgroundColor = themeConfigs.background;
 
   return (
     <View style={[ds.flex1, styles.background(backgroundColor)]}>

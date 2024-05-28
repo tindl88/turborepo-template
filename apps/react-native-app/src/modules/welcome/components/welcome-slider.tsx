@@ -3,10 +3,12 @@ import { Animated, Dimensions, View } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
-import { Colors, ds } from '@/design-system';
+import { ds } from '@/design-system';
 
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
+
+import { useTheme } from '@/modules/theme/components/provider';
 
 import Images from '@/assets/images';
 
@@ -50,9 +52,11 @@ const slides: ISlideItem[] = [
   }
 ];
 
-export default function PaginationDotsExample() {
-  const width = Dimensions.get('window').width;
+const width = Dimensions.get('window').width;
+
+export default function WelcomeSlider() {
   const ref = useRef<PagerView>(null);
+  const { themeConfigs } = useTheme();
   const scrollOffsetAnimatedValue = useRef(new Animated.Value(0)).current;
   const positionAnimatedValue = useRef(new Animated.Value(0)).current;
   const inputRange = [0, slides.length];
@@ -91,8 +95,8 @@ export default function PaginationDotsExample() {
               style={[ds.wFull, ds.h256, ds.justifyCenter] as ImageStyle}
             />
             <View style={ds.mt24}>
-              <Heading text={item.title} style={[ds.textCenter]} />
-              <Text text={item.content} style={[ds.textCenter, ds.text18, ds.mt20]} />
+              <Heading color={themeConfigs.foreground} text={item.title} style={[ds.textCenter]} />
+              <Text color={themeConfigs.foreground} text={item.content} style={[ds.textCenter, ds.text18, ds.mt20]} />
             </View>
           </View>
         ))}
@@ -100,8 +104,8 @@ export default function PaginationDotsExample() {
       <View style={ds.mb20}>
         <ExpandingDot
           data={slides}
-          activeDotColor={Colors.blue[500]}
-          inActiveDotColor={Colors.gray[200]}
+          activeDotColor={themeConfigs.primary}
+          inActiveDotColor={themeConfigs.secondary}
           dotStyle={{}}
           //@ts-ignore
           scrollX={scrollX}

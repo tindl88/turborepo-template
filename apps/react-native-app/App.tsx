@@ -7,6 +7,9 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 
 import NavContainer from '@/navigation/container';
 
+import { LanguageProvider } from '@/modules/language/components/provider';
+import { ThemeProvider } from '@/modules/theme/components/provider';
+
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 import { store } from '@/stores/redux/store';
@@ -30,7 +33,11 @@ const App = () => {
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: syncStoragePersister }}>
       <Provider store={store}>
-        <NavContainer />
+        <LanguageProvider>
+          <ThemeProvider>
+            <NavContainer />
+          </ThemeProvider>
+        </LanguageProvider>
       </Provider>
     </PersistQueryClientProvider>
   );

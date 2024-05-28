@@ -1,15 +1,9 @@
 import React, { FC } from 'react';
-import {
-  StatusBar as RNStatusBar,
-  StyleProp,
-  StyleSheet,
-  useColorScheme,
-  View,
-  ViewProps,
-  ViewStyle
-} from 'react-native';
+import { StatusBar as RNStatusBar, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/design-system';
+
+import { useTheme } from '@/modules/theme/components/provider';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -21,9 +15,9 @@ interface IStatusBarProps extends ICoreUIBaseProps {
 
 const StatusBar: FC<IStatusBarProps> = ({ style, background = Colors.transparent, visible = true }) => {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme();
 
-  const textColor = colorScheme === 'dark' ? 'light-content' : 'dark-content';
+  const textColor = theme === 'dark' ? 'light-content' : 'dark-content';
 
   return (
     <>
