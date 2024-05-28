@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
-import { Colors, ds } from '@/design-system';
+import { ds } from '@/design-system';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import Text from '@/components/core-ui/text';
@@ -9,33 +9,33 @@ import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';
 import IconUser from '@/components/svgs/ico-user';
 
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 const HomeTabBar = (props: BottomTabBarProps) => {
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
 
-  const foregroundColor = themeState.configs?.foreground;
-  const borderColor = themeState.configs?.border;
+  const foregroundColor = themeConfigs.foreground;
+  const borderColor = themeConfigs.border;
 
   const renderIcon = (name: string, isFocused: boolean) => {
     let icon = null;
-    const color = isFocused ? Colors.blue[500] : foregroundColor;
+    const iconColor = isFocused ? themeConfigs.primary : foregroundColor;
 
     switch (name) {
       case 'Home':
-        icon = <IconHome color={color} />;
+        icon = <IconHome color={iconColor} />;
         break;
       case 'UI':
-        icon = <IconPackage color={color} />;
+        icon = <IconPackage color={iconColor} />;
         break;
       case 'Profile':
-        icon = <IconUser color={color} />;
+        icon = <IconUser color={iconColor} />;
         break;
       case 'Settings':
-        icon = <IconSettings color={color} />;
+        icon = <IconSettings color={iconColor} />;
         break;
       default:
-        icon = <IconHome color={color} />;
+        icon = <IconHome color={iconColor} />;
     }
 
     return icon;
@@ -53,7 +53,7 @@ const HomeTabBar = (props: BottomTabBarProps) => {
               : route.name;
 
         const isFocused = props.state.index === index;
-        const color = isFocused ? Colors.blue[500] : foregroundColor;
+        const color = isFocused ? themeConfigs.primary : foregroundColor;
         const onPress = () => {
           const event = props.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
 
@@ -84,6 +84,7 @@ const HomeTabBar = (props: BottomTabBarProps) => {
 export default HomeTabBar;
 
 const styles = StyleSheet.create<{
+  // FIXME: Update style
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
   border(color?: string): ViewStyle;

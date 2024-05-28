@@ -6,7 +6,6 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { AuthenticatedParamList } from '@/interfaces';
 
-// import {useThemeState} from '@/modules/themes/states/themes.state';
 import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 
@@ -16,9 +15,6 @@ type Props = StackScreenProps<AuthenticatedParamList, 'Search'>;
 
 function SearchScreen({}: Props) {
   const screenState = useScreenState();
-  // const themeState = useThemeState();
-
-  // const backgroundColor = themeState.configs?.background;
 
   return (
     <View style={[ds.flex1]}>

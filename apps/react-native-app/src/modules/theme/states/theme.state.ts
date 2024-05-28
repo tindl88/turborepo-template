@@ -1,42 +1,44 @@
-import i18next from 'i18next';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { LanguageType } from '../interfaces/language.interface';
+import { ColorScheme, Theme } from '../interfaces/theme.interface';
+
+import { themeConfig } from '../constants/theme.constant';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 type States = {
-  language: LanguageType;
+  theme: ColorScheme;
+  configs: Theme;
 };
 
 type Actions = {
-  setLanguage: (language: LanguageType) => void;
+  setTheme: (theme: ColorScheme) => void;
   reset: () => void;
 };
 
 const initialState: States = {
-  language: 'en'
+  theme: 'dark',
+  configs: themeConfig.dark
 };
 
-export const useLanguageState = create<States & Actions>()(
+export const useThemeState = create<States & Actions>()(
   devtools(
     immer(
       persist(
         set => ({
           ...initialState,
-          setLanguage: language => {
+          setTheme: theme => {
             set(state => {
-              state.language = language;
-
-              i18next.changeLanguage(language);
+              state.theme = theme;
+              state.configs = themeConfig[theme];
             });
           },
           reset: () => set(initialState)
         }),
         {
-          name: 'language-storage',
+          name: 'theme-storage',
           storage: createJSONStorage(() => MMKVStorage)
         }
       )

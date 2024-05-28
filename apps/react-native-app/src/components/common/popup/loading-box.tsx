@@ -4,7 +4,7 @@ import { ds } from '@/design-system';
 
 import Loading from '@/components/core-ui/loading';
 
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 import { hideGlobalModal, showGlobalModal } from '../modal/global-modal';
 
@@ -17,12 +17,10 @@ type LoadingProps = {
   visible?: boolean;
 };
 const Indicator: FC<LoadingProps> = ({ visible }) => {
-  const themeState = useThemeState();
-
-  const cardColor = themeState.configs?.card;
+  const { themeConfigs } = useTheme();
 
   return (
-    <View style={[ds.p24, { backgroundColor: cardColor }]}>
+    <View style={[ds.p24, { backgroundColor: themeConfigs.card }]}>
       <Pressable onPress={() => hideGlobalModal('loading-modal')}>
         <Loading visible={visible} size={44} thickness={6} />
       </Pressable>

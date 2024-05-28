@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Appearance, useColorScheme } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Colors, ds } from '@/design-system';
-import { DarkTheme, DefaultTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import { ds } from '@/design-system';
+import { DefaultTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
 import Navigator from '@/navigation';
 
@@ -16,35 +15,24 @@ import { useLanguageState } from '@/modules/language/states/language.state';
 import SafeViewArea from '@/modules/screen/components/safe-view-area';
 import * as Constants from '@/modules/screen/constants/screen.constant';
 import { useScreenState } from '@/modules/screen/states/screen.state';
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 import { accessibility } from '@/utils/accessibility.util';
-
-const customDarkTheme = Object.assign({}, DarkTheme, {
-  colors: {
-    background: Colors.gray[800]
-  }
-});
-
-const customLightTheme = Object.assign({}, DefaultTheme, {
-  colors: {
-    background: Colors.gray[50]
-  }
-});
 
 const NavContainer = () => {
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string>();
   const { i18n } = useTranslation();
-  const colorScheme = useColorScheme();
   const screenState = useScreenState();
   const authState = useAuthState();
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
   const languageState = useLanguageState();
 
-  useEffect(() => {
-    Appearance.setColorScheme(themeState.colorScheme);
-  }, [themeState.colorScheme]);
+  const customTheme = Object.assign({}, DefaultTheme, {
+    colors: {
+      background: themeConfigs.background
+    }
+  });
 
   useEffect(() => {
     i18n.changeLanguage(languageState.language);
@@ -54,7 +42,7 @@ const NavContainer = () => {
     <SafeAreaProvider style={ds.flex1}>
       <NavigationContainer
         ref={navigationRef}
-        theme={colorScheme === 'dark' ? customDarkTheme : customLightTheme}
+        theme={customTheme}
         onReady={() => {
           BootSplash.hide({ fade: true, duration: 300 });
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

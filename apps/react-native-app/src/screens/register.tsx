@@ -16,15 +16,15 @@ import Text from '@/components/core-ui/text';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import RegisterForm from '@/modules/auth/components/form-register';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Register'>;
 
 function RegisterScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
 
-  const backgroundColor = themeState.configs?.background;
+  const backgroundColor = themeConfigs.background;
 
   return (
     <View style={ds.flex1}>

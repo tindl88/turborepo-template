@@ -2,35 +2,9 @@ import React, { ReactNode, useState } from 'react';
 import { Pressable, PressableProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
+import { useTheme } from '@/modules/theme/components/provider';
+
 import Text from './text';
-
-const buttonSizes = {
-  sm: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    fontSize: 14
-  },
-  md: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    fontSize: 16
-  },
-  lg: {
-    paddingVertical: 14,
-    paddingHorizontal: 28,
-    fontSize: 18
-  }
-};
-
-const buttonVariants = {
-  default: {
-    bgColor: Colors.amber[500],
-    textColor: Colors.white,
-    disabledBgColor: Colors.slate[200],
-    disabledTextColor: Colors.slate[400],
-    focusedBgColor: Colors.amber[400]
-  }
-};
 
 type ButtonSize = 'sm' | 'md' | 'lg';
 type ButtonVariant = 'default';
@@ -53,9 +27,47 @@ const Button: React.FC<IButtonProps> = ({
   onPress
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const { theme, themeConfigs } = useTheme();
 
+  const buttonSizes = {
+    sm: {
+      paddingVertical: 6,
+      paddingHorizontal: 12,
+      fontSize: 14
+    },
+    md: {
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      fontSize: 16
+    },
+    lg: {
+      paddingVertical: 14,
+      paddingHorizontal: 28,
+      fontSize: 18
+    }
+  };
+  const buttonVariants = {
+    light: {
+      default: {
+        bgColor: themeConfigs.primary,
+        textColor: themeConfigs.primaryForeground,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.amber[400]
+      }
+    },
+    dark: {
+      default: {
+        bgColor: themeConfigs.primary,
+        textColor: themeConfigs.primaryForeground,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.amber[400]
+      }
+    }
+  };
   const { paddingVertical, paddingHorizontal, fontSize } = buttonSizes[size];
-  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } = buttonVariants[variant];
+  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } = buttonVariants[theme][variant];
 
   const buttonStyle: ViewStyle = {
     paddingVertical,
@@ -64,10 +76,7 @@ const Button: React.FC<IButtonProps> = ({
     borderColor: isFocused ? focusedBgColor : 'transparent'
   };
 
-  const textStyle: TextStyle = {
-    fontSize,
-    color: disabled ? disabledTextColor : textColor
-  };
+  const textStyle: TextStyle = { fontSize, color: disabled ? disabledTextColor : textColor };
 
   return (
     <Pressable

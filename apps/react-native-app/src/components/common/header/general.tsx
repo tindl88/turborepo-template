@@ -9,7 +9,7 @@ import Text from '@/components/core-ui/text';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
-import { useThemeState } from '@/modules/themes/states/themes.state';
+import { useTheme } from '@/modules/theme/components/provider';
 
 type GeneralNavigationHeaderProps = {
   title?: string;
@@ -40,9 +40,9 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 }) => {
   const navigation = useNavigation();
   const screenState = useScreenState();
-  const themeState = useThemeState();
+  const { themeConfigs } = useTheme();
 
-  const foregroundColor = themeState.configs?.foreground;
+  const foregroundColor = themeConfigs.foreground;
 
   const goBack = () => {
     if (screenState.name === 'Home') return null;
