@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
+import { Platform, Pressable, View, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
@@ -10,6 +10,8 @@ import IconSettings from '@/components/svgs/ico-settings';
 import IconUser from '@/components/svgs/ico-user';
 
 import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 const HomeTabBar = (props: BottomTabBarProps) => {
   const { themeConfigs } = useTheme();
@@ -83,13 +85,8 @@ const HomeTabBar = (props: BottomTabBarProps) => {
 
 export default HomeTabBar;
 
-const styles = StyleSheet.create<{
-  // FIXME: Update style
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  border(color?: string): ViewStyle;
-}>({
-  border: color => {
+const styles = createStyle({
+  border: (color: string): ViewStyle => {
     return { borderColor: color };
   }
 });

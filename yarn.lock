@@ -14447,6 +14447,11 @@ lru-cache@^7.10.1, lru-cache@^7.14.1, lru-cache@^7.7.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
 
+lucide-react-native@^0.379.0:
+  version "0.379.0"
+  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.379.0.tgz#460c095391750fbf743ecae1ec82d797e6ab3a0b"
+  integrity sha512-inAq4ofWLMD07twrzi1OvtP+vIrlgP0fuiFNOTUasXjZ/rjetTDLYYzBG8LBZ2h9T0ybPH2+CGnz5hZawfPJ5g==
+
 lucide-react@^0.362.0:
   version "0.362.0"
   resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.362.0.tgz#945b7b56358a0d6739dd5bb34782367d5cd60a0f"

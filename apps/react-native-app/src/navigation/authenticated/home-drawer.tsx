@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { Pressable, TextStyle, View, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 
@@ -16,6 +16,8 @@ import IconUser from '@/components/svgs/ico-user';
 import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useTheme } from '@/modules/theme/components/provider';
 
+import { createStyle } from '@/utils/stylesheet.util';
+
 import HomeBottomTabNavigator from './home-bottom-tab';
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -24,7 +26,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
   const screenState = useScreenState();
   const { themeConfigs } = useTheme();
 
-  const primaryColor = themeConfigs.primary;
+  const primaryForegroundColor = themeConfigs.primaryForeground;
   const foregroundColor = themeConfigs.foreground;
   const borderColor = themeConfigs.border;
 
@@ -35,16 +37,16 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
       <View style={[ds.pl16, ds.pb16]}>
         <Heading text="Bully" as={'h3'} color={foregroundColor} />
       </View>
-      <Separator style={styles.border(borderColor)} />
+      <Separator style={[ds.mb12, styles.border(borderColor)]} />
       <View style={ds.pr16}>
         <Pressable
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('Home') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('Home')}
         >
-          <IconHome color={isActive('Home') ? primaryColor : foregroundColor} />
+          <IconHome color={isActive('Home') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('Home') ? 'Bold' : 'Regular'}
-            color={isActive('Home') ? primaryColor : foregroundColor}
+            color={isActive('Home') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Home
@@ -54,10 +56,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('UI') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('UI')}
         >
-          <IconPackage color={isActive('UI') ? primaryColor : foregroundColor} />
+          <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('UI') ? 'Bold' : 'Regular'}
-            color={isActive('UI') ? primaryColor : foregroundColor}
+            color={isActive('UI') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             UI Kit
@@ -67,10 +69,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('ScanCode') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >
-          <IconPackage color={isActive('ScanCode') ? primaryColor : foregroundColor} />
+          <IconPackage color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('ScanCode') ? 'Bold' : 'Regular'}
-            color={isActive('ScanCode') ? primaryColor : foregroundColor}
+            color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Scan Code
@@ -80,10 +82,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('Setting') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('Setting')}
         >
-          <IconSettings color={isActive('Setting') ? primaryColor : foregroundColor} />
+          <IconSettings color={isActive('Setting') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('Setting') ? 'Bold' : 'Regular'}
-            color={isActive('Setting') ? primaryColor : foregroundColor}
+            color={isActive('Setting') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Settings
@@ -93,10 +95,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('Post') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('Post')}
         >
-          <IconSettings color={isActive('Post') ? primaryColor : foregroundColor} />
+          <IconSettings color={isActive('Post') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('Post') ? 'Bold' : 'Regular'}
-            color={isActive('Post') ? primaryColor : foregroundColor}
+            color={isActive('Post') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Post
@@ -106,10 +108,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           style={[ds.row, ds.itemsCenter, ds.p12, isActive('Profile') && [ds.bgPrimary500, ds.roundedRFull]]}
           onPress={() => props.navigation.navigate('Profile')}
         >
-          <IconUser color={isActive('Profile') ? primaryColor : foregroundColor} />
+          <IconUser color={isActive('Profile') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('Profile') ? 'Bold' : 'Regular'}
-            color={isActive('Profile') ? primaryColor : foregroundColor}
+            color={isActive('Profile') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Profile
@@ -132,21 +134,14 @@ const HomeDrawer = () => {
 
 export default HomeDrawer;
 
-const styles = StyleSheet.create<{
-  // FIXME: Update Style
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  border(color?: string): ViewStyle;
-  background(color?: string): ViewStyle;
-  text(color?: string): TextStyle;
-}>({
-  border: color => {
+const styles = createStyle({
+  border: (color: string): ViewStyle => {
     return { borderColor: color };
   },
-  background: color => {
+  background: (color: string): ViewStyle => {
     return { backgroundColor: color };
   },
-  text: color => {
+  text: (color: string): TextStyle => {
     return { color: color };
   }
 });

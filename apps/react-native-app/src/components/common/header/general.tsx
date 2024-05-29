@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { Pressable, TextStyle, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +10,8 @@ import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 type GeneralNavigationHeaderProps = {
   title?: string;
@@ -78,29 +80,23 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 
 export default GeneralNavigationHeader;
 
-const styles = StyleSheet.create<{
-  // FIXME: Fix StyleSheet
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  background(color: string): ViewStyle;
-  border(color?: string): ViewStyle;
-  heading(color: string): TextStyle;
-  subHeading(color: string): TextStyle;
-}>({
-  background: color => {
+const styles = createStyle({
+  background: (color: string): ViewStyle => {
     return {
       backgroundColor: color
     };
   },
-  border: color => {
-    return { borderColor: color };
+  border: (color: string): ViewStyle => {
+    return {
+      borderColor: color
+    };
   },
-  heading: color => {
+  heading: (color: string): TextStyle => {
     return {
       color: color
     };
   },
-  subHeading: color => {
+  subHeading: (color: string): TextStyle => {
     return {
       color: color
     };

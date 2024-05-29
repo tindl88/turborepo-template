@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -16,12 +18,8 @@ const Divider: FC<IDividerProps> = ({ height = 10, visible = true }) => {
 
 export default Divider;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  component(height: number): ViewStyle;
-}>({
-  component: height => {
+const styles = createStyle({
+  component: (height: number): ViewStyle => {
     return {
       height: height
     };

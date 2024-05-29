@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import Text from './text';
 import { ICoreUIBaseProps } from './types';
@@ -22,12 +24,8 @@ const Badge: FC<IBadgeProps> = ({ size = 12, value = '', visible = true }) => {
 
 export default Badge;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  component(size: number): ViewStyle;
-}>({
-  component: size => {
+const styles = createStyle({
+  component: (size: number): ViewStyle => {
     return {
       width: size,
       height: size

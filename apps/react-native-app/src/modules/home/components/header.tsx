@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pressable, StyleSheet, View, ViewStyle } from 'react-native';
-import { Colors, ds } from '@/design-system';
+import { Pressable, View, ViewStyle } from 'react-native';
+import { ds } from '@/design-system';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -14,6 +14,8 @@ import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';
 
 import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 function HomeNavigationHeader() {
   const navigation =
@@ -49,9 +51,8 @@ function HomeNavigationHeader() {
           <Avatar
             size={36}
             text="T"
-            color={Colors.white}
-            background={Colors.rose[400]}
-            style={[ds.border2, ds.borderLime200]}
+            color={themeConfigs.primaryForeground}
+            background={themeConfigs.primary}
             onPress={() => navigation.navigate('Profile')}
           />
         </View>
@@ -62,12 +63,10 @@ function HomeNavigationHeader() {
 
 export default HomeNavigationHeader;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  background(color?: string): ViewStyle;
-}>({
-  background: color => {
-    return { backgroundColor: color };
+const styles = createStyle({
+  background: (color: string): ViewStyle => {
+    return {
+      backgroundColor: color
+    };
   }
 });

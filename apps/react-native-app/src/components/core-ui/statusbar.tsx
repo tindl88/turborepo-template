@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
-import { StatusBar as RNStatusBar, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { StatusBar as RNStatusBar, StyleProp, View, ViewProps, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/design-system';
 
 import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -29,12 +31,8 @@ const StatusBar: FC<IStatusBarProps> = ({ style, background = Colors.transparent
 
 export default StatusBar;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  background(color: string): ViewStyle;
-}>({
-  background: color => {
+const styles = createStyle({
+  background: (color: string): ViewStyle => {
     return { backgroundColor: color };
   }
 });

@@ -10,8 +10,8 @@ export const themeConfig: ThemeConfig = {
     cardForeground: Colors.gray[200],
     popover: Colors.gray[800],
     popoverForeground: Colors.gray[200],
-    primary: Colors.green[500],
-    primaryForeground: Colors.green[900],
+    primary: Colors.primary[500],
+    primaryForeground: Colors.primary[900],
     secondary: Colors.gray[700],
     secondaryForeground: Colors.gray[50],
     muted: Colors.gray[700],
@@ -22,16 +22,16 @@ export const themeConfig: ThemeConfig = {
     destructiveForeground: Colors.red[200],
     border: Colors.gray[700],
     input: Colors.gray[700],
-    ring: Colors.green[900]
+    ring: Colors.primary[900]
   },
   light: {
     background: Colors.white,
-    foreground: Colors.gray[900],
+    foreground: Colors.gray[800],
     card: Colors.gray[200],
     cardForeground: Colors.gray[900],
     popover: Colors.white,
     popoverForeground: Colors.gray[900],
-    primary: Colors.green[600],
+    primary: Colors.primary[600],
     primaryForeground: Colors.slate[50],
     secondary: Colors.gray[100],
     secondaryForeground: Colors.gray[800],
@@ -43,6 +43,6 @@ export const themeConfig: ThemeConfig = {
     destructiveForeground: Colors.gray[50],
     border: Colors.gray[300],
     input: Colors.gray[400],
-    ring: Colors.green[600]
+    ring: Colors.primary[600]
   }
 };

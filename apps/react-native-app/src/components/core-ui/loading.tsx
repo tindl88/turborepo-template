@@ -1,6 +1,10 @@
 import React, { FC, memo, useEffect, useRef } from 'react';
-import { Animated, Easing, StyleSheet, View, ViewStyle } from 'react-native';
+import { Animated, Easing, View, ViewStyle } from 'react-native';
 import { Colors } from '@/design-system';
+
+import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -22,6 +26,7 @@ const Loading: FC<ILoadingProps> = ({
   trackColor = Colors.gray[300],
   visible = true
 }) => {
+  const { themeConfigs } = useTheme();
   const rotation = useRef(new Animated.Value(0)).current;
   const fade = useRef(new Animated.Value(0)).current;
 
@@ -42,20 +47,15 @@ const Loading: FC<ILoadingProps> = ({
         }
       ]}
     >
-      <View style={styles.circle(size, thickness, color, trackColor)} />
+      <View style={styles.circle(size, thickness, themeConfigs.primary || color, trackColor)} />
     </Animated.View>
   );
 };
 
 export default memo(Loading);
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  component(size: number): ViewStyle;
-  circle(size: number, thickness: number, color: string, trackColor: string): ViewStyle;
-}>({
-  component: size => {
+const styles = createStyle({
+  component: (size: number): ViewStyle => {
     return {
       width: size,
       height: size,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create<{
       alignItems: 'center'
     };
   },
-  circle: (size, thickness, color, trackColor) => {
+  circle: (size: number, thickness: number, color: string, trackColor: string): ViewStyle => {
     return {
       borderWidth: thickness,
       borderRadius: size / 2,
@@ -74,6 +74,9 @@ const styles = StyleSheet.create<{
       width: '100%',
       height: '100%'
     };
+  },
+  test: {
+    backgroundColor: 'red'
   }
 });
 
