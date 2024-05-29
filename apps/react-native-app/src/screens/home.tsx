@@ -18,6 +18,7 @@ import View from '@/components/core-ui/view';
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import CarouselBanner from '@/modules/home/components/carousel';
 import HomeNavigationHeader from '@/modules/home/components/header';
+import { useTheme } from '@/modules/theme/components/provider';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Home'>,
@@ -38,6 +39,7 @@ const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
 
 function HomeScreen({}: Props) {
   const authState = useAuthState();
+  const { themeConfigs } = useTheme();
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['50%', '50%'], []);
@@ -62,7 +64,7 @@ function HomeScreen({}: Props) {
             snapPoints={snapPoints}
             backdropComponent={CustomBackdrop}
             backgroundComponent={null}
-            style={[ds.rounded12, ds.bgGray700]}
+            style={[ds.rounded12, { backgroundColor: themeConfigs.background }]}
           >
             <View style={[ds.flex1, ds.itemsCenter]}>
               <Text>Awesome 🎉</Text>

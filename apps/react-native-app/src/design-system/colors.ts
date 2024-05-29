@@ -1,3 +1,5 @@
+import { toCapitalized } from '@/utils/string.util';
+
 import { BackgroundColorType, BorderColorType, ColorStyles, TextColorType } from './interfaces/color.interface';
 import { designSystemConfigs } from './config';
 
@@ -9,7 +11,8 @@ const generateColorStyles = (
   const styles: Record<string, { [key: string]: string }> = {};
 
   Object.entries(colorShades).forEach(([shade, color]) => {
-    const key = `${prefix}${colorName}${shade}`;
+    const name = toCapitalized(colorName);
+    const key = `${prefix}${name}${shade}`;
 
     if (prefix === 'bg') {
       styles[key] = { backgroundColor: color };
@@ -17,10 +20,10 @@ const generateColorStyles = (
       styles[key] = { color };
     } else if (prefix === 'border') {
       styles[key] = { borderColor: color };
-      styles[`${prefix}T${colorName}${shade}`] = { borderTopColor: color };
-      styles[`${prefix}R${colorName}${shade}`] = { borderRightColor: color };
-      styles[`${prefix}B${colorName}${shade}`] = { borderBottomColor: color };
-      styles[`${prefix}L${colorName}${shade}`] = { borderLeftColor: color };
+      styles[`${prefix}T${name}${shade}`] = { borderTopColor: color };
+      styles[`${prefix}R${name}${shade}`] = { borderRightColor: color };
+      styles[`${prefix}B${name}${shade}`] = { borderBottomColor: color };
+      styles[`${prefix}L${name}${shade}`] = { borderLeftColor: color };
     }
   });
 
@@ -29,7 +32,7 @@ const generateColorStyles = (
 
 const generateAllColorStyles = (prefix: 'bg' | 'text' | 'border') => {
   return Object.entries(designSystemConfigs.colors).reduce((acc, [colorName, colorShades]) => {
-    return { ...acc, ...generateColorStyles(prefix, colorName, colorShades as Record<string, string>) };
+    return { ...acc, ...generateColorStyles(prefix, toCapitalized(colorName), colorShades as Record<string, string>) };
   }, {});
 };
 

@@ -1,8 +1,11 @@
 import React, { forwardRef, ReactNode } from 'react';
-import { StyleProp, StyleSheet, Text as RNText, TextStyle, useColorScheme } from 'react-native';
-import { Colors } from '@/design-system';
+import { StyleProp, Text as RNText, TextStyle } from 'react-native';
 import { FontStyle, FontWeight } from '@/design-system/interfaces/font.interface';
 import { fontMaker, FontMakerOptions } from '@/design-system/utils/font.util';
+
+import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -36,21 +39,27 @@ const Text = forwardRef<RNText, ITextProps>(
     },
     ref
   ) => {
-    const colorScheme = useColorScheme();
+    const { themeConfigs } = useTheme();
 
-    const isDark = colorScheme === 'dark';
-
-    const textColor = isDark ? Colors.white : Colors.black;
+    const textColor = themeConfigs.foreground;
     const content = text || children;
-    const dStyle = dynamicStyles(
-      { name: fontName, weight: fontWeight, style: fontStyle },
-      { fontSize, lineHeight, color: color ? color : textColor }
-    );
 
     if (!visible) return null;
 
     return (
-      <RNText ref={ref} style={[dStyle.font, dStyle.text, style]} onPress={onPress}>
+      <RNText
+        ref={ref}
+        style={[
+          styles.font({
+            name: fontName,
+            weight: fontWeight,
+            style: fontStyle
+          }),
+          styles.text(color ? color : textColor, fontSize, lineHeight),
+          style
+        ]}
+        onPress={onPress}
+      >
         {content}
       </RNText>
     );
@@ -59,23 +68,17 @@ const Text = forwardRef<RNText, ITextProps>(
 
 export default Text;
 
-interface IDynamicStyles {
-  font: TextStyle;
-  text: TextStyle;
-}
-
-const dynamicStyles = (
-  font: FontMakerOptions,
-  text: { color: string; fontSize: number; lineHeight: number }
-): IDynamicStyles => {
-  return StyleSheet.create({
-    font: {
-      ...(fontMaker(font) as TextStyle)
-    },
-    text: {
-      color: text.color,
-      fontSize: text.fontSize,
-      lineHeight: text.lineHeight
-    }
-  });
-};
+const styles = createStyle({
+  font: (options: FontMakerOptions): TextStyle => {
+    return {
+      ...(fontMaker(options) as TextStyle)
+    };
+  },
+  text: (color: string, fontSize: number, lineHeight: number): TextStyle => {
+    return {
+      color: color,
+      fontSize: fontSize,
+      lineHeight: lineHeight
+    };
+  }
+});

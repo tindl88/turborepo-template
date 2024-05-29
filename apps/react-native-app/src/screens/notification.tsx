@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, View, ViewStyle } from 'react-native';
+import { Pressable, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -12,6 +12,8 @@ import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 
 import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 const data = [
   {
@@ -79,14 +81,14 @@ function NotificationScreen({}: Props) {
           const notification = item.item;
 
           return (
-            <View style={styles.container}>
+            <View style={ds.flex1}>
               <Pressable onPress={() => {}}>
-                <FastImage style={styles.image} source={{ uri: notification.image }} />
+                <FastImage source={{ uri: notification.image }} />
               </Pressable>
-              <View style={styles.content}>
-                <View style={styles.contentHeader}>
-                  <Text style={styles.name}>{notification.name}</Text>
-                  <Text style={styles.time}>9:58 am</Text>
+              <View>
+                <View>
+                  <Text>{notification.name}</Text>
+                  <Text>9:58 am</Text>
                 </View>
                 <Text>{notification.comment}</Text>
               </View>
@@ -100,12 +102,8 @@ function NotificationScreen({}: Props) {
 
 export default NotificationScreen;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  background(color?: string): ViewStyle;
-}>({
-  background: color => {
+const styles = createStyle({
+  background: (color: string): ViewStyle => {
     return { backgroundColor: color };
   }
 });

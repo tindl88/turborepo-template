@@ -106,7 +106,7 @@ function UIScreen({}: Props) {
             <Divider />
             <Heading as="h4" text="Loading" />
             <Divider />
-            <Loading />
+            <Loading size={64} thickness={6} />
             <Divider />
             <Heading as="h4" text="Input" />
             <Divider />

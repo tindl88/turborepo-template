@@ -1,9 +1,11 @@
 import React, { FC, ReactNode } from 'react';
-import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { View, ViewProps, ViewStyle } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ds } from '@/design-system';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 interface ISafeViewAreaProps extends ViewProps {
   children: ReactNode;
@@ -36,25 +38,17 @@ const SafeViewArea: FC<ISafeViewAreaProps> = ({ children, ...rest }) => {
 
 export default SafeViewArea;
 
-const styles = StyleSheet.create<{
-  // FIXME: Fix style
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  spacingTop(insets: EdgeInsets): ViewStyle;
-  spacingRight(insets: EdgeInsets): ViewStyle;
-  spacingBottom(insets: EdgeInsets): ViewStyle;
-  spacingLeft(insets: EdgeInsets): ViewStyle;
-}>({
-  spacingTop: insets => {
+const styles = createStyle({
+  spacingTop: (insets: EdgeInsets): ViewStyle => {
     return { paddingTop: insets.top };
   },
-  spacingRight: insets => {
+  spacingRight: (insets: EdgeInsets): ViewStyle => {
     return { paddingRight: insets.right };
   },
-  spacingBottom: insets => {
+  spacingBottom: (insets: EdgeInsets): ViewStyle => {
     return { paddingBottom: insets.bottom };
   },
-  spacingLeft: insets => {
+  spacingLeft: (insets: EdgeInsets): ViewStyle => {
     return { paddingLeft: insets.left };
   }
 });

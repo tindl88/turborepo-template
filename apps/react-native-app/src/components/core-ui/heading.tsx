@@ -1,6 +1,8 @@
 import React, { FC, memo, ReactNode } from 'react';
-import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+import { StyleProp, TextStyle } from 'react-native';
 import { ds } from '@/design-system';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import Text from './text';
 import { HeadingType, ICoreUIBaseProps } from './types';
@@ -13,13 +15,13 @@ interface IHeadingProps extends ICoreUIBaseProps {
   style?: StyleProp<TextStyle>;
 }
 
-const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color, visible = true, style }) => {
+const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color = 'transparent', visible = true, style }) => {
   const content = text || children;
 
   if (!visible) return null;
 
   return (
-    <Text fontWeight={'Bold'} style={[color && styles.component(color), styles[as], style]}>
+    <Text fontWeight={'Bold'} style={[styles.component(color), styles[as], style]}>
       {content}
     </Text>
   );
@@ -27,12 +29,8 @@ const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color, visible 
 
 export default memo(Heading);
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  component(color: string): TextStyle;
-}>({
-  component: color => {
+const styles = createStyle({
+  component: (color: string): TextStyle => {
     return {
       color: color
     };

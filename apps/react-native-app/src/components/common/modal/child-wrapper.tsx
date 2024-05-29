@@ -69,9 +69,20 @@ function ChildWrapper({
 }
 
 const styles = StyleSheet.create({
-  button: { borderRadius: 4, padding: 10, elevation: 2, marginTop: 16 },
-  buttonClose: { backgroundColor: '#2196F3' },
-  textStyle: { color: 'white', fontWeight: 'bold', textAlign: 'center' }
+  button: {
+    borderRadius: 4,
+    padding: 10,
+    elevation: 2,
+    marginTop: 16
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3'
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
 });
 
 export default ChildWrapper;

@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import Text from './text';
 import { ICoreUIBaseProps } from './types';
@@ -46,12 +48,8 @@ const Avatar: FC<IAvatarProps> = ({
 
 export default Avatar;
 
-const styles = StyleSheet.create<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
-  component(size: number, background: string): ViewStyle;
-}>({
-  component: (size, background) => {
+const styles = createStyle({
+  component: (size: number, background: string): ViewStyle => {
     return {
       backgroundColor: background,
       width: size,

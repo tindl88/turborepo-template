@@ -1,8 +1,10 @@
-import React, { FC, useMemo } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import React, { FC } from 'react';
+import { Dimensions, View, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import Carousel from 'react-native-reanimated-carousel';
 import { ds } from '@/design-system';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 import Images from '@/assets/images';
 
@@ -18,17 +20,8 @@ interface ICarouselBanner {
 }
 
 const CarouselBanner: FC<ICarouselBanner> = ({ height = 176 }) => {
-  const style = useMemo(
-    () =>
-      StyleSheet.create({
-        container: { height: height * 0.85 },
-        carousel: { height, top: -height * (0.15 / 2) }
-      }),
-    [height]
-  );
-
   return (
-    <View style={[style.container]}>
+    <View style={[styles.container(height)]}>
       <Carousel
         width={WINDOW_SIZES.width}
         loop={true}
@@ -42,7 +35,7 @@ const CarouselBanner: FC<ICarouselBanner> = ({ height = 176 }) => {
           parallaxAdjacentItemScale: 0.82,
           parallaxScrollingOffset: 50
         }}
-        style={[ds.absolute, style.carousel]}
+        style={[ds.absolute, styles.carousel(height)]}
         renderItem={({ item }) => (
           <View style={[ds.relative]}>
             <FastImage
@@ -58,3 +51,17 @@ const CarouselBanner: FC<ICarouselBanner> = ({ height = 176 }) => {
 };
 
 export default CarouselBanner;
+
+const styles = createStyle({
+  container: (height: number): ViewStyle => {
+    return {
+      height: height * 0.85
+    };
+  },
+  carousel: (height: number): ViewStyle => {
+    return {
+      height,
+      top: -height * (0.15 / 2)
+    };
+  }
+});
