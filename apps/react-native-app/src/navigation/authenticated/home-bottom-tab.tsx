@@ -4,7 +4,6 @@ import HomeScreen from '@/screens/home';
 import PostScreen from '@/screens/post';
 import ProfileScreen from '@/screens/profile';
 import ScanCodeScreen from '@/screens/scanner';
-import SettingScreen from '@/screens/setting';
 import UIScreen from '@/screens/ui';
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -30,7 +29,6 @@ const HomeBottomTabNavigator = () => {
         options={{ tabBarLabel: t('post') }}
         initialParams={{ q: '', page: 1, limit: 10 }}
       />
-      <Tab.Screen name="Setting" component={SettingScreen} options={{ tabBarLabel: t('setting') }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: t('profile') }} />
     </Tab.Navigator>
   );

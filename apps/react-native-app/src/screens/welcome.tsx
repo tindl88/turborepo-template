@@ -20,7 +20,7 @@ function WelcomeScreen({ navigation }: Props) {
 
   return (
     <View style={ds.flex1}>
-      <StatusBar />
+      <StatusBar background="transparent" />
       <View style={[ds.flex1, ds.px12]}>
         <View style={ds.grow}>
           <WelcomeSlider />

@@ -36,12 +36,12 @@ const Button: React.FC<IButtonProps> = ({
       fontSize: 14
     },
     md: {
-      paddingVertical: 10,
+      paddingVertical: 14,
       paddingHorizontal: 20,
       fontSize: 16
     },
     lg: {
-      paddingVertical: 14,
+      paddingVertical: 16,
       paddingHorizontal: 28,
       fontSize: 18
     }
