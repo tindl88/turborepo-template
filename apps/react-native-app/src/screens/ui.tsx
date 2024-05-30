@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { ImageStyle } from 'react-native-fast-image';
+import { Image, ImageStyle, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import { Colors, ds } from '@/design-system';
@@ -23,13 +22,12 @@ import ScrollingContent from '@/components/common/popup/scrolling-content';
 import Button from '@/components/core-ui/button';
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
-import Image from '@/components/core-ui/image/image';
 import Input from '@/components/core-ui/input';
 import Loading from '@/components/core-ui/loading';
 import Pagination from '@/components/core-ui/pagination';
 import ProgressBar from '@/components/core-ui/progressbar';
 import StatusBar from '@/components/core-ui/statusbar';
-import Tab from '@/components/core-ui/tab';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -49,12 +47,12 @@ function UIScreen({}: Props) {
       <GeneralNavigationHeader title={screenState.name} />
       <Divider />
       <ScrollView style={[ds.flex1, ds.px10]}>
-        <Tab>
-          <Tab.List active="tab-ui-kit">
-            <Tab.Item label="tab-ui-kit">UI Kit</Tab.Item>
-            <Tab.Item label="tab-components">Components</Tab.Item>
-          </Tab.List>
-          <Tab.Content label="tab-ui-kit">
+        <Tabs defaultValue="tab-ui-kit">
+          <TabsList>
+            <TabsTrigger value="tab-ui-kit">UI Kit</TabsTrigger>
+            <TabsTrigger value="tab-components">Components</TabsTrigger>
+          </TabsList>
+          <TabsContent value="tab-ui-kit">
             <Heading as={'h1'} text="Heading 1" />
             <Heading as={'h2'}>Heading 2</Heading>
             <Heading as={'h3'}>Heading 3</Heading>
@@ -124,8 +122,8 @@ function UIScreen({}: Props) {
                 uri: 'https://images.unsplash.com/photo-1522139137660-4248e04955b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80'
               }}
             />
-          </Tab.Content>
-          <Tab.Content label="tab-components">
+          </TabsContent>
+          <TabsContent value="tab-components">
             <View>
               <Button
                 onPress={() => showGlobalModal({ modalKey: 'modal-error', Component: ErrorBox1, hideClose: true })}
@@ -170,8 +168,8 @@ function UIScreen({}: Props) {
                 Show All
               </Button>
             </View>
-          </Tab.Content>
-        </Tab>
+          </TabsContent>
+        </Tabs>
       </ScrollView>
     </View>
   );

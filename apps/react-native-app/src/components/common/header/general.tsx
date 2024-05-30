@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { Pressable, TextStyle, View, ViewStyle } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { Colors, ds } from '@/design-system';
+import { ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 
 import Heading from '@/components/core-ui/heading';
@@ -32,8 +32,8 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
   titleColor,
   subTitle = '',
   subTitleColor,
-  borderColor = Colors.transparent,
-  backgroundColor = Colors.transparent,
+  borderColor,
+  backgroundColor,
   backgroundImage = '',
   leftIcon = null,
   rightIcon = null,
@@ -57,7 +57,13 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
   };
 
   return (
-    <View style={[ds.borderB1, styles.border(borderColor), styles.background(backgroundColor)]}>
+    <View
+      style={[
+        ds.borderB1,
+        styles.border(borderColor ?? themeConfigs.border),
+        styles.background(backgroundColor ?? themeConfigs.card)
+      ]}
+    >
       <View style={[ds.row, ds.justifyBetween, ds.itemsCenter, ds.px8]}>
         <Pressable
           style={[ds.w32, ds.h32, ds.textCenter, ds.itemsCenter, ds.justifyCenter]}

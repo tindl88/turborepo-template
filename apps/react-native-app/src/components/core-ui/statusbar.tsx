@@ -15,16 +15,16 @@ interface IStatusBarProps extends ICoreUIBaseProps {
   style?: StyleProp<ViewProps>;
 }
 
-const StatusBar: FC<IStatusBarProps> = ({ style, background = Colors.transparent, visible = true }) => {
+const StatusBar: FC<IStatusBarProps> = ({ style, background, visible = true }) => {
   const insets = useSafeAreaInsets();
-  const { theme } = useTheme();
+  const { theme, themeConfigs } = useTheme();
 
   const textColor = theme === 'dark' ? 'light-content' : 'dark-content';
 
   return (
     <>
       <RNStatusBar barStyle={textColor} hidden={!visible} translucent={true} backgroundColor={Colors.transparent} />
-      {visible && <View style={[{ height: insets.top }, styles.background(background), style]} />}
+      {visible && <View style={[{ height: insets.top }, styles.background(background ?? themeConfigs.card), style]} />}
     </>
   );
 };

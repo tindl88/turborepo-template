@@ -42,6 +42,9 @@ type WidthType = {
   w56: ViewStyle;
   w64: ViewStyle;
   w80: ViewStyle;
+  w84: ViewStyle;
+  w88: ViewStyle;
+  w92: ViewStyle;
   w96: ViewStyle;
   w112: ViewStyle;
   w128: ViewStyle;
@@ -76,6 +79,9 @@ type WidthType = {
   w56ne: ViewStyle;
   w64ne: ViewStyle;
   w80ne: ViewStyle;
+  w84ne: ViewStyle;
+  w88ne: ViewStyle;
+  w92ne: ViewStyle;
   w96ne: ViewStyle;
   w112ne: ViewStyle;
   w128ne: ViewStyle;
@@ -103,6 +109,9 @@ type MinWidthType = {
   minW56: ViewStyle;
   minW64: ViewStyle;
   minW80: ViewStyle;
+  minW84: ViewStyle;
+  minW88: ViewStyle;
+  minW92: ViewStyle;
   minW96: ViewStyle;
   minW112: ViewStyle;
   minW128: ViewStyle;
@@ -130,6 +139,9 @@ type MaxWidthType = {
   maxW56: ViewStyle;
   maxW64: ViewStyle;
   maxW80: ViewStyle;
+  maxW84: ViewStyle;
+  maxW88: ViewStyle;
+  maxW92: ViewStyle;
   maxW96: ViewStyle;
   maxW112: ViewStyle;
   maxW128: ViewStyle;
@@ -187,6 +199,9 @@ type HeightType = {
   h56: ViewStyle;
   h64: ViewStyle;
   h80: ViewStyle;
+  h84: ViewStyle;
+  h88: ViewStyle;
+  h92: ViewStyle;
   h96: ViewStyle;
   h112: ViewStyle;
   h128: ViewStyle;
@@ -221,6 +236,9 @@ type HeightType = {
   h56ne: ViewStyle;
   h64ne: ViewStyle;
   h80ne: ViewStyle;
+  h84ne: ViewStyle;
+  h88ne: ViewStyle;
+  h92ne: ViewStyle;
   h96ne: ViewStyle;
   h112ne: ViewStyle;
   h128ne: ViewStyle;
@@ -248,6 +266,9 @@ type MinHeightType = {
   minH56: ViewStyle;
   minH64: ViewStyle;
   minH80: ViewStyle;
+  minH84: ViewStyle;
+  minH88: ViewStyle;
+  minH92: ViewStyle;
   minH96: ViewStyle;
   minH112: ViewStyle;
   minH128: ViewStyle;
@@ -275,6 +296,9 @@ type MaxHeightType = {
   maxH56: ViewStyle;
   maxH64: ViewStyle;
   maxH80: ViewStyle;
+  maxH84: ViewStyle;
+  maxH88: ViewStyle;
+  maxH92: ViewStyle;
   maxH96: ViewStyle;
   maxH112: ViewStyle;
   maxH128: ViewStyle;
