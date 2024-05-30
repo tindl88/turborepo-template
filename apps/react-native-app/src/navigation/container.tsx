@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import BootSplash from 'react-native-bootsplash';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,7 +21,6 @@ import { accessibility } from '@/utils/accessibility.util';
 
 const NavContainer = () => {
   const navigationRef = useNavigationContainerRef();
-  const routeNameRef = useRef<string>();
   const { i18n } = useTranslation();
   const screenState = useScreenState();
   const authState = useAuthState();
@@ -45,21 +44,12 @@ const NavContainer = () => {
         theme={customTheme}
         onReady={() => {
           BootSplash.hide({ fade: true, duration: 300 });
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          routeNameRef.current = navigationRef.getCurrentRoute()?.name!;
         }}
         onStateChange={async () => {
-          const previousRouteName = routeNameRef.current;
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const currentRouteName = navigationRef.getCurrentRoute()?.name!;
 
-          if (previousRouteName !== currentRouteName) {
-            routeNameRef.current = currentRouteName;
-          }
-
-          // eslint-disable-next-line no-console
-          console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
-
+          // console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
           screenState.setScreen({
             name: currentRouteName,
             spacingTop: Constants.Screen[currentRouteName]?.spacing?.top,

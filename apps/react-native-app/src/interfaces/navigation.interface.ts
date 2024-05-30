@@ -12,6 +12,13 @@ export type AuthenticatedParamList = {
   Preload: undefined;
   HomeStack: undefined;
   Search: undefined;
+  HelpCenter: undefined;
+  TermsAndConditions: undefined;
+  PrivacyPolicy: undefined;
+  ProfileEdit: undefined;
+  Setting: undefined;
+  SettingLanguage: undefined;
+  SettingTheme: undefined;
 };
 
 export type UnauthenticatedParamList = {
@@ -31,7 +38,6 @@ export type HomeBottomTabParamList = {
   Home: undefined;
   Post: PostScreenParams;
   ScanCode: undefined;
-  Setting: undefined;
   Profile: undefined;
   UI: undefined;
 };

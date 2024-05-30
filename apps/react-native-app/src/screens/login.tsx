@@ -27,8 +27,8 @@ function LoginScreen({ navigation }: Props) {
 
   return (
     <View style={ds.flex1}>
-      <StatusBar />
-      <GeneralNavigationHeader leftFunc={() => navigation.goBack()} />
+      <StatusBar background="transparent" />
+      <GeneralNavigationHeader backgroundColor="transparent" leftFunc={() => navigation.goBack()} />
       <ScrollView style={[ds.flex1, ds.px12]}>
         <Heading
           as={'h1'}

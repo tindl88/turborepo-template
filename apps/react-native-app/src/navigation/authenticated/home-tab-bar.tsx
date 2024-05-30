@@ -1,5 +1,5 @@
 import React from 'react';
-import { File, LayoutGrid, UserRound, Webhook } from 'lucide-react-native';
+import { LayoutGrid, UserRound, Webhook } from 'lucide-react-native';
 import { Platform, Pressable, View, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
@@ -29,9 +29,6 @@ const HomeTabBar = (props: BottomTabBarProps) => {
         break;
       case 'Profile':
         icon = <UserRound size={28} color={iconColor} />;
-        break;
-      case 'Settings':
-        icon = <File size={28} color={iconColor} />;
         break;
       default:
         icon = <UserRound size={28} color={iconColor} />;
