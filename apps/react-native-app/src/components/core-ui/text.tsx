@@ -41,7 +41,7 @@ const Text = forwardRef<RNText, ITextProps>(
   ) => {
     const { themeConfigs } = useTheme();
 
-    const textColor = themeConfigs.foreground;
+    const textColor = color ?? themeConfigs.foreground;
     const content = text || children;
 
     if (!visible) return null;
@@ -55,7 +55,7 @@ const Text = forwardRef<RNText, ITextProps>(
             weight: fontWeight,
             style: fontStyle
           }),
-          styles.text(color ? color : textColor, fontSize, lineHeight),
+          styles.text(textColor, fontSize, lineHeight),
           style
         ]}
         onPress={onPress}

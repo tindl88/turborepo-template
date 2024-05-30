@@ -3,7 +3,9 @@ import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
 import Text from './text';
-import { ICoreUIBaseProps, RoundedType } from './types';
+import { ICoreUIBaseProps } from './types';
+
+type RoundedType = 0 | 2 | 4 | 6 | 8 | 12 | 14 | 16 | 18 | 20 | 22 | 24;
 
 interface IProgressBarProps extends ICoreUIBaseProps {
   value?: number;

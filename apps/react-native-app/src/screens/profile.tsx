@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import React from 'react';
+import { GlobeLock, LifeBuoy, LogOut, Settings, User } from 'lucide-react-native';
+import { View, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
@@ -12,9 +12,16 @@ import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 import GeneralNavigationHeader from '@/components/common/header/general';
 import Divider from '@/components/core-ui/divider';
 import StatusBar from '@/components/core-ui/statusbar';
-import Text from '@/components/core-ui/text';
 
+import { useAuthState } from '@/modules/auth/states/auth.state';
+import Profile from '@/modules/profile/conponents/profile';
+import ProfileActionList from '@/modules/profile/conponents/profile-action-list';
+import ProfileVersion from '@/modules/profile/conponents/profile-version';
+import { ProfileAction } from '@/modules/profile/interfaces/profile.interface';
 import { useScreenState } from '@/modules/screen/states/screen.state';
+import { useTheme } from '@/modules/theme/components/provider';
+
+import { createStyle } from '@/utils/stylesheet.util';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<HomeBottomTabParamList, 'Profile'>,
@@ -23,49 +30,28 @@ type Props = CompositeScreenProps<
 
 function ProfileScreen({}: Props) {
   const screenState = useScreenState();
-  const [images] = useState([
-    'https://www.bootdey.com/image/280x280/FF00FF/000000',
-    'https://www.bootdey.com/image/280x280/00FFFF/000000',
-    'https://www.bootdey.com/image/280x280/FF7F50/000000',
-    'https://www.bootdey.com/image/280x280/6495ED/000000',
-    'https://www.bootdey.com/image/280x280/DC143C/000000',
-    'https://www.bootdey.com/image/280x280/008B8B/000000'
-  ]);
-  const [postCount] = useState(10);
-  const [followingCount] = useState(20);
-  const [followerCount] = useState(30);
+  const authState = useAuthState();
+  const { themeConfigs } = useTheme();
+
+  const profileActions: ProfileAction[] = [
+    { icon: User, name: 'Your Profile', type: 'sub', action: () => {} },
+    { icon: LifeBuoy, name: 'Help Center', type: 'sub', action: () => {} },
+    { icon: GlobeLock, name: 'Privacy Policy', type: 'sub', action: () => {} },
+    { icon: Settings, name: 'Settings', type: 'sub', action: () => {} },
+    { icon: LogOut, name: 'Log Out', type: 'inline', action: () => authState.logoutRequest() }
+  ];
 
   return (
-    <View style={ds.flex1}>
+    <View style={[ds.flex1]}>
       <StatusBar />
       <GeneralNavigationHeader title={screenState.name} />
-      <Divider />
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <FastImage style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar1.png' }} />
-          <Text style={styles.name}>John Doe</Text>
-          <View style={styles.statsContainer}>
-            <View style={styles.statsBox}>
-              <Text style={styles.statsCount}>{postCount}</Text>
-              <Text style={styles.statsLabel}>Posts</Text>
-            </View>
-            <View style={styles.statsBox}>
-              <Text style={styles.statsCount}>{followingCount}</Text>
-              <Text style={styles.statsLabel}>Following</Text>
-            </View>
-            <View style={styles.statsBox}>
-              <Text style={styles.statsCount}>{followerCount}</Text>
-              <Text style={styles.statsLabel}>Followers</Text>
-            </View>
-          </View>
+      <ScrollView style={[ds.px14, ds.py14]} showsVerticalScrollIndicator={false}>
+        <View style={[ds.rounded16, ds.overflowHidden, styles.background(themeConfigs.card)]}>
+          <Divider />
+          <Profile />
+          <ProfileActionList items={profileActions} style={ds.mt14} />
         </View>
-      </View>
-      <ScrollView contentContainerStyle={styles.body}>
-        {images.map((image, index) => (
-          <View key={index} style={styles.imageContainer}>
-            <FastImage style={styles.image} source={{ uri: image }} />
-          </View>
-        ))}
+        <ProfileVersion style={ds.mt10} />
       </ScrollView>
     </View>
   );
@@ -73,56 +59,10 @@ function ProfileScreen({}: Props) {
 
 export default ProfileScreen;
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#fff',
-    alignItems: 'center'
-  },
-  headerContent: {
-    alignItems: 'center'
-  },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: 'white',
-    marginBottom: 10
-  },
-  name: {
-    fontSize: 22,
-    color: '#000000',
-    fontWeight: '600'
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    marginTop: 10
-  },
-  statsBox: {
-    alignItems: 'center',
-    marginHorizontal: 10
-  },
-  statsCount: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#000000'
-  },
-  statsLabel: {
-    fontSize: 14,
-    color: '#999999'
-  },
-  body: {
-    alignItems: 'center',
-    padding: 30,
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  imageContainer: {
-    width: '33%',
-    padding: 5
-  },
-  image: {
-    width: '100%',
-    height: 120
+const styles = createStyle({
+  background: (color: string): ViewStyle => {
+    return {
+      backgroundColor: color
+    };
   }
 });

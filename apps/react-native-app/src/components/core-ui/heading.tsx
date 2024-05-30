@@ -1,27 +1,31 @@
 import React, { FC, memo, ReactNode } from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import { TextStyle } from 'react-native';
 import { ds } from '@/design-system';
+
+import { useTheme } from '@/modules/theme/components/provider';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
 import Text from './text';
-import { HeadingType, ICoreUIBaseProps } from './types';
 
-interface IHeadingProps extends ICoreUIBaseProps {
+type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+interface IHeadingProps extends React.ComponentPropsWithoutRef<typeof Text> {
   as?: HeadingType;
   text?: string;
   children?: ReactNode;
-  color?: string;
-  style?: StyleProp<TextStyle>;
 }
 
-const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color = 'transparent', visible = true, style }) => {
+const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color, fontWeight, visible = true, style }) => {
+  const { themeConfigs } = useTheme();
+
+  const textColor = color ?? themeConfigs.foreground;
   const content = text || children;
 
   if (!visible) return null;
 
   return (
-    <Text fontWeight={'Bold'} style={[styles.component(color), styles[as], style]}>
+    <Text color={textColor} fontWeight={fontWeight ?? 'Bold'} style={[styles[as], style]}>
       {content}
     </Text>
   );

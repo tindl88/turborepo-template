@@ -104,6 +104,8 @@ export default NotificationScreen;
 
 const styles = createStyle({
   background: (color: string): ViewStyle => {
-    return { backgroundColor: color };
+    return {
+      backgroundColor: color
+    };
   }
 });

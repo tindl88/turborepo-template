@@ -40,7 +40,7 @@
     "check:format": "prettier --check .",
     "link:font": "npx react-native-asset",
     "commit": "better-commits",
-    "gen:splash": "react-native generate-bootsplash src/assets/splash_logo.png --background-color=1D2226 --logo-width=160 --assets-path=assets",
+    "gen:splash": "react-native generate-bootsplash src/assets/splash-screen.png --background-color=1D2226 --logo-width=160 --assets-path=assets",
     "reset": "yarn clean:module && yarn clean:ios && yarn clean:android && yarn install && yarn reinstall",
     "reinstall": "yarn clean:pod && cd ios/ && pod install && cd ..",
     "clean:watcher": "watchman watch-del-all",

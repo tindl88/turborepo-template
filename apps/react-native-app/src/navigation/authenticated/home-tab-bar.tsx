@@ -1,13 +1,10 @@
 import React from 'react';
+import { File, LayoutGrid, UserRound, Webhook } from 'lucide-react-native';
 import { Platform, Pressable, View, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import Text from '@/components/core-ui/text';
-import IconHome from '@/components/svgs/ico-home';
-import IconPackage from '@/components/svgs/ico-package';
-import IconSettings from '@/components/svgs/ico-settings';
-import IconUser from '@/components/svgs/ico-user';
 
 import { useTheme } from '@/modules/theme/components/provider';
 
@@ -25,37 +22,41 @@ const HomeTabBar = (props: BottomTabBarProps) => {
 
     switch (name) {
       case 'Home':
-        icon = <IconHome color={iconColor} />;
+        icon = <LayoutGrid size={28} color={iconColor} />;
         break;
       case 'UI':
-        icon = <IconPackage color={iconColor} />;
+        icon = <Webhook size={28} color={iconColor} />;
         break;
       case 'Profile':
-        icon = <IconUser color={iconColor} />;
+        icon = <UserRound size={28} color={iconColor} />;
         break;
       case 'Settings':
-        icon = <IconSettings color={iconColor} />;
+        icon = <File size={28} color={iconColor} />;
         break;
       default:
-        icon = <IconHome color={iconColor} />;
+        icon = <UserRound size={28} color={iconColor} />;
     }
 
     return icon;
   };
 
   return (
-    <View style={[ds.row, ds.justifyEvenly, ds.borderT1, styles.border(borderColor), Platform.OS === 'ios' && ds.h80]}>
+    <View
+      style={[
+        ds.row,
+        ds.justifyEvenly,
+        ds.borderT1,
+        styles.background(themeConfigs.card),
+        styles.border(borderColor),
+        Platform.OS === 'ios' && ds.h80
+      ]}
+    >
       {props.state.routes.map((route, index) => {
         const { options } = props.descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-              ? options.title
-              : route.name;
-
+        const label = options.tabBarLabel ?? options.title ?? route.name;
         const isFocused = props.state.index === index;
         const color = isFocused ? themeConfigs.primary : foregroundColor;
+
         const onPress = () => {
           const event = props.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
 
@@ -75,7 +76,9 @@ const HomeTabBar = (props: BottomTabBarProps) => {
             onPress={onPress}
           >
             {renderIcon(route.name, isFocused)}
-            <Text color={color}>{label.toString()}</Text>
+            <Text color={color} fontSize={16}>
+              {label.toString()}
+            </Text>
           </Pressable>
         );
       })}
@@ -88,5 +91,8 @@ export default HomeTabBar;
 const styles = createStyle({
   border: (color: string): ViewStyle => {
     return { borderColor: color };
+  },
+  background: (color: string): ViewStyle => {
+    return { backgroundColor: color };
   }
 });

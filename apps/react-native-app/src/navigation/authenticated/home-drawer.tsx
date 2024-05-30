@@ -40,7 +40,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
       <Separator style={[ds.mb12, styles.border(borderColor)]} />
       <View style={ds.pr16}>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('Home') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('Home') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('Home')}
         >
           <IconHome color={isActive('Home') ? primaryForegroundColor : foregroundColor} />
@@ -53,7 +59,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </Text>
         </Pressable>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('UI') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('UI') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('UI')}
         >
           <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
@@ -66,7 +78,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </Text>
         </Pressable>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('ScanCode') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('ScanCode') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >
           <IconPackage color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
@@ -79,7 +97,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </Text>
         </Pressable>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('Setting') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('Setting') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('Setting')}
         >
           <IconSettings color={isActive('Setting') ? primaryForegroundColor : foregroundColor} />
@@ -92,7 +116,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </Text>
         </Pressable>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('Post') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('Post') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('Post')}
         >
           <IconSettings color={isActive('Post') ? primaryForegroundColor : foregroundColor} />
@@ -105,7 +135,13 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </Text>
         </Pressable>
         <Pressable
-          style={[ds.row, ds.itemsCenter, ds.p12, isActive('Profile') && [ds.bgPrimary500, ds.roundedRFull]]}
+          style={[
+            ds.row,
+            ds.itemsCenter,
+            ds.roundedRFull,
+            ds.p12,
+            isActive('Profile') && styles.background(themeConfigs.primary)
+          ]}
           onPress={() => props.navigation.navigate('Profile')}
         >
           <IconUser color={isActive('Profile') ? primaryForegroundColor : foregroundColor} />
