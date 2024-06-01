@@ -19,7 +19,7 @@ type Props = CompositeScreenProps<
 
 function ProfileScreen({ route }: Props) {
   return (
-    <View style={[ds.flex1]}>
+    <View style={ds.flex1}>
       <StatusBar />
       <GeneralNavigationHeader title={route.name} />
       <Profile />

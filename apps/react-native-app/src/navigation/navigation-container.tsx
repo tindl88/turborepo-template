@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Appearance, ColorSchemeName } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ds } from '@/design-system';
@@ -15,7 +16,7 @@ import { useLanguageState } from '@/modules/language/states/language.state';
 import SafeViewArea from '@/modules/screen/components/safe-view-area';
 import * as Constants from '@/modules/screen/constants/screen.constant';
 import { useScreenState } from '@/modules/screen/states/screen.state';
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { accessibility } from '@/utils/accessibility.util';
 
@@ -24,18 +25,22 @@ const NavContainer = () => {
   const { i18n } = useTranslation();
   const screenState = useScreenState();
   const authState = useAuthState();
-  const { themeConfigs } = useTheme();
-  const languageState = useLanguageState();
+  const { theme, configs } = useThemeState();
+  const { language } = useLanguageState();
 
   const customTheme = Object.assign({}, DefaultTheme, {
     colors: {
-      background: themeConfigs.background
+      background: configs.background
     }
   });
 
   useEffect(() => {
-    i18n.changeLanguage(languageState.language);
-  }, [languageState.language]);
+    i18n.changeLanguage(language.key);
+  }, [language.key]);
+
+  useEffect(() => {
+    Appearance.setColorScheme(theme.key as ColorSchemeName);
+  }, [theme.key]);
 
   return (
     <SafeAreaProvider style={ds.flex1}>
@@ -49,7 +54,9 @@ const NavContainer = () => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const currentRouteName = navigationRef.getCurrentRoute()?.name!;
 
-          // console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
+          // eslint-disable-next-line no-console
+          console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
+
           screenState.setScreen({
             name: currentRouteName,
             spacingTop: Constants.Screen[currentRouteName]?.spacing?.top,
@@ -59,7 +66,7 @@ const NavContainer = () => {
           });
         }}
       >
-        <SafeViewArea {...accessibility('Screen View')}>
+        <SafeViewArea {...accessibility('Screen View')} backgroundColor={configs.background}>
           <Navigator />
           <GlobalModal />
           <LoadingBox visible={authState.isFetching} />

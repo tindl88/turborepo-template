@@ -1,4 +1,8 @@
-export type ColorScheme = 'dark' | 'light';
+export type ThemeEntity = {
+  key: string;
+  value: string;
+};
+
 export type Theme = {
   background: string;
   foreground: string;

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Pressable, TextStyle, View, ViewStyle } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 
-import { DrawerParamList } from '@/interfaces';
+import { TravelDrawerParamList } from '@/interfaces';
 
 import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
@@ -14,30 +15,33 @@ import IconSettings from '@/components/svgs/ico-settings';
 import IconUser from '@/components/svgs/ico-user';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
-import { createStyle } from '@/utils/stylesheet.util';
+import TravelBottomTabNavigator from './travel-bottom-tab';
 
-import HomeBottomTabNavigator from './home-bottom-tab';
-
-const Drawer = createDrawerNavigator<DrawerParamList>();
+const Drawer = createDrawerNavigator<TravelDrawerParamList>();
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const screenState = useScreenState();
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
-  const primaryForegroundColor = themeConfigs.primaryForeground;
-  const foregroundColor = themeConfigs.foreground;
-  const borderColor = themeConfigs.border;
+  const primaryForegroundColor = configs.primaryForeground;
+  const foregroundColor = configs.foreground;
+  const borderColor = configs.border;
 
   const isActive = (currentScreen: string) => screenState.name === currentScreen;
 
   return (
-    <DrawerContentScrollView style={styles.background(themeConfigs.card)} {...props}>
+    <DrawerContentScrollView style={dynamicStyles.background(configs.card)} {...props}>
       <View style={[ds.pl16, ds.pb16]}>
-        <Heading text="Bully" as={'h3'} color={foregroundColor} />
+        <Heading
+          text="Travel Drawer"
+          as={'h3'}
+          color={foregroundColor}
+          onPress={() => props.navigation.navigate('HomeDrawer')}
+        />
       </View>
-      <Separator style={[ds.mb12, styles.border(borderColor)]} />
+      <Separator style={[ds.mb12, dynamicStyles.border(borderColor)]} />
       <View style={ds.pr16}>
         <Pressable
           style={[
@@ -45,9 +49,9 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('Home') && styles.background(themeConfigs.primary)
+            isActive('Home') && dynamicStyles.background(configs.primary)
           ]}
-          onPress={() => props.navigation.navigate('Home')}
+          onPress={() => props.navigation.navigate('TravelDrawer', { screen: 'Home' })}
         >
           <IconHome color={isActive('Home') ? primaryForegroundColor : foregroundColor} />
           <Text
@@ -64,9 +68,9 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('UI') && styles.background(themeConfigs.primary)
+            isActive('UI') && dynamicStyles.background(configs.primary)
           ]}
-          onPress={() => props.navigation.navigate('UI')}
+          onPress={() => props.navigation.navigate('TravelDrawer', { screen: 'UI' })}
         >
           <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
           <Text
@@ -83,7 +87,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('ScanCode') && styles.background(themeConfigs.primary)
+            isActive('ScanCode') && dynamicStyles.background(configs.primary)
           ]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >
@@ -102,7 +106,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('Setting') && styles.background(themeConfigs.primary)
+            isActive('Setting') && dynamicStyles.background(configs.primary)
           ]}
           onPress={() => props.navigation.navigate('Setting')}
         >
@@ -121,7 +125,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('Post') && styles.background(themeConfigs.primary)
+            isActive('Post') && dynamicStyles.background(configs.primary)
           ]}
           onPress={() => props.navigation.navigate('Post')}
         >
@@ -140,7 +144,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('Profile') && styles.background(themeConfigs.primary)
+            isActive('Profile') && dynamicStyles.background(configs.primary)
           ]}
           onPress={() => props.navigation.navigate('Profile')}
         >
@@ -160,24 +164,12 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => <DrawerContent {...props} />;
 
-const HomeDrawer = () => {
+const TravelDrawer = () => {
   return (
     <Drawer.Navigator drawerContent={CustomDrawerContent} screenOptions={{ headerShown: false, drawerType: 'front' }}>
-      <Drawer.Screen name="HomeBottomTabStack" component={HomeBottomTabNavigator} />
+      <Drawer.Screen name="TravelBottomTabStack" component={TravelBottomTabNavigator} />
     </Drawer.Navigator>
   );
 };
 
-export default HomeDrawer;
-
-const styles = createStyle({
-  border: (color: string): ViewStyle => {
-    return { borderColor: color };
-  },
-  background: (color: string): ViewStyle => {
-    return { backgroundColor: color };
-  },
-  text: (color: string): TextStyle => {
-    return { color: color };
-  }
-});
+export default TravelDrawer;

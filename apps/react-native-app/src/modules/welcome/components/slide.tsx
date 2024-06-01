@@ -8,9 +8,38 @@ import { ds } from '@/design-system';
 
 import Text from '@/components/core-ui/text';
 
-import Images from '@/assets/images';
-
 const { width, height } = Dimensions.get('window');
+
+const slides: ISlideItem[] = [
+  {
+    id: '1',
+    image: require('@/assets/images/welcome_slide1.png'),
+    title: 'Online Payment',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum in dolorem explicabo distinctio repudiandae!'
+  },
+  {
+    id: '2',
+    image: require('@/assets/images/welcome_slide2.png'),
+    title: 'Quickly Transfer',
+    content:
+      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
+  },
+  {
+    id: '3',
+    image: require('@/assets/images/welcome_slide1.png'),
+    title: 'Quickly Transfer',
+    content:
+      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
+  },
+  {
+    id: '4',
+    image: require('@/assets/images/welcome_slide2.png'),
+    title: 'Quickly Transfer',
+    content:
+      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
+  }
+];
 
 interface IDotData {
   id: string;
@@ -27,37 +56,6 @@ interface ISlideItem {
 interface IWelcomeSlideshowProps {
   style?: StyleProp<ViewStyle>;
 }
-
-const slides: ISlideItem[] = [
-  {
-    id: '1',
-    image: Images.welcomSlide1,
-    title: 'Online Payment',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum in dolorem explicabo distinctio repudiandae!'
-  },
-  {
-    id: '2',
-    image: Images.welcomSlide2,
-    title: 'Quickly Transfer',
-    content:
-      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
-  },
-  {
-    id: '3',
-    image: Images.welcomSlide2,
-    title: 'Quickly Transfer',
-    content:
-      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
-  },
-  {
-    id: '4',
-    image: Images.welcomSlide2,
-    title: 'Quickly Transfer',
-    content:
-      'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
-  }
-];
 
 const WelcomeSlideshow: FC<IWelcomeSlideshowProps> = () => {
   const [activeIndex, setActiveIndex] = useState(0);

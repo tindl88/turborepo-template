@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import { Pressable, ScrollView, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -29,14 +29,14 @@ function Tabs({ defaultValue, children }: ITabsProps) {
 
 interface ITabsListProps extends React.ComponentPropsWithoutRef<typeof View> {}
 function TabsList({ ...props }: ITabsListProps) {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
   return (
     <ScrollView
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={[ds.p6, ds.wFull]}
-      style={[ds.rounded12, styles.tabList(themeConfigs.card)]}
+      style={[ds.rounded12, styles.tabList(configs.card)]}
     >
       <View style={ds.row} {...props} />
     </ScrollView>
@@ -48,7 +48,7 @@ interface ITabsTriggerProps extends React.ComponentPropsWithoutRef<typeof Toucha
 }
 function TabsTrigger({ value, children, ...props }: ITabsTriggerProps) {
   const { activeTab, setActiveTab } = useContext(TabsContext);
-  const { theme } = useTheme();
+  const { theme } = useThemeState();
 
   return (
     <Pressable
@@ -59,7 +59,7 @@ function TabsTrigger({ value, children, ...props }: ITabsTriggerProps) {
         ds.grow,
         ds.itemsCenter,
         ds.justifyCenter,
-        activeTab === value && [theme === 'dark' ? ds.bgBlack : ds.bgWhite],
+        activeTab === value && [theme.key === 'dark' ? ds.bgBlack : ds.bgWhite],
         styles.shadow()
       ]}
       onPress={() => setActiveTab(value)}

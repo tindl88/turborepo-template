@@ -5,10 +5,7 @@ import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persist
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
-import NavContainer from '@/navigation/container';
-
-import { LanguageProvider } from '@/modules/language/components/provider';
-import { ThemeProvider } from '@/modules/theme/components/provider';
+import NavContainer from '@/navigation/navigation-container';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
@@ -33,11 +30,7 @@ const App = () => {
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: syncStoragePersister }}>
       <Provider store={store}>
-        <LanguageProvider>
-          <ThemeProvider>
-            <NavContainer />
-          </ThemeProvider>
-        </LanguageProvider>
+        <NavContainer />
       </Provider>
     </PersistQueryClientProvider>
   );

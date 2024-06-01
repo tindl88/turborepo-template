@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
+import { AuthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import Button from '@/components/core-ui/button';
@@ -15,10 +14,7 @@ import StatusBar from '@/components/core-ui/statusbar';
 import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
 import { useScreenState } from '@/modules/screen/states/screen.state';
 
-type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeBottomTabParamList, 'ScanCode'>,
-  StackScreenProps<AuthenticatedParamList>
->;
+type Props = StackScreenProps<AuthenticatedParamList, 'ScanCode'>;
 
 function ScanCodeScreen({}: Props) {
   const navigation = useNavigation();
@@ -35,7 +31,7 @@ function ScanCodeScreen({}: Props) {
     <View style={ds.flex1}>
       <StatusBar />
       <GeneralNavigationHeader title={screenState.name} />
-      <View style={[ds.flex1]}>
+      <View style={ds.flex1}>
         {permissionResult === 'granted' && (
           <View style={ds.grow}>
             <GoogleMLKitScanner />

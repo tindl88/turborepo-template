@@ -6,7 +6,7 @@ import { ProfileAction } from '../interfaces/profile.interface';
 
 import View from '@/components/core-ui/view';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -18,7 +18,7 @@ type ProfileActionListProps = {
 };
 
 const ProfileActionList: FC<ProfileActionListProps> = ({ items, style }) => {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
   return (
     <View style={[ds.px14, style]}>
@@ -26,7 +26,7 @@ const ProfileActionList: FC<ProfileActionListProps> = ({ items, style }) => {
         <ProfileActionItem
           key={item.name}
           item={item}
-          style={[index < items.length - 1 && ds.borderB1, styles.border(themeConfigs.border)]}
+          style={[index < items.length - 1 && ds.borderB1, styles.border(configs.border)]}
         />
       ))}
     </View>

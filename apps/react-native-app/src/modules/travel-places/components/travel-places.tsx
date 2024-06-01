@@ -3,11 +3,12 @@ import { ds } from '@/design-system';
 
 import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
 
+import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import View from '@/components/core-ui/view';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import TravelPlaceList from './travel-place-list';
 
@@ -38,14 +39,15 @@ const items = [
 ] as TravelPlaceEntity[];
 
 const TravelPlaces: FC<TravelPlacesProps> = () => {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
   return (
     <>
-      <View style={[ds.row, ds.itemsCenter, ds.justifyBetween, ds.px14, ds.py10]}>
+      <View style={[ds.row, ds.itemsCenter, ds.justifyBetween, ds.px14]}>
         <Heading as="h3" fontWeight="Medium" text="Travel Places" />
-        <Link text="See All" color={themeConfigs.primary} onPress={() => {}} />
+        <Link text="See All" color={configs.primary} onPress={() => {}} />
       </View>
+      <Divider height={10} />
       <TravelPlaceList items={items} />
     </>
   );

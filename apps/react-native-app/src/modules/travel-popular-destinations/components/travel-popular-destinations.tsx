@@ -5,7 +5,7 @@ import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import View from '@/components/core-ui/view';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
 
 import TravelPopularDestinationList from './travel-popular-destination-list';
@@ -56,13 +56,13 @@ const items = [
 type TravelPopularDestinationsProps = {};
 
 const TravelPopularDestinations: FC<TravelPopularDestinationsProps> = () => {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
   return (
-    <View style={[ds.mt10, ds.px14]}>
+    <View style={[ds.px14]}>
       <View style={[ds.row, ds.itemsCenter, ds.justifyBetween, ds.py10]}>
         <Heading as="h3" fontWeight="Medium" text="Popular Destinations" />
-        <Link text="See All" color={themeConfigs.primary} onPress={() => {}} />
+        <Link text="See All" color={configs.primary} onPress={() => {}} />
       </View>
       <TravelPopularDestinationList items={items} />
     </View>

@@ -1,37 +1,37 @@
 import React from 'react';
-import { LayoutGrid, UserRound, Webhook } from 'lucide-react-native';
-import { Platform, Pressable, View, ViewStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { UserRound, Webhook } from 'lucide-react-native';
+import { Platform, Pressable, View } from 'react-native';
+import { Colors, ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import Text from '@/components/core-ui/text';
+import IconHome from '@/components/svgs/ico-home';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
-import { createStyle } from '@/utils/stylesheet.util';
+const TabBar = (props: BottomTabBarProps) => {
+  const { configs } = useThemeState();
 
-const HomeTabBar = (props: BottomTabBarProps) => {
-  const { themeConfigs } = useTheme();
-
-  const foregroundColor = themeConfigs.foreground;
-  const borderColor = themeConfigs.border;
+  const foregroundColor = Colors.stone[600];
+  const borderColor = configs.border;
 
   const renderIcon = (name: string, isFocused: boolean) => {
     let icon = null;
-    const iconColor = isFocused ? themeConfigs.primary : foregroundColor;
+    const iconColor = isFocused ? configs.primary : foregroundColor;
 
     switch (name) {
       case 'Home':
-        icon = <LayoutGrid size={28} color={iconColor} />;
+        icon = <IconHome size={28} strokeWidth={1.5} color={iconColor} />;
         break;
       case 'UI':
-        icon = <Webhook size={28} color={iconColor} />;
+        icon = <Webhook size={28} strokeWidth={1.5} color={iconColor} />;
         break;
       case 'Profile':
-        icon = <UserRound size={28} color={iconColor} />;
+        icon = <UserRound size={28} strokeWidth={1.5} color={iconColor} />;
         break;
       default:
-        icon = <UserRound size={28} color={iconColor} />;
+        icon = <UserRound size={28} strokeWidth={1.5} color={iconColor} />;
     }
 
     return icon;
@@ -43,8 +43,8 @@ const HomeTabBar = (props: BottomTabBarProps) => {
         ds.row,
         ds.justifyEvenly,
         ds.borderT1,
-        styles.background(themeConfigs.card),
-        styles.border(borderColor),
+        dynamicStyles.background(configs.card),
+        dynamicStyles.border(borderColor),
         Platform.OS === 'ios' && ds.h80
       ]}
     >
@@ -52,7 +52,7 @@ const HomeTabBar = (props: BottomTabBarProps) => {
         const { options } = props.descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
         const isFocused = props.state.index === index;
-        const color = isFocused ? themeConfigs.primary : foregroundColor;
+        const color = isFocused ? configs.primary : foregroundColor;
 
         const onPress = () => {
           const event = props.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
@@ -83,13 +83,4 @@ const HomeTabBar = (props: BottomTabBarProps) => {
   );
 };
 
-export default HomeTabBar;
-
-const styles = createStyle({
-  border: (color: string): ViewStyle => {
-    return { borderColor: color };
-  },
-  background: (color: string): ViewStyle => {
-    return { backgroundColor: color };
-  }
-});
+export default TabBar;

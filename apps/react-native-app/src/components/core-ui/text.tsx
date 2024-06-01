@@ -3,7 +3,7 @@ import { StyleProp, Text as RNText, TextStyle } from 'react-native';
 import { FontStyle, FontWeight } from '@/design-system/interfaces/font.interface';
 import { fontMaker, FontMakerOptions } from '@/design-system/utils/font.util';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -39,9 +39,9 @@ const Text = forwardRef<RNText, ITextProps>(
     },
     ref
   ) => {
-    const { themeConfigs } = useTheme();
+    const { configs } = useThemeState();
 
-    const textColor = color ?? themeConfigs.foreground;
+    const textColor = color ?? configs.foreground;
     const content = text || children;
 
     if (!visible) return null;

@@ -3,11 +3,11 @@ import { Image, ImageStyle, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import { Colors, ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
+import { AuthenticatedParamList, HomeDrawerParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import { hideGlobalModal, showGlobalModal } from '@/components/common/modal/global-modal';
@@ -30,21 +30,18 @@ import StatusBar from '@/components/core-ui/statusbar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
 
-import { useScreenState } from '@/modules/screen/states/screen.state';
-
 type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeBottomTabParamList, 'UI'>,
+  DrawerScreenProps<HomeDrawerParamList, 'UI'>,
   StackScreenProps<AuthenticatedParamList>
 >;
 
-function UIScreen({}: Props) {
+function UIScreen({ route }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
-  const screenState = useScreenState();
 
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={screenState.name} />
+      <GeneralNavigationHeader title={route.name} />
       <Divider />
       <ScrollView style={[ds.flex1, ds.px10]}>
         <Tabs defaultValue="tab-ui-kit">

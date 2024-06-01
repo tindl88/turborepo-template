@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Pressable, View, ViewStyle } from 'react-native';
+import { Pressable, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { StackScreenProps } from '@react-navigation/stack';
 import { FlashList } from '@shopify/flash-list';
 
@@ -11,9 +12,7 @@ import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 
-import { useTheme } from '@/modules/theme/components/provider';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 const data = [
   {
@@ -64,12 +63,12 @@ type Props = StackScreenProps<AuthenticatedParamList, 'Notification'>;
 
 function NotificationScreen({}: Props) {
   const [comments] = useState(data);
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
-  const backgroundColor = themeConfigs.background;
+  const backgroundColor = configs.background;
 
   return (
-    <View style={[ds.flex1, styles.background(backgroundColor)]}>
+    <View style={[ds.flex1, dynamicStyles.background(backgroundColor)]}>
       <StatusBar />
       <NavigationHeader title="Notification" />
       <FlashList
@@ -101,11 +100,3 @@ function NotificationScreen({}: Props) {
 }
 
 export default NotificationScreen;
-
-const styles = createStyle({
-  background: (color: string): ViewStyle => {
-    return {
-      backgroundColor: color
-    };
-  }
-});

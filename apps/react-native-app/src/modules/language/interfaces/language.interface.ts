@@ -1,1 +1,4 @@
-export type LanguageType = 'en' | 'vi';
+export type LanguageEntity = {
+  key: string;
+  value: string;
+};

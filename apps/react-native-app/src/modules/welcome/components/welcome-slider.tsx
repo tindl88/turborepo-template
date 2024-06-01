@@ -3,14 +3,12 @@ import { Animated, Dimensions, View } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
-import { ds } from '@/design-system';
+import { Colors, ds } from '@/design-system';
 
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
 
-import { useTheme } from '@/modules/theme/components/provider';
-
-import Images from '@/assets/images';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
@@ -24,28 +22,28 @@ interface ISlideItem {
 const slides: ISlideItem[] = [
   {
     id: '1',
-    image: Images.welcomSlide2,
+    image: require('@/assets/images/welcome_slide1.png'),
     title: 'Online Payment',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum in dolorem explicabo distinctio repudiandae!'
   },
   {
     id: '2',
-    image: Images.welcomSlide2,
+    image: require('@/assets/images/welcome_slide1.png'),
     title: 'Quickly Transfer',
     content:
       'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
   },
   {
     id: '3',
-    image: Images.welcomSlide2,
+    image: require('@/assets/images/welcome_slide1.png'),
     title: 'Quickly Transfer',
     content:
       'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
   },
   {
     id: '4',
-    image: Images.welcomSlide2,
+    image: require('@/assets/images/welcome_slide1.png'),
     title: 'Quickly Transfer',
     content:
       'Aperiam expedita distinctio beatae error, impedit iure officiis animi soluta numquam non alias libero fugit'
@@ -56,7 +54,7 @@ const width = Dimensions.get('window').width;
 
 export default function WelcomeSlider() {
   const ref = useRef<PagerView>(null);
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
   const scrollOffsetAnimatedValue = useRef(new Animated.Value(0)).current;
   const positionAnimatedValue = useRef(new Animated.Value(0)).current;
   const inputRange = [0, slides.length];
@@ -95,8 +93,8 @@ export default function WelcomeSlider() {
               style={[ds.wFull, ds.h256, ds.justifyCenter] as ImageStyle}
             />
             <View style={ds.mt24}>
-              <Heading color={themeConfigs.foreground} text={item.title} style={[ds.textCenter]} />
-              <Text color={themeConfigs.foreground} text={item.content} style={[ds.textCenter, ds.text18, ds.mt20]} />
+              <Heading color={configs.foreground} text={item.title} style={[ds.textCenter]} />
+              <Text color={configs.foreground} text={item.content} style={[ds.textCenter, ds.text18, ds.mt20]} />
             </View>
           </View>
         ))}
@@ -104,8 +102,8 @@ export default function WelcomeSlider() {
       <View style={ds.mb20}>
         <ExpandingDot
           data={slides}
-          activeDotColor={themeConfigs.primary}
-          inActiveDotColor={themeConfigs.secondary}
+          activeDotColor={configs.primary}
+          inActiveDotColor={Colors.stone[400]}
           dotStyle={{}}
           //@ts-ignore
           scrollX={scrollX}

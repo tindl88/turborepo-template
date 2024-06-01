@@ -1,6 +1,11 @@
 import { Colors } from '@/design-system';
 
-import { ThemeConfig } from '../interfaces/theme.interface';
+import { ThemeConfig, ThemeEntity } from '../interfaces/theme.interface';
+
+export const themeItems: ThemeEntity[] = [
+  { key: 'dark', value: 'Dark' },
+  { key: 'light', value: 'Light' }
+];
 
 export const themeConfig: ThemeConfig = {
   dark: {

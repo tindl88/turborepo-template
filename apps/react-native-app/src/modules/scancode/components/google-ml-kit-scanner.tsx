@@ -67,7 +67,7 @@ const GoogleMLKitScanner = () => {
   return (
     <>
       <Camera
-        style={[ds.flex1]}
+        style={ds.flex1}
         device={device}
         isActive={isActive}
         codeScanner={codeScanner}

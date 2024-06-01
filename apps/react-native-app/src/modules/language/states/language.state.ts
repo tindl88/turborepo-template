@@ -3,21 +3,23 @@ import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { LanguageType } from '../interfaces/language.interface';
+import { LanguageEntity } from '../interfaces/language.interface';
+
+import { languageItems } from '../constants/language.constant';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 type States = {
-  language: LanguageType;
+  language: LanguageEntity;
 };
 
 type Actions = {
-  setLanguage: (language: LanguageType) => void;
+  setLanguage: (language: LanguageEntity) => void;
   reset: () => void;
 };
 
 const initialState: States = {
-  language: 'en'
+  language: languageItems[0]
 };
 
 export const useLanguageState = create<States & Actions>()(
@@ -30,7 +32,7 @@ export const useLanguageState = create<States & Actions>()(
             set(state => {
               state.language = language;
 
-              i18next.changeLanguage(language);
+              i18next.changeLanguage(language.key);
             });
           },
           reset: () => set(initialState)

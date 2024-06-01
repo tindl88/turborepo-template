@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { Pressable, PressableProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Text from './text';
 
@@ -27,7 +27,7 @@ const Button: React.FC<IButtonProps> = ({
   onPress
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const { theme, themeConfigs } = useTheme();
+  const { theme, configs } = useThemeState();
 
   const buttonSizes = {
     sm: {
@@ -49,8 +49,8 @@ const Button: React.FC<IButtonProps> = ({
   const buttonVariants = {
     light: {
       default: {
-        bgColor: themeConfigs.primary,
-        textColor: themeConfigs.primaryForeground,
+        bgColor: configs.primary,
+        textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
         focusedBgColor: Colors.amber[400]
@@ -58,8 +58,8 @@ const Button: React.FC<IButtonProps> = ({
     },
     dark: {
       default: {
-        bgColor: themeConfigs.primary,
-        textColor: themeConfigs.primaryForeground,
+        bgColor: configs.primary,
+        textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
         focusedBgColor: Colors.amber[400]
@@ -67,7 +67,8 @@ const Button: React.FC<IButtonProps> = ({
     }
   };
   const { paddingVertical, paddingHorizontal, fontSize } = buttonSizes[size];
-  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } = buttonVariants[theme][variant];
+  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } =
+    buttonVariants[theme.key as keyof typeof buttonVariants][variant];
 
   const buttonStyle: ViewStyle = {
     paddingVertical,

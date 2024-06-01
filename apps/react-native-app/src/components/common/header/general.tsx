@@ -1,7 +1,8 @@
 import React, { FC, ReactNode } from 'react';
-import { Pressable, TextStyle, View, ViewStyle } from 'react-native';
+import { Pressable, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { useNavigation } from '@react-navigation/native';
 
 import Heading from '@/components/core-ui/heading';
@@ -9,9 +10,7 @@ import Text from '@/components/core-ui/text';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
-import { useTheme } from '@/modules/theme/components/provider';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 type GeneralNavigationHeaderProps = {
   title?: string;
@@ -42,9 +41,9 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 }) => {
   const navigation = useNavigation();
   const screenState = useScreenState();
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
-  const foregroundColor = themeConfigs.foreground;
+  const foregroundColor = configs.foreground;
 
   const goBack = () => {
     if (screenState.name === 'Home') return null;
@@ -60,8 +59,8 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
     <View
       style={[
         ds.borderB1,
-        styles.border(borderColor ?? themeConfigs.border),
-        styles.background(backgroundColor ?? themeConfigs.card)
+        dynamicStyles.border(borderColor ?? configs.border),
+        dynamicStyles.background(backgroundColor ?? configs.card)
       ]}
     >
       <View style={[ds.row, ds.justifyBetween, ds.itemsCenter, ds.px8]}>
@@ -85,26 +84,3 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
 };
 
 export default GeneralNavigationHeader;
-
-const styles = createStyle({
-  background: (color: string): ViewStyle => {
-    return {
-      backgroundColor: color
-    };
-  },
-  border: (color: string): ViewStyle => {
-    return {
-      borderColor: color
-    };
-  },
-  heading: (color: string): TextStyle => {
-    return {
-      color: color
-    };
-  },
-  subHeading: (color: string): TextStyle => {
-    return {
-      color: color
-    };
-  }
-});

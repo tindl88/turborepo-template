@@ -1,10 +1,8 @@
 import React from 'react';
 import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
+import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
 import Loading from '@/components/core-ui/loading';
@@ -18,10 +16,7 @@ import { PostList } from '@/modules/post/components/post-list';
 import { usePost } from '@/modules/post/hooks/use-post';
 import { useScreenState } from '@/modules/screen/states/screen.state';
 
-type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeBottomTabParamList, 'Post'>,
-  StackScreenProps<AuthenticatedParamList>
->;
+type Props = StackScreenProps<AuthenticatedParamList, 'Post'>;
 
 function PostScreen({ route }: Props) {
   const screenState = useScreenState();

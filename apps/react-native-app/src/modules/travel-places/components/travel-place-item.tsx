@@ -7,17 +7,17 @@ import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 type TravelPlaceItemProps = {
   item: TravelPlaceEntity;
 };
 
 const TravelPlaceItem: FC<TravelPlaceItemProps> = ({ item }) => {
-  const { theme } = useTheme();
+  const { theme } = useThemeState();
 
   return (
-    <View style={[ds.grow, ds.p6, ds.w240, ds.rounded24, theme === 'dark' ? ds.bgSlate800 : ds.bgZinc100]}>
+    <View style={[ds.grow, ds.p6, ds.w240, ds.rounded24, theme.key === 'dark' ? ds.bgSlate800 : ds.bgZinc100]}>
       <Image style={[ds.wFull, ds.h144, ds.rounded20] as ImageStyle} source={item.image as ImageSourcePropType} />
       <View style={[ds.px10, ds.py6]}>
         <Text fontWeight="Bold" style={[ds.text14]}>

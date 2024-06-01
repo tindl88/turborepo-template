@@ -6,13 +6,11 @@ import { ds } from '@/design-system';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
-import Images from '@/assets/images';
-
 const WINDOW_SIZES = Dimensions.get('window');
 const banners = [
-  { id: 1, image: Images.banner1 },
-  { id: 2, image: Images.banner2 },
-  { id: 3, image: Images.banner3 }
+  { id: 1, image: require('@/assets/images/banner-1.jpg') },
+  { id: 2, image: require('@/assets/images/banner-2.jpg') },
+  { id: 3, image: require('@/assets/images/banner-3.jpg') }
 ];
 
 interface ICarouselBanner {

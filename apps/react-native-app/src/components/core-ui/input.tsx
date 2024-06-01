@@ -1,12 +1,9 @@
-import React, { FC, forwardRef, Ref, useEffect, useState } from 'react';
-import {
-  NativeSyntheticEvent,
-  TextInput,
-  TextInputChangeEventData,
-  TextInputProps,
-  useColorScheme
-} from 'react-native';
+import React, { FC, forwardRef, Ref, useState } from 'react';
+import { NativeSyntheticEvent, TextInput, TextInputChangeEventData, TextInputProps } from 'react-native';
 import { Colors, ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
+
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { ICoreUIBaseProps } from './types';
 
@@ -37,25 +34,15 @@ const InputText: FC<IInputTextProps> = forwardRef(
     ref: Ref<TextInput>
   ) => {
     const [val, setVal] = useState(value);
-    const colorScheme = useColorScheme();
-
-    const isDark = colorScheme === 'dark';
+    const { configs } = useThemeState();
 
     const handleChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
       const target = event.nativeEvent;
 
       setVal(target.text);
       onChange?.(event);
+      onChangeText?.(target.text);
     };
-
-    const handleTextChange = (text: string) => {
-      setVal(text);
-      onChangeText?.(text);
-    };
-
-    useEffect(() => {
-      setVal(value);
-    }, [value]);
 
     if (!visible) return null;
 
@@ -63,15 +50,14 @@ const InputText: FC<IInputTextProps> = forwardRef(
       <TextInput
         ref={ref}
         style={[
-          ds.wFull,
           ds.border1,
-          ds.rounded4,
+          ds.rounded10,
           ds.px10,
           ds.text16,
           ds.leading20,
-          isDark ? ds.textWhite : ds.textBlack,
-          isDark ? ds.borderGray700 : ds.borderGray200,
-          isDark ? ds.bgGray900 : ds.bgGray50,
+          dynamicStyles.color(configs.foreground),
+          dynamicStyles.border(configs.border),
+          dynamicStyles.background(configs.card),
           multiline ? ds.h144 : ds.h48,
           style
         ]}
@@ -83,7 +69,6 @@ const InputText: FC<IInputTextProps> = forwardRef(
         value={val}
         multiline={multiline}
         onChange={handleChange}
-        onChangeText={handleTextChange}
       />
     );
   }

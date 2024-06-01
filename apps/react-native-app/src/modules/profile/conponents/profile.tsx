@@ -1,6 +1,14 @@
 import React, { FC } from 'react';
-import { GlobeLockIcon, LifeBuoyIcon, LogOutIcon, SettingsIcon, UserIcon } from 'lucide-react-native';
-import { ViewStyle } from 'react-native';
+import {
+  GlobeLockIcon,
+  LanguagesIcon,
+  LifeBuoyIcon,
+  LogOutIcon,
+  PaletteIcon,
+  SettingsIcon,
+  ShieldAlertIcon,
+  UserIcon
+} from 'lucide-react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -10,13 +18,12 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces/navigation.interface';
 import { ProfileAction } from '../interfaces/profile.interface';
 
+import Box from '@/components/common/box';
 import Divider from '@/components/core-ui/divider';
-import View from '@/components/core-ui/view';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
-import { useTheme } from '@/modules/theme/components/provider';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { useLanguageState } from '@/modules/language/states/language.state';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import ProfileActionList from './profile-action-list';
 import ProfileAvatar from './profile-avatar';
@@ -31,7 +38,8 @@ type ProfileProps = {};
 const Profile: FC<ProfileProps> = () => {
   const navigation = useNavigation<NavigationProps>();
   const authState = useAuthState();
-  const { themeConfigs } = useTheme();
+  const { language } = useLanguageState();
+  const { theme } = useThemeState();
 
   const profileActions: ProfileAction[] = [
     { icon: UserIcon, name: 'Your Profile', type: 'sub', action: () => navigation.navigate('ProfileEdit') },
@@ -42,21 +50,33 @@ const Profile: FC<ProfileProps> = () => {
       type: 'sub',
       action: () => navigation.navigate('TermsAndConditions')
     },
-    { icon: GlobeLockIcon, name: 'Privacy Policy', type: 'sub', action: () => navigation.navigate('PrivacyPolicy') },
+    { icon: ShieldAlertIcon, name: 'Privacy Policy', type: 'sub', action: () => navigation.navigate('PrivacyPolicy') },
     { icon: SettingsIcon, name: 'Settings', type: 'sub', action: () => navigation.navigate('Setting') },
-    { icon: SettingsIcon, name: 'Languages', type: 'sub', action: () => navigation.navigate('SettingLanguage') },
-    { icon: SettingsIcon, name: 'Themes', type: 'sub', action: () => navigation.navigate('SettingTheme') },
+    {
+      icon: LanguagesIcon,
+      name: 'Languages',
+      type: 'sub',
+      value: language.value,
+      action: () => navigation.navigate('SettingLanguage')
+    },
+    {
+      icon: PaletteIcon,
+      name: 'Themes',
+      type: 'sub',
+      value: theme.value,
+      action: () => navigation.navigate('SettingTheme')
+    },
     { icon: LogOutIcon, name: 'Log Out', type: 'inline', action: () => authState.logoutRequest() }
   ];
 
   return (
     <>
       <ScrollView style={[ds.px14, ds.py14]} showsVerticalScrollIndicator={false}>
-        <View style={[ds.rounded16, ds.overflowHidden, styles.background(themeConfigs.card)]}>
-          <Divider />
+        <Box padding={0} style={[ds.rounded16, ds.overflowHidden]}>
+          <Divider height={14} />
           <ProfileAvatar />
           <ProfileActionList items={profileActions} style={ds.mt14} />
-        </View>
+        </Box>
         <ProfileVersion style={ds.mt10} />
       </ScrollView>
     </>
@@ -64,11 +84,3 @@ const Profile: FC<ProfileProps> = () => {
 };
 
 export default Profile;
-
-const styles = createStyle({
-  background: (color: string): ViewStyle => {
-    return {
-      backgroundColor: color
-    };
-  }
-});

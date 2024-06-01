@@ -10,7 +10,6 @@ import Button from '@/components/core-ui/button';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 
-// import WelcomeSlideshow from '@/modules/welcome/components/slide';
 import WelcomeSlider from '@/modules/welcome/components/welcome-slider';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Welcome'>;

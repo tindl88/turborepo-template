@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, TextInput, useColorScheme, View } from 'react-native';
+import { Pressable, TextInput, View } from 'react-native';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
+
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Text from './text';
 
@@ -12,13 +15,11 @@ interface IOTPInputProps {
 }
 
 const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setIsPinReady }) => {
-  const colorScheme = useColorScheme();
+  const { configs } = useThemeState();
   const inputRef = useRef<TextInput>(null);
+  const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
 
   const boxArray = new Array(maximumLength).fill(0);
-  const isDark = colorScheme === 'dark';
-
-  const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
 
   const handleOnPress = () => {
     setIsInputBoxFocused(true);
@@ -58,9 +59,9 @@ const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setI
           ds.h64,
           ds.rounded4,
           ds.border1,
-          isDark ? ds.textWhite : ds.textBlack,
-          isDark ? ds.borderGray700 : ds.borderGray200,
-          isDark ? ds.bgGray900 : ds.bgGray50,
+          dynamicStyles.color(configs.foreground),
+          dynamicStyles.border(configs.border),
+          dynamicStyles.background(configs.background),
           isInputBoxFocused && isValueFocused && ds.borderBlue500
         ]}
       >
