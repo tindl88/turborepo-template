@@ -91,7 +91,7 @@
     "dayjs": "^1.11.11",
     "file-type": "16.5.4",
     "helmet": "^7.0.0",
-    "isbot": "^3.7.1",
+    "isbot": "^5.1.8",
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "nestjs-pino": "^3.2.0",
