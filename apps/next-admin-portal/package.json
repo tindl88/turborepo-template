@@ -125,7 +125,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.0",
+    "@playwright/test": "^1.44.1",
     "@tailwindcss/typography": "^0.5.13",
     "@tanstack/react-query-devtools": "^5.37.1",
     "@testing-library/jest-dom": "^6.4.5",
