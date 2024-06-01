@@ -9,17 +9,13 @@ import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 
-import { useScreenState } from '@/modules/screen/states/screen.state';
-
 type Props = StackScreenProps<AuthenticatedParamList, 'PostDetail'>;
 
-function PostDetailScreen({}: Props) {
-  const screenState = useScreenState();
-
+function PostDetailScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={screenState.name} />
+      <NavigationHeader title={route.name} />
       <View style={styles.body}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Education</Text>

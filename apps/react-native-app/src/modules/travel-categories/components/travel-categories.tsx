@@ -3,7 +3,7 @@ import { Pressable, View, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -48,15 +48,15 @@ interface ICategoryTriggerProps extends React.ComponentPropsWithoutRef<typeof Pr
 
 function TravelCategoryTrigger({ value, children, style, ...props }: ICategoryTriggerProps) {
   const { active, setActive } = useContext(Context);
-  const { theme } = useTheme();
+  const { theme } = useThemeState();
 
   return (
     <Pressable
       style={
         [
           ds.grow,
-          theme === 'dark' ? ds.bgSlate800 : ds.bgZinc100,
-          active === value && [theme === 'dark' ? ds.bgBlack : ds.bgWhite, styles.shadow()],
+          theme.key === 'dark' ? ds.bgSlate800 : ds.bgZinc100,
+          active === value && [theme.key === 'dark' ? ds.bgBlack : ds.bgWhite, styles.shadow()],
           style
         ] as ViewStyle
       }

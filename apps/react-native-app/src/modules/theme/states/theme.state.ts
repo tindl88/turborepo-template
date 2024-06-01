@@ -1,26 +1,27 @@
+import { Appearance, ColorSchemeName } from 'react-native';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { ColorScheme, Theme } from '../interfaces/theme.interface';
+import { Theme, ThemeEntity } from '../interfaces/theme.interface';
 
-import { themeConfig } from '../constants/theme.constant';
+import { themeConfig, themeItems } from '../constants/theme.constant';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 type States = {
-  theme: ColorScheme;
+  theme: ThemeEntity;
   configs: Theme;
 };
 
 type Actions = {
-  setTheme: (theme: ColorScheme) => void;
+  setTheme: (theme: ThemeEntity) => void;
   reset: () => void;
 };
 
 const initialState: States = {
-  theme: 'dark',
-  configs: themeConfig.dark
+  theme: themeItems[0],
+  configs: themeConfig[themeItems[0].key as keyof typeof themeConfig]
 };
 
 export const useThemeState = create<States & Actions>()(
@@ -32,8 +33,10 @@ export const useThemeState = create<States & Actions>()(
           setTheme: theme => {
             set(state => {
               state.theme = theme;
-              state.configs = themeConfig[theme];
+              state.configs = themeConfig[theme.key as keyof typeof themeConfig];
             });
+
+            Appearance.setColorScheme(theme.key as ColorSchemeName);
           },
           reset: () => set(initialState)
         }),

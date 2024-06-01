@@ -2,7 +2,7 @@ import React, { FC, memo, ReactNode } from 'react';
 import { TextStyle } from 'react-native';
 import { ds } from '@/design-system';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -16,16 +16,25 @@ interface IHeadingProps extends React.ComponentPropsWithoutRef<typeof Text> {
   children?: ReactNode;
 }
 
-const Heading: FC<IHeadingProps> = ({ text, children, as = 'h1', color, fontWeight, visible = true, style }) => {
-  const { themeConfigs } = useTheme();
+const Heading: FC<IHeadingProps> = ({
+  text,
+  children,
+  as = 'h1',
+  color,
+  fontWeight,
+  visible = true,
+  style,
+  onPress
+}) => {
+  const { configs } = useThemeState();
 
-  const textColor = color ?? themeConfigs.foreground;
+  const textColor = color ?? configs.foreground;
   const content = text || children;
 
   if (!visible) return null;
 
   return (
-    <Text color={textColor} fontWeight={fontWeight ?? 'Bold'} style={[styles[as], style]}>
+    <Text color={textColor} fontWeight={fontWeight ?? 'Bold'} style={[styles[as], style]} onPress={onPress}>
       {content}
     </Text>
   );

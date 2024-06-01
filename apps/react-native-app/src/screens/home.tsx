@@ -41,9 +41,11 @@ function HomeScreen({}: Props) {
     <View style={[ds.flex1, ds.relative]}>
       <StatusBar background="transparent" />
       <TravelHeader />
-      <Divider height={20} />
+      <Divider height={2} />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Divider height={14} />
         <Heading as="h3" fontWeight="Medium" text="Categories" style={ds.px14} />
+        <Divider height={4} />
         <TravelCategories defaultValue={travelCategories[0].id} onChange={_id => {}}>
           <TravelCategoryList style={[ds.row, ds.gap8, ds.px14, ds.py10]}>
             {travelCategories?.map(item => (
@@ -61,9 +63,11 @@ function HomeScreen({}: Props) {
             ))}
           </TravelCategoryList>
         </TravelCategories>
+        <Divider height={14} />
         <TravelPlaces />
+        <Divider height={14} />
         <TravelPopularDestinations />
-        <Divider height={10} />
+        <Divider height={14} />
       </ScrollView>
     </View>
   );

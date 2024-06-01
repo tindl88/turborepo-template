@@ -21,6 +21,7 @@
     "GitHub.copilot-labs",
     "GitHub.copilot-chat",
     "Codium.codium",
-    "vscode-icons-team.vscode-icons"
+    "vscode-icons-team.vscode-icons",
+    "GitHub.github-vscode-theme"
   ]
 }

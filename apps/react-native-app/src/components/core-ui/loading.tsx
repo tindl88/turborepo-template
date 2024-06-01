@@ -2,7 +2,7 @@ import React, { FC, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View, ViewStyle } from 'react-native';
 import { Colors } from '@/design-system';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
@@ -26,7 +26,7 @@ const Loading: FC<ILoadingProps> = ({
   trackColor = Colors.gray[300],
   visible = true
 }) => {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
   const rotation = useRef(new Animated.Value(0)).current;
   const fade = useRef(new Animated.Value(0)).current;
 
@@ -47,7 +47,7 @@ const Loading: FC<ILoadingProps> = ({
         }
       ]}
     >
-      <View style={styles.circle(size, thickness, themeConfigs.primary || color, trackColor)} />
+      <View style={styles.circle(size, thickness, configs.primary || color, trackColor)} />
     </Animated.View>
   );
 };

@@ -6,11 +6,12 @@ export type RootStackParamList = {
 };
 
 export type AuthenticatedParamList = {
+  HomeDrawer: undefined;
+  TravelDrawer: undefined;
   Filter: undefined;
   Notification: undefined;
   PostDetail: undefined;
   Preload: undefined;
-  HomeStack: undefined;
   Search: undefined;
   HelpCenter: undefined;
   TermsAndConditions: undefined;
@@ -19,6 +20,8 @@ export type AuthenticatedParamList = {
   Setting: undefined;
   SettingLanguage: undefined;
   SettingTheme: undefined;
+  ScanCode: undefined;
+  Post: PostScreenParams;
 };
 
 export type UnauthenticatedParamList = {
@@ -30,16 +33,52 @@ export type UnauthenticatedParamList = {
   CreateNewPassword: undefined;
 };
 
-export type DrawerParamList = {
+export type HomeDrawerParamList = {
   HomeBottomTabStack: undefined;
+  Filter: undefined;
+  Notification: undefined;
+  PostDetail: undefined;
+  Preload: undefined;
+  Search: undefined;
+  HelpCenter: undefined;
+  TermsAndConditions: undefined;
+  PrivacyPolicy: undefined;
+  ProfileEdit: undefined;
+  Setting: undefined;
+  SettingLanguage: undefined;
+  SettingTheme: undefined;
+  ScanCode: undefined;
+  Post: PostScreenParams;
+  UI: undefined;
 };
 
 export type HomeBottomTabParamList = {
   Home: undefined;
-  Post: PostScreenParams;
-  ScanCode: undefined;
   Profile: undefined;
+};
+
+export type TravelDrawerParamList = {
+  TravelBottomTabStack: undefined;
+  Filter: undefined;
+  Notification: undefined;
+  PostDetail: undefined;
+  Preload: undefined;
+  Search: undefined;
+  HelpCenter: undefined;
+  TermsAndConditions: undefined;
+  PrivacyPolicy: undefined;
+  ProfileEdit: undefined;
+  Setting: undefined;
+  SettingLanguage: undefined;
+  SettingTheme: undefined;
+  ScanCode: undefined;
+  Post: PostScreenParams;
   UI: undefined;
+};
+
+export type TravelBottomTabParamList = {
+  Home: undefined;
+  Profile: undefined;
 };
 
 export type PostScreenParams = { q: string; page: number; limit: number };

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Pressable, View, ViewStyle } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -13,22 +14,20 @@ import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';
 
-import { useTheme } from '@/modules/theme/components/provider';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 function TravelHeader() {
   const navigation =
     useNavigation<
       CompositeNavigationProp<StackNavigationProp<HomeBottomTabParamList>, DrawerNavigationProp<AuthenticatedParamList>>
     >();
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
-  const foregroundColor = themeConfigs.foreground;
+  const foregroundColor = configs.foreground;
 
   return (
     <View style={[ds.mx14, ds.mt10]}>
-      <View style={[ds.relative, ds.roundedFull, styles.background(themeConfigs.card)]}>
+      <View style={[ds.relative, ds.roundedFull, dynamicStyles.background(configs.card)]}>
         <View style={[ds.row, ds.justifyBetween, ds.itemsCenter, ds.pl16, ds.pr6, ds.py6]}>
           <View style={[ds.row, ds.shrink, ds.justifyBetween]}>
             <View style={[ds.row, ds.shrink, ds.itemsCenter]}>
@@ -53,8 +52,8 @@ function TravelHeader() {
           <Avatar
             size={38}
             text="T"
-            color={themeConfigs.primaryForeground}
-            background={themeConfigs.primary}
+            color={configs.primaryForeground}
+            background={configs.primary}
             onPress={() => navigation.navigate('Profile')}
           />
         </View>
@@ -64,11 +63,3 @@ function TravelHeader() {
 }
 
 export default TravelHeader;
-
-const styles = createStyle({
-  background: (color: string): ViewStyle => {
-    return {
-      backgroundColor: color
-    };
-  }
-});

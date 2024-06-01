@@ -3,11 +3,9 @@ import Svg, { Path } from 'react-native-svg';
 
 import { ISvgBaseProps } from './types';
 
-interface IBrandGoogleProps {}
-
-const BrandGoogle: FC<IBrandGoogleProps & ISvgBaseProps> = ({ width = 32, height = 32, ...props }) => {
+const BrandGoogle: FC<ISvgBaseProps> = ({ size = 32, ...props }) => {
   return (
-    <Svg height={height} width={width} viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet" {...props}>
+    <Svg height={size} width={size} viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet" {...props}>
       <Path
         d="M31.36 16.3635C31.36 15.229 31.2582 14.1381 31.0691 13.0908H16V19.2799H24.6109C24.24 21.2799 23.1127 22.9744 21.4182 24.109V28.1235H26.5891C29.6145 25.3381 31.36 21.2363 31.36 16.3635Z"
         fill="#4480EF"

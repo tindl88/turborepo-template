@@ -7,7 +7,7 @@ import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 import IconStarSolid from '@/components/svgs/ico-star-solid';
 
-import { useTheme } from '@/modules/theme/components/provider';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
 
 type TravelPopularDestinationItemProps = {
@@ -16,7 +16,7 @@ type TravelPopularDestinationItemProps = {
 };
 
 const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ item, onPress }) => {
-  const { themeConfigs } = useTheme();
+  const { configs } = useThemeState();
 
   return (
     <Pressable style={[ds.row, ds.gap10, ds.p6, ds.rounded24, ds.bgZinc100]} onPress={onPress}>
@@ -28,8 +28,8 @@ const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ i
               {item.name}
             </Text>
             <View style={[ds.row, ds.itemsCenter, ds.gap2, ds.mt2]}>
-              <MapPin color={themeConfigs.secondaryForeground} size={18} strokeWidth={1.5} />
-              <Text color={themeConfigs.secondaryForeground} style={[ds.text14]}>
+              <MapPin color={configs.secondaryForeground} size={18} strokeWidth={1.5} />
+              <Text color={configs.secondaryForeground} style={[ds.text14]}>
                 {item.location}
               </Text>
             </View>
@@ -42,7 +42,7 @@ const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ i
           </View>
 
           <View style={ds.row}>
-            <Text color={themeConfigs.primary} fontWeight="Bold">{`$${item.price}`}</Text>
+            <Text color={configs.primary} fontWeight="Bold">{`$${item.price}`}</Text>
             <Text fontSize={13}>/night</Text>
           </View>
         </View>
