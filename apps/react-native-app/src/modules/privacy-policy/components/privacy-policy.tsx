@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
-import { useWindowDimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import RenderHtml from 'react-native-render-html';
 import { ds } from '@/design-system';
 
 import Box from '@/components/common/box';
-
-import { useThemeState } from '@/modules/theme/states/theme.state';
+import RenderHTML from '@/components/render-html';
 
 const source = {
   html: `
@@ -56,24 +53,11 @@ const source = {
 type PrivacyPolicyProps = {};
 
 const PrivacyPolicy: FC<PrivacyPolicyProps> = () => {
-  const themeState = useThemeState();
-  const { width } = useWindowDimensions();
-
   return (
     <Box hasBg={false} style={ds.flex1}>
       <Box style={ds.flex1}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <RenderHtml
-            systemFonts={['quicksand']}
-            contentWidth={width}
-            source={source}
-            enableExperimentalMarginCollapsing={true}
-            tagsStyles={{
-              body: { fontSize: 16, fontFamily: 'quicksand', lineHeight: 22, color: themeState.configs.foreground },
-              h3: { fontSize: 20, marginTop: 0, marginBottom: 0 },
-              p: { marginTop: 8, marginBottom: 18 }
-            }}
-          />
+          <RenderHTML html={source} />
         </ScrollView>
       </Box>
     </Box>

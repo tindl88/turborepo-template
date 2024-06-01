@@ -64,7 +64,7 @@ interface IAccordionItemProps {
 function AccordionItem({ value, children }: IAccordionItemProps) {
   return (
     <AccordionItemContext.Provider value={value}>
-      <View style={[]}>{children}</View>
+      <View>{children}</View>
     </AccordionItemContext.Provider>
   );
 }

@@ -15,6 +15,9 @@ export const dynamicStyles = createStyle({
   padding: (padding: number): ViewStyle => {
     return { padding };
   },
+  size: (size: number): ViewStyle => {
+    return { width: size, height: size };
+  },
   paddingVerticle: (padding: number): ViewStyle => {
     return { paddingVertical: padding };
   },

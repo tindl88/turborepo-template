@@ -8,12 +8,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
-import Avatar from '@/components/core-ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
 import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 import IconSliders from '@/components/svgs/ico-sliders';
 
+import { useAuthState } from '@/modules/auth/states/auth.state';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 function HomeNavigationHeader() {
@@ -22,7 +23,10 @@ function HomeNavigationHeader() {
       CompositeNavigationProp<StackNavigationProp<HomeBottomTabParamList>, DrawerNavigationProp<AuthenticatedParamList>>
     >();
   const { configs } = useThemeState();
+  const authState = useAuthState();
 
+  const userAvatar = authState.auth?.user.avatar;
+  const userName = authState.auth?.user.name;
   const foregroundColor = configs.foreground;
 
   return (
@@ -47,13 +51,10 @@ function HomeNavigationHeader() {
               </Pressable>
             </View>
           </View>
-          <Avatar
-            size={36}
-            text="T"
-            color={configs.primaryForeground}
-            background={configs.primary}
-            onPress={() => navigation.navigate('Profile')}
-          />
+          <Avatar>
+            <AvatarImage src={userAvatar} />
+            <AvatarFallback>{userName}</AvatarFallback>
+          </Avatar>
         </View>
       </View>
     </View>

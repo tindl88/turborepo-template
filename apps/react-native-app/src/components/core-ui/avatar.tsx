@@ -1,59 +1,87 @@
-import React, { FC } from 'react';
-import { Pressable, StyleProp, ViewStyle } from 'react-native';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 
-import { createStyle } from '@/utils/stylesheet.util';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Text from './text';
-import { ICoreUIBaseProps } from './types';
+import View from './view';
 
-interface IAvatarProps extends ICoreUIBaseProps {
+type AvatarProps = {
   size?: number;
+  style?: ViewStyle;
+  children: React.ReactNode;
+};
+
+type AvatarImageProps = {
+  style?: ImageStyle;
   src?: string;
-  text?: string;
-  background?: string;
-  color?: string;
-  style?: StyleProp<ViewStyle>;
-  onPress?: () => void;
+};
+
+interface IAvatarFallbackProps extends React.ComponentPropsWithoutRef<typeof Text> {
+  style?: ViewStyle;
+  children: React.ReactNode;
+  charsToShow?: number;
 }
 
-const Avatar: FC<IAvatarProps> = ({
-  size = 48,
-  src,
-  text,
-  background = Colors.slate[300],
-  visible = true,
-  color,
-  style,
-  onPress
-}) => {
-  if (!visible) return null;
+const AvatarContext = createContext({
+  isImageLoaded: false,
+  setIsImageLoaded: (_loaded: boolean) => {}
+});
+
+const Avatar: React.FC<AvatarProps> = ({ style, children, size = 40, ...props }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <Pressable
-      style={[ds.roundedFull, ds.itemsCenter, ds.justifyCenter, styles.component(size, background), style]}
-      onPress={onPress}
-    >
-      {src ? (
-        <FastImage source={{ uri: src }} style={[ds.wFull, ds.hFull, ds.roundedFull] as ImageStyle} />
-      ) : (
-        <Text style={[ds.fontBlack, ds.text20]} color={color}>
-          {text}
-        </Text>
-      )}
-    </Pressable>
+    <AvatarContext.Provider value={{ isImageLoaded, setIsImageLoaded }}>
+      <View style={[ds.roundedFull, ds.overflowHidden, dynamicStyles.size(size), style]} {...props}>
+        {children}
+      </View>
+    </AvatarContext.Provider>
   );
 };
 
-export default Avatar;
+const AvatarImage: React.FC<AvatarImageProps> = ({ style, src = '', ...props }) => {
+  const { setIsImageLoaded } = useContext(AvatarContext);
 
-const styles = createStyle({
-  component: (size: number, background: string): ViewStyle => {
-    return {
-      backgroundColor: background,
-      width: size,
-      height: size
-    };
-  }
-});
+  useEffect(() => {
+    if (!src) {
+      setIsImageLoaded(false);
+    } else {
+      setIsImageLoaded(true);
+    }
+  }, [src]);
+
+  return src ? (
+    <FastImage
+      source={{ uri: src }}
+      style={[ds.wFull, ds.hFull, style] as ImageStyle}
+      onError={() => setIsImageLoaded(false)}
+      onLoad={() => setIsImageLoaded(true)}
+      {...props}
+    />
+  ) : null;
+};
+
+const AvatarFallback: React.FC<IAvatarFallbackProps> = ({ style, children, charsToShow = 1, ...props }) => {
+  const { isImageLoaded } = useContext(AvatarContext);
+  const { configs } = useThemeState();
+
+  if (isImageLoaded) return null;
+
+  const name = children?.toString().substring(0, charsToShow).toUpperCase();
+
+  return (
+    <View
+      style={[ds.wFull, ds.hFull, ds.itemsCenter, ds.justifyCenter, dynamicStyles.background(configs.primary), style]}
+    >
+      <Text fontWeight="Bold" fontSize={26} lineHeight={30} color={Colors.white} {...props}>
+        {name}
+      </Text>
+    </View>
+  );
+};
+
+export { Avatar, AvatarFallback, AvatarImage };

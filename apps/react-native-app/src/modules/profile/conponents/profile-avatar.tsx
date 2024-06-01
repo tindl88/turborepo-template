@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import FastImage, { ImageStyle } from 'react-native-fast-image';
 import { ds } from '@/design-system';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
@@ -12,15 +12,20 @@ type ProfileAvatarProps = {};
 const ProfileAvatar: FC<ProfileAvatarProps> = () => {
   const authState = useAuthState();
 
+  const userAvatar = authState.auth?.user.avatar;
+  const userName = authState.auth?.user.name;
+
   return (
     <View>
       <View style={ds.itemsCenter}>
         <View style={ds.itemsCenter}>
-          <FastImage
-            style={[ds.w112, ds.h112, ds.roundedFull, ds.border2, ds.borderWhite, ds.mb10] as ImageStyle}
-            source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar1.png' }}
-          />
-          <Text fontSize={20} fontWeight="Bold">
+          <Avatar size={90}>
+            <AvatarImage src={userAvatar} />
+            <AvatarFallback fontSize={50} lineHeight={60}>
+              {userName}
+            </AvatarFallback>
+          </Avatar>
+          <Text style={ds.mt10} fontSize={20} fontWeight="Bold">
             {authState.auth?.user.name}
           </Text>
         </View>

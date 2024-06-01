@@ -96,6 +96,7 @@
     "react-native-animated-pagination-dots": "^0.1.73",
     "react-native-bootsplash": "4.7.1",
     "react-native-code-push": "^8.2.2",
+    "react-native-collapsible": "^1.6.1",
     "react-native-device-info": "^11.1.0",
     "react-native-fast-image": "^8.6.3",
     "react-native-fbsdk-next": "^13.0.0",
