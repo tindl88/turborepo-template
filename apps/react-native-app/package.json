@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "android:adb": "adb reverse tcp:3500 tcp:3500",
-    "android": "node ./cli/copy.js && react-native run-android && yarn android:adb",
-    "android:release": "yarn clean:android && node ./cli/copy.js && react-native run-android --variant=release",
+    "android": "node ./cli/copy.js && yarn android:adb && react-native run-android",
+    "android:release": "yarn clean:android && node ./cli/copy.js && yarn android:adb && react-native run-android --variant=release",
     "ios": "node ./cli/copy.js && react-native run-ios --simulator='iPhone 14'",
     "ios:release": "node ./cli/copy.js && react-native run-ios --configuration Release --simulator='iPhone 14'",
     "ios:device": "node ./cli/copy.js && react-native run-ios --device='iPhone 11'",
