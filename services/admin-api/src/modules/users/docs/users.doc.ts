@@ -125,3 +125,60 @@ export class BulkDeleteUsersSuccessDoc {
   })
   data: unknown;
 }
+
+export class UpdateUserProfileSuccessDoc {
+  @ApiProperty({ enum: HttpStatus, example: HttpStatus.OK })
+  statusCode: HttpStatus;
+
+  @ApiProperty({ type: String, example: 'Update user successfully' })
+  message: string;
+
+  @ApiProperty({
+    type: 'object',
+    example: {
+      id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+      createdAt: '2024-05-22T18:05:38.151Z',
+      updatedAt: '2024-06-02T04:57:08.360Z',
+      name: 'My Name',
+      email: 'ammodesk@gmail.com',
+      avatar: null,
+      phoneNumber: null,
+      emailVerified: null,
+      recoveryCode: null,
+      recoveredAt: null,
+      locale: null,
+      lastLogin: null,
+      providerAccountId: null,
+      provider: 'credentials',
+      authType: 'credentials',
+      gender: 'other',
+      status: 'active',
+      role: 'admin'
+    }
+  })
+  data: unknown;
+}
+
+export class GetUserProfileSuccessDoc {
+  @ApiProperty({ enum: HttpStatus, example: HttpStatus.OK })
+  statusCode: HttpStatus;
+
+  @ApiProperty({ type: String, example: 'Get user profile successfully' })
+  message: string;
+
+  @ApiProperty({
+    type: 'object',
+    example: {
+      id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+      createdAt: '2024-05-22T18:05:38.151Z',
+      name: 'Ammodesk',
+      email: 'ammodesk@gmail.com',
+      avatar: null,
+      phoneNumber: null,
+      lastLogin: null,
+      status: 'active',
+      role: 'admin'
+    }
+  })
+  data: unknown;
+}

@@ -1,16 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react-native';
-import { LayoutAnimation, Platform, Pressable, UIManager, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ds } from '@/design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Text from './text';
-
-// Enable LayoutAnimation on Android
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 interface IAccordionContextProps {
   activeSections: string[];
@@ -34,7 +29,7 @@ function Accordion({ type = 'multiple', collapsible = false, children }: IAccord
   const [activeSections, setActiveSections] = useState<string[]>([]);
 
   const toggleSection = (id: string) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setActiveSections(prevActiveSections => {
       if (type === 'single') {
         if (prevActiveSections.includes(id)) {

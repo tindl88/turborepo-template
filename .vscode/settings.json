@@ -18,5 +18,18 @@
   "files.exclude": {},
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "CHANGEME"],
+  "todo-tree.highlights.customHighlight": {
+    "FIXME": {
+      "foreground": "#e63205",
+      "iconColour": "#e63205",
+      "background": "#e6320566"
+    },
+    "CHANGEME": {
+      "foreground": "#fcba03",
+      "iconColour": "#fcba03",
+      "background": "#fcba0367"
+    }
   }
 }

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { MapPin } from 'lucide-react-native';
 import { Image, ImageSourcePropType, ImageStyle, Pressable } from 'react-native';
 import { Colors, ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
@@ -19,7 +20,10 @@ const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ i
   const { configs } = useThemeState();
 
   return (
-    <Pressable style={[ds.row, ds.gap10, ds.p6, ds.rounded24, ds.bgZinc100]} onPress={onPress}>
+    <Pressable
+      style={[ds.row, ds.gap10, ds.p6, ds.rounded24, dynamicStyles.background(configs.card)]}
+      onPress={onPress}
+    >
       <>
         <Image style={[ds.w112, ds.h112, ds.rounded20] as ImageStyle} source={item.image as ImageSourcePropType} />
         <View style={[ds.px10, ds.py6, ds.column, ds.justifyBetween]}>

@@ -70,3 +70,9 @@ yarn-error.log
 
 # Keys
 /keystores
+
+/android/google-service.json
+/android/app/src/main/res/values/strings.xml
+
+/ios/GoogleService-Info.plist
+/ios/*/Info.plist

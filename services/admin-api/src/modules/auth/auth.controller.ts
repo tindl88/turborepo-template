@@ -7,13 +7,14 @@ import { ApiDocumentResponse } from '@/common/decorators/api-document-response.d
 import { Response } from '@/common/decorators/response.decorator';
 
 import { LogOutDoc } from './docs/log-out';
+import { LoginWithAppleDoc } from './docs/login-with-apple.doc';
 import { LoginWithCredentialsDoc } from './docs/login-with-credentials.doc';
 import { LoginWithFacebookDoc } from './docs/login-with-facebook.doc';
 import { LoginWithGoogleDoc } from './docs/login-with-google.doc';
 import { ResetPasswordDoc } from './docs/reset-password.doc';
 import { SignUpDoc } from './docs/sign-up.doc';
 import { VerifyResetPasswordDoc } from './docs/verify-reset-password.doc';
-import { OAuthSignInDto, SignInDto, SignOutDto } from './dto/auth.dto';
+import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
 import { AuthService } from './auth.service';
@@ -93,15 +94,37 @@ export class AuthController {
     return resp;
   }
 
+  @Post('login/apple')
+  @ApiOperation({ summary: 'Login with Apple' })
+  @ApiDocumentResponse({ message: 'Login successfully', model: LoginWithAppleDoc })
+  @Response({ message: 'Login successfully' })
+  async signInWithApple(
+    @Req() req: Request,
+    @Res({ passthrough: true }) response: ExpressResponse,
+    @Body() oAuthSignInDto: OAuthSignInDto
+  ) {
+    const ip = req.ip as string;
+    const ua = req.headers['user-agent'] || '';
+
+    const resp = await this.authService.signInWithApple(oAuthSignInDto, ip, ua);
+
+    response.cookie('refreshToken', resp.user.refreshToken);
+
+    delete resp.user.refreshToken;
+
+    return resp;
+  }
+
   @Post('logout')
   @ApiOperation({ summary: 'Log out' })
   @ApiDocumentResponse({ message: 'Logout successfully', model: LogOutDoc })
   @Response({ message: 'Logout successfully' })
-  async signOut(@Req() req: Request, @Body() signOutDto: SignOutDto) {
+  async signOut(@Req() req: Request) {
     const ip = req.ip as string;
     const ua = req.headers['user-agent'] || '';
+    const refreshToken = req.cookies['refreshToken'];
 
-    return this.authService.signOut(signOutDto, ip, ua);
+    return this.authService.signOut(refreshToken, ip, ua);
   }
 
   @Post('signup')

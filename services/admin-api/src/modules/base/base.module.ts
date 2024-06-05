@@ -22,6 +22,8 @@ import { SnakeNamingStrategy } from '@/common/utils/snake-naming-strategy.util';
 
 import { MiddlewareModule } from '@/common/middlewares/middlewares.module';
 
+import { FirebaseModule } from '../firebase/firebase.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -138,7 +140,8 @@ import { MiddlewareModule } from '@/common/middlewares/middlewares.module';
       useFactory: () => ({
         dest: '/uploads'
       })
-    })
+    }),
+    FirebaseModule
   ]
 })
 export class BaseModule {}

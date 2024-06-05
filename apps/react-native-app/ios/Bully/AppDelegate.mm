@@ -7,7 +7,7 @@
 #import <Firebase.h>
 #import <AuthenticationServices/AuthenticationServices.h>
 #import <SafariServices/SafariServices.h>
-#import <FBSDKCoreKit/FBSDKCoreKit-swift.h>
+#import <FBSDKCoreKit/FBSDKCoreKit-Swift.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
 #import <CodePush/CodePush.h>
 
@@ -23,7 +23,8 @@
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
-  [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+
+  [[FBSDKApplicationDelegate sharedInstance ] application:application didFinishLaunchingWithOptions:launchOptions];
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

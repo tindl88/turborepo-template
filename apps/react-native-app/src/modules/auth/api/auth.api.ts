@@ -1,10 +1,4 @@
-import {
-  RefreshTokenResponse,
-  SignInDto,
-  SignInResponse,
-  SignOutDto,
-  SignOutResponse
-} from '../interfaces/auth.interface';
+import { RefreshTokenResponse, SignInDto, SignInResponse, SignOutResponse } from '../interfaces/auth.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
@@ -23,8 +17,8 @@ export const signIn = (signInDto: SignInDto) => {
   });
 };
 
-export const signOut = (sighOutDto: SignOutDto) => {
-  return HttpRequest.post<SignOutResponse>(API_ENDPOINTS.SIGN_OUT, sighOutDto);
+export const signOut = () => {
+  return HttpRequest.post<SignOutResponse>(API_ENDPOINTS.SIGN_OUT);
 };
 
 export const googleSignIn = (token: string) => {
@@ -35,10 +29,14 @@ export const facebookSignIn = (token: string) => {
   return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_FACEBOOK, { token });
 };
 
+export const appleSignIn = (token: string) => {
+  return HttpRequest.post<SignInResponse>(API_ENDPOINTS.SIGN_IN_APPLE, { token });
+};
+
 export const refreshToken = (token: string) => {
   return HttpRequest.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, { token });
 };
 
-const AuthApi = { signUp, signIn, signOut, googleSignIn, facebookSignIn, refreshToken };
+const AuthApi = { signUp, signIn, signOut, googleSignIn, facebookSignIn, appleSignIn, refreshToken };
 
 export default AuthApi;

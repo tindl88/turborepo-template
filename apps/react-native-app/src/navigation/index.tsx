@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Appearance, ColorSchemeName } from 'react-native';
 import { MMKV } from 'react-native-mmkv';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -6,6 +8,8 @@ import { RootStackParamList } from '@/interfaces/navigation.interface';
 
 import { useAppState } from '@/modules/app/states/app.state';
 import { useAuthState } from '@/modules/auth/states/auth.state';
+import { useLanguageState } from '@/modules/language/states/language.state';
+import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Anthenticated from './authenticated';
 import Unanthenticated from './unauthenticated';
@@ -17,14 +21,25 @@ const Stack = createStackNavigator<RootStackParamList>();
 const InitNavigator = () => {
   const appState = useAppState();
   const authState = useAuthState();
+  const { i18n } = useTranslation();
+  const { language } = useLanguageState();
+  const { theme } = useThemeState();
 
   useEffect(() => {
     const authJsonString = storage.getString('@auth');
 
-    authState.setUserData(authJsonString ? JSON.parse(authJsonString) : null);
+    authState.setAuthData(authJsonString ? JSON.parse(authJsonString) : null);
 
     if (!appState.ready) appState.setAppReady(true);
   }, []);
+
+  useEffect(() => {
+    i18n.changeLanguage(language.key);
+  }, [language.key]);
+
+  useEffect(() => {
+    Appearance.setColorScheme(theme.key as ColorSchemeName);
+  }, [theme.key]);
 
   if (!appState.ready) return null;
 

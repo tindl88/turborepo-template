@@ -8,6 +8,7 @@ import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
+import { FirebaseService } from '../firebase/firebase.service';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
 import { EmailService } from '../shared/email.service';
 import { RandomService } from '../shared/random.service';
@@ -18,6 +19,14 @@ import { UsersModule } from '../users/users.module';
 @Module({
   imports: [PassportModule, HttpModule, UsersModule, RefreshTokensModule, TypeOrmModule.forFeature([User])],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy, TokenService, RandomService, EmailService]
+  providers: [
+    AuthService,
+    AccessTokenStrategy,
+    RefreshTokenStrategy,
+    TokenService,
+    RandomService,
+    EmailService,
+    FirebaseService
+  ]
 })
 export class AuthModule {}

@@ -2,19 +2,20 @@ import React, { FC } from 'react';
 import { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
 import Button from '@/components/core-ui/button';
-// import {useAuthState} from '@/modules/auth/states/auth.state';
 import BrandApple from '@/components/svgs/brand-apple';
+
+import { useAuthState } from '../states/auth.state';
 
 interface IAppleSignInProps {
   style?: StyleProp<PressableProps | ViewStyle>;
 }
 
 const AppleSignIn: FC<IAppleSignInProps> = ({ style }) => {
-  // const auth = useAuthState();
+  const authState = useAuthState();
 
   const onPress = async () => {
     try {
-      // auth.loginRequest({provider: 'apple'});
+      authState.loginRequest({ provider: 'apple' });
     } catch (error) {
       throw error;
     }

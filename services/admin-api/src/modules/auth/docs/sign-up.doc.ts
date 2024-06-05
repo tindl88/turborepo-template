@@ -29,7 +29,7 @@ export class SignUpDoc {
       role: USER_ROLE.ADMIN,
       updatedAt: '2023-12-05T23:44:49.288Z',
       lastLogin: null,
-      id: 'd5866027-6393-4f33-9b83-c62b251b639f',
+      id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
       createdAt: '2023-12-05T23:44:49.288Z'
     }
   })

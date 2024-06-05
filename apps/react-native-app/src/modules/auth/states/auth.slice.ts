@@ -11,13 +11,12 @@ import {
   SignOutResponse
 } from '../interfaces/auth.interface';
 
-import { CreateUserDto, CreateUserResponse } from '@/modules/users/interfaces/users.interface';
+import { CreateUserDto, CreateUserResponse, UserEntity } from '@/modules/users/interfaces/users.interface';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 
 type AuthInitialState = {
   isFetching: boolean;
-  isWelcomeSeen: boolean;
   isAuthenticated: boolean;
   resetPasswordAt?: string;
   verifyEmailOtpAt?: string;
@@ -26,7 +25,6 @@ type AuthInitialState = {
 
 const initialState: AuthInitialState = {
   isFetching: false,
-  isWelcomeSeen: false,
   isAuthenticated: false
 };
 
@@ -117,15 +115,24 @@ const slice = createSlice({
       state.isAuthenticated = false;
       state.message = message;
     },
-    updateUserData(state, action: PayloadAction<RefreshTokenEntity>) {
+    updateAccessToken(state, action: PayloadAction<RefreshTokenEntity>) {
       if (action.payload && state.auth) {
         state.auth.user.accessToken = action.payload.accessToken;
-        state.auth.user.refreshToken = action.payload.refreshToken;
 
         MMKVStorage.setItem('@auth', JSON.stringify(state.auth));
       }
     },
-    setUserData(state, action: PayloadAction<AuthEntity | null>) {
+    setRefreshToken(_state, action: PayloadAction<string>) {
+      MMKVStorage.setItem('@rftoken', action.payload);
+    },
+    updateAuthData(state, action: PayloadAction<UserEntity>) {
+      if (action.payload && state.auth) {
+        state.auth.user.name = action.payload.name;
+
+        MMKVStorage.setItem('@auth', JSON.stringify(state.auth));
+      }
+    },
+    setAuthData(state, action: PayloadAction<AuthEntity | null>) {
       if (action.payload) {
         state.isAuthenticated = true;
         state.auth = action.payload;
