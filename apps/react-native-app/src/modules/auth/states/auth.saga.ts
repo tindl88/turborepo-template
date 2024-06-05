@@ -189,6 +189,7 @@ export function* login(action: PayloadAction<SignInDto>) {
 export function* logout() {
   try {
     GoogleSignin.signOut();
+    LoginManager.logOut();
     const response: AxiosResponse<SignOutResponse> = yield call(AuthApi.signOut);
 
     yield put(slices.actions.logoutSuccess(response.data));
