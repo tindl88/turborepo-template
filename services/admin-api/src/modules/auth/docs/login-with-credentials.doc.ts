@@ -14,7 +14,7 @@ export class LoginWithCredentialsDoc {
     type: 'object',
     example: {
       user: {
-        id: '29332240-8d2d-45ad-8bbe-8cfe5906b30a',
+        id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
         email: 'ammodesk@gmail.com',
         role: USER_ROLE.SUPER_ADMIN,
         name: 'My Name',

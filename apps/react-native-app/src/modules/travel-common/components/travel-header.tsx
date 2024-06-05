@@ -53,7 +53,7 @@ function TravelHeader() {
             </View>
           </View>
 
-          <Avatar>
+          <Avatar onPress={() => navigation.navigate('Profile')}>
             <AvatarImage src={userAvatar} />
             <AvatarFallback>{userName}</AvatarFallback>
           </Avatar>

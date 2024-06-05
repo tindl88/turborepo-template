@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Appearance, ColorSchemeName } from 'react-native';
+import React from 'react';
 import BootSplash from 'react-native-bootsplash';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ds } from '@/design-system';
@@ -12,7 +10,6 @@ import GlobalModal from '@/components/common/modal/global-modal';
 import LoadingBox from '@/components/common/popup/loading-box';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
-import { useLanguageState } from '@/modules/language/states/language.state';
 import SafeViewArea from '@/modules/screen/components/safe-view-area';
 import * as Constants from '@/modules/screen/constants/screen.constant';
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -22,25 +19,15 @@ import { accessibility } from '@/utils/accessibility.util';
 
 const NavContainer = () => {
   const navigationRef = useNavigationContainerRef();
-  const { i18n } = useTranslation();
   const screenState = useScreenState();
   const authState = useAuthState();
-  const { theme, configs } = useThemeState();
-  const { language } = useLanguageState();
+  const { configs } = useThemeState();
 
   const customTheme = Object.assign({}, DefaultTheme, {
     colors: {
       background: configs.background
     }
   });
-
-  useEffect(() => {
-    i18n.changeLanguage(language.key);
-  }, [language.key]);
-
-  useEffect(() => {
-    Appearance.setColorScheme(theme.key as ColorSchemeName);
-  }, [theme.key]);
 
   return (
     <SafeAreaProvider style={ds.flex1}>

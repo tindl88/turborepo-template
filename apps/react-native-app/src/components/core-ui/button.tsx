@@ -81,7 +81,7 @@ const Button: React.FC<IButtonProps> = ({
 
   return (
     <Pressable
-      style={[ds.rounded4, ds.itemsCenter, ds.justifyCenter, buttonStyle, style]}
+      style={[ds.rounded10, ds.itemsCenter, ds.justifyCenter, buttonStyle, style]}
       disabled={disabled}
       onPress={disabled ? undefined : onPress}
       onPressIn={() => setIsFocused(true)}

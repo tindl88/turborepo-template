@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Pressable, View, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
+import { dynamicStyles } from '@/design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -48,15 +49,15 @@ interface ICategoryTriggerProps extends React.ComponentPropsWithoutRef<typeof Pr
 
 function TravelCategoryTrigger({ value, children, style, ...props }: ICategoryTriggerProps) {
   const { active, setActive } = useContext(Context);
-  const { theme } = useThemeState();
+  const { configs } = useThemeState();
 
   return (
     <Pressable
       style={
         [
           ds.grow,
-          theme.key === 'dark' ? ds.bgSlate800 : ds.bgZinc100,
-          active === value && [theme.key === 'dark' ? ds.bgBlack : ds.bgWhite, styles.shadow()],
+          dynamicStyles.background(configs.card),
+          active === value && [dynamicStyles.background(configs.accent), styles.shadow()],
           style
         ] as ViewStyle
       }

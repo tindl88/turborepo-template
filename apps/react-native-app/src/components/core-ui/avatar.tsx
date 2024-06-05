@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { ViewStyle } from 'react-native';
+import { Pressable, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import { Colors, ds } from '@/design-system';
 import { dynamicStyles } from '@/design-system/utils/common-style.util';
@@ -13,6 +13,7 @@ type AvatarProps = {
   size?: number;
   style?: ViewStyle;
   children: React.ReactNode;
+  onPress?: () => void;
 };
 
 type AvatarImageProps = {
@@ -31,14 +32,18 @@ const AvatarContext = createContext({
   setIsImageLoaded: (_loaded: boolean) => {}
 });
 
-const Avatar: React.FC<AvatarProps> = ({ style, children, size = 40, ...props }) => {
+const Avatar: React.FC<AvatarProps> = ({ style, children, size = 40, onPress, ...props }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
     <AvatarContext.Provider value={{ isImageLoaded, setIsImageLoaded }}>
-      <View style={[ds.roundedFull, ds.overflowHidden, dynamicStyles.size(size), style]} {...props}>
+      <Pressable
+        style={[ds.roundedFull, ds.overflowHidden, dynamicStyles.size(size), style]}
+        onPress={onPress}
+        {...props}
+      >
         {children}
-      </View>
+      </Pressable>
     </AvatarContext.Provider>
   );
 };

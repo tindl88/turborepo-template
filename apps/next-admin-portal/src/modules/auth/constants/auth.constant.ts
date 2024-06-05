@@ -2,11 +2,10 @@ import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
-import { AxiosResponse } from 'axios';
-
-import { LoginResponse } from '../interfaces/auth.interface';
 
 import AuthApi from '@/modules/auth/api/auth.api';
+
+import { getRefreshTokenFromHeader } from '../utils/session.util';
 
 export enum AUTH_TYPE {
   CREDENTIALS = 'credentials',
@@ -51,7 +50,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           const signInRes = await AuthApi.signIn({ email, password });
-          const refreshToken = getRefreshToken(signInRes);
+          const refreshToken = getRefreshTokenFromHeader(signInRes);
 
           if (!refreshToken) return null;
 
@@ -86,7 +85,7 @@ export const authOptions: NextAuthOptions = {
           if (!account || !profile?.email_verified) return false;
 
           const gRes = await AuthApi.googleSignIn(account.id_token);
-          const gRefreshToken = getRefreshToken(gRes);
+          const gRefreshToken = getRefreshTokenFromHeader(gRes);
 
           if (!gRefreshToken) return false;
 
@@ -105,7 +104,7 @@ export const authOptions: NextAuthOptions = {
           if (!account) return false;
 
           const fRes = await AuthApi.facebookSignIn(account.access_token);
-          const fRefreshToken = getRefreshToken(fRes);
+          const fRefreshToken = getRefreshTokenFromHeader(fRes);
 
           if (!fRefreshToken) return false;
 
@@ -150,10 +149,3 @@ export const authOptions: NextAuthOptions = {
     }
   }
 };
-
-function getRefreshToken(response: AxiosResponse<LoginResponse>) {
-  const refreshTokenNode = response.headers['set-cookie']?.filter(x => x.includes('refreshToken='));
-  const refreshToken = refreshTokenNode?.[0]?.split('=')[1]?.split(';')[0];
-
-  return refreshToken;
-}

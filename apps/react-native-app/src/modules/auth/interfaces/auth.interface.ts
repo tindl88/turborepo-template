@@ -14,7 +14,6 @@ export type AuthEntity = {
 
 export type RefreshTokenEntity = {
   accessToken: string;
-  refreshToken: string;
 };
 
 export type SignInDto = {
@@ -26,10 +25,6 @@ export type SignInDto = {
   facebook?: {
     permissions: string[];
   };
-};
-
-export type SignOutDto = {
-  token: string;
 };
 
 export type ResetPasswordDto = {

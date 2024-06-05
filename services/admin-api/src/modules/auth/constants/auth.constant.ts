@@ -6,5 +6,6 @@ export enum AUTH_TYPE {
 export enum AUTH_PROVIDER {
   CREDENTIALS = 'credentials',
   FACEBOOK = 'facebook',
-  GOOGLE = 'google'
+  GOOGLE = 'google',
+  APPLE = 'apple'
 }

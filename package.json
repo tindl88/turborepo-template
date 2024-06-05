@@ -16,8 +16,8 @@
     "admin:dev": "turbo dev --filter=admin-api",
     "next-admin:dev": "turbo dev --filter=next-admin --filter=admin-api",
     "next-app:dev": "turbo dev --filter=next-app --filter=admin-api",
-    "ios:dev": "yarn workspace react-native-app ios",
-    "android:dev": "yarn workspace react-native-app android"
+    "ios": "yarn workspace react-native-app ios",
+    "android": "yarn workspace react-native-app android"
   },
   "engines": {
     "node": ">=20"

@@ -2,22 +2,13 @@ import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import AuthApi from '@/modules/auth/api/auth.api';
 import slice from '@/modules/auth/states/auth.slice';
-
-import { MMKVStorage } from '../utils/mmkv-storage.util';
+import { getRefreshTokenFromStore, getSession } from '@/modules/auth/utils/session.util';
 
 import { store } from '@/stores/redux/store';
 
 import { createAxiosInstance } from './http-client';
 
 const axiosClient = createAxiosInstance();
-
-const getSession = async () => {
-  const sessionJson = MMKVStorage.getItem('@auth');
-  const session = JSON.parse(sessionJson as string);
-  const user = session?.user;
-
-  return user;
-};
 
 const interceptors = {
   onRequest: async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
@@ -38,13 +29,17 @@ const interceptors = {
       originalConfig._retry = true;
 
       try {
-        const session = await getSession();
+        const refreshToken = getRefreshTokenFromStore();
 
-        const newTokens = await AuthApi.refreshToken(session.refreshToken);
+        if (refreshToken) {
+          const newTokens = await AuthApi.refreshToken(refreshToken);
 
-        store.dispatch(slice.actions.updateUserData(newTokens.data.data));
+          store.dispatch(slice.actions.updateAccessToken(newTokens.data.data));
 
-        originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
+          originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
+        } else {
+          store.dispatch(slice.actions.logoutRequest());
+        }
 
         return axiosClient(originalConfig);
       } catch (err) {

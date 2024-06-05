@@ -50,3 +50,4 @@ lerna-debug.log*
 
 # Keys
 /keystores
+/src/keystores

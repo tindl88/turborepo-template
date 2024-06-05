@@ -69,6 +69,7 @@
 		FD726BCD29433E0A00B9488D /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD726BCE29433E0A00B9488D /* FirebaseInstallations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseInstallations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD726BCF29433E0A00B9488D /* FirebasePerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebasePerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD791F932C0D810F0061562A /* BullyDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BullyDebug.entitlements; path = Bully/BullyDebug.entitlements; sourceTree = "<group>"; };
 		FDCFFB70294625CE007E94B7 /* Bully.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Bully.entitlements; path = Bully/Bully.entitlements; sourceTree = "<group>"; };
 		FDED97D9294ADD22007EAA44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FDF8DCA42945C7E500C981F9 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		13B07FAE1A68108700A75B9A /* Bully */ = {
 			isa = PBXGroup;
 			children = (
+				FD791F932C0D810F0061562A /* BullyDebug.entitlements */,
 				FDCFFB70294625CE007E94B7 /* Bully.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -576,9 +578,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Bully/Bully.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bully/BullyDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5D655C442Y;
+				DEVELOPMENT_TEAM = Z7J9XPLJ8R;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = i386;
 				INFOPLIST_FILE = Bully/Info.plist;
@@ -601,6 +605,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tin.bully;
 				PRODUCT_NAME = Bully;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bully-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.2;
@@ -615,8 +620,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Bully/Bully.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5D655C442Y;
+				DEVELOPMENT_TEAM = Z7J9XPLJ8R;
 				EXCLUDED_ARCHS = i386;
 				INFOPLIST_FILE = Bully/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Bully;
@@ -638,6 +645,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tin.bully;
 				PRODUCT_NAME = Bully;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bully-Bridging-Header.h";
 				SWIFT_VERSION = 5.2;
 				VERSIONING_SYSTEM = "apple-generic";

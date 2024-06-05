@@ -1,12 +1,10 @@
 require 'json'
 
-DEVELOPMENT_TEAM = "5D655C442Y";
-
 # appPackage = JSON.parse(File.read(File.join('..', 'node_modules', '@react-native-firebase', 'app', 'package.json')))
 # react-native 0.73 is currently iOS 13.4 as a minimum
 min_ios_version_supported = 13.4
 
-$FirebaseSDKVersion = '10.17.0'#appPackage['sdkVersions']['ios']['firebase']
+$FirebaseSDKVersion = '10.25.0'#appPackage['sdkVersions']['ios']['firebase']
 
 # toggle this to true (and set 'use_frameworks!' below to test static frameworks)
 $RNFirebaseAsStaticFramework = true
@@ -104,11 +102,11 @@ target 'Bully' do
       :mac_catalyst_enabled => false
     )
 
-    installer.generated_projects.each do |project|
-      project.targets.each do |target|
-          target.build_configurations.each do |config|
-              config.build_settings["DEVELOPMENT_TEAM"] = DEVELOPMENT_TEAM
-          end
+    # Mixing Swift and Objective-C in a react-native project may be problematic.
+    # Workaround:  https://github.com/facebookarchive/react-native-fbsdk/issues/755#issuecomment-787488994
+    installer.aggregate_targets.first.user_project.native_targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['LIBRARY_SEARCH_PATHS'] = ['$(inherited)', '$(SDKROOT)/usr/lib/swift']
       end
     end
 

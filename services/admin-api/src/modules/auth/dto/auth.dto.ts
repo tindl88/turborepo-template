@@ -15,13 +15,6 @@ export class SignInDto {
   password: string;
 }
 
-export class SignOutDto {
-  @ApiProperty({ example: '<TOKEN>' })
-  @IsNotEmpty()
-  @IsString()
-  token: string;
-}
-
 export class OAuthSignInDto {
   @ApiProperty({ example: '<TOKEN>' })
   @IsNotEmpty()

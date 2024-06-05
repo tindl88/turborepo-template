@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
-import isbot from 'isbot';
+import { isbot } from 'isbot';
 
 @Injectable()
 export class BotCheckMiddleware implements NestMiddleware {

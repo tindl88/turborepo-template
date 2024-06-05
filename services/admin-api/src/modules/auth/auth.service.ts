@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { DecodedIdToken } from 'firebase-admin/auth';
 import { Repository } from 'typeorm';
 
 import { getSecondBetweenTwoDates } from '@/common/utils/datetime.util';
@@ -8,11 +9,11 @@ import { getSecondBetweenTwoDates } from '@/common/utils/datetime.util';
 import { UsersService } from '@/modules/users/users.service';
 
 import { AUTH_PROVIDER, AUTH_TYPE } from './constants/auth.constant';
-import { OAuthSignInDto, SignInDto, SignOutDto } from './dto/auth.dto';
+import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
-import { IOAuthFacebookProfile, IOAuthGoogleProfile, IOAuthProfile } from './interfaces/auth.interface';
 
+import { FirebaseService } from '../firebase/firebase.service';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 import { EmailService } from '../shared/email.service';
 import { RandomService } from '../shared/random.service';
@@ -31,7 +32,8 @@ export class AuthService {
     private refreshTokensService: RefreshTokensService,
     private tokenService: TokenService,
     private randomService: RandomService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private firebaseService: FirebaseService
   ) {}
 
   async signIn(signInDto: SignInDto, ipAddress: string, userAgent: string) {
@@ -79,7 +81,7 @@ export class AuthService {
   async signInWithGoogle(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
     const { token } = oAuthSignInDto;
 
-    const userInfo = await this.getGoogleAccount(token);
+    const userInfo = await this.firebaseService.verifyIdToken(token);
 
     let user = await this.usersService.findByEmail(userInfo.email);
 
@@ -118,7 +120,7 @@ export class AuthService {
   async signInWithFacebook(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
     const { token } = oAuthSignInDto;
 
-    const userInfo = await this.getFacebookAccount(token);
+    const userInfo = await this.firebaseService.verifyIdToken(token);
 
     let user = await this.usersService.findByEmail(userInfo.email);
 
@@ -153,31 +155,59 @@ export class AuthService {
     };
   }
 
-  async signOut(signOutDto: SignOutDto, ipAddress: string, userAgent: string) {
-    const { token } = signOutDto;
+  async signInWithApple(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
+    const { token } = oAuthSignInDto;
 
-    return this.refreshTokensService.revoke(token, ipAddress, userAgent);
-  }
+    const userInfo = await this.firebaseService.verifyIdToken(token);
 
-  async createNewUserFromOAuthProfile(provider: AUTH_PROVIDER, profile: unknown) {
-    let transformedData: IOAuthProfile;
+    let user = await this.usersService.findByEmail(userInfo.email);
 
-    switch (provider) {
-      case AUTH_PROVIDER.GOOGLE:
-        transformedData = await this.transformGoogleProfile(profile as IOAuthGoogleProfile);
-        break;
-      case AUTH_PROVIDER.FACEBOOK:
-        transformedData = await this.transformFacebookProfile(profile as IOAuthFacebookProfile);
-        break;
+    if (user) {
+      if (user.status !== USER_STATUS.ACTIVE) {
+        throw new UnauthorizedException('User is inactive');
+      }
+    } else {
+      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.APPLE, userInfo);
+    }
+    const accessToken = await this.tokenService.createAccessToken(user);
+
+    const refreshToken = await this.tokenService.createRefreshToken(user);
+
+    this.refreshTokensService.create({ user, token: refreshToken, createdByIp: ipAddress, userAgent });
+
+    if (!user.preference?.id) {
+      user.preference = new UserPreference();
     }
 
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        name: user.name,
+        avatar: user.avatar,
+        preference: user.preference,
+        accessToken,
+        refreshToken
+      }
+    };
+  }
+
+  async signOut(refreshToken: string, ipAddress: string, userAgent: string) {
+    return this.refreshTokensService.revoke(refreshToken, ipAddress, userAgent);
+  }
+
+  async createNewUserFromOAuthProfile(provider: AUTH_PROVIDER, profile: DecodedIdToken) {
+    const email = profile.email;
+    const name = profile.name ?? email.split('@')[0];
+
     const newUser = await this.usersService.create({
-      name: transformedData.name,
-      email: transformedData.email,
-      avatar: transformedData.avatar,
-      emailVerified: transformedData.emailVerified,
-      locale: transformedData.locale,
-      providerAccountId: transformedData.providerAccountId,
+      name,
+      email,
+      avatar: profile.picture,
+      emailVerified: Boolean(profile.email_verified),
+      locale: profile.locale,
+      providerAccountId: profile.sub,
       provider,
       authType: AUTH_TYPE.OAUTH,
       gender: USER_GENDER.OTHER,
@@ -186,40 +216,6 @@ export class AuthService {
     });
 
     return newUser;
-  }
-
-  async getGoogleAccount(token: string): Promise<IOAuthGoogleProfile> {
-    const response = await this.httpService.axiosRef.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${token}`);
-
-    return response.data;
-  }
-
-  async getFacebookAccount(token: string): Promise<IOAuthFacebookProfile> {
-    const response = await this.httpService.axiosRef.get(
-      `https://graph.facebook.com/v18.0/me?fields=id,name,email,picture&access_token=${token}`
-    );
-
-    return response.data;
-  }
-
-  async transformFacebookProfile(profile: IOAuthFacebookProfile): Promise<IOAuthProfile> {
-    return {
-      name: profile.name,
-      email: profile.email,
-      avatar: profile.picture?.data?.url,
-      providerAccountId: profile.id
-    };
-  }
-
-  async transformGoogleProfile(profile: IOAuthGoogleProfile): Promise<IOAuthProfile> {
-    return {
-      name: profile.name,
-      email: profile.email,
-      avatar: profile.picture,
-      providerAccountId: profile.sub,
-      emailVerified: Boolean(profile.email_verified),
-      locale: profile.locale
-    };
   }
 
   async resetPasswordForMobile(resetPasswordDto: ResetPasswordDto) {

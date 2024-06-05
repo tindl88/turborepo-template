@@ -5,6 +5,7 @@ import { IConfigs } from '@/common/interfaces/configs.interface';
 export default registerAs('middlewares', (): IConfigs['middlewares'] => {
   return {
     cors: {
+      // CHANGEME: Should replace allowOrigin * with specific domain.
       allowOrigin: '*',
       allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
       allowHeaders: [
