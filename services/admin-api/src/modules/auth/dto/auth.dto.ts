@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
+
+import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
 
 export class SignInDto {
   @ApiProperty({ example: 'ammodesk@gmail.com' })
@@ -20,4 +22,13 @@ export class OAuthSignInDto {
   @IsNotEmpty()
   @IsString()
   token: string;
+
+  @ApiProperty({ enum: AUTH_AUTHENTICATOR, default: AUTH_AUTHENTICATOR.SELF_HOSTED })
+  @IsEnum(AUTH_AUTHENTICATOR)
+  authenticator: AUTH_AUTHENTICATOR;
+
+  @ApiProperty({ example: true })
+  @IsOptional()
+  @IsBoolean()
+  isFacebookLimited: boolean;
 }

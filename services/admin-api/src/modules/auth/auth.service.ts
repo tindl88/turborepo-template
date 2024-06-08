@@ -1,17 +1,20 @@
-import { HttpService } from '@nestjs/axios';
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DecodedIdToken } from 'firebase-admin/auth';
 import { Repository } from 'typeorm';
 
 import { getSecondBetweenTwoDates } from '@/common/utils/datetime.util';
 
 import { UsersService } from '@/modules/users/users.service';
 
-import { AUTH_PROVIDER, AUTH_TYPE } from './constants/auth.constant';
+import { AUTH_AUTHENTICATOR, AUTH_PROVIDER, AUTH_TYPE } from './constants/auth.constant';
 import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
+import { OAuthProfile } from './interfaces/auth.interface';
+import { AppleService } from './apple.service';
+import { FacebookService } from './facebook.service';
+import { GoogleService } from './google.service';
 
 import { FirebaseService } from '../firebase/firebase.service';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
@@ -27,13 +30,16 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly configService: ConfigService,
     private usersService: UsersService,
-    private httpService: HttpService,
     private refreshTokensService: RefreshTokensService,
     private tokenService: TokenService,
     private randomService: RandomService,
     private emailService: EmailService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private appleService: AppleService,
+    private facebookService: FacebookService,
+    private googleService: GoogleService
   ) {}
 
   async signIn(signInDto: SignInDto, ipAddress: string, userAgent: string) {
@@ -79,22 +85,28 @@ export class AuthService {
   }
 
   async signInWithGoogle(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
-    const { token } = oAuthSignInDto;
+    const { token, authenticator } = oAuthSignInDto;
+    let userInfo: OAuthProfile = null;
 
-    const userInfo = await this.firebaseService.verifyIdToken(token);
+    if (authenticator === AUTH_AUTHENTICATOR.FIREBASE) {
+      userInfo = await this.firebaseService.verifyIdToken(token);
+    } else {
+      userInfo = await this.googleService.verifyIdToken(token);
+    }
 
-    let user = await this.usersService.findByEmail(userInfo.email);
+    const userTransformed = await this.transformOAuthData(userInfo);
+
+    let user = await this.usersService.findByEmail(userTransformed.email);
 
     if (user) {
       if (user.status !== USER_STATUS.ACTIVE) {
         throw new UnauthorizedException('User is inactive');
       }
     } else {
-      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.GOOGLE, userInfo);
+      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.GOOGLE, userTransformed);
     }
 
     const accessToken = await this.tokenService.createAccessToken(user);
-
     const refreshToken = await this.tokenService.createRefreshToken(user);
 
     this.refreshTokensService.create({ user, token: refreshToken, createdByIp: ipAddress, userAgent });
@@ -118,21 +130,31 @@ export class AuthService {
   }
 
   async signInWithFacebook(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
-    const { token } = oAuthSignInDto;
+    const { token, authenticator, isFacebookLimited } = oAuthSignInDto;
+    let userInfo: OAuthProfile = null;
 
-    const userInfo = await this.firebaseService.verifyIdToken(token);
+    if (authenticator === AUTH_AUTHENTICATOR.FIREBASE) {
+      userInfo = await this.firebaseService.verifyIdToken(token);
+    } else {
+      if (isFacebookLimited) {
+        userInfo = await this.facebookService.verifyAuthenticationToken(token);
+      } else {
+        userInfo = await this.facebookService.verifyAccessToken(token);
+      }
+    }
 
-    let user = await this.usersService.findByEmail(userInfo.email);
+    const userTransformed = await this.transformOAuthData(userInfo);
+
+    let user = await this.usersService.findByEmail(userTransformed.email);
 
     if (user) {
       if (user.status !== USER_STATUS.ACTIVE) {
         throw new UnauthorizedException('User is inactive');
       }
     } else {
-      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.FACEBOOK, userInfo);
+      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.FACEBOOK, userTransformed);
     }
     const accessToken = await this.tokenService.createAccessToken(user);
-
     const refreshToken = await this.tokenService.createRefreshToken(user);
 
     this.refreshTokensService.create({ user, token: refreshToken, createdByIp: ipAddress, userAgent });
@@ -156,21 +178,28 @@ export class AuthService {
   }
 
   async signInWithApple(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
-    const { token } = oAuthSignInDto;
+    const { token, authenticator } = oAuthSignInDto;
+    let userInfo: OAuthProfile = null;
 
-    const userInfo = await this.firebaseService.verifyIdToken(token);
+    if (authenticator === AUTH_AUTHENTICATOR.FIREBASE) {
+      userInfo = await this.firebaseService.verifyIdToken(token);
+    } else {
+      userInfo = await this.appleService.verifyIdToken(token);
+    }
 
-    let user = await this.usersService.findByEmail(userInfo.email);
+    const userTransformed = await this.transformOAuthData(userInfo);
+
+    let user = await this.usersService.findByEmail(userTransformed.email);
 
     if (user) {
       if (user.status !== USER_STATUS.ACTIVE) {
         throw new UnauthorizedException('User is inactive');
       }
     } else {
-      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.APPLE, userInfo);
+      user = await this.createNewUserFromOAuthProfile(AUTH_PROVIDER.APPLE, userTransformed);
     }
-    const accessToken = await this.tokenService.createAccessToken(user);
 
+    const accessToken = await this.tokenService.createAccessToken(user);
     const refreshToken = await this.tokenService.createRefreshToken(user);
 
     this.refreshTokensService.create({ user, token: refreshToken, createdByIp: ipAddress, userAgent });
@@ -193,20 +222,11 @@ export class AuthService {
     };
   }
 
-  async signOut(refreshToken: string, ipAddress: string, userAgent: string) {
-    return this.refreshTokensService.revoke(refreshToken, ipAddress, userAgent);
-  }
-
-  async createNewUserFromOAuthProfile(provider: AUTH_PROVIDER, profile: DecodedIdToken) {
-    const email = profile.email;
-    const name = profile.name ?? email.split('@')[0];
-
+  async createNewUserFromOAuthProfile(provider: AUTH_PROVIDER, profile: OAuthProfile) {
     const newUser = await this.usersService.create({
-      name,
-      email,
+      name: profile.name,
       avatar: profile.picture,
-      emailVerified: Boolean(profile.email_verified),
-      locale: profile.locale,
+      email: profile.email,
       providerAccountId: profile.sub,
       provider,
       authType: AUTH_TYPE.OAUTH,
@@ -216,6 +236,19 @@ export class AuthService {
     });
 
     return newUser;
+  }
+
+  private async transformOAuthData(oAuthResponse: OAuthProfile) {
+    return {
+      sub: oAuthResponse.sub,
+      email: oAuthResponse.email,
+      name: oAuthResponse.name,
+      picture: oAuthResponse.picture
+    } as OAuthProfile;
+  }
+
+  async signOut(refreshToken: string, ipAddress: string, userAgent: string) {
+    return this.refreshTokensService.revoke(refreshToken, ipAddress, userAgent);
   }
 
   async resetPasswordForMobile(resetPasswordDto: ResetPasswordDto) {

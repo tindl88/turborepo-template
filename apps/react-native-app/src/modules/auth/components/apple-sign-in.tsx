@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Platform, PressableProps, StyleProp, ViewStyle } from 'react-native';
+
+import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
 
 import Button from '@/components/core-ui/button';
 import BrandApple from '@/components/svgs/brand-apple';
@@ -13,16 +15,18 @@ interface IAppleSignInProps {
 const AppleSignIn: FC<IAppleSignInProps> = ({ style }) => {
   const authState = useAuthState();
 
-  const onPress = async () => {
-    try {
-      authState.loginRequest({ provider: 'apple' });
-    } catch (error) {
-      throw error;
-    }
-  };
+  if (Platform.OS !== 'ios') return null;
 
   return (
-    <Button style={style} onPress={onPress}>
+    <Button
+      style={style}
+      onPress={() => {
+        authState.loginRequest({
+          provider: SIGN_IN_PROVIDER.APPLE,
+          authenticator: SIGN_IN_AUTHENTICATOR.SELF_HOSTED
+        });
+      }}
+    >
       <BrandApple />
     </Button>
   );

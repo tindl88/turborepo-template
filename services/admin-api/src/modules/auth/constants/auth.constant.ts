@@ -9,3 +9,8 @@ export enum AUTH_PROVIDER {
   GOOGLE = 'google',
   APPLE = 'apple'
 }
+
+export enum AUTH_AUTHENTICATOR {
+  FIREBASE = 'firebase',
+  SELF_HOSTED = 'self-hosted'
+}

@@ -17,6 +17,17 @@ import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { accessibility } from '@/utils/accessibility.util';
 
+const linking = {
+  prefixes: ['com.tin.bully://'],
+  config: {
+    screens: {
+      Login: {
+        path: 'login'
+      }
+    }
+  }
+};
+
 const NavContainer = () => {
   const navigationRef = useNavigationContainerRef();
   const screenState = useScreenState();
@@ -34,6 +45,7 @@ const NavContainer = () => {
       <NavigationContainer
         ref={navigationRef}
         theme={customTheme}
+        linking={linking}
         onReady={() => {
           BootSplash.hide({ fade: true, duration: 300 });
         }}

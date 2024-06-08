@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { Platform } from 'react-native';
 import { AccessToken, AuthenticationToken, LoginManager } from 'react-native-fbsdk-next';
 import { sha256 } from 'react-native-sha256';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
@@ -15,6 +14,8 @@ import {
   SignInResponse,
   SignOutResponse
 } from '../interfaces/auth.interface';
+
+import { SIGN_IN_AUTHENTICATOR } from '../constants/auth.constant';
 
 import log from '@/utils/logger.util';
 import { sleep } from '@/utils/miscs.util';
@@ -33,8 +34,8 @@ GoogleSignin.configure({
 
 export function* login(action: PayloadAction<SignInDto>) {
   try {
+    const { authenticator, provider } = action.payload;
     let refreshToken: string | undefined;
-    const { provider } = action.payload;
 
     const passwordSignInActions = async () => {
       await sleep(LOGIN_DELAY);
@@ -48,44 +49,78 @@ export function* login(action: PayloadAction<SignInDto>) {
       }
     };
 
-    const facebookSignInActions = async (permissions: string[]) => {
+    const facebookSignInActions = async (limited: boolean, permissions?: string[]) => {
       await sleep(LOGIN_DELAY);
 
       try {
+        if (!permissions) throw new Error('Facebook permissions should not be empty');
+
         const nonce = (Math.random() + 1).toString(36).substring(7);
         const nonceSha256 = await sha256(nonce);
         const result = await LoginManager.logInWithPermissions(permissions, 'limited', nonceSha256);
+
+        let authenticationToken: AuthenticationToken | null = null;
+        let accessToken: AccessToken | null = null;
         let facebookCredential: FirebaseAuthTypes.AuthCredential;
 
         if (result.isCancelled) {
           throw new Error('User cancelled the login process');
         }
 
-        if (Platform.OS === 'ios') {
-          const data = await AuthenticationToken.getAuthenticationTokenIOS();
+        if (limited) {
+          authenticationToken = await AuthenticationToken.getAuthenticationTokenIOS();
 
-          if (!data) {
+          if (!authenticationToken) {
             throw new Error('Something went wrong obtaining authentication token');
           }
-
-          facebookCredential = Auth.FacebookAuthProvider.credential(data.authenticationToken, nonce);
         } else {
-          const data = await AccessToken.getCurrentAccessToken();
+          accessToken = await AccessToken.getCurrentAccessToken();
 
-          if (!data) {
+          if (!accessToken) {
             throw new Error('Something went wrong obtaining access token');
           }
-
-          facebookCredential = Auth.FacebookAuthProvider.credential(data?.accessToken);
         }
 
-        const facebookSignInRes = await Auth().signInWithCredential(facebookCredential);
+        if (authenticator === SIGN_IN_AUTHENTICATOR.FIREBASE) {
+          if (limited) {
+            if (!authenticationToken) {
+              throw new Error('Authentication token is null');
+            }
 
-        const userIdToken = await facebookSignInRes.user.getIdToken();
+            facebookCredential = Auth.FacebookAuthProvider.credential(authenticationToken.authenticationToken, nonce);
+          } else {
+            if (!accessToken) {
+              throw new Error('Access token is null');
+            }
 
-        const facebookResp = await AuthApi.facebookSignIn(userIdToken);
+            facebookCredential = Auth.FacebookAuthProvider.credential(accessToken.accessToken);
+          }
+          const facebookSignInRes = await Auth().signInWithCredential(facebookCredential);
+          const userIdToken = await facebookSignInRes.user.getIdToken();
+          const facebookResp = await AuthApi.facebookSignIn(authenticator, userIdToken, limited);
 
-        return facebookResp;
+          return facebookResp;
+        } else {
+          let facebookResp;
+
+          if (limited) {
+            if (!authenticationToken) {
+              throw new Error('Authentication token is null');
+            }
+            facebookResp = await AuthApi.facebookSignIn(
+              authenticator,
+              authenticationToken.authenticationToken,
+              limited
+            );
+          } else {
+            if (!accessToken) {
+              throw new Error('Access token is null');
+            }
+            facebookResp = await AuthApi.facebookSignIn(authenticator, accessToken.accessToken, limited);
+          }
+
+          return facebookResp;
+        }
       } catch (error) {
         log.extend('AUTH').error('Login with Facebook::', error);
       }
@@ -99,15 +134,22 @@ export function* login(action: PayloadAction<SignInDto>) {
 
         const { idToken } = await GoogleSignin.signIn();
 
-        const ggAuthCredential = Auth.GoogleAuthProvider.credential(idToken);
+        if (!idToken) {
+          throw new Error('Google Sign-In failed - no identify token returned');
+        }
 
-        const googleSignInRes = await Auth().signInWithCredential(ggAuthCredential);
+        if (authenticator === SIGN_IN_AUTHENTICATOR.FIREBASE) {
+          const ggAuthCredential = Auth.GoogleAuthProvider.credential(idToken);
+          const googleSignInRes = await Auth().signInWithCredential(ggAuthCredential);
+          const userIdToken = await googleSignInRes.user.getIdToken();
+          const googleResp = await AuthApi.googleSignIn(authenticator, userIdToken);
 
-        const userIdToken = await googleSignInRes.user.getIdToken();
+          return googleResp;
+        } else {
+          const googleResp = await AuthApi.googleSignIn(authenticator, idToken);
 
-        const googleResp = await AuthApi.googleSignIn(userIdToken);
-
-        return googleResp;
+          return googleResp;
+        }
       } catch (error) {
         log.extend('AUTH').error('Login with Google::', error);
       }
@@ -115,7 +157,6 @@ export function* login(action: PayloadAction<SignInDto>) {
 
     const appleSignInActions = async () => {
       await sleep(LOGIN_DELAY);
-
       try {
         const appleAuthRequestResponse = await appleAuth.performRequest({
           requestedOperation: appleAuth.Operation.LOGIN,
@@ -127,15 +168,19 @@ export function* login(action: PayloadAction<SignInDto>) {
         }
 
         const { identityToken, nonce } = appleAuthRequestResponse;
-        const appleCredential = Auth.AppleAuthProvider.credential(identityToken, nonce);
 
-        const appleSignInRes = await Auth().signInWithCredential(appleCredential);
+        if (authenticator === SIGN_IN_AUTHENTICATOR.FIREBASE) {
+          const appleCredential = Auth.AppleAuthProvider.credential(identityToken, nonce);
+          const appleSignInRes = await Auth().signInWithCredential(appleCredential);
+          const userIdToken = await appleSignInRes.user.getIdToken();
+          const appleResp = await AuthApi.appleSignIn(authenticator, userIdToken);
 
-        const userIdToken = await appleSignInRes.user.getIdToken();
+          return appleResp;
+        } else {
+          const appleResp = await AuthApi.appleSignIn(authenticator, identityToken);
 
-        const appleResp = await AuthApi.appleSignIn(userIdToken);
-
-        return appleResp;
+          return appleResp;
+        }
       } catch (error) {
         log.extend('AUTH').error('Login with Apple::', error);
       }
@@ -151,8 +196,14 @@ export function* login(action: PayloadAction<SignInDto>) {
         yield put(slices.actions.loginSuccess(credentialResponse.data));
         break;
       case 'facebook':
+        const { facebook } = action.payload;
+
+        if (!facebook) {
+          throw new Error('Facebook limited and permissions properties are missing.');
+        }
+
         const facebookResponse: AxiosResponse<SignInResponse> = yield call(() =>
-          facebookSignInActions(action.payload.facebook?.permissions || [])
+          facebookSignInActions(facebook.limited, facebook.permissions)
         );
 
         refreshToken = getRefreshTokenFromHeader<SignInResponse>(facebookResponse);
@@ -177,7 +228,7 @@ export function* login(action: PayloadAction<SignInDto>) {
         yield put(slices.actions.loginSuccess(appleResponse.data));
         break;
     }
-  } catch (error: unknown) {
+  } catch (error) {
     const err = error as NativeFirebaseError;
     // Ref: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth
 

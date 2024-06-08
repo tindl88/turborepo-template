@@ -22,6 +22,10 @@ export interface IConfigs {
     jwtExpiresIn: string;
     jwtRefreshSecretKey: string;
     jwtRefreshExpiresIn: string;
+    facebookClientId: string;
+    facebookClientSecret: string;
+    googleClientId: string;
+    googleClientSecret: string;
   };
   cache: {
     timeToLive: number;
