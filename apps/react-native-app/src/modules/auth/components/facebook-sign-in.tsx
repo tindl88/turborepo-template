@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Platform, PressableProps, StyleProp, ViewStyle } from 'react-native';
+
+import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
 
 import Button from '@/components/core-ui/button';
 import BrandFacebook from '@/components/svgs/brand-facebook';
@@ -11,18 +13,22 @@ interface IFacebookSignInProps {
 }
 
 const FacebookSignIn: FC<IFacebookSignInProps> = ({ style }) => {
-  const auth = useAuthState();
-
-  const onPress = async () => {
-    try {
-      auth.loginRequest({ provider: 'facebook', facebook: { permissions: ['public_profile', 'email'] } });
-    } catch (error) {
-      throw error;
-    }
-  };
+  const authState = useAuthState();
 
   return (
-    <Button style={style} onPress={onPress}>
+    <Button
+      style={style}
+      onPress={() => {
+        authState.loginRequest({
+          provider: SIGN_IN_PROVIDER.FACEBOOK,
+          authenticator: SIGN_IN_AUTHENTICATOR.SELF_HOSTED,
+          facebook: {
+            limited: Platform.OS === 'ios',
+            permissions: ['public_profile', 'email']
+          }
+        });
+      }}
+    >
       <BrandFacebook />
     </Button>
   );

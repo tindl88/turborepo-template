@@ -5,6 +5,10 @@ import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { SignInCredential } from '../interfaces/auth.interface';
+
+import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
+
 import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
 import Input from '@/components/core-ui/input';
@@ -13,28 +17,27 @@ import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import { signInValidator } from '../validators/sign-in.validator';
 
-interface IFormData {
-  email: string;
-  password: string;
-}
-
 const LoginForm = () => {
   const { t } = useTranslation();
-  const auth = useAuthState();
+  const authState = useAuthState();
 
   const defaultValues = {
     email: 'ammodesk@gmail.com',
     password: 'Ammodesk123@'
-  } as IFormData;
+  } as SignInCredential;
 
-  const form = useForm<IFormData>({
+  const form = useForm<SignInCredential>({
     resolver: zodResolver(signInValidator),
     defaultValues
   });
 
-  const onSubmit: SubmitHandler<IFormData> = async data => {
+  const onSubmit: SubmitHandler<SignInCredential> = async formData => {
     try {
-      auth.loginRequest({ provider: 'password', credentials: data });
+      authState.loginRequest({
+        provider: SIGN_IN_PROVIDER.PASSWORD,
+        authenticator: SIGN_IN_AUTHENTICATOR.SELF_HOSTED,
+        credentials: formData
+      });
     } catch (error) {}
   };
 

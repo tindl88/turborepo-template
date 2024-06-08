@@ -5,8 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AccessTokenStrategy } from './strategies/access-token.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
+import { AppleService } from './apple.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { FacebookService } from './facebook.service';
+import { GoogleService } from './google.service';
 
 import { FirebaseService } from '../firebase/firebase.service';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
@@ -26,7 +29,10 @@ import { UsersModule } from '../users/users.module';
     TokenService,
     RandomService,
     EmailService,
-    FirebaseService
+    FirebaseService,
+    AppleService,
+    FacebookService,
+    GoogleService
   ]
 })
 export class AuthModule {}

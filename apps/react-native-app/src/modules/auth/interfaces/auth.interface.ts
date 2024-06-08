@@ -1,5 +1,7 @@
 import { ResponseFormat } from '@/interfaces';
 
+import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
+
 export type AuthEntity = {
   user: {
     id: string;
@@ -11,34 +13,29 @@ export type AuthEntity = {
     refreshToken: string;
   };
 };
-
 export type RefreshTokenEntity = {
   accessToken: string;
 };
-
 export type SignInDto = {
-  provider?: string;
-  credentials?: {
-    email: string;
-    password: string;
-  };
+  provider: SIGN_IN_PROVIDER;
+  authenticator: SIGN_IN_AUTHENTICATOR;
+  credentials?: SignInCredential;
   facebook?: {
+    limited: boolean;
     permissions: string[];
   };
 };
 
-export type ResetPasswordDto = {
+export type SignInCredential = {
   email: string;
+  password: string;
 };
 
+export type ResetPasswordDto = { email: string };
 export type SignInResponse = ResponseFormat<AuthEntity>;
-export type SignOutResponse = ResponseFormat<{
-  status: string;
-}>;
+export type SignOutResponse = ResponseFormat<{ status: string }>;
 export type RefreshTokenResponse = ResponseFormat<RefreshTokenEntity>;
-export type ResetPasswordResponse = ResponseFormat<{
-  code: string;
-}>;
+export type ResetPasswordResponse = ResponseFormat<{ code: string }>;
 export type NativeFirebaseError = {
   code: string;
   message: string;
