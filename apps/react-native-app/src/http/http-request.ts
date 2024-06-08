@@ -1,6 +1,8 @@
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-import AuthApi from '@/modules/auth/api/auth.api';
+import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
+
+import { RefreshTokenResponse } from '@/modules/auth/interfaces/auth.interface';
 import slice from '@/modules/auth/states/auth.slice';
 import { getRefreshTokenFromStore, getSession } from '@/modules/auth/utils/session.util';
 
@@ -32,7 +34,9 @@ const interceptors = {
         const refreshToken = getRefreshTokenFromStore();
 
         if (refreshToken) {
-          const newTokens = await AuthApi.refreshToken(refreshToken);
+          const newTokens = await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {
+            token: refreshToken
+          });
 
           store.dispatch(slice.actions.updateAccessToken(newTokens.data.data));
 
