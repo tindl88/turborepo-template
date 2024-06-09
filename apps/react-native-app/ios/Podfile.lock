@@ -1295,7 +1295,7 @@ PODS:
   - RecaptchaInterop (100.0.0)
   - RNAppleAuthentication (2.3.0):
     - React-Core
-  - RNBootSplash (4.7.1):
+  - RNBootSplash (5.5.3):
     - React-Core
   - RNCClipboard (1.14.1):
     - React-Core
@@ -1779,7 +1779,7 @@ SPEC CHECKSUMS:
   ReactCommon: 1da3fc14d904883c46327b3322325eebf60a720a
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNAppleAuthentication: e99eaf3c4c01ad8ecb6125dd6f0cfd98871685b5
-  RNBootSplash: 3f3f7f82efe2addbfe7ddeda20877ff4d579cd81
+  RNBootSplash: e025d4ee98d942ee6c8b495a6fe66339a6b5f6dd
   RNCClipboard: 0a720adef5ec193aa0e3de24c3977222c7e52a37
   RNCPicker: f58e790450cb0a74c09dd1c677bd1de41a5741b9
   RNDateTimePicker: b6a9b35a785ecbe12b4e7d6de5439d0aa4614146

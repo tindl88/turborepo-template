@@ -47,7 +47,7 @@ const NavContainer = () => {
         theme={customTheme}
         linking={linking}
         onReady={() => {
-          BootSplash.hide({ fade: true, duration: 300 });
+          BootSplash.hide({ fade: true });
         }}
         onStateChange={async () => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

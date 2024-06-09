@@ -18,10 +18,12 @@ type Actions = {
   setTheme: (theme: ThemeEntity) => void;
   reset: () => void;
 };
+const colorScheme = Appearance.getColorScheme();
+const systemTheme = themeItems.find(x => x.key === colorScheme) as ThemeEntity;
 
 const initialState: States = {
-  theme: themeItems[0],
-  configs: themeConfig[themeItems[0].key as keyof typeof themeConfig]
+  theme: systemTheme,
+  configs: themeConfig[systemTheme.key as keyof typeof themeConfig]
 };
 
 export const useThemeState = create<States & Actions>()(
