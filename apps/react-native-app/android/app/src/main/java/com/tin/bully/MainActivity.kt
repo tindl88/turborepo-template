@@ -18,7 +18,7 @@ class MainActivity : ReactActivity() {
   override fun getMainComponentName(): String = "Bully"
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    RNBootSplash.init(this)
+    RNBootSplash.init(this, R.style.BootTheme)
     super.onCreate(null)
   }
 
