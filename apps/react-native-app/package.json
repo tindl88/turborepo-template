@@ -39,7 +39,7 @@
     "check:format": "prettier --check .",
     "link:font": "npx react-native-asset",
     "commit": "better-commits",
-    "gen:splash": "react-native generate-bootsplash src/assets/splash-screen.png --background=FFFFFF --logo-width=160 --assets-output=src/assets/bootsplash --flavor=main --html=index.html",
+    "gen:splash": "react-native generate-bootsplash src/assets/splash-logo.png --background=FFFFFF --logo-width=160 --assets-output=src/assets/bootsplash --flavor=main --html=index.html",
     "reset": "yarn clean:module && yarn clean:ios && yarn clean:android && yarn install && yarn reinstall",
     "reinstall": "yarn clean:pod && cd ios/ && pod install && cd ..",
     "clean:watcher": "watchman watch-del-all",
