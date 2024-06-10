@@ -1,17 +1,28 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ds } from '@/design-system';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
-type Props = StackScreenProps<AuthenticatedParamList, 'PostDetail'>;
+import {
+  TravelBottomTabParamList,
+  TravelDrawerParamList,
+  TravelExploreParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 
-function PostDetailScreen({ route }: Props) {
+type Props = CompositeScreenProps<
+  StackScreenProps<TravelExploreParamList, 'TravelPlaceDetail'>,
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
+>;
+
+function TravelPlaceDetailScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
@@ -70,7 +81,7 @@ function PostDetailScreen({ route }: Props) {
   );
 }
 
-export default PostDetailScreen;
+export default TravelPlaceDetailScreen;
 
 const styles = StyleSheet.create({
   container: {

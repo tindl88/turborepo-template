@@ -4,8 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ds } from '@/design-system';
 import { DefaultTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
-import Navigator from '@/navigation';
-
 import GlobalModal from '@/components/common/modal/global-modal';
 import LoadingBox from '@/components/common/popup/loading-box';
 
@@ -16,6 +14,8 @@ import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { accessibility } from '@/utils/accessibility.util';
+
+import NavigationRoot from './navigation-root';
 
 const linking = {
   prefixes: ['com.tin.bully://'],
@@ -66,7 +66,7 @@ const NavContainer = () => {
         }}
       >
         <SafeViewArea {...accessibility('Screen View')} backgroundColor={configs.background}>
-          <Navigator />
+          <NavigationRoot />
           <GlobalModal />
           <LoadingBox visible={authState.isFetching} />
         </SafeViewArea>

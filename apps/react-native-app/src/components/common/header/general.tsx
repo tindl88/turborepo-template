@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ds } from '@/design-system';
 import { dynamicStyles } from '@/design-system/utils/common-style.util';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 import IconArrowLeft from '@/components/svgs/ico-arrow-left';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
@@ -31,7 +32,7 @@ const GeneralNavigationHeader: FC<GeneralNavigationHeaderProps> = ({
   titleColor,
   subTitle = '',
   subTitleColor,
-  borderColor,
+  borderColor = 'transparent',
   backgroundColor,
   backgroundImage = '',
   leftIcon = null,

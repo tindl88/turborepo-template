@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '@/design-system';
 
 import Text from './text';
 import { ICoreUIBaseProps } from './types';
+import View from './view';
 
 type RoundedType = 0 | 2 | 4 | 6 | 8 | 12 | 14 | 16 | 18 | 20 | 22 | 24;
 

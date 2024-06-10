@@ -1,8 +1,9 @@
 import React from 'react';
 import { ds } from '@/design-system';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { AuthenticatedParamList } from '@/interfaces';
 
 import NavigationHeader from '@/components/common/header/general';
 import Loading from '@/components/core-ui/loading';
@@ -11,14 +12,22 @@ import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
+import {
+  TravelBottomTabParamList,
+  TravelDrawerParamList,
+  TravelExploreParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 import PostFilters from '@/modules/post/components/post-filter';
 import { PostList } from '@/modules/post/components/post-list';
 import { usePost } from '@/modules/post/hooks/use-post';
 import { useScreenState } from '@/modules/screen/states/screen.state';
 
-type Props = StackScreenProps<AuthenticatedParamList, 'Post'>;
+type Props = CompositeScreenProps<
+  StackScreenProps<TravelExploreParamList, 'TravelPlaces'>,
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
+>;
 
-function PostScreen({ route }: Props) {
+function TravelPlacesScreen({ route }: Props) {
   const screenState = useScreenState();
   const { isLoading, error, data, meta, filter, setFilter } = usePost(route.params);
 
@@ -31,13 +40,11 @@ function PostScreen({ route }: Props) {
           <Loading />
         </View>
       )}
-
       {error && (
         <View>
           <Text>Error fetching data</Text>
         </View>
       )}
-
       {!isLoading && !error && (
         <>
           <PostFilters value={filter.q} onTextChange={text => setFilter({ ...filter, q: text, page: 1 })} />
@@ -54,4 +61,4 @@ function PostScreen({ route }: Props) {
   );
 }
 
-export default PostScreen;
+export default TravelPlacesScreen;

@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Alert, AlertButton, Linking, View } from 'react-native';
+import { Alert, AlertButton, Linking } from 'react-native';
 import { Camera, Code, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
 import { ds } from '@/design-system';
 import { useIsFocused } from '@react-navigation/core';
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useIsForeground } from '@/hooks/use-is-foreground';
 
 import Button from '@/components/core-ui/button';
+import View from '@/components/core-ui/view';
 
 const showCodeAlert = (value: string, onDismissed: () => void): void => {
   const buttons: AlertButton[] = [

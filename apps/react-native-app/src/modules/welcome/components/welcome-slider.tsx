@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from 'react';
-import { Animated, Dimensions, View } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
@@ -7,6 +7,7 @@ import { Colors, ds } from '@/design-system';
 
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

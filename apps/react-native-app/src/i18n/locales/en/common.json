@@ -30,5 +30,10 @@
   "reset_password_title": "Reset password",
   "reset_password_desc": "Please enter your email address to request a password reset",
   "reset_password_btn": "Reset password",
-  "verification_title": "Verification"
+  "verification_title": "Verification",
+
+  "notifications": "Notifications",
+
+  "travel_accomodations": "Khách sạn",
+  "travel_tours": "Tours"
 }

@@ -10,6 +10,13 @@ export type MarginType = {
   mr0: ViewStyle;
   mb0: ViewStyle;
   ml0: ViewStyle;
+  m1: ViewStyle;
+  mx1: ViewStyle;
+  my1: ViewStyle;
+  mt1: ViewStyle;
+  mr1: ViewStyle;
+  mb1: ViewStyle;
+  ml1: ViewStyle;
   m2: ViewStyle;
   mx2: ViewStyle;
   my2: ViewStyle;

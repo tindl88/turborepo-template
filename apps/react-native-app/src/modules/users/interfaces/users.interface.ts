@@ -1,4 +1,4 @@
-import { ResponseFormat } from '@/interfaces';
+import { ResponseFormat } from '@/interfaces/api-response.interface';
 
 import { USER_STATUS } from '../constants/users.constant';
 

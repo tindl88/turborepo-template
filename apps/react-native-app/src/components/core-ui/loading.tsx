@@ -1,5 +1,5 @@
 import React, { FC, memo, useEffect, useRef } from 'react';
-import { Animated, Easing, View, ViewStyle } from 'react-native';
+import { Animated, Easing, ViewStyle } from 'react-native';
 import { Colors } from '@/design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
@@ -7,6 +7,7 @@ import { useThemeState } from '@/modules/theme/states/theme.state';
 import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
+import View from './view';
 
 interface ILoadingProps extends ICoreUIBaseProps {
   animationSpeed?: number;

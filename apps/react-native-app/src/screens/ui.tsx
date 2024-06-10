@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Image, ImageStyle, View } from 'react-native';
+import { Image, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import { Colors, ds } from '@/design-system';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { AuthenticatedParamList, HomeDrawerParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import { hideGlobalModal, showGlobalModal } from '@/components/common/modal/global-modal';
@@ -29,10 +28,17 @@ import ProgressBar from '@/components/core-ui/progressbar';
 import StatusBar from '@/components/core-ui/statusbar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
+
+import {
+  AuthenticatedParamList,
+  TravelBottomTabParamList,
+  TravelDrawerParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 
 type Props = CompositeScreenProps<
-  DrawerScreenProps<HomeDrawerParamList, 'UI'>,
-  StackScreenProps<AuthenticatedParamList>
+  StackScreenProps<AuthenticatedParamList, 'UI'>,
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
 >;
 
 function UIScreen({ route }: Props) {
@@ -46,8 +52,12 @@ function UIScreen({ route }: Props) {
       <ScrollView style={[ds.flex1, ds.px10]}>
         <Tabs defaultValue="tab-ui-kit">
           <TabsList>
-            <TabsTrigger value="tab-ui-kit">UI Kit</TabsTrigger>
-            <TabsTrigger value="tab-components">Components</TabsTrigger>
+            <TabsTrigger value="tab-ui-kit">
+              <Text>UI Kit</Text>
+            </TabsTrigger>
+            <TabsTrigger value="tab-components">
+              <Text>Components</Text>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="tab-ui-kit">
             <Heading as={'h1'} text="Heading 1" />

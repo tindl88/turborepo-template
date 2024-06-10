@@ -7,7 +7,7 @@ import VerifyOtpScreen from '@/screens/verify-otp';
 import WelcomeScreen from '@/screens/welcome';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { UnauthenticatedParamList } from '@/interfaces';
+import { UnauthenticatedParamList } from '../interfaces/navigation.interface';
 
 const Stack = createStackNavigator<UnauthenticatedParamList>();
 

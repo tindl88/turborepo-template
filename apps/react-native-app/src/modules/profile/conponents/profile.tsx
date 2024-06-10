@@ -9,13 +9,11 @@ import {
   ShieldAlertIcon,
   UserIcon
 } from 'lucide-react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces/navigation.interface';
 import { ProfileAction } from '../interfaces/profile.interface';
 
 import Box from '@/components/common/box';
@@ -23,6 +21,11 @@ import Divider from '@/components/core-ui/divider';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import { useLanguageState } from '@/modules/language/states/language.state';
+import {
+  AuthenticatedParamList,
+  ProfileParamList,
+  TravelBottomTabParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import ProfileActionList from './profile-action-list';
@@ -30,8 +33,8 @@ import ProfileAvatar from './profile-avatar';
 import ProfileVersion from './profile-version';
 
 type NavigationProps = CompositeNavigationProp<
-  StackNavigationProp<HomeBottomTabParamList>,
-  DrawerNavigationProp<AuthenticatedParamList>
+  StackNavigationProp<ProfileParamList>,
+  CompositeNavigationProp<StackNavigationProp<TravelBottomTabParamList>, DrawerNavigationProp<AuthenticatedParamList>>
 >;
 type ProfileProps = {};
 
@@ -51,7 +54,7 @@ const Profile: FC<ProfileProps> = () => {
       action: () => navigation.navigate('TermsAndConditions')
     },
     { icon: ShieldAlertIcon, name: 'Privacy Policy', type: 'sub', action: () => navigation.navigate('PrivacyPolicy') },
-    { icon: SettingsIcon, name: 'Settings', type: 'sub', action: () => navigation.navigate('Setting') },
+    { icon: SettingsIcon, name: 'Settings', type: 'sub', action: () => navigation.navigate('Settings') },
     {
       icon: LanguagesIcon,
       name: 'Languages',
@@ -71,14 +74,12 @@ const Profile: FC<ProfileProps> = () => {
 
   return (
     <>
-      <ScrollView style={[ds.px14, ds.py14]} showsVerticalScrollIndicator={false}>
-        <Box padding={0} style={[ds.rounded16, ds.overflowHidden]}>
-          <Divider height={14} />
-          <ProfileAvatar />
-          <ProfileActionList items={profileActions} style={ds.mt14} />
-        </Box>
-        <ProfileVersion style={ds.mt10} />
-      </ScrollView>
+      <Box padding={0} style={[ds.rounded16, ds.overflowHidden]}>
+        <Divider height={14} />
+        <ProfileAvatar />
+        <ProfileActionList items={profileActions} style={ds.mt14} />
+      </Box>
+      <ProfileVersion style={ds.mt10} />
     </>
   );
 };

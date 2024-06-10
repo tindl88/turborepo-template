@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
+
+import View from './view';
 
 interface ISeparatorProps {
   orientation?: 'vertical' | 'horizontal';

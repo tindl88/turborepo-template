@@ -1,15 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { UnauthenticatedParamList } from '@/interfaces';
 
 import Button from '@/components/core-ui/button';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
+import { UnauthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import WelcomeSlider from '@/modules/welcome/components/welcome-slider';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Welcome'>;

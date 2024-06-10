@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Animated, Dimensions, FlatList, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Animated, Dimensions, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
+import { FlatList } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import VersionCheck from 'react-native-version-check';
 import { ds } from '@/design-system';
 
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 const { width, height } = Dimensions.get('window');
 

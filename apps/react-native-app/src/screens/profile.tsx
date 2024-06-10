@@ -1,20 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
-
 import GeneralNavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
+import View from '@/components/core-ui/view';
 
+import {
+  AuthenticatedParamList,
+  ProfileParamList,
+  TravelDrawerParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 import Profile from '@/modules/profile/conponents/profile';
 
 type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeBottomTabParamList, 'Profile'>,
-  StackScreenProps<AuthenticatedParamList>
+  StackScreenProps<ProfileParamList, 'Profile'>,
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, StackScreenProps<AuthenticatedParamList>>
 >;
 
 function ProfileScreen({ route }: Props) {
@@ -22,7 +26,9 @@ function ProfileScreen({ route }: Props) {
     <View style={ds.flex1}>
       <StatusBar />
       <GeneralNavigationHeader title={route.name} />
-      <Profile />
+      <ScrollView showsVerticalScrollIndicator={false} style={ds.p14}>
+        <Profile />
+      </ScrollView>
     </View>
   );
 }

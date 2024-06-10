@@ -1,21 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList, HomeDrawerParamList } from '@/interfaces';
-
 import GeneralNavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
+import View from '@/components/core-ui/view';
 
+import {
+  AuthenticatedParamList,
+  TravelBottomTabParamList,
+  TravelDrawerParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 import Theme from '@/modules/theme/components/theme';
 
 type Props = CompositeScreenProps<
   StackScreenProps<AuthenticatedParamList, 'SettingTheme'>,
-  CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList>, BottomTabScreenProps<HomeBottomTabParamList>>
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
 >;
 
 function SettingThemeScreen({ route }: Props) {

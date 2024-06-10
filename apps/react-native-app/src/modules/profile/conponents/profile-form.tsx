@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 import { UpdateProfileDto } from '../interfaces/profile.interface';
 
 import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
 import Input from '@/components/core-ui/input';
+import View from '@/components/core-ui/view';
 
 import { AuthEntity } from '@/modules/auth/interfaces/auth.interface';
 import { useAuthState } from '@/modules/auth/states/auth.state';
@@ -35,43 +36,40 @@ const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
     resolver: zodResolver(updateProfileValidator),
     defaultValues
   });
+  const mutation = useMutation({
+    mutationFn: (formData: UpdateProfileDto) => ProfileApi.updateProfile(formData),
+    onSuccess: resp => authState.updateAuthData(resp.data.data),
+    onError: error => log.extend('PROFILE').error(`Submit Form: ${error}`)
+  });
 
   const onSubmit: SubmitHandler<UpdateProfileDto> = async formData => {
-    try {
-      const resp = await ProfileApi.updateProfile(formData);
-
-      authState.updateAuthData(resp.data.data);
-    } catch (error) {
-      log.extend('PROFILE').error(`Submit Form: ${error}`);
-    }
+    mutation.mutate(formData);
   };
 
   return (
-    <View>
-      <Form {...form}>
-        <View>
-          <FormField
-            name="name"
-            control={form.control}
-            rules={{ required: true }}
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <Input
-                  {...field}
-                  style={fieldState.error && ds.borderRed500}
-                  placeholder="Name"
-                  onChangeText={field.onChange}
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </View>
-        <View style={ds.mt20}>
-          <Button onPress={form.handleSubmit(onSubmit)}>{t('update').toUpperCase()}</Button>
-        </View>
-      </Form>
-    </View>
+    <Form {...form}>
+      <View>
+        <FormField
+          name="name"
+          control={form.control}
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <Input
+                {...field}
+                style={fieldState.error && ds.borderRed500}
+                placeholder="Name"
+                onChangeText={field.onChange}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </View>
+      <View style={ds.mt20}>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('update').toUpperCase()}</Button>
+      </View>
+    </Form>
   );
 };
 

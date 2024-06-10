@@ -1,20 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { UnauthenticatedParamList } from '@/interfaces';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
 import Heading from '@/components/core-ui/heading';
 import Line from '@/components/core-ui/line';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
+import { UnauthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'CreateNewPassword'>;

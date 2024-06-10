@@ -1,13 +1,13 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Button from '@/components/core-ui/button';
-import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/core-ui/form';
+import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
 import Input from '@/components/core-ui/input';
+import View from '@/components/core-ui/view';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import { CreateUserDto } from '@/modules/users/interfaces/users.interface';
@@ -42,69 +42,83 @@ const RegisterForm = () => {
   };
 
   return (
-    <View>
-      <Form {...form}>
-        <View>
-          <FormField
-            name="name"
-            control={form.control}
-            rules={{ required: true }}
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </View>
-        <View style={ds.mt14}>
-          <FormField
-            name="email"
-            control={form.control}
-            rules={{ required: true }}
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel>Email address</FormLabel>
-                <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </View>
-        <View style={ds.mt14}>
-          <FormField
-            name="password"
-            control={form.control}
-            rules={{ required: true }}
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel>{t('password')}</FormLabel>
-                <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </View>
-        <View style={ds.mt14}>
-          <FormField
-            name="confirmPassword"
-            control={form.control}
-            rules={{ required: true }}
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel>{t('confirm_password')}</FormLabel>
-                <Input {...field} style={fieldState.error && ds.borderRed500} onChangeText={field.onChange} />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </View>
-        <View style={ds.mt20}>
-          <Button onPress={form.handleSubmit(onSubmit)}>{t('create_account').toUpperCase()}</Button>
-        </View>
-      </Form>
-    </View>
+    <Form {...form}>
+      <View>
+        <FormField
+          name="name"
+          control={form.control}
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <Input
+                {...field}
+                placeholder="Name"
+                style={fieldState.error && ds.borderRed500}
+                onChangeText={field.onChange}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </View>
+      <View style={ds.mt14}>
+        <FormField
+          name="email"
+          control={form.control}
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <Input
+                {...field}
+                placeholder="Email"
+                style={fieldState.error && ds.borderRed500}
+                onChangeText={field.onChange}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </View>
+      <View style={ds.mt14}>
+        <FormField
+          name="password"
+          control={form.control}
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <Input
+                {...field}
+                placeholder={t('password')}
+                style={fieldState.error && ds.borderRed500}
+                onChangeText={field.onChange}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </View>
+      <View style={ds.mt14}>
+        <FormField
+          name="confirmPassword"
+          control={form.control}
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <Input
+                {...field}
+                placeholder={t('confirm_password')}
+                style={fieldState.error && ds.borderRed500}
+                onChangeText={field.onChange}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </View>
+      <View style={ds.mt32}>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('create_account').toUpperCase()}</Button>
+      </View>
+    </Form>
   );
 };
 
