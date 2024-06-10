@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import { ds } from '@/design-system';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
 
@@ -8,11 +10,10 @@ import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import View from '@/components/core-ui/view';
 
+import { ExploreParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import TravelPlaceList from './travel-place-list';
-
-type TravelPlacesProps = {};
 
 const items = [
   {
@@ -38,14 +39,21 @@ const items = [
   }
 ] as TravelPlaceEntity[];
 
-const TravelPlaces: FC<TravelPlacesProps> = () => {
+type TravelPlacesRootProps = {};
+
+const TravelPlacesRoot: FC<TravelPlacesRootProps> = ({}) => {
+  const navigation = useNavigation<StackNavigationProp<ExploreParamList>>();
   const { configs } = useThemeState();
 
   return (
     <>
       <View style={[ds.row, ds.itemsCenter, ds.justifyBetween, ds.px14]}>
         <Heading as="h3" fontWeight="Medium" text="Travel Places" />
-        <Link text="See All" color={configs.primary} onPress={() => {}} />
+        <Link
+          text="See All"
+          color={configs.primary}
+          onPress={() => navigation.navigate('TravelPlaces', { limit: 10, page: 1, q: '' })}
+        />
       </View>
       <Divider height={10} />
       <TravelPlaceList items={items} />
@@ -53,4 +61,4 @@ const TravelPlaces: FC<TravelPlacesProps> = () => {
   );
 };
 
-export default TravelPlaces;
+export default TravelPlacesRoot;

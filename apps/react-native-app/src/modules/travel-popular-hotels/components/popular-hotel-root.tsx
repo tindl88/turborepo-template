@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
 import { ds } from '@/design-system';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import View from '@/components/core-ui/view';
 
+import { AccomodationParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
 
-import TravelPopularDestinationList from './travel-popular-destination-list';
+import PopularHotelList from './popular-hotel-list';
 
 const items = [
   {
@@ -53,20 +56,25 @@ const items = [
   }
 ] as AccomodationEntity[];
 
-type TravelPopularDestinationsProps = {};
+type PopularHotelsRootProps = {};
 
-const TravelPopularDestinations: FC<TravelPopularDestinationsProps> = () => {
+const PopularHotelsRoot: FC<PopularHotelsRootProps> = () => {
+  const navigation = useNavigation<StackNavigationProp<AccomodationParamList>>();
   const { configs } = useThemeState();
 
   return (
     <View style={[ds.px14]}>
       <View style={[ds.row, ds.itemsCenter, ds.justifyBetween, ds.py10]}>
-        <Heading as="h3" fontWeight="Medium" text="Popular Destinations" />
-        <Link text="See All" color={configs.primary} onPress={() => {}} />
+        <Heading as="h3" fontWeight="Medium" text="Popular Hotels" />
+        <Link
+          text="See All"
+          color={configs.primary}
+          onPress={() => navigation.navigate('Accomodations', { q: '', page: 1, limit: 10 })}
+        />
       </View>
-      <TravelPopularDestinationList items={items} />
+      <PopularHotelList items={items} />
     </View>
   );
 };
 
-export default TravelPopularDestinations;
+export default PopularHotelsRoot;

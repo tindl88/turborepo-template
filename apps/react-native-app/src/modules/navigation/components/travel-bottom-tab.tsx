@@ -6,10 +6,10 @@ import { TravelBottomTabParamList } from '../interfaces/navigation.interface';
 
 import NotificationStack from './notification-stack';
 import ProfileStack from './profile-stack';
-import TravelAccomodationStack from './travel-accomidation-stack';
+import AccomodationStack from './travel-accomidation-stack';
 import TravelExploreStack from './travel-explore-stack';
 import TravelTabBar, { TravelTabBarProps } from './travel-tab-bar';
-import TravelTourStack from './travel-tour-stack';
+import TourStack from './travel-tour-stack';
 
 const Tab = createBottomTabNavigator<TravelBottomTabParamList>();
 
@@ -19,14 +19,18 @@ const TravelBottomTabNavigator = () => {
   const { t } = useTranslation();
 
   return (
-    <Tab.Navigator tabBar={CustomTabBar} screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      initialRouteName="TravelExploreStack"
+      tabBar={CustomTabBar}
+      screenOptions={{ headerShown: false, unmountOnBlur: true }}
+    >
       <Tab.Screen name="TravelExploreStack" component={TravelExploreStack} options={{ tabBarLabel: t('home') }} />
       <Tab.Screen
-        name="TravelAccomodationStack"
-        component={TravelAccomodationStack}
+        name="AccomodationStack"
+        component={AccomodationStack}
         options={{ tabBarLabel: t('travel_accomodations') }}
       />
-      <Tab.Screen name="TravelTourStack" component={TravelTourStack} options={{ tabBarLabel: t('travel_tours') }} />
+      <Tab.Screen name="TourStack" component={TourStack} options={{ tabBarLabel: t('travel_tours') }} />
       <Tab.Screen name="NotificationStack" component={NotificationStack} options={{ tabBarLabel: t('travel_tours') }} />
       <Tab.Screen name="ProfileStack" component={ProfileStack} options={{ tabBarLabel: t('profile') }} />
     </Tab.Navigator>

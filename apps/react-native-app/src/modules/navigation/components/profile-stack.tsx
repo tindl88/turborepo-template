@@ -9,7 +9,7 @@ const Stack = createStackNavigator<ProfileParamList>();
 
 const ProfileStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="ProfileEdit" component={ProfileEditScreen} />
     </Stack.Navigator>

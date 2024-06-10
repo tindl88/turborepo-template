@@ -2,10 +2,6 @@ import React from 'react';
 import { Image, ImageSourcePropType, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
@@ -13,26 +9,17 @@ import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
-import {
-  AuthenticatedParamList,
-  TravelDrawerParamList,
-  TravelExploreParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import { HomeStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import {
   TravelCategories,
   TravelCategoryList,
   TravelCategoryTrigger
 } from '@/modules/travel-categories/components/travel-categories';
 import TravelHeader from '@/modules/travel-common/components/travel-header';
-import TravelPlaces from '@/modules/travel-places/components/travel-places';
-import TravelPopularDestinations from '@/modules/travel-popular-destinations/components/travel-popular-destinations';
+import TravelPlacesRoot from '@/modules/travel-places/components/travel-places-root';
+import PopularHotelsRoot from '@/modules/travel-popular-hotels/components/popular-hotel-root';
 
-type Props = CompositeScreenProps<
-  BottomTabScreenProps<TravelExploreParamList, 'Home'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, StackScreenProps<AuthenticatedParamList>>
->;
-
-function HomeScreen({}: Props) {
+function HomeScreen({}: HomeStackProps<'Home'>) {
   const travelCategories = [
     { id: '1', name: 'Asia', image: require('@/assets/travels/category-asia.jpeg') },
     { id: '2', name: 'Europe', image: require('@/assets/travels/category-europe.jpeg') },
@@ -68,9 +55,9 @@ function HomeScreen({}: Props) {
           </TravelCategoryList>
         </TravelCategories>
         <Divider height={14} />
-        <TravelPlaces />
+        <TravelPlacesRoot />
         <Divider height={14} />
-        <TravelPopularDestinations />
+        <PopularHotelsRoot />
         <Divider height={14} />
       </ScrollView>
     </View>

@@ -13,7 +13,7 @@ type Props = StackScreenProps<AuthenticatedParamList, 'Preload'>;
 function PreloadScreen({ navigation }: Props) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('TravelDrawer');
+      navigation.replace('TravelDrawer', { screen: 'TravelBottomTabStack' });
     }, 1000);
   }, [navigation]);
 

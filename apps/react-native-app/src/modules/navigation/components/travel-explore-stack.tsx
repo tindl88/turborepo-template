@@ -4,9 +4,9 @@ import TravelPlaceDetailScreen from '@/screens/travel-place-detail';
 import TravelPlacesScreen from '@/screens/travel-places';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { TravelExploreParamList } from '../interfaces/navigation.interface';
+import { ExploreParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<TravelExploreParamList>();
+const Stack = createStackNavigator<ExploreParamList>();
 
 const TravelExploreStack = () => {
   return (

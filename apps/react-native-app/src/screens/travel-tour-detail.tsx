@@ -12,27 +12,30 @@ import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
 import {
+  TourParamList,
   TravelBottomTabParamList,
-  TravelDrawerParamList,
-  TravelTourParamList
+  TravelDrawerParamList
 } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
+import TourDetailRoot from '@/modules/travel-tours/components/tour-detail-root';
 
 type Props = CompositeScreenProps<
-  StackScreenProps<TravelTourParamList, 'TravelTourDetail'>,
+  StackScreenProps<TourParamList, 'TourDetail'>,
   CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
 >;
 
-function TravelTourDetailScreen({ route }: Props) {
+function TourDetailScreen({ route }: Props) {
   const { configs } = useThemeState();
 
   return (
     <View style={[ds.flex1, dynamicStyles.background(configs.background)]}>
       <StatusBar />
       <NavigationHeader title={route.name} />
-      <ScrollView showsVerticalScrollIndicator={false} style={[ds.p14]} />
+      <ScrollView style={[ds.flex1, ds.p14]}>
+        <TourDetailRoot routeParams={route.params} />
+      </ScrollView>
     </View>
   );
 }
 
-export default TravelTourDetailScreen;
+export default TourDetailScreen;

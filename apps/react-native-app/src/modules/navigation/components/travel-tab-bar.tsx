@@ -26,10 +26,10 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
       case 'TravelExploreStack':
         icon = <CompassIcon size={28} strokeWidth={1.5} color={iconColor} />;
         break;
-      case 'TravelAccomodationStack':
+      case 'AccomodationStack':
         icon = <HotelIcon size={28} strokeWidth={1.5} color={iconColor} />;
         break;
-      case 'TravelTourStack':
+      case 'TourStack':
         icon = <TentTreeIcon size={28} strokeWidth={1.5} color={iconColor} />;
         break;
       case 'NotificationStack':
@@ -65,8 +65,15 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
           const event = rest.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
 
           if (!isFocused && !event.defaultPrevented) {
-            rest.navigation.navigate({ name: route.name, params: route.params, merge: true });
+            rest.navigation.navigate({ name: route.name, params: route.params });
           }
+        };
+
+        const onLongPress = () => {
+          rest.navigation.emit({
+            type: 'tabLongPress',
+            target: route.key
+          });
         };
 
         return (
@@ -78,6 +85,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
             testID={options.tabBarTestID}
             style={[ds.itemsCenter, ds.p12]}
             onPress={onPress}
+            onLongPress={onLongPress}
           >
             {renderIcon(route.name, isFocused)}
             {showText && (
