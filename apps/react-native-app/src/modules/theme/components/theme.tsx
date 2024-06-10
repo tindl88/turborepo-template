@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-import { ds } from '@/design-system';
 
 import { themeItems } from '../constants/theme.constant';
-
-import Box from '@/components/common/box';
 
 import { useThemeState } from '../states/theme.state';
 
@@ -14,11 +11,7 @@ type ThemeProps = {};
 const Theme: FC<ThemeProps> = () => {
   const { theme } = useThemeState();
 
-  return (
-    <Box padding={0} style={ds.grow}>
-      <ThemeList items={themeItems} currentTheme={theme.key} />
-    </Box>
-  );
+  return <ThemeList items={themeItems} currentTheme={theme.key} />;
 };
 
 export default Theme;

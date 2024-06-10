@@ -5,8 +5,6 @@ import { ds } from '@/design-system';
 
 import View from '@/components/core-ui/view';
 
-import { createStyle } from '@/utils/stylesheet.util';
-
 import InputText from './core-ui/input';
 
 type SearchBoxProps = {
@@ -16,9 +14,9 @@ type SearchBoxProps = {
 
 const SearchBox: FC<SearchBoxProps> = ({ value, onChange }) => {
   return (
-    <View style={[ds.row, ds.px14]}>
-      <InputText value={value} style={[ds.grow, ds.bgWhite, styles.input]} onChangeText={onChange} />
-      <Pressable style={[ds.absolute, ds.px10, ds.justifyCenter, styles.button]}>
+    <View style={ds.row}>
+      <InputText value={value} style={[ds.grow, ds.bgWhite, ds.pr56]} onChangeText={onChange} />
+      <Pressable style={[ds.absolute, ds.right0, ds.roundedR12, ds.px10, ds.h44, ds.mt2, ds.justifyCenter]}>
         <SearchIcon />
       </Pressable>
     </View>
@@ -26,14 +24,3 @@ const SearchBox: FC<SearchBoxProps> = ({ value, onChange }) => {
 };
 
 export default SearchBox;
-
-const styles = createStyle({
-  input: {
-    paddingRight: 56
-  },
-  button: {
-    right: 16,
-    marginTop: 1,
-    height: 46
-  }
-});

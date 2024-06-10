@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 
 import Button from '@/components/core-ui/button';
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 interface IConfirmBoxProps {
   title?: string | null;

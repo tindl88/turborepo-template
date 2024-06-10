@@ -1,14 +1,15 @@
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable } from 'react-native';
 import { ds } from '@/design-system';
 import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 
-import { TravelDrawerParamList } from '@/interfaces';
+import { TravelDrawerParamList } from '../interfaces/navigation.interface';
 
 import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
 import IconSettings from '@/components/svgs/ico-settings';
@@ -70,7 +71,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.p12,
             isActive('UI') && dynamicStyles.background(configs.primary)
           ]}
-          onPress={() => props.navigation.navigate('TravelDrawer', { screen: 'UI' })}
+          onPress={() => props.navigation.navigate('UI')}
         >
           <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
           <Text
@@ -106,14 +107,14 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('Setting') && dynamicStyles.background(configs.primary)
+            isActive('Settings') && dynamicStyles.background(configs.primary)
           ]}
-          onPress={() => props.navigation.navigate('Setting')}
+          onPress={() => props.navigation.navigate('Settings')}
         >
-          <IconSettings color={isActive('Setting') ? primaryForegroundColor : foregroundColor} />
+          <IconSettings color={isActive('Settings') ? primaryForegroundColor : foregroundColor} />
           <Text
-            fontWeight={isActive('Setting') ? 'Bold' : 'Regular'}
-            color={isActive('Setting') ? primaryForegroundColor : foregroundColor}
+            fontWeight={isActive('Settings') ? 'Bold' : 'Regular'}
+            color={isActive('Settings') ? primaryForegroundColor : foregroundColor}
             style={ds.ml12}
           >
             Settings
@@ -146,7 +147,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.p12,
             isActive('Profile') && dynamicStyles.background(configs.primary)
           ]}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('ProfileStack')}
         >
           <IconUser color={isActive('Profile') ? primaryForegroundColor : foregroundColor} />
           <Text

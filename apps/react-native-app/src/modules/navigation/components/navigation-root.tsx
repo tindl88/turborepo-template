@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { MMKV } from 'react-native-mmkv';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { RootStackParamList } from '@/interfaces/navigation.interface';
+import { RootStackParamList } from '../interfaces/navigation.interface';
 
 import { useAppState } from '@/modules/app/states/app.state';
 import { useAuthState } from '@/modules/auth/states/auth.state';
@@ -16,7 +16,7 @@ const storage = new MMKV();
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const InitNavigator = () => {
+const NavigationRoot = () => {
   const appState = useAppState();
   const authState = useAuthState();
   const { i18n } = useTranslation();
@@ -47,4 +47,4 @@ const InitNavigator = () => {
   );
 };
 
-export default InitNavigator;
+export default NavigationRoot;

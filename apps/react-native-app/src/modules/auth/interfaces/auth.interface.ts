@@ -1,4 +1,4 @@
-import { ResponseFormat } from '@/interfaces';
+import { ResponseFormat } from '@/interfaces/api-response.interface';
 
 import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
 

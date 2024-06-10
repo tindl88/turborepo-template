@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { PostScreenParams, ResponseMeta } from '@/interfaces';
+import { ResponseMeta } from '@/interfaces/api-response.interface';
 import { PostEntity, PostFilter } from '../interfaces/post.interface';
+
+import { TravelPlacesScreenParams } from '@/modules/navigation/interfaces/navigation.interface';
 
 import PostApi from '../api/post.api';
 
@@ -15,7 +17,7 @@ type UsePostProps = {
   setFilter: (filter: PostFilter) => void;
 };
 
-export function usePost(filters: PostScreenParams): UsePostProps {
+export function usePost(filters: TravelPlacesScreenParams): UsePostProps {
   const { q, page, limit } = filters;
   const [filter, setFilter] = useState<PostFilter>({ q, page, limit });
 

@@ -1,6 +1,6 @@
 import { LucideProps } from 'lucide-react-native';
 
-import { ResponseFormat } from '@/interfaces';
+import { ResponseFormat } from '@/interfaces/api-response.interface';
 
 import { UserEntity } from '@/modules/users/interfaces/users.interface';
 

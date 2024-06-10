@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ResponseError } from '@/interfaces';
+import { ResponseError } from '@/interfaces/api-response.interface';
 import {
   AuthEntity,
   RefreshTokenEntity,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 
 import OtpInput from '@/components/core-ui/otp-input';
+import View from '@/components/core-ui/view';
 
 import { useAuthState } from '../states/auth.state';
 

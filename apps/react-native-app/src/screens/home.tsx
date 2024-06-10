@@ -3,10 +3,9 @@ import { Image, ImageSourcePropType, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
 
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
@@ -14,6 +13,11 @@ import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
+import {
+  AuthenticatedParamList,
+  TravelDrawerParamList,
+  TravelExploreParamList
+} from '@/modules/navigation/interfaces/navigation.interface';
 import {
   TravelCategories,
   TravelCategoryList,
@@ -24,8 +28,8 @@ import TravelPlaces from '@/modules/travel-places/components/travel-places';
 import TravelPopularDestinations from '@/modules/travel-popular-destinations/components/travel-popular-destinations';
 
 type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeBottomTabParamList, 'Home'>,
-  StackScreenProps<AuthenticatedParamList>
+  BottomTabScreenProps<TravelExploreParamList, 'Home'>,
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, StackScreenProps<AuthenticatedParamList>>
 >;
 
 function HomeScreen({}: Props) {

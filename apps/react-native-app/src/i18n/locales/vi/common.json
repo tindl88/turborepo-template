@@ -30,5 +30,10 @@
   "reset_password_title": "Quên mật khẩu",
   "reset_password_desc": "Nhập địa chỉ email của bạn để lấy mã OTP để đặt lại mật khẩu",
   "reset_password_btn": "Khôi phục mật khẩu",
-  "verification_title": "Verification"
+  "verification_title": "Verification",
+
+  "notifications": "Thông báo",
+
+  "travel_accomodations": "Hotels",
+  "travel_tours": "Tours"
 }

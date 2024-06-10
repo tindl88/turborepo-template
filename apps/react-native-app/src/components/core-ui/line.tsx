@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleProp, TextStyle, View, ViewStyle } from 'react-native';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ds } from '@/design-system';
+
+import View from './view';
 
 interface ILineProps {
   orientation?: 'vertical' | 'horizontal';

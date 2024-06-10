@@ -6,21 +6,22 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { AuthenticatedParamList, HomeBottomTabParamList } from '@/interfaces';
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
 import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
-import IconSliders from '@/components/svgs/ico-sliders';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
+import { AuthenticatedParamList, TravelBottomTabParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 function TravelHeader() {
   const navigation =
     useNavigation<
-      CompositeNavigationProp<StackNavigationProp<HomeBottomTabParamList>, DrawerNavigationProp<AuthenticatedParamList>>
+      CompositeNavigationProp<
+        StackNavigationProp<TravelBottomTabParamList>,
+        DrawerNavigationProp<AuthenticatedParamList>
+      >
     >();
   const { configs } = useThemeState();
   const authState = useAuthState();
@@ -42,18 +43,13 @@ function TravelHeader() {
                 Search
               </Text>
             </View>
-
             <View style={[ds.row, ds.gap2, ds.mr10]}>
-              <Pressable style={ds.p6} onPress={() => navigation.navigate('Filter')}>
-                <IconSliders color={foregroundColor} />
-              </Pressable>
-              <Pressable style={ds.p6} onPress={() => navigation.navigate('Notification')}>
+              <Pressable style={ds.p6} onPress={() => navigation.navigate('NotificationStack')}>
                 <IconBell color={foregroundColor} />
               </Pressable>
             </View>
           </View>
-
-          <Avatar onPress={() => navigation.navigate('Profile')}>
+          <Avatar onPress={() => navigation.navigate('ProfileStack')}>
             <AvatarImage src={userAvatar} />
             <AvatarFallback>{userName}</AvatarFallback>
           </Avatar>

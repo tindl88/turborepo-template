@@ -1,4 +1,5 @@
-import { BaseFilter, ResponseFormat } from '@/interfaces';
+import { ResponseFormat } from '@/interfaces/api-response.interface';
+import { BaseFilter } from '@/interfaces/filter.interface';
 
 export type PostEntity = {
   id: number;

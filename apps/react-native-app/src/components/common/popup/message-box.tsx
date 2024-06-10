@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { View } from 'react-native';
 import { ds } from '@/design-system';
 
 import Button from '@/components/core-ui/button';
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 interface IMessageBoxProps {
   title?: string | null;

@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Pressable, ScrollView, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, ViewStyle } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import { createStyle } from '@/utils/stylesheet.util';
 
-import Text from './text';
+import View from './view';
 
 interface ITabsContextProps {
   activeTab: string;
@@ -27,8 +28,10 @@ function Tabs({ defaultValue, children }: ITabsProps) {
   return <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>;
 }
 
-interface ITabsListProps extends React.ComponentPropsWithoutRef<typeof View> {}
-function TabsList({ ...props }: ITabsListProps) {
+interface ITabsListProps extends React.ComponentPropsWithoutRef<typeof View> {
+  style?: StyleProp<ViewStyle>;
+}
+function TabsList({ style, ...props }: ITabsListProps) {
   const { configs } = useThemeState();
 
   return (
@@ -36,14 +39,14 @@ function TabsList({ ...props }: ITabsListProps) {
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={[ds.p6, ds.wFull]}
-      style={[ds.rounded12, styles.tabList(configs.card)]}
+      style={[ds.rounded12, styles.tabList(configs.card), style]}
     >
       <View style={ds.row} {...props} />
     </ScrollView>
   );
 }
 
-interface ITabsTriggerProps extends React.ComponentPropsWithoutRef<typeof TouchableOpacity> {
+interface ITabsTriggerProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
   value: string;
 }
 function TabsTrigger({ value, children, ...props }: ITabsTriggerProps) {
@@ -59,13 +62,12 @@ function TabsTrigger({ value, children, ...props }: ITabsTriggerProps) {
         ds.grow,
         ds.itemsCenter,
         ds.justifyCenter,
-        activeTab === value && [theme.key === 'dark' ? ds.bgBlack : ds.bgWhite],
-        styles.shadow()
+        activeTab === value && [theme.key === 'dark' ? ds.bgBlack : ds.bgWhite]
       ]}
       onPress={() => setActiveTab(value)}
       {...props}
     >
-      <Text fontWeight="Bold">{children}</Text>
+      {children}
     </Pressable>
   );
 }
@@ -87,15 +89,6 @@ const styles = createStyle({
   tabList: (bgColor: string): ViewStyle => {
     return {
       backgroundColor: bgColor
-    };
-  },
-  shadow: (): ViewStyle => {
-    return {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.2,
-      shadowRadius: 1.41,
-      elevation: 2
     };
   }
 });

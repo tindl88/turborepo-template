@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 
-import Box from '@/components/common/box';
 import RenderHTML from '@/components/render-html';
 
 const source = {
@@ -53,15 +50,7 @@ const source = {
 type TermsAndConditionsProps = {};
 
 const TermsAndConditions: FC<TermsAndConditionsProps> = () => {
-  return (
-    <Box hasBg={false} style={ds.flex1}>
-      <Box style={ds.flex1}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <RenderHTML html={source} />
-        </ScrollView>
-      </Box>
-    </Box>
-  );
+  return <RenderHTML html={source} />;
 };
 
 export default TermsAndConditions;

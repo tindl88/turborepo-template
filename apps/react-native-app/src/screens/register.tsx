@@ -1,21 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { UnauthenticatedParamList } from '@/interfaces';
-
 import GeneralNavigationHeader from '@/components/common/header/general';
 import Heading from '@/components/core-ui/heading';
-import Line from '@/components/core-ui/line';
+import Separator from '@/components/core-ui/separator';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
+import View from '@/components/core-ui/view';
 
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import RegisterForm from '@/modules/auth/components/form-register';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
+import { UnauthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 type Props = StackScreenProps<UnauthenticatedParamList, 'Register'>;
@@ -24,30 +24,36 @@ function RegisterScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { configs } = useThemeState();
 
-  const backgroundColor = configs.background;
-
   return (
     <View style={ds.flex1}>
-      <StatusBar />
-      <GeneralNavigationHeader leftFunc={() => navigation.goBack()} />
-      <ScrollView style={[ds.flex1, ds.px12]}>
-        <Heading as={'h1'} text={t('sign_up_title') || ''} style={[ds.textCenter, ds.mt20]} />
+      <StatusBar background="transparent" />
+      <GeneralNavigationHeader
+        backgroundColor="transparent"
+        borderColor="transparent"
+        leftFunc={() => navigation.goBack()}
+      />
+      <ScrollView showsVerticalScrollIndicator={false} style={ds.p14}>
+        <Heading text={t('sign_up_title') || ''} style={ds.textCenter} />
         <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt32, ds.gap14]}>
           <GoogleSignIn style={ds.grow} />
           <FacebookSignIn style={ds.grow} />
         </View>
-        <Line style={ds.mt32} />
-        <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt12ne]}>
-          <Text style={[ds.textCenter, ds.fontBold, ds.mt10ne, ds.p10, { backgroundColor }]}>
+        <View style={[ds.itemsCenter, ds.justifyCenter, ds.mt44, ds.mb20]}>
+          <Separator />
+          <Text
+            color={configs.foreground}
+            style={[ds.textCenter, ds.mt24ne, ds.p10, { backgroundColor: configs.background }]}
+            fontWeight="Bold"
+          >
             {t('or_continue_with_password')}
           </Text>
         </View>
-        <KeyboardAvoidingView enabled behavior="padding" style={ds.mt20}>
+        <KeyboardAvoidingView enabled behavior="padding">
           <RegisterForm />
         </KeyboardAvoidingView>
-        <View style={[ds.itemsCenter, ds.row, ds.justifyCenter, ds.mt32]}>
-          <Text style={[ds.textGray50, ds.fontMedium]}>{t('already_have_account')}</Text>
-          <Text style={[ds.textGray50, ds.fontBold, ds.ml4]} onPress={() => navigation.navigate('Login')}>
+        <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt32]}>
+          <Text>{t('already_have_account')}</Text>
+          <Text fontWeight="Bold" style={ds.ml4} onPress={() => navigation.navigate('Login')}>
             {t('sign_in')}
           </Text>
         </View>
