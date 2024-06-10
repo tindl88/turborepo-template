@@ -19,11 +19,7 @@ const TravelBottomTabNavigator = () => {
   const { t } = useTranslation();
 
   return (
-    <Tab.Navigator
-      initialRouteName="TravelExploreStack"
-      tabBar={CustomTabBar}
-      screenOptions={{ headerShown: false, unmountOnBlur: true }}
-    >
+    <Tab.Navigator initialRouteName="TravelExploreStack" tabBar={CustomTabBar} screenOptions={{ headerShown: false }}>
       <Tab.Screen name="TravelExploreStack" component={TravelExploreStack} options={{ tabBarLabel: t('home') }} />
       <Tab.Screen
         name="AccomodationStack"
