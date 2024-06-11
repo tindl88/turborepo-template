@@ -5,11 +5,11 @@ import RegisterScreen from '@/screens/register';
 import ResetPasswordScreen from '@/screens/reset-password';
 import VerifyOtpScreen from '@/screens/verify-otp';
 import WelcomeScreen from '@/screens/welcome';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { UnauthenticatedParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<UnauthenticatedParamList>();
+const Stack = createNativeStackNavigator<UnauthenticatedParamList>();
 
 const Unauthenticated = () => {
   return (

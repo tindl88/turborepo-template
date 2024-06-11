@@ -1,5 +1,6 @@
 import React from 'react';
 import BootSplash from 'react-native-bootsplash';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ds } from '@/design-system';
 import { DefaultTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -42,35 +43,37 @@ const NavContainer = () => {
 
   return (
     <SafeAreaProvider style={ds.flex1}>
-      <NavigationContainer
-        ref={navigationRef}
-        theme={customTheme}
-        linking={linking}
-        onReady={() => {
-          BootSplash.hide({ fade: true });
-        }}
-        onStateChange={async () => {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          const currentRouteName = navigationRef.getCurrentRoute()?.name!;
+      <GestureHandlerRootView style={ds.flex1}>
+        <NavigationContainer
+          ref={navigationRef}
+          theme={customTheme}
+          linking={linking}
+          onReady={() => {
+            BootSplash.hide({ fade: true });
+          }}
+          onStateChange={async () => {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const currentRouteName = navigationRef.getCurrentRoute()?.name!;
 
-          // eslint-disable-next-line no-console
-          console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
+            // eslint-disable-next-line no-console
+            console.log('\x1b[36m%s\x1b[0m', '\nCURRENT SCREEN: \n' + currentRouteName + '\n\n');
 
-          screenState.setScreen({
-            name: currentRouteName,
-            spacingTop: Constants.Screen[currentRouteName]?.spacing?.top,
-            spacingRight: Constants.Screen[currentRouteName]?.spacing?.right,
-            spacingBottom: Constants.Screen[currentRouteName]?.spacing?.bottom,
-            spacingLeft: Constants.Screen[currentRouteName]?.spacing?.left
-          });
-        }}
-      >
-        <SafeViewArea {...accessibility('Screen View')} backgroundColor={configs.background}>
-          <NavigationRoot />
-          <GlobalModal />
-          <LoadingBox visible={authState.isFetching} />
-        </SafeViewArea>
-      </NavigationContainer>
+            screenState.setScreen({
+              name: currentRouteName,
+              spacingTop: Constants.Screen[currentRouteName]?.spacing?.top,
+              spacingRight: Constants.Screen[currentRouteName]?.spacing?.right,
+              spacingBottom: Constants.Screen[currentRouteName]?.spacing?.bottom,
+              spacingLeft: Constants.Screen[currentRouteName]?.spacing?.left
+            });
+          }}
+        >
+          <SafeViewArea {...accessibility('Screen View')} backgroundColor={configs.background}>
+            <NavigationRoot />
+            <GlobalModal />
+            <LoadingBox visible={authState.isFetching} />
+          </SafeViewArea>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 };

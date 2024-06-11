@@ -1,11 +1,11 @@
 import React from 'react';
 import ProfileScreen from '@/screens/profile';
 import ProfileEditScreen from '@/screens/profile-edit';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ProfileParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<ProfileParamList>();
+const Stack = createNativeStackNavigator<ProfileParamList>();
 
 const ProfileStack = () => {
   return (
