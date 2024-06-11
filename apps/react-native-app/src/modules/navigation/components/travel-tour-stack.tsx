@@ -1,19 +1,19 @@
 import React from 'react';
-import TravelTourDetailScreen from '@/screens/travel-tour-detail';
-import TravelToursScreen from '@/screens/travel-tours';
+import TourDetailScreen from '@/screens/travel-tour-detail';
+import ToursScreen from '@/screens/travel-tours';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { TravelTourParamList } from '../interfaces/navigation.interface';
+import { TourParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<TravelTourParamList>();
+const Stack = createStackNavigator<TourParamList>();
 
-const TravelTourStack = () => {
+const TourStack = () => {
   return (
-    <Stack.Navigator initialRouteName="TravelTours" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="TravelTours" component={TravelToursScreen} initialParams={{ q: '', page: 1, limit: 10 }} />
-      <Stack.Screen name="TravelTourDetail" component={TravelTourDetailScreen} />
+    <Stack.Navigator initialRouteName="Tours" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tours" component={ToursScreen} initialParams={{ q: '', page: 1, limit: 10 }} />
+      <Stack.Screen name="TourDetail" component={TourDetailScreen} />
     </Stack.Navigator>
   );
 };
 
-export default TravelTourStack;
+export default TourStack;

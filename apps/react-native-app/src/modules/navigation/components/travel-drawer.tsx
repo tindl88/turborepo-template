@@ -10,10 +10,7 @@ import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import IconHome from '@/components/svgs/ico-home';
 import IconPackage from '@/components/svgs/ico-package';
-import IconSettings from '@/components/svgs/ico-settings';
-import IconUser from '@/components/svgs/ico-user';
 
 import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useThemeState } from '@/modules/theme/states/theme.state';
@@ -35,34 +32,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView style={dynamicStyles.background(configs.card)} {...props}>
       <View style={[ds.pl16, ds.pb16]}>
-        <Heading
-          text="Travel Drawer"
-          as={'h3'}
-          color={foregroundColor}
-          onPress={() => props.navigation.navigate('HomeDrawer')}
-        />
+        <Heading text="Travel Drawer" as={'h3'} color={foregroundColor} />
       </View>
       <Separator style={[ds.mb12, dynamicStyles.border(borderColor)]} />
       <View style={ds.pr16}>
-        <Pressable
-          style={[
-            ds.row,
-            ds.itemsCenter,
-            ds.roundedRFull,
-            ds.p12,
-            isActive('Home') && dynamicStyles.background(configs.primary)
-          ]}
-          onPress={() => props.navigation.navigate('TravelDrawer', { screen: 'Home' })}
-        >
-          <IconHome color={isActive('Home') ? primaryForegroundColor : foregroundColor} />
-          <Text
-            fontWeight={isActive('Home') ? 'Bold' : 'Regular'}
-            color={isActive('Home') ? primaryForegroundColor : foregroundColor}
-            style={ds.ml12}
-          >
-            Home
-          </Text>
-        </Pressable>
         <Pressable
           style={[
             ds.row,
@@ -99,63 +72,6 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             style={ds.ml12}
           >
             Scan Code
-          </Text>
-        </Pressable>
-        <Pressable
-          style={[
-            ds.row,
-            ds.itemsCenter,
-            ds.roundedRFull,
-            ds.p12,
-            isActive('Settings') && dynamicStyles.background(configs.primary)
-          ]}
-          onPress={() => props.navigation.navigate('Settings')}
-        >
-          <IconSettings color={isActive('Settings') ? primaryForegroundColor : foregroundColor} />
-          <Text
-            fontWeight={isActive('Settings') ? 'Bold' : 'Regular'}
-            color={isActive('Settings') ? primaryForegroundColor : foregroundColor}
-            style={ds.ml12}
-          >
-            Settings
-          </Text>
-        </Pressable>
-        <Pressable
-          style={[
-            ds.row,
-            ds.itemsCenter,
-            ds.roundedRFull,
-            ds.p12,
-            isActive('Post') && dynamicStyles.background(configs.primary)
-          ]}
-          onPress={() => props.navigation.navigate('Post')}
-        >
-          <IconSettings color={isActive('Post') ? primaryForegroundColor : foregroundColor} />
-          <Text
-            fontWeight={isActive('Post') ? 'Bold' : 'Regular'}
-            color={isActive('Post') ? primaryForegroundColor : foregroundColor}
-            style={ds.ml12}
-          >
-            Post
-          </Text>
-        </Pressable>
-        <Pressable
-          style={[
-            ds.row,
-            ds.itemsCenter,
-            ds.roundedRFull,
-            ds.p12,
-            isActive('Profile') && dynamicStyles.background(configs.primary)
-          ]}
-          onPress={() => props.navigation.navigate('ProfileStack')}
-        >
-          <IconUser color={isActive('Profile') ? primaryForegroundColor : foregroundColor} />
-          <Text
-            fontWeight={isActive('Profile') ? 'Bold' : 'Regular'}
-            color={isActive('Profile') ? primaryForegroundColor : foregroundColor}
-            style={ds.ml12}
-          >
-            Profile
           </Text>
         </Pressable>
       </View>

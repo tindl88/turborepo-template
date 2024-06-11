@@ -11,12 +11,12 @@ import IconStarSolid from '@/components/svgs/ico-star-solid';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
 
-type TravelPopularDestinationItemProps = {
+type PopularHotelItemProps = {
   item: AccomodationEntity;
   onPress?: () => void;
 };
 
-const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ item, onPress }) => {
+const PopularHotelItem: FC<PopularHotelItemProps> = ({ item, onPress }) => {
   const { configs } = useThemeState();
 
   return (
@@ -55,4 +55,4 @@ const TravelPopularDestinationItem: FC<TravelPopularDestinationItemProps> = ({ i
   );
 };
 
-export default TravelPopularDestinationItem;
+export default PopularHotelItem;

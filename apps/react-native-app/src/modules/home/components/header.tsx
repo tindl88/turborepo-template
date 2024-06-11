@@ -2,9 +2,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import { ds } from '@/design-system';
 import { dynamicStyles } from '@/design-system/utils/common-style.util';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
@@ -13,17 +11,11 @@ import IconBell from '@/components/svgs/ico-bell';
 import IconMenu from '@/components/svgs/ico-menu';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
-import { AuthenticatedParamList, TravelBottomTabParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import { AuthenticatedNavigationProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 function HomeNavigationHeader() {
-  const navigation =
-    useNavigation<
-      CompositeNavigationProp<
-        StackNavigationProp<TravelBottomTabParamList>,
-        DrawerNavigationProp<AuthenticatedParamList>
-      >
-    >();
+  const navigation = useNavigation<AuthenticatedNavigationProps>();
   const { configs } = useThemeState();
   const authState = useAuthState();
 
@@ -45,7 +37,10 @@ function HomeNavigationHeader() {
               </Text>
             </View>
             <View style={[ds.row]}>
-              <Pressable style={ds.mr12} onPress={() => navigation.navigate('NotificationStack')}>
+              <Pressable
+                style={ds.mr12}
+                onPress={() => navigation.navigate('NotificationStack', { screen: 'Notifications' })}
+              >
                 <IconBell color={foregroundColor} />
               </Pressable>
             </View>

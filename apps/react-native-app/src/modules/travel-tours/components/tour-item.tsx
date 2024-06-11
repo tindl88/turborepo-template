@@ -3,19 +3,19 @@ import { Image, ImageSourcePropType, ImageStyle, Pressable } from 'react-native'
 import { ds } from '@/design-system';
 import { dynamicStyles } from '@/design-system/utils/common-style.util';
 
-import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
+import { TourEntity } from '../interfaces/travel-tours.interface';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-type TravelPlaceItemProps = {
-  item: TravelPlaceEntity;
+type TourItemProps = {
+  item: TourEntity;
   onPress?: () => void;
 };
 
-const TravelPlaceItem: FC<TravelPlaceItemProps> = ({ item, onPress }) => {
+const TourItem: FC<TourItemProps> = ({ item, onPress }) => {
   const { configs } = useThemeState();
 
   return (
@@ -34,4 +34,4 @@ const TravelPlaceItem: FC<TravelPlaceItemProps> = ({ item, onPress }) => {
   );
 };
 
-export default TravelPlaceItem;
+export default TourItem;

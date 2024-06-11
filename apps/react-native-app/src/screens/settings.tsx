@@ -7,7 +7,6 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import GeneralNavigationHeader from '@/components/common/header/general';
-import Divider from '@/components/core-ui/divider';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
@@ -30,8 +29,7 @@ function SettingScreen({}: Props) {
     <View style={ds.flex1}>
       <StatusBar />
       <GeneralNavigationHeader title={screenState.name} />
-      <Divider />
-      <ScrollView style={ds.flex1} />
+      <ScrollView style={[ds.flex1, ds.p14]} />
     </View>
   );
 }

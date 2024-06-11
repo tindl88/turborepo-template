@@ -8,7 +8,7 @@ const Stack = createStackNavigator<NotificationParamList>();
 
 const NotificationStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Notifications" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
     </Stack.Navigator>
   );

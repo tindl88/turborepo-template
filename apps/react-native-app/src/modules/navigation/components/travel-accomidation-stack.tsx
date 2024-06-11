@@ -1,23 +1,23 @@
 import React from 'react';
-import TravelAccomodationDetailScreen from '@/screens/travel-accomodation-detail';
-import TravelAccomodationsScreen from '@/screens/travel-accomodations';
+import AccomodationDetailScreen from '@/screens/travel-accomodation-detail';
+import AccomodationsScreen from '@/screens/travel-accomodations';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { TravelAccomodationParamList } from '../interfaces/navigation.interface';
+import { AccomodationParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<TravelAccomodationParamList>();
+const Stack = createStackNavigator<AccomodationParamList>();
 
-const TravelAccomodationStack = () => {
+const AccomodationStack = () => {
   return (
-    <Stack.Navigator initialRouteName="TravelAccomodations" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Accomodations" screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="TravelAccomodations"
-        component={TravelAccomodationsScreen}
+        name="Accomodations"
+        component={AccomodationsScreen}
         initialParams={{ q: '', page: 1, limit: 10 }}
       />
-      <Stack.Screen name="TravelAccomodationDetail" component={TravelAccomodationDetailScreen} />
+      <Stack.Screen name="AccomodationDetail" component={AccomodationDetailScreen} />
     </Stack.Navigator>
   );
 };
 
-export default TravelAccomodationStack;
+export default AccomodationStack;
