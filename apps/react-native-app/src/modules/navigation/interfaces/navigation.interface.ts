@@ -40,7 +40,7 @@ export type TravelDrawerParamList = {
 
 export type TravelBottomTabParamList = {
   TravelExploreStack: NavigatorScreenParams<ExploreParamList>;
-  AccomodationStack: NavigatorScreenParams<AccomodationParamList>;
+  AccommodationStack: NavigatorScreenParams<AccommodationParamList>;
   TourStack: NavigatorScreenParams<TourParamList>;
   NotificationStack: NavigatorScreenParams<NotificationParamList>;
   ProfileStack: NavigatorScreenParams<ProfileParamList>;
@@ -63,11 +63,11 @@ export type ExploreParamList = {
   TravelPlaceDetail: TravelPlaceDetailScreenParams;
 };
 
-export type AccomodationsScreenParams = { q: string; page: number; limit: number };
-export type AccomodationDetailScreenParams = { id: string };
-export type AccomodationParamList = {
-  Accomodations: AccomodationsScreenParams;
-  AccomodationDetail: AccomodationDetailScreenParams;
+export type AccommodationsScreenParams = { q: string; page: number; limit: number };
+export type AccommodationDetailScreenParams = { id: string };
+export type AccommodationParamList = {
+  Accommodations: AccommodationsScreenParams;
+  AccommodationDetail: AccommodationDetailScreenParams;
 };
 
 export type ToursScreenParams = { q: string; page: number; limit: number };

@@ -12,19 +12,19 @@ import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
 import {
-  AccomodationParamList,
+  AccommodationParamList,
   TravelBottomTabParamList,
   TravelDrawerParamList
 } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
-import AccomodationsRoot from '@/modules/travel-accomodations/components/accomodations-root';
+import AccommodationDetailRoot from '@/modules/travel-accommodations/components/accommodation-detail-root';
 
 type Props = CompositeScreenProps<
-  StackScreenProps<AccomodationParamList, 'Accomodations'>,
+  StackScreenProps<AccommodationParamList, 'AccommodationDetail'>,
   CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
 >;
 
-function AccomodationsScreen({ route }: Props) {
+function AccommodationDetailScreen({ route }: Props) {
   const { configs } = useThemeState();
 
   return (
@@ -32,10 +32,10 @@ function AccomodationsScreen({ route }: Props) {
       <StatusBar />
       <NavigationHeader title={route.name} />
       <ScrollView showsVerticalScrollIndicator={false} style={[ds.p14]}>
-        <AccomodationsRoot />
+        <AccommodationDetailRoot routeParams={route.params} />
       </ScrollView>
     </View>
   );
 }
 
-export default AccomodationsScreen;
+export default AccommodationDetailScreen;

@@ -9,14 +9,14 @@ import View from '@/components/core-ui/view';
 import IconStarSolid from '@/components/svgs/ico-star-solid';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
-import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
+import { AccommodationEntity } from '@/modules/travel-accommodations/interfaces/accommodations.interface';
 
-type AccomodationItemProps = {
-  item: AccomodationEntity;
+type AccommodationItemProps = {
+  item: AccommodationEntity;
   onPress?: () => void;
 };
 
-const AccomodationItem: FC<AccomodationItemProps> = ({ item, onPress }) => {
+const AccommodationItem: FC<AccommodationItemProps> = ({ item, onPress }) => {
   const { configs } = useThemeState();
 
   return (
@@ -55,4 +55,4 @@ const AccomodationItem: FC<AccomodationItemProps> = ({ item, onPress }) => {
   );
 };
 
-export default AccomodationItem;
+export default AccommodationItem;

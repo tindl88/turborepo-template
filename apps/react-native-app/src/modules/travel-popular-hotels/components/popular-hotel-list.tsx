@@ -6,12 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 import View from '@/components/core-ui/view';
 
 import { TravelBottomTabParamList } from '@/modules/navigation/interfaces/navigation.interface';
-import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
+import { AccommodationEntity } from '@/modules/travel-accommodations/interfaces/accommodations.interface';
 
 import PopularHotelItem from './popular-hotel-item';
 
 type PopularHotelListProps = {
-  items: AccomodationEntity[];
+  items: AccommodationEntity[];
 };
 
 const PopularHotelList: FC<PopularHotelListProps> = ({ items }) => {
@@ -24,8 +24,8 @@ const PopularHotelList: FC<PopularHotelListProps> = ({ items }) => {
           key={item.id}
           item={item}
           onPress={() => {
-            navigation.navigate('AccomodationStack', {
-              screen: 'AccomodationDetail',
+            navigation.navigate('AccommodationStack', {
+              screen: 'AccommodationDetail',
               params: { id: item.id },
               initial: false
             });
