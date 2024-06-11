@@ -1,6 +1,6 @@
 import { ResponseFormat } from '@/interfaces/api-response.interface';
 
-export type AccomodationEntity = {
+export type AccommodationEntity = {
   id: string;
   name: string;
   location: string;
@@ -12,5 +12,5 @@ export type AccomodationEntity = {
   images: string[];
 };
 
-export type PostsResponse = ResponseFormat<AccomodationEntity[]>;
-export type PostResponse = ResponseFormat<AccomodationEntity>;
+export type PostsResponse = ResponseFormat<AccommodationEntity[]>;
+export type PostResponse = ResponseFormat<AccommodationEntity>;

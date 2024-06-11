@@ -7,9 +7,9 @@ import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import View from '@/components/core-ui/view';
 
-import { AccomodationParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import { AccommodationParamList } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
-import { AccomodationEntity } from '@/modules/travel-accomodations/interfaces/accomodations.interface';
+import { AccommodationEntity } from '@/modules/travel-accommodations/interfaces/accommodations.interface';
 
 import PopularHotelList from './popular-hotel-list';
 
@@ -18,7 +18,7 @@ const items = [
     id: '1',
     name: 'Bury Yuri',
     location: 'Bali, Indonesia',
-    image: require('@/assets/travels/accomodation-1.jpeg'),
+    image: require('@/assets/travels/accommodation-1.jpeg'),
     rating: '4.5',
     price: 450
   },
@@ -26,7 +26,7 @@ const items = [
     id: '2',
     name: 'Palm Trees',
     location: 'Binh Thuan, Viet Nam',
-    image: require('@/assets/travels/accomodation-2.jpeg'),
+    image: require('@/assets/travels/accommodation-2.jpeg'),
     rating: '4.5',
     price: 250
   },
@@ -34,7 +34,7 @@ const items = [
     id: '3',
     name: 'Yolana Dalana',
     location: 'Uttar Pradesh, India',
-    image: require('@/assets/travels/accomodation-3.jpeg'),
+    image: require('@/assets/travels/accommodation-3.jpeg'),
     rating: '4.5',
     price: 190
   },
@@ -42,7 +42,7 @@ const items = [
     id: '4',
     name: 'Luxury Hotel',
     location: 'Davao, Philippines',
-    image: require('@/assets/travels/accomodation-4.jpeg'),
+    image: require('@/assets/travels/accommodation-4.jpeg'),
     rating: '4.5',
     price: 320
   },
@@ -50,16 +50,16 @@ const items = [
     id: '5',
     name: 'Country Side',
     location: 'Kedah, Malaysia',
-    image: require('@/assets/travels/accomodation-5.jpeg'),
+    image: require('@/assets/travels/accommodation-5.jpeg'),
     rating: '4.5',
     price: 280
   }
-] as AccomodationEntity[];
+] as AccommodationEntity[];
 
 type PopularHotelsRootProps = {};
 
 const PopularHotelsRoot: FC<PopularHotelsRootProps> = () => {
-  const navigation = useNavigation<StackNavigationProp<AccomodationParamList>>();
+  const navigation = useNavigation<StackNavigationProp<AccommodationParamList>>();
   const { configs } = useThemeState();
 
   return (
@@ -69,7 +69,7 @@ const PopularHotelsRoot: FC<PopularHotelsRootProps> = () => {
         <Link
           text="See All"
           color={configs.primary}
-          onPress={() => navigation.navigate('Accomodations', { q: '', page: 1, limit: 10 })}
+          onPress={() => navigation.navigate('Accommodations', { q: '', page: 1, limit: 10 })}
         />
       </View>
       <PopularHotelList items={items} />

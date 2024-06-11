@@ -26,7 +26,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
       case 'TravelExploreStack':
         icon = <CompassIcon size={28} strokeWidth={1.5} color={iconColor} />;
         break;
-      case 'AccomodationStack':
+      case 'AccommodationStack':
         icon = <HotelIcon size={28} strokeWidth={1.5} color={iconColor} />;
         break;
       case 'TourStack':
