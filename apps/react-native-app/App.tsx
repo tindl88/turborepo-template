@@ -5,6 +5,7 @@ import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persi
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
 import NavContainer from '@/modules/navigation/components/navigation-container';
+import NotificationSetup from '@/modules/notifications/components/notification-setup';
 
 import { MMKVStorage } from '@/utils/mmkv-storage.util';
 import { getQueryClient } from '@/utils/query-client.util';
@@ -21,6 +22,7 @@ const App = () => {
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: asyncStoragePersister }}>
       <Provider store={store}>
         <NavContainer />
+        <NotificationSetup />
       </Provider>
     </PersistQueryClientProvider>
   );

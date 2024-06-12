@@ -48,6 +48,9 @@ PODS:
   - Firebase/Crashlytics (10.25.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 10.25.0)
+  - Firebase/Messaging (10.25.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.25.0)
   - FirebaseAnalytics (10.25.0):
     - FirebaseAnalytics/AdIdSupport (= 10.25.0)
     - FirebaseCore (~> 10.0)
@@ -96,6 +99,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.25.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30911.0, >= 2.30908.0)
   - FirebaseRemoteConfigInterop (10.27.0)
   - FirebaseSessions (10.27.0):
     - FirebaseCore (~> 10.5)
@@ -1309,20 +1321,25 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
-  - RNFBAnalytics (20.0.0):
+  - RNFBAnalytics (20.1.0):
     - Firebase/Analytics (= 10.25.0)
     - GoogleAppMeasurementOnDeviceConversion (= 10.25.0)
     - React-Core
     - RNFBApp
-  - RNFBApp (20.0.0):
+  - RNFBApp (20.1.0):
     - Firebase/CoreOnly (= 10.25.0)
     - React-Core
-  - RNFBAuth (20.0.0):
+  - RNFBAuth (20.1.0):
     - Firebase/Auth (= 10.25.0)
     - React-Core
     - RNFBApp
-  - RNFBCrashlytics (20.0.0):
+  - RNFBCrashlytics (20.1.0):
     - Firebase/Crashlytics (= 10.25.0)
+    - FirebaseCoreExtension
+    - React-Core
+    - RNFBApp
+  - RNFBMessaging (20.1.0):
+    - Firebase/Messaging (= 10.25.0)
     - FirebaseCoreExtension
     - React-Core
     - RNFBApp
@@ -1336,6 +1353,11 @@ PODS:
     - React-Core
   - RNGoogleSignin (11.0.1):
     - GoogleSignIn (~> 7.0.0)
+    - React-Core
+  - RNNotifee (7.8.2):
+    - React-Core
+    - RNNotifee/NotifeeCore (= 7.8.2)
+  - RNNotifee/NotifeeCore (7.8.2):
     - React-Core
   - RNPermissions (4.1.5):
     - React-Core
@@ -1456,10 +1478,12 @@ DEPENDENCIES:
   - "RNFBApp (from `../../../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../../../node_modules/@react-native-firebase/auth`)"
   - "RNFBCrashlytics (from `../../../node_modules/@react-native-firebase/crashlytics`)"
+  - "RNFBMessaging (from `../../../node_modules/@react-native-firebase/messaging`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNFS (from `../../../node_modules/react-native-fs`)
   - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../../../node_modules/@react-native-google-signin/google-signin`)"
+  - "RNNotifee (from `../../../node_modules/@notifee/react-native`)"
   - RNPermissions (from `../../../node_modules/react-native-permissions`)
   - RNRate (from `../../../node_modules/react-native-rate`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
@@ -1490,6 +1514,7 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseCrashlytics
     - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseRemoteConfigInterop
     - FirebaseSessions
     - fmt
@@ -1654,6 +1679,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/@react-native-firebase/auth"
   RNFBCrashlytics:
     :path: "../../../node_modules/@react-native-firebase/crashlytics"
+  RNFBMessaging:
+    :path: "../../../node_modules/@react-native-firebase/messaging"
   RNFlashList:
     :path: "../node_modules/@shopify/flash-list"
   RNFS:
@@ -1662,6 +1689,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
     :path: "../../../node_modules/@react-native-google-signin/google-signin"
+  RNNotifee:
+    :path: "../../../node_modules/@notifee/react-native"
   RNPermissions:
     :path: "../../../node_modules/react-native-permissions"
   RNRate:
@@ -1706,6 +1735,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 4b297a2d56063dbea2c1d0d04222d44a8d058862
   FirebaseCrashlytics: 4b96efb0ce73b38b2a85e8b8bd1bd8f63f09d015
   FirebaseInstallations: 766dabca09fd94aef922538aaf144cc4a6fb6869
+  FirebaseMessaging: 88950ba9485052891ebe26f6c43a52bb62248952
   FirebaseRemoteConfigInterop: c55a739f5ab121792776e191d9fd437dc624a541
   FirebaseSessions: 2fdf949f9e58295a57703ae8f2efc44f9fa3aa16
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
@@ -1785,14 +1815,16 @@ SPEC CHECKSUMS:
   RNDateTimePicker: b6a9b35a785ecbe12b4e7d6de5439d0aa4614146
   RNDeviceInfo: b899ce37a403a4dea52b7cb85e16e49c04a5b88e
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
-  RNFBAnalytics: 9100fde9a45e21e7c3c418c99d0f98959e7930a3
-  RNFBApp: 87e1cdbf128f8574283d415bc58eac36df546a6f
-  RNFBAuth: ed61486ebcb31caa7c92d6e3064773511f5f60ff
-  RNFBCrashlytics: 5b8dace91ce4304e984873fdcdfde74e4d9fe30c
+  RNFBAnalytics: 782f9456f333647046a76b6a08f830b4d1bc6551
+  RNFBApp: c9487a1186eef359e7e1c299a610b179f293d02d
+  RNFBAuth: c83ae8751f85ee4ad8ec52ead01784c517ad5694
+  RNFBCrashlytics: 5a9689f12c3c2dd1b44e31ef1f0fe219c0696118
+  RNFBMessaging: d8429439623ede621a0db941f843d67bfa04aad3
   RNFlashList: b521ebdd7f9352673817f1d98e8bdc0c8cf8545b
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: a4c4561307e67f2942f5a4fe1526ff78cf3f5280
   RNGoogleSignin: 24d3b3261f78b0fae0aa013f8ab6f8d25e369b0c
+  RNNotifee: 8e2d3df3f0e9ce8f5d1fe4c967431138190b6175
   RNPermissions: 5a2dafe37c8e0a3fa1d6e0783a1490b1b7fd92d6
   RNRate: ef3bcff84f39bb1d1e41c5593d3eea4aab2bd73a
   RNReanimated: d9219596344fd0118d20f614b4e05124860b554f

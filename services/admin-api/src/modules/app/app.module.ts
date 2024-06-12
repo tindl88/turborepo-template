@@ -15,6 +15,7 @@ import { AppService } from './app.service';
 
 import { AuditLogsModule } from '../audit-logs/audit-logs.module';
 import { FilesModule } from '../files/files.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 import { ProductsModule } from '../products/products.module';
 
 @Module({
@@ -28,7 +29,8 @@ import { ProductsModule } from '../products/products.module';
     CategoriesModule,
     FilesModule,
     AuditLogsModule,
-    SocketModule
+    SocketModule,
+    NotificationsModule
   ],
   controllers: [AppController],
   providers: [

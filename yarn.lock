@@ -3727,6 +3727,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@notifee/react-native@^7.8.2":
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.8.2.tgz#72d3199ae830b4128ddaef3c1c2f11604759c9c4"
+  integrity sha512-VG4IkWJIlOKqXwa3aExC3WFCVCGCC9BA55Ivg0SMRfEs+ruvYy/zlLANcrVGiPtgkUEryXDhA8SXx9+JcO8oLA==
+
 "@npmcli/fs@^1.0.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@npmcli/fs/-/fs-1.1.1.tgz#72f719fe935e687c56a4faecf3c03d06ba593257"
@@ -4748,32 +4753,37 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-11.3.2.tgz#e63201d0b87ad42d086d1003be48ae7b327f0594"
   integrity sha512-YsaS3Dutnzqd1BEoeC+DEcuNJedYRkN6Ef3kftT5Sm8ExnCF94C/nl4laNxuvFli3+Jz8Df3jO25Jn8A9S0h4w==
 
-"@react-native-firebase/analytics@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-20.0.0.tgz#162ec36b758f664ff56725f6943bdb08150381e7"
-  integrity sha512-FSTr/FwzJOVYpUyd4xFWjeC0hPT9vwtwK4tObzAk4FDwgT6xZ/SrfkMTNh4PJHQX8RltqN5YZ85n8NenG3OGgw==
+"@react-native-firebase/analytics@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-20.1.0.tgz#5ba10fffefc45c43d692c2bbde7f59e27023e347"
+  integrity sha512-tGwivElKEad0PaAwGxXO8ydNynnxUj/D2rtDG6QBtoU/L77hV6/UL0vh/vZcobWiBUv3sqBEkCg19VhA88j1og==
 
-"@react-native-firebase/app@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-20.0.0.tgz#0aae0fdaaa0db48f6b248fb410e18687e285f2e1"
-  integrity sha512-h9Xgmj0Z0ga1ponhDnQ63yqkX288LOW+ZvstDWHDo2rgPu58nbAmdzs73MTmPjYdgm5Elm71puG1NRJX5n7wRw==
+"@react-native-firebase/app@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-20.1.0.tgz#86b9371290f92d51821b7299eede95336949f214"
+  integrity sha512-FCcTtmfz/Bk2laOEKOiUrQUkAnzerkRml7d3kZzJSxaBWLFxpWJQnnXqGZmD8hNWio2QEauB8llUD71KiDk+sw==
   dependencies:
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-20.0.0.tgz#104f0a692153f4d0cd9c0c42854d7bf1521bd271"
-  integrity sha512-/3cjoSjF6U27orj0qPxrqHs1/CNvEBjIK2Kv01aBNSKhGlxxMBXq4Dctolnx6hYuDA83td8SmTtFZM6C17G3Ug==
+"@react-native-firebase/auth@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-20.1.0.tgz#21f5a8079a59ce61c580a13776f3cc798e6ab326"
+  integrity sha512-HTv7x5dDhLwHZkwJOsuhMUPIxXcda/40w03OQzhpuTghAzI30iMa5f4UW0aDTiEnaa4IuXpGIRCytdUEuuo1QA==
   dependencies:
     plist "^3.1.0"
 
-"@react-native-firebase/crashlytics@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-20.0.0.tgz#ced4fe82b6b3d7ae6ad4b4934e3b92357e4f1a8a"
-  integrity sha512-xRh7q/+l3On+w6QJe6KjTxuI7CDwsBYj6tuqakkTPcjiTMu89OuDlAoQyQ+veaRKw3TFMT6HNvS1s6saJm+GIg==
+"@react-native-firebase/crashlytics@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-20.1.0.tgz#4701c6d0db892d2b25c3b9810c1ad1ba84f38021"
+  integrity sha512-tAxBFFR9yPLLs4KYaxRKCBWFbihMvCJuMZFJY/P3T02ai0VE7lD/hzwaNXiWPz5kqjoZEugnrpU2kK1G9Xw8Bg==
   dependencies:
     stacktrace-js "^2.0.2"
+
+"@react-native-firebase/messaging@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-20.1.0.tgz#02026259c74d1725dfc5216158b05bc6655e7951"
+  integrity sha512-y9FtQ9dIQSyueuLeJghvfLYnay5BqPVgl9T94p+HtUlkxinOgNDjquQFtV/QlzVOyVpLrVPmknMohvBj/fvBzg==
 
 "@react-native-google-signin/google-signin@^11.0.0":
   version "11.0.1"
