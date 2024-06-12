@@ -2,11 +2,11 @@ import React from 'react';
 import HomeScreen from '@/screens/home';
 import TravelPlaceDetailScreen from '@/screens/travel-place-detail';
 import TravelPlacesScreen from '@/screens/travel-places';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ExploreParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<ExploreParamList>();
+const Stack = createNativeStackNavigator<ExploreParamList>();
 
 const TravelExploreStack = () => {
   return (

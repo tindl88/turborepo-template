@@ -1,10 +1,10 @@
 import React from 'react';
 import NotificationsScreen from '@/screens/notifications';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { NotificationParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<NotificationParamList>();
+const Stack = createNativeStackNavigator<NotificationParamList>();
 
 const NotificationStack = () => {
   return (

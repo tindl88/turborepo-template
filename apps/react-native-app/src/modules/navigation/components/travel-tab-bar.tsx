@@ -70,10 +70,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
         };
 
         const onLongPress = () => {
-          rest.navigation.emit({
-            type: 'tabLongPress',
-            target: route.key
-          });
+          rest.navigation.emit({ type: 'tabLongPress', target: route.key });
         };
 
         return (

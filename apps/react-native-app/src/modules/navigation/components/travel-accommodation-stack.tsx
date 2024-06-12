@@ -1,15 +1,15 @@
 import React from 'react';
 import AccommodationDetailScreen from '@/screens/travel-accommodation-detail';
 import AccommodationsScreen from '@/screens/travel-accommodations';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AccommodationParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<AccommodationParamList>();
+const Stack = createNativeStackNavigator<AccommodationParamList>();
 
-const AccommodationStack = () => {
+const AccommodationStack = ({}) => {
   return (
-    <Stack.Navigator initialRouteName="Accommodations" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Accommodations"
         component={AccommodationsScreen}

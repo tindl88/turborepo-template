@@ -1,11 +1,11 @@
 import React from 'react';
 import TourDetailScreen from '@/screens/travel-tour-detail';
 import ToursScreen from '@/screens/travel-tours';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { TourParamList } from '../interfaces/navigation.interface';
 
-const Stack = createStackNavigator<TourParamList>();
+const Stack = createNativeStackNavigator<TourParamList>();
 
 const TourStack = () => {
   return (
