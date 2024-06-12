@@ -8,9 +8,9 @@
     </style>
 
     <style name="BootTheme" parent="Theme.BootSplash">
-    <item name="bootSplashBackground">@color/bootsplash_background</item>
-    <item name="bootSplashLogo">@drawable/bootsplash_logo</item>
-    <item name="postBootSplashTheme">@style/AppTheme</item>
+        <item name="bootSplashBackground">@color/bootsplash_background</item>
+        <item name="bootSplashLogo">@drawable/bootsplash_logo</item>
+        <item name="postBootSplashTheme">@style/AppTheme</item>
     </style>
 
     <style name="tooltip_bubble_text">
