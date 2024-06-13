@@ -48,8 +48,8 @@ export class User extends AbstractEntity {
   @Column({ nullable: true })
   providerAccountId?: string;
 
-  @Column({ array: true, nullable: true })
-  deviceTokens: string;
+  @Column({ type: 'text', array: true, nullable: true })
+  deviceTokens: string[];
 
   @Column({ type: 'enum', enum: AUTH_PROVIDER, default: AUTH_PROVIDER.CREDENTIALS })
   provider: AUTH_PROVIDER;

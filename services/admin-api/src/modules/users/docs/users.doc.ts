@@ -182,3 +182,19 @@ export class GetUserProfileSuccessDoc {
   })
   data: unknown;
 }
+
+export class UpdateUserDeviceTokenSuccessDoc {
+  @ApiProperty({ enum: HttpStatus, example: HttpStatus.OK })
+  statusCode: HttpStatus;
+
+  @ApiProperty({ type: String, example: 'Update user device token successfully' })
+  message: string;
+
+  @ApiProperty({
+    type: 'object',
+    example: {
+      id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    }
+  })
+  data: unknown;
+}

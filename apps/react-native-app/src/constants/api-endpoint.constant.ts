@@ -9,5 +9,6 @@ export const API_ENDPOINTS = {
   USER_PREFERENCES: '/api/v1/users/preferences',
   PROFILE: '/api/v1/users/profile',
   ME: '/api/v1/users/me',
+  DEVICE_TOKEN: '/api/v1/users/device-token',
   POSTS: '/api/v1/posts'
 };

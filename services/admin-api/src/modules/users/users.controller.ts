@@ -10,8 +10,14 @@ import {
   UpdateUserPreferenceSuccessDoc,
   UserPreferenceNotFoundDoc
 } from './docs/user-preference.doc';
-import { GetUserProfileSuccessDoc, UpdateUserProfileSuccessDoc } from './docs/users.doc';
+import {
+  GetUserProfileSuccessDoc,
+  UpdateUserDeviceTokenSuccessDoc,
+  UpdateUserProfileSuccessDoc
+} from './docs/users.doc';
 import { UpdateUserProfileDto } from './dto/update-profile.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDeviceTokenDto } from './dto/update-user-device-token.dto';
 import { UpdateUserPreferenceDto } from './dto/update-user-preference.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -67,5 +73,18 @@ export class UsersController {
     const user = req.user as User;
 
     return this.usersService.findOne(user.id);
+  }
+
+  @Patch('device-token')
+  @ApiOperation({
+    summary: 'Update user device token (Mobile Only)',
+    description: 'Update Device Token from Mobile App for Push Notification'
+  })
+  @ApiDocumentResponse({ message: 'Update user device token successfully', model: UpdateUserDeviceTokenSuccessDoc })
+  @Response({ message: 'Update user device token successfully' })
+  updateDeviceToken(@Req() req: Request, @Body() updateUserProfileDto: UpdateUserDeviceTokenDto) {
+    const user = req.user as User;
+
+    return this.usersService.update(user.id, updateUserProfileDto as UpdateUserDto);
   }
 }

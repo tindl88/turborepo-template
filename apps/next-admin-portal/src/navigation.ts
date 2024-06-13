@@ -29,6 +29,7 @@ export const pathnames = {
   '/products/[id]': '/products/[id]',
   '/audit-logs': '/audit-logs',
   '/settings/[type]': '/settings/[type]',
+  '/notifications/[type]': '/notifications/[type]',
   '/files': '/files',
   '/profile': '/profile',
   '/documentation/getting-started': '/documentation/getting-started',

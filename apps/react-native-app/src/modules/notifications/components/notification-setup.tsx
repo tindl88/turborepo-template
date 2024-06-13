@@ -2,13 +2,21 @@ import { FC, useEffect } from 'react';
 import notifee, { AndroidImportance, EventType } from '@notifee/react-native';
 import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
-import { requestUserPermission } from '../utils/notifications.util';
+import UserApi from '@/modules/users/api/users.api';
 
-async function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
-  const channelId = await notifee.createChannel({
+import log from '@/utils/logger.util';
+import { MMKVStorage } from '@/utils/mmkv-storage.util';
+import { requestNotificationPermission } from '../utils/notifications.util';
+
+async function createNotificationChannel() {
+  return await notifee.createChannel({
     id: 'default',
     name: 'Default Channel'
   });
+}
+
+async function displayNotification(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+  const channelId = await createNotificationChannel();
 
   await notifee.displayNotification({
     title: remoteMessage.notification?.title,
@@ -20,23 +28,48 @@ async function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMes
   });
 }
 
-messaging().onNotificationOpenedApp((_remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-  // console.log('Notification caused app to open from background state:', remoteMessage.notification);
-});
-messaging()
-  .getInitialNotification()
-  .then((remoteMessage: FirebaseMessagingTypes.RemoteMessage | null) => {
-    if (remoteMessage) {
-      // console.log('Notification caused app to open from quit state:', remoteMessage.notification);
+async function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+  try {
+    await displayNotification(remoteMessage);
+  } catch (error) {
+    log.error('Failed to display notification:', error);
+  }
+}
+
+function handleNotificationOpenedApp(remoteMessage: FirebaseMessagingTypes.RemoteMessage | null) {
+  if (remoteMessage) {
+    // Handle the notification causing the app to open from quit state
+  }
+}
+
+async function handleTokenUpdate(deviceToken: string) {
+  try {
+    const currentDeviceToken = MMKVStorage.getItem('@fcmToken');
+
+    if (deviceToken !== currentDeviceToken) {
+      MMKVStorage.setItem('@fcmToken', deviceToken);
+      await UserApi.updateDeviceToken(deviceToken);
     }
-  });
-messaging().setBackgroundMessageHandler(onMessageReceived);
+  } catch (error) {
+    log.error('Failed to update device token:', error);
+  }
+}
 
-type NotificationSetupProps = {};
-
-const NotificationSetup: FC<NotificationSetupProps> = () => {
+const NotificationSetup: FC = () => {
   useEffect(() => {
-    requestUserPermission();
+    requestNotificationPermission().then(permissionResp => {
+      if (!permissionResp) return;
+
+      messaging().getToken().then(handleTokenUpdate);
+    });
+
+    return messaging().onTokenRefresh(handleTokenUpdate);
+  }, []);
+
+  useEffect(() => {
+    messaging().onNotificationOpenedApp(handleNotificationOpenedApp);
+    messaging().getInitialNotification().then(handleNotificationOpenedApp);
+    messaging().setBackgroundMessageHandler(onMessageReceived);
   }, []);
 
   useEffect(() => {
@@ -48,10 +81,12 @@ const NotificationSetup: FC<NotificationSetupProps> = () => {
       const { notification, pressAction } = detail;
 
       if (type === EventType.ACTION_PRESS && pressAction?.id === 'mark-as-read') {
-        // Update external API
-        // Remove the notification
-        if (notification?.id) {
-          await notifee.cancelNotification(notification.id);
+        try {
+          if (notification?.id) {
+            await notifee.cancelNotification(notification.id);
+          }
+        } catch (error) {
+          log.error('Failed to cancel notification:', error);
         }
       }
     });
@@ -61,10 +96,10 @@ const NotificationSetup: FC<NotificationSetupProps> = () => {
     return notifee.onForegroundEvent(({ type }) => {
       switch (type) {
         case EventType.DISMISSED:
-          // console.log('User dismissed notification', detail.notification);
+          // Handle notification dismissed event
           break;
         case EventType.PRESS:
-          // console.log('User pressed notification', detail.notification);
+          // Handle notification pressed event
           break;
       }
     });

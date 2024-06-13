@@ -7,7 +7,7 @@ import { UpdateNotificationDto } from './dto/update-notification.dto';
 import { NotificationsService } from './notifications.service';
 
 @ApiTags('Admin Notifications')
-@Controller('notifications')
+@Controller('admin/notifications')
 export class NotificationsController {
   constructor(private readonly notificationsService: NotificationsService) {}
 

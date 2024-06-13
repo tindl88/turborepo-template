@@ -52,6 +52,8 @@
   "page_documentation": "Documentation",
   "page_settings": "Cài đặt",
   "page_settings_description": "Quản lý cài đặt tài khoản của bạn.",
+  "page_notifications": "Thông Báo",
+  "page_notifications_description": "Quản lý các thông báo đẩy của bạn.",
   "page_not_found": "Trang không tồn tại",
 
   "sidebar_menu_dashboard": "Bảng điều khiển",
@@ -59,6 +61,9 @@
   "sidebar_menu_posts_create_new": "Tạo bài viết mới",
   "sidebar_menu_users": "Thành viên",
   "sidebar_menu_users_create_new": "Tạo thành viên mới",
+  "sidebar_menu_notifications": "Thông báo",
+  "sidebar_menu_notifications_push": "Thông báo đẩy",
+  "sidebar_menu_notifications_create_new": "Tạo mới",
   "sidebar_menu_categories": "Danh mục",
   "sidebar_menu_categories_create_new": "Tạo danh mục mới",
   "sidebar_menu_products": "Sản phẩm",
@@ -175,5 +180,9 @@
   "audit_log_created_at": "Ngày Tạo",
   "audit_log_user": "Người Tạo",
   "audit_log_actions": "Hành Động",
-  "audit_log_records": "bản ghi"
+  "audit_log_records": "bản ghi",
+
+  "push_notification_title": "Tiêu đề",
+  "push_notification_content": "Nội dung",
+  "push_notification_send_button": "Gửi"
 }

@@ -36,7 +36,7 @@ export class NotificationsService {
       await this.messaging.send(message);
       this.logger.info(`Push notification sent to token ${sendNotificationDto.token}`);
     } catch (error) {
-      this.logger.error('Error sending push notification:', error);
+      this.logger.error(`Error sending push notification: ${error.message}`);
       throw new InternalServerErrorException('Failed to send push notification');
     }
   }
