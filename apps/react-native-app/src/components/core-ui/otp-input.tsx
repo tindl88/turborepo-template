@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Pressable, TextInput, View } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

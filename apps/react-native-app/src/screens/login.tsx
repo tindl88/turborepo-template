@@ -2,15 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
+import NavigationHeader from '@/components/navigation-header';
 
 import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
@@ -28,11 +28,7 @@ function LoginScreen({ navigation }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar background="transparent" />
-      <GeneralNavigationHeader
-        backgroundColor="transparent"
-        borderColor="transparent"
-        leftFunc={() => navigation.goBack()}
-      />
+      <NavigationHeader backgroundColor="transparent" borderColor="transparent" leftFunc={() => navigation.goBack()} />
       <ScrollView style={ds.p14} showsVerticalScrollIndicator={false}>
         <Heading text={t('login_title')} style={ds.textCenter} />
         <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt32, ds.gap14]}>

@@ -5,18 +5,18 @@ import { PostEntity, PostFilter, PostResponse, PostsResponse } from '../interfac
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import HttpRequest from '@/http/http-request';
+import axiosClient from '@/http/http-request';
 
 export const list = (filter: PostFilter) => {
   const url = [API_ENDPOINTS.POSTS];
 
   url.push(`?page=${filter.page}`);
 
-  return HttpRequest.get<PostEntity[]>(url.join(''));
+  return axiosClient.get<PostEntity[]>(url.join(''));
 };
 
 export const read = (id: EntityId) => {
-  return HttpRequest.get<PostEntity>(`${API_ENDPOINTS.POSTS}/${id}`);
+  return axiosClient.get<PostEntity>(`${API_ENDPOINTS.POSTS}/${id}`);
 };
 
 export async function getServerPosts(filter: PostFilter) {

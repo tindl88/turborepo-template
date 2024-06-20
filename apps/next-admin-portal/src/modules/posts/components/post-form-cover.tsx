@@ -52,7 +52,7 @@ export default function PostFormCover({ form }: PostFormCoverProps) {
                     <ButtonRemoveFile onClick={() => form.setValue('cover', '')} />
                   </div>
                 )}
-                <FormMessage />
+                <FormMessage message={t(form.formState.errors.cover?.message)} />
               </FormItem>
               {!field.value && (
                 <ButtonSelectFile className="w-full py-12" onClick={() => setIsFileManagerVisible(true)} />

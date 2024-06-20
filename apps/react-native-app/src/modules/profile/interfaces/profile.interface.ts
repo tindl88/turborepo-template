@@ -14,6 +14,7 @@ export type ProfileAction = {
 
 export type UpdateProfileDto = {
   name: string;
+  phoneNumber: string;
 };
 
 export type ProfileResponse = ResponseFormat<UserEntity>;

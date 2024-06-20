@@ -1,6 +1,6 @@
-import { Session } from 'next-auth';
+import { Session, User } from 'next-auth';
 
-import { PreferenceEntity } from '@/modules/auth/interfaces/auth.interface';
+import { PreferenceEntity } from '@/modules/settings/interfaces/settings.interface';
 
 import { render } from '@tests/unit/utils/test.util';
 
@@ -18,10 +18,10 @@ describe('TopBar Component', () => {
       preference: {
         language: 'en-us',
         theme: 'dark'
-      } as PreferenceEntity,
-      accessToken: 'access_token',
-      refreshToken: 'refresh_token'
-    },
+      } as PreferenceEntity
+    } as User,
+    accessToken: 'access_token',
+    refreshToken: 'refresh_token',
     expires: '2025-10-10T10:10:10.000Z'
   };
 

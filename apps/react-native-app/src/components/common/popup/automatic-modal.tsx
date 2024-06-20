@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 
-import { showGlobalModal } from '../modal/global-modal';
+import { showGlobalModal } from '../../global-modal/global-modal';
 
 const AutomaticModal = () => {
   useEffect(() => {

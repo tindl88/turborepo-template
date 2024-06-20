@@ -1,14 +1,6 @@
 import { z } from 'zod';
 
 export const sendPushNotificationValidator = z.object({
-  title: z
-    .string({
-      required_error: 'Vui lòng nhập tiêu đề'
-    })
-    .min(1, 'Vui lòng nhập ít nhất 1 ký tự.'),
-  content: z
-    .string({
-      required_error: 'Vui lòng nhập nội dung'
-    })
-    .min(1, 'Vui lòng nhập ít nhất 1 ký tự.')
+  title: z.string().min(1, 'validator_at_least_n_character'),
+  content: z.string().min(1, 'validator_at_least_n_character')
 });

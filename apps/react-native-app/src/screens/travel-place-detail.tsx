@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';

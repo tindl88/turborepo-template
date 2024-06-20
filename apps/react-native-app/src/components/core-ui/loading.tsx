@@ -1,6 +1,6 @@
-import React, { FC, memo, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Animated, Easing, ViewStyle } from 'react-native';
-import { Colors } from '@/design-system';
+import { Colors } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -12,8 +12,8 @@ import View from './view';
 interface ILoadingProps extends ICoreUIBaseProps {
   animationSpeed?: number;
   fadeSpeed?: number;
-  size?: 28 | 32 | 36 | 40 | 44 | 48 | 52 | 56 | 60 | 64 | 68 | 72;
-  thickness?: 0 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20;
+  size?: number;
+  thickness?: number;
   color?: string;
   trackColor?: string;
 }
@@ -21,10 +21,10 @@ interface ILoadingProps extends ICoreUIBaseProps {
 const Loading: FC<ILoadingProps> = ({
   animationSpeed = 1000,
   fadeSpeed = 0,
-  size = 28,
-  thickness = 6,
-  color = Colors.blue[500],
-  trackColor = Colors.gray[300],
+  size = 24,
+  thickness = 3,
+  color = Colors.stone[700],
+  trackColor = Colors.stone[300],
   visible = true
 }) => {
   const { configs } = useThemeState();
@@ -53,7 +53,7 @@ const Loading: FC<ILoadingProps> = ({
   );
 };
 
-export default memo(Loading);
+export default Loading;
 
 const styles = createStyle({
   component: (size: number): ViewStyle => {

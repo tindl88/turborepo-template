@@ -1,9 +1,10 @@
 import React, { ReactNode, useState } from 'react';
 import { Pressable, PressableProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { Colors, ds } from '@/design-system';
+import { Colors, ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
+import Loading from './loading';
 import Text from './text';
 
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -12,6 +13,7 @@ type ButtonVariant = 'default';
 interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
   children?: ReactNode;
   size?: ButtonSize;
+  loading?: boolean;
   variant?: ButtonVariant;
   disabled?: boolean;
   style?: StyleProp<PressableProps | ViewStyle>;
@@ -23,6 +25,7 @@ const Button: React.FC<IButtonProps> = ({
   size = 'md',
   variant = 'default',
   disabled = false,
+  loading = false,
   style,
   onPress
 }) => {
@@ -31,19 +34,22 @@ const Button: React.FC<IButtonProps> = ({
 
   const buttonSizes = {
     sm: {
-      paddingVertical: 6,
+      height: 44,
       paddingHorizontal: 12,
-      fontSize: 14
+      fontSize: 16,
+      iconSize: 18
     },
     md: {
-      paddingVertical: 14,
+      height: 50,
       paddingHorizontal: 20,
-      fontSize: 16
+      fontSize: 18,
+      iconSize: 20
     },
     lg: {
-      paddingVertical: 16,
+      height: 56,
       paddingHorizontal: 28,
-      fontSize: 18
+      fontSize: 20,
+      iconSize: 22
     }
   };
   const buttonVariants = {
@@ -66,12 +72,12 @@ const Button: React.FC<IButtonProps> = ({
       }
     }
   };
-  const { paddingVertical, paddingHorizontal, fontSize } = buttonSizes[size];
+  const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
   const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } =
     buttonVariants[theme.key as keyof typeof buttonVariants][variant];
 
   const buttonStyle: ViewStyle = {
-    paddingVertical,
+    height,
     paddingHorizontal,
     backgroundColor: disabled ? disabledBgColor : isFocused ? focusedBgColor : bgColor,
     borderColor: isFocused ? focusedBgColor : 'transparent'
@@ -81,12 +87,13 @@ const Button: React.FC<IButtonProps> = ({
 
   return (
     <Pressable
-      style={[ds.rounded10, ds.itemsCenter, ds.justifyCenter, buttonStyle, style]}
+      style={[ds.rounded10, ds.itemsCenter, ds.justifyCenter, ds.row, ds.gap10, buttonStyle, style]}
       disabled={disabled}
       onPress={disabled ? undefined : onPress}
       onPressIn={() => setIsFocused(true)}
       onPressOut={() => setIsFocused(false)}
     >
+      {loading && <Loading size={iconSize} />}
       <Text fontWeight="Bold" style={textStyle}>
         {children}
       </Text>

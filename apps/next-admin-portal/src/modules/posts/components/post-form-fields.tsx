@@ -53,7 +53,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            <FormMessage message={t(form.formState.errors.name?.message)} />
           </FormItem>
         )}
       />
@@ -67,7 +67,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            <FormMessage message={t(form.formState.errors.slug?.message)} />
           </FormItem>
         )}
       />
@@ -87,7 +87,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 onShowFileManager={() => setIsFileManagerVisible(true)}
               />
             </FormControl>
-            <FormMessage />
+            <FormMessage message={t(form.formState.errors.description?.message)} />
           </FormItem>
         )}
       />
@@ -110,7 +110,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 {/* <BlockEditor value={field.value} onChange={field.onChange} /> */}
               </>
             </FormControl>
-            <FormMessage />
+            <FormMessage message={t(form.formState.errors.body?.message)} />
           </FormItem>
         )}
       />

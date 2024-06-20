@@ -7,7 +7,7 @@ import { Button } from '~ui/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
 import { Input } from '~ui/components/ui/input';
 
-import { LoginDto } from '../interfaces/auth.interface';
+import { SignDto } from '../interfaces/auth.interface';
 
 import { AUTH_PROVIDER } from '../constants/auth.constant';
 
@@ -16,6 +16,9 @@ import Logo from '@/components/icons/logo';
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import { signInValidator } from '../validators/sign-in.validator';
+
+import FacebookSignInButton from './facebook-signin';
+import GoogleSignInButton from './google-signin';
 
 type LoginFormValues = {
   email: string;
@@ -38,10 +41,8 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<LoginFormValues> = async formData => {
     authState.signIn({
-      ...(formData as LoginDto),
-      provider: AUTH_PROVIDER.CREDENTIALS,
-      redirect: true,
-      callbackUrl: '/'
+      ...(formData as SignDto),
+      provider: AUTH_PROVIDER.CREDENTIALS
     });
   };
 
@@ -70,7 +71,9 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                {form.formState.errors.email?.message && (
+                  <FormMessage message={t(form.formState.errors.email.message)} />
+                )}
               </FormItem>
             )}
           />
@@ -88,7 +91,9 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                {form.formState.errors.password?.message && (
+                  <FormMessage message={t(form.formState.errors.password?.message)} />
+                )}
               </FormItem>
             )}
           />
@@ -105,6 +110,8 @@ const LoginForm = () => {
           </div>
         </form>
       </Form>
+      <FacebookSignInButton />
+      <GoogleSignInButton />
     </div>
   );
 };

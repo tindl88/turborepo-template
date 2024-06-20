@@ -1,6 +1,6 @@
 import React, { FC, memo, ReactNode } from 'react';
 import { TextStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

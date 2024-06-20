@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
 import Loading from '@/components/core-ui/loading';
 import StatusBar from '@/components/core-ui/statusbar';

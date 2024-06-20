@@ -11,7 +11,8 @@ const jestConfig: JestConfigWithTsJest = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@tests/(.*)$': '<rootDir>/__tests__/$1',
     '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
-    '^~shared-client/(.*)$': '<rootDir>/../../packages/shared-client/$1'
+    '^~shared-validators/(.*)$': '<rootDir>/../../packages/shared-validators/$1',
+    '^~react-native-design-system/(.*)$': '<rootDir>/../../packages/react-native-design-system/$1'
   },
   testMatch: ['<rootDir>/src/**/*.(test|spec).{ts,tsx}', '<rootDir>/__tests__/**/*.(test|spec).{ts,tsx}'],
   collectCoverageFrom: ['<rootDir>/src/**/*.(t|j)s', '!<rootDir>/src/**/docs/*'],

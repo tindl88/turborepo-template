@@ -45,9 +45,9 @@ export class AuthController {
 
     const resp = await this.authService.signIn(signInDto, ip, ua);
 
-    response.cookie('refreshToken', resp.user.refreshToken);
+    response.cookie('refreshToken', resp.refreshToken);
 
-    delete resp.user.refreshToken;
+    delete resp.refreshToken;
 
     return resp;
   }
@@ -66,9 +66,9 @@ export class AuthController {
 
     const resp = await this.authService.signInWithGoogle(oAuthSignInDto, ip, ua);
 
-    response.cookie('refreshToken', resp.user.refreshToken);
+    response.cookie('refreshToken', resp.refreshToken);
 
-    delete resp.user.refreshToken;
+    delete resp.refreshToken;
 
     return resp;
   }
@@ -87,9 +87,9 @@ export class AuthController {
 
     const resp = await this.authService.signInWithFacebook(oAuthSignInDto, ip, ua);
 
-    response.cookie('refreshToken', resp.user.refreshToken);
+    response.cookie('refreshToken', resp.refreshToken);
 
-    delete resp.user.refreshToken;
+    delete resp.refreshToken;
 
     return resp;
   }

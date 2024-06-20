@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { TravelDrawerParamList } from '../interfaces/navigation.interface';
 
@@ -12,22 +12,20 @@ import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 import IconPackage from '@/components/svgs/ico-package';
 
-import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import TravelBottomTabNavigator from './travel-bottom-tab';
 
 const Drawer = createDrawerNavigator<TravelDrawerParamList>();
 
-const DrawerContent = (props: DrawerContentComponentProps) => {
-  const screenState = useScreenState();
+const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
   const { configs } = useThemeState();
 
   const primaryForegroundColor = configs.primaryForeground;
   const foregroundColor = configs.foreground;
   const borderColor = configs.border;
 
-  const isActive = (currentScreen: string) => screenState.name === currentScreen;
+  const isActive = (currentScreen: string) => currentScreen === 'home';
 
   return (
     <DrawerContentScrollView style={dynamicStyles.background(configs.card)} {...props}>

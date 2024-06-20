@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -30,7 +29,6 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    private readonly configService: ConfigService,
     private usersService: UsersService,
     private refreshTokensService: RefreshTokensService,
     private tokenService: TokenService,
@@ -77,10 +75,10 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 
@@ -122,10 +120,10 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 
@@ -170,10 +168,10 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 

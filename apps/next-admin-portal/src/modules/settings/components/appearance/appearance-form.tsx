@@ -23,9 +23,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 import { useRouter } from '@/navigation';
 
-import { PreferenceEntity } from '@/modules/auth/interfaces/auth.interface';
-
 import SettingApi from '../../api/settings.api';
+import { PreferenceEntity } from '../../interfaces/settings.interface';
 import { updateAppearanceValidator } from '../../validators/update-appearance.validator';
 
 type AppearanceFormValues = {
@@ -114,7 +113,7 @@ export function AppearanceForm() {
                 </FormControl>
               </div>
               <FormDescription>{t('sidebar_menu_settings_appearance_language_desc')}</FormDescription>
-              <FormMessage />
+              <FormMessage message={t(form.formState.errors.language?.message)} />
             </FormItem>
           )}
         />
@@ -125,7 +124,7 @@ export function AppearanceForm() {
             <FormItem className="space-y-1">
               <FormLabel>{t('theme')}</FormLabel>
               <FormDescription>{t('sidebar_menu_settings_appearance_theme_desc')}</FormDescription>
-              <FormMessage />
+              <FormMessage message={t(form.formState.errors.theme?.message)} />
               <RadioGroup
                 value={field.value}
                 className="grid max-w-md grid-cols-2 gap-8 pt-2"

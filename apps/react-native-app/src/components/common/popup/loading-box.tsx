@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { Pressable, View } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import Loading from '@/components/core-ui/loading';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-import { hideGlobalModal, showGlobalModal } from '../modal/global-modal';
+import { hideGlobalModal, showGlobalModal } from '../../global-modal/global-modal';
 
 interface ILoadingBoxProps {
   visible?: boolean;

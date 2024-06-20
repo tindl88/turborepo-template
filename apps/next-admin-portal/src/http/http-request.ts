@@ -24,7 +24,7 @@ const interceptors = {
     const headers = config.headers;
     const session = await getSession();
 
-    if (session) headers.Authorization = `Bearer ${session.user.accessToken}`;
+    if (session) headers.Authorization = `Bearer ${session.accessToken}`;
 
     return config;
   },
@@ -41,15 +41,12 @@ const interceptors = {
 
       try {
         const session = await getSession();
-
-        const refreshTokenResponse = await AuthApi.refreshToken(session?.user.refreshToken as string);
-
+        const refreshTokenResponse = await AuthApi.refreshToken(session?.refreshToken as string);
         const newSession = merge({}, session, {
           user: merge({}, session?.user, refreshTokenResponse.data.data)
         });
 
         await updateSession(newSession as never);
-
         originalConfig.headers.Authorization = `Bearer ${refreshTokenResponse.data.data.accessToken}`;
 
         return axiosClient(originalConfig);

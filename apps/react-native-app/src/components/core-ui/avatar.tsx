@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Pressable, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
-import { Colors, ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { Colors, ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

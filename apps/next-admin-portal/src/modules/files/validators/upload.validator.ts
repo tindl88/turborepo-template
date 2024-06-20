@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 import { MAX_FILE_SIZE_IN_BYTES, MAX_FILES_TO_UPLOAD, VALID_ALL_MIME_TYPES } from '../constants/files.constant';
 

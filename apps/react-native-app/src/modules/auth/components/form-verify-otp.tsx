@@ -3,20 +3,14 @@ import React, { useEffect, useState } from 'react';
 import OtpInput from '@/components/core-ui/otp-input';
 import View from '@/components/core-ui/view';
 
-import { useAuthState } from '../states/auth.state';
-
 const MAXIMUM_CODE_LENGTH = 5;
 
 const VerifyOtpForm = () => {
   const [otpCode, setOTPCode] = useState('');
   const [isPinReady, setIsPinReady] = useState(false);
-  const authState = useAuthState();
 
   useEffect(() => {
     if (isPinReady) {
-      // FIXME: Fix type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      authState.verifyEmailOtpRequest(otpCode as any);
     }
   }, [isPinReady]);
 

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

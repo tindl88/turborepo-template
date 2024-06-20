@@ -2,8 +2,6 @@
 
 import { Button } from '~ui/components/ui/button';
 
-import { AUTH_PROVIDER } from '../constants/auth.constant';
-
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
 const GoogleSignInButton = ({ ...rest }) => {
@@ -14,11 +12,7 @@ const GoogleSignInButton = ({ ...rest }) => {
       data-testid="btn-signin-google"
       onClick={e => {
         e.preventDefault();
-        authState.googleSignIn({
-          provider: AUTH_PROVIDER.GOOGLE,
-          redirect: true,
-          callbackUrl: '/'
-        });
+        authState.googleSignIn({ redirect: true, callbackUrl: '/' });
       }}
       {...rest}
     >

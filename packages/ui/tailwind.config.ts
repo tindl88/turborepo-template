@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import sharedConfig from '@repo/tailwindcss-config/tailwind.config';
+import sharedConfig from '@repo/config-tailwindcss/tailwind.config';
 
 const config: Pick<Config, 'presets' | 'content'> = {
   content: ['./src/**/*.{ts,tsx}'],

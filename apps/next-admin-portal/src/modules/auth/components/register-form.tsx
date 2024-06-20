@@ -7,7 +7,6 @@ import { Input } from '~ui/components/ui/input';
 
 import { CreateUserDto } from '@/modules/users/interfaces/users.interface';
 
-import { useAuthState } from '../states/auth.state';
 import { signUpValidator } from '../validators/sign-up.validator';
 
 type RegisterFormValues = CreateUserDto & {
@@ -15,8 +14,6 @@ type RegisterFormValues = CreateUserDto & {
 };
 
 const RegisterForm = ({ ...rest }) => {
-  const auth = useAuthState();
-
   const defaultValues = {
     name: 'Tin Tran',
     email: 'tinltin@gmail.com',
@@ -36,8 +33,6 @@ const RegisterForm = ({ ...rest }) => {
 
   const onSubmit: SubmitHandler<RegisterFormValues> = async formData => {
     delete formData.confirmPassword;
-
-    auth.signUp(formData);
   };
 
   return (

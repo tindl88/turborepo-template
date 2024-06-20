@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, View } from 'react-native';
-import { Colors, ds } from '@/design-system';
+import { Colors, ds } from '~react-native-design-system';
 
 import Button from '@/components/core-ui/button';
 import Heading from '@/components/core-ui/heading';

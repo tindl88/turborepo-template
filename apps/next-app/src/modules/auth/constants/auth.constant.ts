@@ -1,4 +1,4 @@
-import type { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
@@ -18,22 +18,31 @@ export enum AUTH_PROVIDER {
   GOOGLE = 'google'
 }
 
+export enum AUTH_AUTHENTICATOR {
+  SELF_HOSTED = 'self-hosted',
+  FIREBASE = 'firebase'
+}
+
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login',
     error: '/login'
   },
   session: {
+    strategy: 'jwt',
     maxAge: 365 * 24 * 60 * 60
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXT_GOOGLE_CLIENT_ID,
-      clientSecret: process.env.NEXT_GOOGLE_CLIENT_SECRET
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET
     }),
     FacebookProvider({
-      clientId: process.env.NEXT_FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.NEXT_FACEBOOK_CLIENT_SECRET
+      clientId: process.env.AUTH_FACEBOOK_ID,
+      clientSecret: process.env.AUTH_FACEBOOK_SECRET,
+      idToken: true,
+      jwks_endpoint: 'https://limited.facebook.com/.well-known/oauth/openid/jwks/',
+      issuer: 'https://www.facebook.com'
     }),
     CredentialsProvider({
       name: 'Sign in',
@@ -54,18 +63,18 @@ export const authOptions: NextAuthOptions = {
 
           if (!refreshToken) return null;
 
-          const userData = signInRes.data.data.user;
+          const userData = signInRes.data.data;
 
           if (userData) {
             return {
-              id: userData.id,
-              name: userData.name,
-              email: userData.email,
-              image: userData.avatar,
-              preference: userData.preference,
+              id: userData.user.id,
+              name: userData.user.name,
+              email: userData.user.email,
+              image: userData.user.avatar,
+              preference: userData.user.preference,
               accessToken: userData.accessToken,
               refreshToken
-            };
+            } as unknown as User;
           }
         } catch (error) {
           throw new Error(new Date().getTime().toString());
@@ -84,16 +93,16 @@ export const authOptions: NextAuthOptions = {
         case AUTH_PROVIDER.GOOGLE:
           if (!account || !profile?.email_verified) return false;
 
-          const gRes = await AuthApi.googleSignIn(account.id_token);
+          const gRes = await AuthApi.googleSignIn(AUTH_AUTHENTICATOR.SELF_HOSTED, account.id_token);
           const gRefreshToken = getRefreshTokenFromHeader(gRes);
 
           if (!gRefreshToken) return false;
 
-          const gUser = gRes.data.data.user;
+          const gUser = gRes.data.data;
 
           if (gUser) {
-            user.id = gUser.id;
-            user.preference = gUser.preference;
+            user.id = gUser.user.id;
+            user.preference = gUser.user.preference;
             user.accessToken = gUser.accessToken;
             user.refreshToken = gRefreshToken;
 
@@ -103,16 +112,17 @@ export const authOptions: NextAuthOptions = {
         case AUTH_PROVIDER.FACEBOOK:
           if (!account) return false;
 
-          const fRes = await AuthApi.facebookSignIn(account.access_token);
+          const fRes = await AuthApi.facebookSignIn(AUTH_AUTHENTICATOR.SELF_HOSTED, account.access_token, false);
+
           const fRefreshToken = getRefreshTokenFromHeader(fRes);
 
           if (!fRefreshToken) return false;
 
-          const fUser = fRes.data.data.user;
+          const fUser = fRes.data.data;
 
           if (fUser) {
-            user.id = fUser.id;
-            user.preference = fUser.preference;
+            user.id = fUser.user.id;
+            user.preference = fUser.user.preference;
             user.accessToken = fUser.accessToken;
             user.refreshToken = fRefreshToken;
 
@@ -129,21 +139,20 @@ export const authOptions: NextAuthOptions = {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
       }
+
       if (trigger === 'update' && session) {
         token.preference = session.user.preference;
-        token.accessToken = session.user.accessToken;
-        token.refreshToken = session.user.refreshToken;
+        token.accessToken = session.accessToken;
+        token.refreshToken = session.refreshToken;
       }
 
       return token;
     },
     session: async ({ session, token }) => {
-      if (session.user) {
-        session.user.id = token.sub;
-        session.user.preference = token.preference;
-        session.user.accessToken = token.accessToken;
-        session.user.refreshToken = token.refreshToken;
-      }
+      session.user.id = token.sub;
+      session.user.preference = token.preference;
+      session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
 
       return session;
     }

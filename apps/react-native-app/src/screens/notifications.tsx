@@ -1,19 +1,19 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
-import Box from '@/components/common/box';
-import NavigationHeader from '@/components/common/header/general';
+import Box from '@/components/box';
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
+import NavigationHeader from '@/components/navigation-header';
 
 import {
   AuthenticatedParamList,

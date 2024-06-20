@@ -1,9 +1,9 @@
 import React from 'react';
 import { CompassIcon, HotelIcon, TentTreeIcon, UserRound } from 'lucide-react-native';
 import { Platform, Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
@@ -48,8 +48,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
       style={[
         ds.row,
         ds.justifyEvenly,
-        ds.roundedT24,
-        ds.overflowHidden,
+        ds.borderT1,
         dynamicStyles.background(configs.card),
         dynamicStyles.border(configs.border),
         Platform.OS === 'ios' && ds.h80

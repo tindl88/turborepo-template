@@ -1,15 +1,16 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import Box from '@/components/common/box';
-import GeneralNavigationHeader from '@/components/common/header/general';
+import Box from '@/components/box';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
+import NavigationHeader from '@/components/navigation-header';
+import SafeViewArea from '@/components/safe-view-area';
 
 import {
   AuthenticatedParamList,
@@ -27,14 +28,16 @@ function PrivacyPolicyScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
-      <Box hasBg={false} style={ds.flex1}>
-        <Box style={ds.flex1}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <PrivacyPolicy />
-          </ScrollView>
+      <NavigationHeader title={route.name} />
+      <SafeViewArea spacingBottom={true}>
+        <Box hasBg={false} style={ds.flex1}>
+          <Box style={ds.flex1}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <PrivacyPolicy />
+            </ScrollView>
+          </Box>
         </Box>
-      </Box>
+      </SafeViewArea>
     </View>
   );
 }

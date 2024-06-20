@@ -50,7 +50,7 @@ export default function CategoryFormStatus({ form }: CategoryFormStatusProps) {
                     </SelectContent>
                   </Select>
                 </FormControl>
-                <FormMessage />
+                <FormMessage message={t(form.formState.errors.status?.message)} />
               </FormItem>
             )}
           />

@@ -1,34 +1,34 @@
 import { ResponseFormat } from '@/interfaces/api-response.interface';
 
-import { SIGN_IN_AUTHENTICATOR, SIGN_IN_PROVIDER } from '../constants/auth.constant';
+import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
+
+import { UserEntity } from '@/modules/users/interfaces/users.interface';
 
 export type AuthEntity = {
-  user: {
-    id: string;
-    name: string;
-    fullName: string;
-    email: string;
-    avatar: string;
-    accessToken: string;
-    refreshToken: string;
-  };
+  user: UserEntity;
+  accessToken: string;
 };
 export type RefreshTokenEntity = {
   accessToken: string;
 };
 export type SignInDto = {
-  provider: SIGN_IN_PROVIDER;
-  authenticator: SIGN_IN_AUTHENTICATOR;
-  credentials?: SignInCredential;
-  facebook?: {
-    limited: boolean;
-    permissions: string[];
-  };
-};
-
-export type SignInCredential = {
+  authenticator: AUTH_AUTHENTICATOR;
   email: string;
   password: string;
+};
+
+export type OAuthGoogleSignInDto = {
+  authenticator: AUTH_AUTHENTICATOR;
+};
+
+export type OAuthFacebookSignInDto = {
+  authenticator: AUTH_AUTHENTICATOR;
+  limited: boolean;
+  permissions: string[];
+};
+
+export type OAuthAppleSignInDto = {
+  authenticator: AUTH_AUTHENTICATOR;
 };
 
 export type ResetPasswordDto = { email: string };

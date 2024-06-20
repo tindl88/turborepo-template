@@ -7,9 +7,7 @@ import { Button } from '~ui/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
 import { Input } from '~ui/components/ui/input';
 
-import { LoginDto } from '../interfaces/auth.interface';
-
-import { AUTH_PROVIDER } from '../constants/auth.constant';
+import { SignDto } from '../interfaces/auth.interface';
 
 import Logo from '@/components/icons/logo';
 
@@ -17,10 +15,8 @@ import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import { signInValidator } from '../validators/sign-in.validator';
 
-type LoginFormValues = {
-  email: string;
-  password: string;
-};
+import FacebookSignInButton from './facebook-signin';
+import GoogleSignInButton from './google-signin';
 
 const LoginForm = () => {
   const t = useTranslations();
@@ -29,20 +25,15 @@ const LoginForm = () => {
   const defaultValues = {
     email: 'ammodesk@gmail.com',
     password: 'Ammodesk123@'
-  } as LoginFormValues;
+  } as SignDto;
 
-  const form = useForm<LoginFormValues>({
+  const form = useForm<SignDto>({
     resolver: zodResolver(signInValidator),
     defaultValues
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async formData => {
-    authState.signIn({
-      ...(formData as LoginDto),
-      provider: AUTH_PROVIDER.CREDENTIALS,
-      redirect: true,
-      callbackUrl: '/'
-    });
+  const onSubmit: SubmitHandler<SignDto> = async formData => {
+    authState.signIn({ ...formData, redirect: true, callbackUrl: '/' });
   };
 
   return (
@@ -70,7 +61,9 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                {form.formState.errors.email?.message && (
+                  <FormMessage message={t(form.formState.errors.email.message)} />
+                )}
               </FormItem>
             )}
           />
@@ -88,7 +81,9 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                {form.formState.errors.password?.message && (
+                  <FormMessage message={t(form.formState.errors.password.message)} />
+                )}
               </FormItem>
             )}
           />
@@ -100,8 +95,8 @@ const LoginForm = () => {
           </div>
           {/* OAuth */}
           <div className="flex items-center justify-center space-x-3">
-            {/* <GoogleSignInButton /> */}
-            {/* <FacebookSignInButton /> */}
+            <GoogleSignInButton />
+            <FacebookSignInButton />
           </div>
         </form>
       </Form>

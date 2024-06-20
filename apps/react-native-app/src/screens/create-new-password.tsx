@@ -2,15 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import Heading from '@/components/core-ui/heading';
 import Line from '@/components/core-ui/line';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
+import NavigationHeader from '@/components/navigation-header';
 
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
@@ -28,7 +28,7 @@ function CreateNewPasswordScreen({ navigation }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader leftFunc={() => navigation.goBack()} />
+      <NavigationHeader leftFunc={() => navigation.goBack()} />
       <ScrollView style={[ds.flex1, ds.px12]}>
         <Heading as={'h1'} text={t('sign_up_title') || ''} style={[ds.textCenter, ds.mt20]} />
         <View style={[ds.row, ds.itemsCenter, ds.justifyCenter, ds.mt32, ds.gap14]}>

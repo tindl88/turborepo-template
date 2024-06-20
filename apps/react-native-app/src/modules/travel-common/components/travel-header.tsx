@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pressable, View } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { useNavigation } from '@react-navigation/native';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
@@ -18,8 +18,8 @@ function TravelHeader() {
   const { configs } = useThemeState();
   const authState = useAuthState();
 
-  const userAvatar = authState.auth?.user.avatar;
-  const userName = authState.auth?.user.name;
+  const userAvatar = authState.auth?.avatar;
+  const userName = authState.auth?.name;
   const foregroundColor = configs.foreground;
 
   return (

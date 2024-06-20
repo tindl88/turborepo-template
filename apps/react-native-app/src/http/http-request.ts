@@ -3,21 +3,25 @@ import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
 import { RefreshTokenResponse } from '@/modules/auth/interfaces/auth.interface';
-import slice from '@/modules/auth/states/auth.slice';
-import { getRefreshTokenFromStore, getSession } from '@/modules/auth/utils/session.util';
+import { useAuthState } from '@/modules/auth/states/auth.state';
 
-import { store } from '@/stores/redux/store';
+import log from '@/utils/logger.util';
 
 import { createAxiosInstance } from './http-client';
 
 const axiosClient = createAxiosInstance();
 
+const handleSignOut = async () => {
+  useAuthState.getState().reset();
+  await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.SIGN_OUT);
+};
+
 const interceptors = {
   onRequest: async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
     const headers = config.headers;
-    const session = await getSession();
+    const authState = useAuthState.getState();
 
-    if (session) headers.Authorization = `Bearer ${session.accessToken}`;
+    headers.Authorization = `Bearer ${authState.accessToken}`;
 
     return config;
   },
@@ -28,26 +32,22 @@ const interceptors = {
     const shouldCallRefreshToken = error.response && error.response.status === 401 && !originalConfig._retry;
 
     if (shouldCallRefreshToken) {
+      log.extend('AUTH').info('shouldCallRefreshToken');
       originalConfig._retry = true;
+      const authState = useAuthState.getState();
 
       try {
-        const refreshToken = getRefreshTokenFromStore();
+        const newTokens = await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {
+          token: authState.refreshToken
+        });
 
-        if (refreshToken) {
-          const newTokens = await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {
-            token: refreshToken
-          });
+        authState.setAccessToken(newTokens.data.data.accessToken);
 
-          store.dispatch(slice.actions.updateAccessToken(newTokens.data.data));
-
-          originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
-        } else {
-          store.dispatch(slice.actions.logoutRequest());
-        }
+        originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
         return axiosClient(originalConfig);
       } catch (err) {
-        store.dispatch(slice.actions.logoutRequest());
+        handleSignOut();
       }
     }
 

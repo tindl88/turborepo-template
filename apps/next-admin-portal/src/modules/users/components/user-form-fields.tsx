@@ -26,7 +26,7 @@ const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            {form.formState.errors.name?.message && <FormMessage message={t(form.formState.errors.name.message)} />}
           </FormItem>
         )}
       />
@@ -39,7 +39,7 @@ const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            {form.formState.errors.email?.message && <FormMessage message={t(form.formState.errors.email.message)} />}
           </FormItem>
         )}
       />
@@ -52,7 +52,9 @@ const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            {form.formState.errors.phoneNumber?.message && (
+              <FormMessage message={t(form.formState.errors.phoneNumber.message)} />
+            )}
           </FormItem>
         )}
       />

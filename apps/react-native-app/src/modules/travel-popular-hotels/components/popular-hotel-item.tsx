@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { MapPin } from 'lucide-react-native';
 import { Image, ImageSourcePropType, ImageStyle, Pressable } from 'react-native';
-import { Colors, ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { Colors, ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';

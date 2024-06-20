@@ -17,9 +17,6 @@ export class Notification extends AbstractEntity {
   topic: string;
 
   @Column({ type: 'varchar', nullable: true })
-  segment: string;
-
-  @Column({ type: 'varchar', nullable: true })
   scheduling: string;
 
   @Column({ type: 'varchar', nullable: true })

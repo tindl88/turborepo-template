@@ -22,9 +22,9 @@
     "./utils/*": "./src/utils/*.ts"
   },
   "devDependencies": {
+    "@repo/config-tailwindcss": "*",
+    "@repo/config-typescript": "*",
     "@repo/eslint-config": "*",
-    "@repo/tailwindcss-config": "*",
-    "@repo/typescript-config": "*",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@types/node": "^20.12.11",

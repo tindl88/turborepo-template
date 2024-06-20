@@ -1,12 +1,8 @@
-import { SignInOptions } from 'next-auth/react';
+import { type SignInOptions } from 'next-auth/react';
 
 import { ResponseFormat } from '@/interfaces/api-response.interface';
 
-export type PreferenceEntity = {
-  language: string;
-  theme: string;
-  themeColor: string;
-};
+import { PreferenceEntity } from '@/modules/settings/interfaces/settings.interface';
 
 export type AuthEntity = {
   user: {
@@ -16,16 +12,16 @@ export type AuthEntity = {
     email: string;
     avatar: string;
     preference: PreferenceEntity;
-    accessToken: string;
-    refreshToken: string;
   };
+  accessToken: string;
+  refreshToken: string;
 };
 
 export type RefreshTokenEntity = {
   accessToken: string;
 };
 
-export type LoginDto = { email: string; password: string } & SignInOptions;
+export type SignDto = { email: string; password: string } & SignInOptions;
 
-export type LoginResponse = ResponseFormat<AuthEntity>;
+export type SignInResponse = ResponseFormat<AuthEntity>;
 export type RefreshTokenResponse = ResponseFormat<RefreshTokenEntity>;

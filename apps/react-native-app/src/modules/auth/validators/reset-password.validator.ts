@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
 export const resetPasswordValidator = z.object({
-  email: z
-    .string({ required_error: 'Vui lòng nhập email', invalid_type_error: 'Email không hợp lệ' })
-    .min(1, 'Vui lòng nhập ít nhất 1 ký tự.')
+  email: z.string({ invalid_type_error: 'validator_email_is_invalid' }).min(1, 'validator_at_least_n_character')
 });

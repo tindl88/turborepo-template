@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Image, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
-import { Colors, ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
+import { Colors, ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
-import { hideGlobalModal, showGlobalModal } from '@/components/common/modal/global-modal';
 import AutomaticModal from '@/components/common/popup/automatic-modal';
 import ConfirmBox from '@/components/common/popup/confirm-box';
 import ErrorBox from '@/components/common/popup/error-box';
@@ -29,6 +27,8 @@ import StatusBar from '@/components/core-ui/statusbar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
+import { hideGlobalModal, showGlobalModal } from '@/components/global-modal/global-modal';
+import NavigationHeader from '@/components/navigation-header';
 
 import {
   AuthenticatedParamList,
@@ -47,7 +47,7 @@ function UIScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
+      <NavigationHeader title={route.name} />
       <Divider />
       <ScrollView style={[ds.flex1, ds.px10]}>
         <Tabs defaultValue="tab-ui-kit">

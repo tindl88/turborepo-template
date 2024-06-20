@@ -61,4 +61,7 @@ export class CreateUserDto {
 
   @IsOptional()
   preference?: UserPreference;
+
+  @IsOptional()
+  deviceToken?: string;
 }

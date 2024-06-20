@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, ImageSourcePropType, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';

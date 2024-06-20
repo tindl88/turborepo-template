@@ -1,4 +1,4 @@
-import { Colors } from '@/design-system';
+import { Colors } from '~react-native-design-system';
 
 import { ThemeConfig, ThemeEntity } from '../interfaces/theme.interface';
 

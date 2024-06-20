@@ -1,7 +1,7 @@
-import React, { FC, forwardRef, Ref, useState } from 'react';
+import React, { FC, forwardRef, Ref, useEffect, useState } from 'react';
 import { NativeSyntheticEvent, TextInput, TextInputChangeEventData, TextInputProps } from 'react-native';
-import { Colors, ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { Colors, ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -35,6 +35,10 @@ const InputText: FC<IInputTextProps> = forwardRef(
   ) => {
     const [val, setVal] = useState(value);
     const { configs } = useThemeState();
+
+    useEffect(() => {
+      setVal(value);
+    }, [value]);
 
     const handleChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
       const target = event.nativeEvent;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TextStyle, useWindowDimensions } from 'react-native';
 import Render, { defaultSystemFonts, HTMLSource } from 'react-native-render-html';
-import { fontMaker } from '@/design-system/utils/font.util';
+import { fontMaker } from '~react-native-design-system/utils/font.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

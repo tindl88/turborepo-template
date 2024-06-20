@@ -8,7 +8,8 @@ module.exports = {
       {
         alias: {
           '@': './src',
-          '~shared-client': '../../packages/shared-client/src'
+          '~shared-validators': '../../packages/shared-validators/src',
+          '~react-native-design-system': '../../packages/react-native-design-system/src'
         }
       }
     ]

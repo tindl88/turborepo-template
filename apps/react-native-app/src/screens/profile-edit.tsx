@@ -1,21 +1,21 @@
 import React from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
+import Box from '@/components/box';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
+import NavigationHeader from '@/components/navigation-header';
 
 import {
   ProfileParamList,
   TravelBottomTabParamList,
   TravelDrawerParamList
 } from '@/modules/navigation/interfaces/navigation.interface';
-import ProfileEdit from '@/modules/profile/conponents/profile-edit';
+import ProfileEditRoot from '@/modules/profile/conponents/profile-edit-root';
 
 type Props = CompositeScreenProps<
   StackScreenProps<ProfileParamList, 'ProfileEdit'>,
@@ -26,10 +26,12 @@ function ProfileEditScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
-      <ScrollView showsVerticalScrollIndicator={false} style={ds.p14}>
-        <ProfileEdit />
-      </ScrollView>
+      <NavigationHeader title={route.name} />
+      <Box hasBg={false} style={ds.flex1}>
+        <Box style={ds.flex1}>
+          <ProfileEditRoot />
+        </Box>
+      </Box>
     </View>
   );
 }

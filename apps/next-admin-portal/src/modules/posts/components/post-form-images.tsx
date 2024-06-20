@@ -71,7 +71,7 @@ export default function PostFormImages({ form }: PostFormImagesProps) {
                           />
                           <ButtonRemoveFile onClick={() => remove(index)} />
                         </div>
-                        <FormMessage />
+                        <FormMessage message={t(form.formState.errors.images?.message)} />
                       </FormItem>
                     )}
                   />

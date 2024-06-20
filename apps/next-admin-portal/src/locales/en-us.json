@@ -184,5 +184,27 @@
 
   "push_notification_title": "Title",
   "push_notification_content": "Content",
-  "push_notification_send_button": "Send"
+  "push_notification_send_button": "Send",
+  "push_notification_toast_title": "Notifications",
+  "push_notification_send_success": "Notification sent.",
+  "push_notification_send_failure": "Can not send notification.",
+
+  "validator_subject_must_be_at_least_n_characters": "You must enter at least {count} characters",
+  "validator_at_least_n_character": "Please enter at least {count, plural, =1 {# character} other {# characters}}",
+  "validator_maximum_n_characters_allowed": "Maximum {count} characters allowed",
+  "validator_enter_the_title": "Please enter the title",
+  "validator_enter_the_intro": "Please enter the intro",
+  "validator_enter_the_content": "Please enter the content",
+  "validator_enter_the_slug": "Please enter the slug",
+  "validator_enter_the_email": "Please enter your email",
+  "validator_email_is_invalid": "Email is invalid",
+  "validator_phone_number_is_invalid": "Phone number is invalid",
+  "validator_password_is_invalid": "Password is invalid",
+  "validator_password_rule": "Password must contain at least one uppercase letter, one special character and one number",
+  "validator_password_do_not_match": "Passwords do not match",
+  "validator_id_should_be_an_uuid": "It should be an UUID",
+  "validator_select_theme": "Please select a theme.",
+  "validator_select_language": "Please select a language.",
+  "validator_select_role": "Please select a role.",
+  "validator_select_status": "Please select a status."
 }

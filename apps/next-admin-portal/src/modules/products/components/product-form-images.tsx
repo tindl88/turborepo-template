@@ -71,7 +71,7 @@ export default function ProductFormImages({ form }: ProductFormImagesProps) {
                           />
                           <ButtonRemoveFile onClick={() => remove(index)} />
                         </div>
-                        <FormMessage />
+                        <FormMessage message={t(form.formState.errors.images?.message)} />
                       </FormItem>
                     )}
                   />

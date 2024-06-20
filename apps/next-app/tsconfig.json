@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@repo/config-typescript/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -7,7 +7,8 @@
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
       "~ui/*": ["../../packages/ui/src/*"],
-      "~shared-client/*": ["../../packages/shared-client/src/*"]
+      "~shared-client/*": ["../../packages/shared-client/src/*"],
+      "~shared-validators/*": ["../../packages/shared-validators/src/*"]
     }
   },
   "include": [
@@ -18,7 +19,8 @@
     "__tests__",
     "__mocks__",
     "../../packages/ui/src",
-    "../../packages/shared-client/src"
+    "../../packages/shared-client/src",
+    "../../packages/shared-validators/src"
   ],
   "exclude": ["node_modules"]
 }

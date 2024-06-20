@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
-import { Colors, ds } from '@/design-system';
+import { Colors, ds } from '~react-native-design-system';
 
 import Text from './text';
 import { ICoreUIBaseProps } from './types';

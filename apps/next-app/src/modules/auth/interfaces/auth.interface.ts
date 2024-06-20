@@ -16,17 +16,16 @@ export type AuthEntity = {
     email: string;
     avatar: string;
     preference: PreferenceEntity;
-    accessToken: string;
-    refreshToken: string;
   };
+  accessToken: string;
 };
 
 export type RefreshTokenEntity = {
   accessToken: string;
 };
 
-export type LoginDto = { email: string; password: string } & SignInOptions;
+export type SignDto = { email: string; password: string } & SignInOptions;
 
-export type LoginResponse = ResponseFormat<AuthEntity>;
+export type SignInResponse = ResponseFormat<AuthEntity>;
 export type SignUpResponse = ResponseFormat<{ email: string }>;
 export type RefreshTokenResponse = ResponseFormat<RefreshTokenEntity>;

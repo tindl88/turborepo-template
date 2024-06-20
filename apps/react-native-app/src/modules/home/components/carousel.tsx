@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Dimensions, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import Carousel from 'react-native-reanimated-carousel';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import View from '@/components/core-ui/view';
 

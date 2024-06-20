@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ChevronRight } from 'lucide-react-native';
 import { Pressable, StyleProp, ViewStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { ProfileAction } from '../interfaces/profile.interface';
 

@@ -2,10 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class SendNotificationDto {
-  @ApiProperty({ example: '<DEVICE_TOKEN>' })
-  @IsNotEmpty()
-  token: string;
-
   @ApiProperty({ example: 'Noti Title' })
   @IsNotEmpty()
   title: string;

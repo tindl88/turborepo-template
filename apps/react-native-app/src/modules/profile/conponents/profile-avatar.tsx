@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
@@ -12,8 +12,8 @@ type ProfileAvatarProps = {};
 const ProfileAvatar: FC<ProfileAvatarProps> = () => {
   const authState = useAuthState();
 
-  const userAvatar = authState.auth?.user.avatar;
-  const userName = authState.auth?.user.name;
+  const userAvatar = authState.auth?.avatar;
+  const userName = authState.auth?.name;
 
   return (
     <View>
@@ -26,7 +26,7 @@ const ProfileAvatar: FC<ProfileAvatarProps> = () => {
             </AvatarFallback>
           </Avatar>
           <Text style={ds.mt10} fontSize={20} fontWeight="Bold">
-            {authState.auth?.user.name}
+            {authState.auth?.name}
           </Text>
         </View>
       </View>

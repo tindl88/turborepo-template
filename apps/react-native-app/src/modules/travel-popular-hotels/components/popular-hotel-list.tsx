@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { ds } from '@/design-system';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
+import { ds } from '~react-native-design-system';
 
 import View from '@/components/core-ui/view';
 
