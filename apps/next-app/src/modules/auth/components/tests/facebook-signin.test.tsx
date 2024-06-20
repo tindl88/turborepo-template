@@ -2,7 +2,6 @@ import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import { act, fireEvent, render } from '@tests/unit/utils/test.util';
 
-import { AUTH_PROVIDER } from '../../constants/auth.constant';
 import FacebookSignInButton from '../facebook-signin';
 
 vi.mock('@/modules/auth/states/auth.state', () => ({
@@ -31,7 +30,6 @@ describe('FacebookSignInButton Component', () => {
 
     expect(btnElm).toBeInTheDocument();
     expect(useAuthState().facebookSignIn).toHaveBeenCalledWith({
-      provider: AUTH_PROVIDER.FACEBOOK,
       redirect: true,
       callbackUrl: '/'
     });
