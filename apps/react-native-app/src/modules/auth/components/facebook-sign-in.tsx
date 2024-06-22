@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 import { AxiosResponse } from 'axios';
-import { Platform, PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Platform, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { AccessToken, AuthenticationToken, LoginManager } from 'react-native-fbsdk-next';
 import { sha256 } from 'react-native-sha256';
 import Auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { useMutation } from '@tanstack/react-query';
+import { ds } from '~react-native-design-system';
 
 import { OAuthFacebookSignInDto, SignInResponse } from '../interfaces/auth.interface';
 
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
 
-import Button from '@/components/core-ui/button';
 import BrandFacebook from '@/components/svgs/brand-facebook';
 
 import log from '@/utils/logger.util';
@@ -105,8 +105,8 @@ const FacebookSignIn: FC<IFacebookSignInProps> = ({ style }) => {
   });
 
   return (
-    <Button
-      style={style}
+    <Pressable
+      style={[ds.row, ds.itemsCenter, ds.justifyCenter, style]}
       onPress={() => {
         mutation.mutate({
           authenticator: AUTH_AUTHENTICATOR.SELF_HOSTED,
@@ -115,8 +115,8 @@ const FacebookSignIn: FC<IFacebookSignInProps> = ({ style }) => {
         });
       }}
     >
-      <BrandFacebook />
-    </Button>
+      <BrandFacebook size={36} />
+    </Pressable>
   );
 };
 

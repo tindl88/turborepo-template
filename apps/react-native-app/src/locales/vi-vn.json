@@ -1,12 +1,11 @@
 {
-  "get_started": "Bắt đầu",
-  "i_already_have_account": "Tôi đã có tài khoản",
   "please_wait": "Vui lòng đợi trong giây lát.",
   "ok": "Đồng ý",
   "yes": "Có",
   "no": "Không",
   "close": "Đóng",
-  "cancel": "Hủy",
+  "cancel": "Hủy bỏ",
+  "confirm": "Đồng ý",
   "contact": "Liên hệ",
   "home": "Home",
   "setting": "Cài đặt",
@@ -14,26 +13,16 @@
   "scancode": "Quét mã",
   "post": "Bài viết",
   "email_address": "Email của bạn",
-  "login_title": "Đăng nhập vào tài khoản của bạn",
   "no_account": "Chưa có tài khoản?",
   "already_have_account": "Đã có tài khoản?",
-  "sign_up": "Đăng ký",
-  "sign_up_title": "Tạo tài khoản của bạn",
+  "i_already_have_account": "Tôi đã có tài khoản",
+  "get_started": "Bắt đầu",
+
   "create_account": "Tạo tài khoản",
   "password": "Mật khẩu",
   "confirm_password": "Nhập lại mật khẩu",
-  "sign_in": "Đăng nhập",
-  "login": "Đăng nhập",
-  "logout": "Đăng xuất",
   "or_continue_with": "hoặc tiếp tục với",
   "or_continue_with_password": "hoặc tiếp tục với mật khẩu",
-  "reset_password": "Quên mật khẩu",
-  "reset_password_title": "Quên mật khẩu",
-  "reset_password_desc": "Nhập địa chỉ email của bạn để lấy mã OTP để đặt lại mật khẩu",
-  "reset_password_btn": "Khôi phục mật khẩu",
-  "verification_title": "Verification",
-
-  "notifications": "Thông báo",
 
   "help_center": "Trung tâm trợ giúp",
   "edit_your_profile": "Sửa thông tin cá nhân",
@@ -43,13 +32,44 @@
   "languages": "Ngôn ngữ",
   "themes": "Giao diện",
 
-  "travel_accommodations": "Hotels",
+  "modal_success_message": "Bạn đã sẵn sàng",
+
+  "signup": "Đăng ký",
+  "signup_title": "Tạo tài khoản của bạn",
+
+  "signin": "Đăng nhập",
+  "signin_title": "Đăng nhập vào tài khoản của bạn",
+  "signin_email": "Email",
+  "signin_password": "Mật khẩu",
+  "signin_error": "Lỗi không thể đăng nhập",
+
+  "signout": "Đăng xuất",
+  "signout_confirm_title": "Đăng Xuất",
+  "signout_confirm_message": "Bạn chắc chắn sẽ thoát tài khoản?",
+
+  "forgot_password": "Quên mật khẩu",
+  "forgot_password_title": "Quên mật khẩu",
+  "forgot_password_desc": "Chúng tôi sẽ gửi mã OTP vào email của bạn, vui lòng kiểm tra hộp thư.",
+  "forgot_password_btn": "Gửi mã OTP",
+
+  "change_password": "Đổi mật khẩu",
+  "change_password_title": "Đổi mật khẩu",
+
+  "reset_password": "Đặt lại mật khẩu",
+  "reset_password_title": "Đặt lại mật khẩu",
+  "reset_password_desc": "Nhập địa chỉ email của bạn để lấy mã OTP để đặt lại mật khẩu",
+  "reset_password_btn": "Đặt lại mật khẩu",
+
+  "verification_otp_title": "Xác thực mã OTP",
+  "verification_otp_desc": "Chúng tôi đã gửi mã OTP qua email <bold>{{email}}</bold> của bạn, vui lòng nhập mã vào các ô bên dưới.",
+
+  "notifications": "Thông báo",
+
+  "travel_accommodations": "Khách Sạn",
   "travel_tours": "Tours",
 
-  "validator_subject_must_be_at_least_n_characters": "Bạn phải nhập ít nhất {{count}} ký tự",
-
-  "validator_at_least_n_character": "Bạn phải nhập ít nhất {{count}} ký tự",
-  "validator_maximum_n_characters_allowed": "Bạn chỉ được nhập tối đa {{count}} ký tự",
+  "validator_at_least_n_character": "Vui lòng nhập ít nhất {{count}} ký tự",
+  "validator_maximum_n_characters_allowed": "Maximum {{max}} characters allowed",
   "validator_email_is_invalid": "Email không hợp lệ",
   "validator_phone_number_is_invalid": "Số điện thoại không hợp lệ",
   "validator_password_is_invalid": "Mật khẩu không hợp lệ",

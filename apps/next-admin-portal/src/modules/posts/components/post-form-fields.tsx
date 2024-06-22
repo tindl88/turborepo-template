@@ -53,7 +53,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.name?.message)} />
+            {form.formState.errors.name?.message && <FormMessage message={t(form.formState.errors.name.message)} />}
           </FormItem>
         )}
       />
@@ -67,7 +67,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.slug?.message)} />
+            {form.formState.errors.slug?.message && <FormMessage message={t(form.formState.errors.slug.message)} />}
           </FormItem>
         )}
       />
@@ -87,7 +87,9 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 onShowFileManager={() => setIsFileManagerVisible(true)}
               />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.description?.message)} />
+            {form.formState.errors.description?.message && (
+              <FormMessage message={t(form.formState.errors.description.message)} />
+            )}
           </FormItem>
         )}
       />
@@ -110,7 +112,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 {/* <BlockEditor value={field.value} onChange={field.onChange} /> */}
               </>
             </FormControl>
-            <FormMessage message={t(form.formState.errors.body?.message)} />
+            {form.formState.errors.body?.message && <FormMessage message={t(form.formState.errors.body.message)} />}
           </FormItem>
         )}
       />

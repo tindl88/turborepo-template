@@ -24,7 +24,7 @@ export type GlobalModalProps = {
   modalKey?: string;
   hideClose?: boolean;
   disableLayoutChangeAnimation?: boolean;
-  Component: React.FC;
+  component: React.ReactNode;
 };
 
 export function showGlobalModal(prop: GlobalModalProps) {
@@ -161,7 +161,7 @@ function GlobalModal() {
                   : LayoutChangeAnimationType.NO_DELAY)
               }
             >
-              <it.Component />
+              {it.component}
             </GlobalModalChildWrapper>
           ))}
         </Animated.View>

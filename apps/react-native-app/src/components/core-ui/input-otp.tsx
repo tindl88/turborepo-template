@@ -7,17 +7,17 @@ import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import Text from './text';
 
-interface IOTPInputProps {
+interface IInputOTPProps {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   maximumLength: number;
   setIsPinReady: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setIsPinReady }) => {
+const InputOTP: React.FC<IInputOTPProps> = ({ code, setCode, maximumLength, setIsPinReady }) => {
   const { configs } = useThemeState();
   const inputRef = useRef<TextInput>(null);
-  const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
+  const [isInputBoxFocused, setIsInputBoxFocused] = useState(true);
 
   const boxArray = new Array(maximumLength).fill(0);
 
@@ -31,10 +31,8 @@ const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setI
   };
 
   useEffect(() => {
-    // update pin ready status
     setIsPinReady(code.length === maximumLength);
 
-    // clean up function
     return () => {
       setIsPinReady(false);
     };
@@ -61,7 +59,7 @@ const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setI
           ds.border1,
           dynamicStyles.color(configs.foreground),
           dynamicStyles.border(configs.border),
-          dynamicStyles.background(configs.background),
+          dynamicStyles.background(configs.card),
           isInputBoxFocused && isValueFocused && ds.borderBlue500
         ]}
       >
@@ -79,6 +77,7 @@ const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setI
       </View>
       <TextInput
         ref={inputRef}
+        autoFocus
         style={(ds.absolute, ds.opacity0)}
         value={code}
         keyboardType="numeric"
@@ -90,4 +89,4 @@ const OTPInput: React.FC<IOTPInputProps> = ({ code, setCode, maximumLength, setI
   );
 };
 
-export default OTPInput;
+export default InputOTP;

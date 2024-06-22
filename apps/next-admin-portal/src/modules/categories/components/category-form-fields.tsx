@@ -27,7 +27,9 @@ const CategoryFormFields: FC<CategoryFormFieldsProps> = ({ className, form }) =>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.name?.message, { count: 2 })} />
+            {form.formState.errors.name?.message && (
+              <FormMessage message={t(form.formState.errors.name.message, { count: 2 })} />
+            )}
           </FormItem>
         )}
       />

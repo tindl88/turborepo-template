@@ -1,9 +1,10 @@
 'use client';
 
 import React, { FC } from 'react';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '~ui/components/ui/button';
+
+import { useRouter } from '@/navigation';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

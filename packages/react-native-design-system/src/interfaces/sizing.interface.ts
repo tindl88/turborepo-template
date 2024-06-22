@@ -196,6 +196,7 @@ type HeightType = {
   h40: ViewStyle;
   h44: ViewStyle;
   h48: ViewStyle;
+  h52: ViewStyle;
   h56: ViewStyle;
   h64: ViewStyle;
   h80: ViewStyle;

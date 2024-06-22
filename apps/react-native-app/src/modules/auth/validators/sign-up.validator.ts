@@ -7,7 +7,7 @@ export const signUpValidator = z
     name: baseValidator.userName,
     email: baseValidator.email,
     password: baseValidator.password,
-    confirmPassword: z.string()
+    confirmPassword: z.string({ message: 'validator_password_do_not_match' })
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'validator_password_do_not_match',

@@ -52,7 +52,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.name?.message)} />
+            {form.formState.errors.name?.message && <FormMessage message={t(form.formState.errors.name.message)} />}
           </FormItem>
         )}
       />
@@ -66,7 +66,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage message={t(form.formState.errors.slug?.message)} />
+            {form.formState.errors.slug?.message && <FormMessage message={t(form.formState.errors.slug.message)} />}
           </FormItem>
         )}
       />
@@ -88,7 +88,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
                 />
               </>
             </FormControl>
-            <FormMessage message={t(form.formState.errors.body?.message)} />
+            {form.formState.errors.body?.message && <FormMessage message={t(form.formState.errors.body.message)} />}
           </FormItem>
         )}
       />

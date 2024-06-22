@@ -189,9 +189,8 @@
   "push_notification_send_success": "Notification sent.",
   "push_notification_send_failure": "Can not send notification.",
 
-  "validator_subject_must_be_at_least_n_characters": "You must enter at least {count} characters",
-  "validator_at_least_n_character": "Please enter at least {count, plural, =1 {# character} other {# characters}}",
-  "validator_maximum_n_characters_allowed": "Maximum {count} characters allowed",
+  "validator_at_least_n_character": "Please enter at least {min, plural, =1 {# character} other {# characters}}",
+  "validator_maximum_n_characters_allowed": "Maximum {max} characters allowed",
   "validator_enter_the_title": "Please enter the title",
   "validator_enter_the_intro": "Please enter the intro",
   "validator_enter_the_content": "Please enter the content",

@@ -5,7 +5,8 @@ import { cn } from '~ui/lib/utils';
 const loadingVariants = cva('origin-center rounded-full animate-spin', {
   variants: {
     variant: {
-      default: 'border-b-foreground/30 border-l-foreground/30 border-r-foreground/30 border-t-primary-foreground'
+      default: 'border-b-white/20 border-l-white/20 border-r-white/20 border-t-primary',
+      light: 'border-b-white/20 border-l-white/20 border-r-white/20 border-t-white'
     },
     size: {
       xs: 'h-5 w-5',

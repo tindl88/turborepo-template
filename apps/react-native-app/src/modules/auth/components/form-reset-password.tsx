@@ -1,62 +1,96 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigation } from '@react-navigation/native';
 import { ds } from '~react-native-design-system';
+
+import { ResetPasswordDto } from '../interfaces/auth.interface';
 
 import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
-import Input from '@/components/core-ui/input';
+import InputPassword from '@/components/core-ui/input-password';
 import View from '@/components/core-ui/view';
+import { hideGlobalModal, showGlobalModal } from '@/components/global-modal/global-modal';
+import ModalSuccess from '@/components/modal-success';
+
+import { UnauthenticatedNavigationProps } from '@/modules/navigation/interfaces/navigation.interface';
 
 import log from '@/utils/logger.util';
 
 import { resetPasswordValidator } from '../validators/reset-password.validator';
 
-interface IFormData {
-  email: string;
-}
-
 const ResetPasswordForm = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation<UnauthenticatedNavigationProps>();
 
-  const defaultValues = {
-    email: 'ammodesk@gmail.com'
-  } as IFormData;
+  const defaultValues: ResetPasswordDto = {
+    otpCode: '12345',
+    password: 'Ammodesk123@',
+    confirmPassword: 'Ammodesk123@'
+  };
 
-  const form = useForm<IFormData>({
+  const form = useForm<ResetPasswordDto>({
     resolver: zodResolver(resetPasswordValidator),
     defaultValues
   });
 
-  const onSubmit: SubmitHandler<IFormData> = async data => {
-    log.info(data);
+  const onSubmit: SubmitHandler<ResetPasswordDto> = async _data => {
+    showGlobalModal({
+      modalKey: 'modal-success',
+      hideClose: true,
+      component: <ModalSuccess redirectTo={() => navigation.navigate('Login')} />
+    });
     try {
-    } catch (error) {}
+    } catch (error) {
+      log.extend('AUTH').error(`Forgot Password Failed ${error}`);
+    }
   };
+
+  useEffect(() => {
+    return hideGlobalModal('modal-success');
+  }, []);
 
   return (
     <Form {...form}>
-      <View>
+      <View style={ds.gap20}>
         <FormField
-          name="email"
+          name="password"
           control={form.control}
-          rules={{ required: true }}
           render={({ field, fieldState }) => (
             <FormItem>
-              <Input
+              <InputPassword
                 {...field}
                 style={fieldState.error && ds.borderRed500}
-                placeholder="Email"
+                placeholder={t('password')}
                 onChangeText={field.onChange}
               />
-              <FormMessage />
+              {form.formState.errors.password?.message && (
+                <FormMessage message={t(form.formState.errors.password.message, { count: 8, max: 255 })} />
+              )}
+            </FormItem>
+          )}
+        />
+        <FormField
+          name="confirmPassword"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <InputPassword
+                {...field}
+                style={fieldState.error && ds.borderRed500}
+                placeholder={t('confirm_password')}
+                onChangeText={field.onChange}
+              />
+              {form.formState.errors.confirmPassword?.message && (
+                <FormMessage message={t(form.formState.errors.confirmPassword.message)} />
+              )}
             </FormItem>
           )}
         />
       </View>
       <View style={ds.mt32}>
-        <Button onPress={form.handleSubmit(onSubmit)}>{t('forgot_password_btn').toUpperCase()}</Button>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('reset_password_btn').toUpperCase()}</Button>
       </View>
     </Form>
   );

@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { SignDto } from '../interfaces/auth.interface';
+import { SignInDto } from '../interfaces/auth.interface';
 
 import { AUTH_PROVIDER } from '../constants/auth.constant';
 
@@ -12,7 +12,7 @@ type State = {
 };
 
 type Actions = {
-  signIn: (credentials: SignDto) => void;
+  signIn: (credentials: SignInDto) => void;
   googleSignIn: (options: SignInOptions) => void;
   facebookSignIn: (options: SignInOptions) => void;
   signOut: (options: SignOutParams) => void;

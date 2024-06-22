@@ -8,11 +8,10 @@ import { ds } from '~react-native-design-system';
 
 import { SignInDto, SignInResponse } from '../interfaces/auth.interface';
 
-import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
-
 import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
 import Input from '@/components/core-ui/input';
+import InputPassword from '@/components/core-ui/input-password';
 import View from '@/components/core-ui/view';
 
 import log from '@/utils/logger.util';
@@ -28,15 +27,11 @@ const LoginForm = () => {
   const authState = useAuthState();
 
   const defaultValues: SignInDto = {
-    authenticator: AUTH_AUTHENTICATOR.SELF_HOSTED,
     email: 'ammodesk@gmail.com',
     password: 'Ammodesk123@'
   };
 
-  const form = useForm<SignInDto>({
-    resolver: zodResolver(signInValidator),
-    defaultValues
-  });
+  const form = useForm<SignInDto>({ resolver: zodResolver(signInValidator), defaultValues });
 
   const mutation = useMutation({
     mutationFn: async (signInDto: SignInDto) => AuthApi.passwordSignIn(signInDto),
@@ -49,8 +44,7 @@ const LoginForm = () => {
       log.extend('AUTH').info('Login Password Success');
     },
     onError: error => {
-      //FIXME
-      toast.show('Something went wrong!', { type: 'danger' });
+      toast.show(t('signin_error'), { type: 'danger' });
       log.extend('AUTH').error(`Login Password Failed: ${error}`);
     }
   });
@@ -59,50 +53,50 @@ const LoginForm = () => {
 
   return (
     <Form {...form}>
-      <View>
-        <FormField
-          name="email"
-          control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
-            <FormItem>
-              <Input
-                {...field}
-                style={fieldState.error && ds.borderRed500}
-                placeholder="Email"
-                onChangeText={field.onChange}
-              />
-              {form.formState.errors.email?.message && (
-                <FormMessage message={t(form.formState.errors.email.message, { count: 1 })} />
-              )}
-            </FormItem>
-          )}
-        />
-      </View>
-      <View style={ds.mt20}>
-        <FormField
-          name="password"
-          control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
-            <FormItem>
-              <Input
-                {...field}
-                style={fieldState.error && ds.borderRed500}
-                placeholder="Password"
-                onChangeText={field.onChange}
-              />
-              {form.formState.errors.password?.message && (
-                <FormMessage message={t(form.formState.errors.password.message, { count: 8 })} />
-              )}
-            </FormItem>
-          )}
-        />
-      </View>
-      <View style={ds.mt20}>
-        <Button disabled={mutation.isPending} onPress={form.handleSubmit(onSubmit)}>
-          {t('login').toUpperCase()}
-        </Button>
+      <View style={ds.gap20}>
+        <View>
+          <FormField
+            name="email"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <Input
+                  {...field}
+                  style={fieldState.error && ds.borderRed500}
+                  placeholder={t('signin_email')}
+                  onChangeText={field.onChange}
+                />
+                {form.formState.errors.email?.message && (
+                  <FormMessage message={t(form.formState.errors.email.message, { count: 1, max: 320 })} />
+                )}
+              </FormItem>
+            )}
+          />
+        </View>
+        <View>
+          <FormField
+            name="password"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <InputPassword
+                  {...field}
+                  style={fieldState.error && ds.borderRed500}
+                  placeholder={t('signin_password')}
+                  onChangeText={field.onChange}
+                />
+                {form.formState.errors.password?.message && (
+                  <FormMessage message={t(form.formState.errors.password.message, { count: 8, max: 255 })} />
+                )}
+              </FormItem>
+            )}
+          />
+        </View>
+        <View>
+          <Button disabled={mutation.isPending} onPress={form.handleSubmit(onSubmit)}>
+            {t('signin').toUpperCase()}
+          </Button>
+        </View>
       </View>
     </Form>
   );

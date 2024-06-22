@@ -44,7 +44,6 @@ const RegisterForm = () => {
         <FormField
           name="name"
           control={form.control}
-          rules={{ required: true }}
           render={({ field, fieldState }) => (
             <FormItem>
               <Input
@@ -62,7 +61,6 @@ const RegisterForm = () => {
         <FormField
           name="email"
           control={form.control}
-          rules={{ required: true }}
           render={({ field, fieldState }) => (
             <FormItem>
               <Input
@@ -80,7 +78,6 @@ const RegisterForm = () => {
         <FormField
           name="password"
           control={form.control}
-          rules={{ required: true }}
           render={({ field, fieldState }) => (
             <FormItem>
               <Input
@@ -98,7 +95,6 @@ const RegisterForm = () => {
         <FormField
           name="confirmPassword"
           control={form.control}
-          rules={{ required: true }}
           render={({ field, fieldState }) => (
             <FormItem>
               <Input

@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Pressable, PressableProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
@@ -8,7 +8,7 @@ import Loading from './loading';
 import Text from './text';
 
 type ButtonSize = 'sm' | 'md' | 'lg';
-type ButtonVariant = 'default';
+type ButtonVariant = 'default' | 'outlined' | 'danger';
 
 interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
   children?: ReactNode;
@@ -16,7 +16,7 @@ interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> 
   loading?: boolean;
   variant?: ButtonVariant;
   disabled?: boolean;
-  style?: StyleProp<PressableProps | ViewStyle>;
+  style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }
 
@@ -34,13 +34,13 @@ const Button: React.FC<IButtonProps> = ({
 
   const buttonSizes = {
     sm: {
-      height: 44,
+      height: 46,
       paddingHorizontal: 12,
       fontSize: 16,
       iconSize: 18
     },
     md: {
-      height: 50,
+      height: 52,
       paddingHorizontal: 20,
       fontSize: 18,
       iconSize: 20
@@ -52,6 +52,7 @@ const Button: React.FC<IButtonProps> = ({
       iconSize: 22
     }
   };
+
   const buttonVariants = {
     light: {
       default: {
@@ -59,7 +60,24 @@ const Button: React.FC<IButtonProps> = ({
         textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[400]
+        focusedBgColor: Colors.amber[400],
+        borderColor: 'transparent'
+      },
+      outlined: {
+        bgColor: 'transparent',
+        textColor: configs.primary,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.amber[100],
+        borderColor: configs.primary
+      },
+      danger: {
+        bgColor: Colors.red[500],
+        textColor: Colors.white,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.red[700],
+        borderColor: 'transparent'
       }
     },
     dark: {
@@ -68,19 +86,38 @@ const Button: React.FC<IButtonProps> = ({
         textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[400]
+        focusedBgColor: Colors.amber[400],
+        borderColor: 'transparent'
+      },
+      outlined: {
+        bgColor: 'transparent',
+        textColor: configs.primary,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.amber[100],
+        borderColor: configs.primary
+      },
+      danger: {
+        bgColor: Colors.red[500],
+        textColor: Colors.white,
+        disabledBgColor: Colors.slate[200],
+        disabledTextColor: Colors.slate[400],
+        focusedBgColor: Colors.red[700],
+        borderColor: 'transparent'
       }
     }
   };
+
   const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
-  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor } =
+  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor, borderColor } =
     buttonVariants[theme.key as keyof typeof buttonVariants][variant];
 
   const buttonStyle: ViewStyle = {
     height,
     paddingHorizontal,
     backgroundColor: disabled ? disabledBgColor : isFocused ? focusedBgColor : bgColor,
-    borderColor: isFocused ? focusedBgColor : 'transparent'
+    borderColor: borderColor || (isFocused ? focusedBgColor : 'transparent'),
+    borderWidth: variant === 'outlined' ? 1 : 0
   };
 
   const textStyle: TextStyle = { fontSize, color: disabled ? disabledTextColor : textColor };
@@ -94,9 +131,11 @@ const Button: React.FC<IButtonProps> = ({
       onPressOut={() => setIsFocused(false)}
     >
       {loading && <Loading size={iconSize} />}
-      <Text fontWeight="Bold" style={textStyle}>
-        {children}
-      </Text>
+      {children && (
+        <Text fontWeight="Bold" style={textStyle}>
+          {children}
+        </Text>
+      )}
     </Pressable>
   );
 };

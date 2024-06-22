@@ -1,4 +1,4 @@
-import { RefreshTokenResponse, SignDto, SignInResponse } from '../interfaces/auth.interface';
+import { RefreshTokenResponse, SignInDto, SignInResponse } from '../interfaces/auth.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
@@ -11,8 +11,8 @@ export const signUp = (userDto: CreateUserDto) => {
   return axiosClient.post<UserEntity>(API_ENDPOINTS.SIGN_UP, userDto);
 };
 
-export const signIn = (credential: SignDto) => {
-  return axiosClient.post<SignInResponse>(API_ENDPOINTS.SIGN_IN, credential);
+export const signIn = (signInDto: SignInDto) => {
+  return axiosClient.post<SignInResponse>(API_ENDPOINTS.SIGN_IN, signInDto);
 };
 
 export const googleSignIn = (authenticator: AUTH_AUTHENTICATOR, token: string) => {

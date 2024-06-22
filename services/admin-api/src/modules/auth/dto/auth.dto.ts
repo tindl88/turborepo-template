@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
@@ -26,8 +26,10 @@ export class OAuthSignInDto {
   @ApiProperty({ enum: AUTH_AUTHENTICATOR, default: AUTH_AUTHENTICATOR.SELF_HOSTED })
   @IsEnum(AUTH_AUTHENTICATOR)
   authenticator: AUTH_AUTHENTICATOR;
+}
 
-  @ApiProperty({ example: true })
+export class OAuthFacebookSignInDto extends OAuthSignInDto {
+  @ApiPropertyOptional({ example: true })
   @IsOptional()
   @IsBoolean()
   isFacebookLimited: boolean;

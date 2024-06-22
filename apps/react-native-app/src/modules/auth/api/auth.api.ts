@@ -11,10 +11,10 @@ export const signUp = (userDto: CreateUserDto) => {
   return axiosClient.post<UserEntity>(API_ENDPOINTS.SIGN_UP, userDto);
 };
 
-export const passwordSignIn = (signInCredential: SignInDto) => {
+export const passwordSignIn = (signInDto: SignInDto) => {
   return axiosClient.post<SignInResponse>(API_ENDPOINTS.SIGN_IN, {
-    email: signInCredential.email,
-    password: signInCredential.password
+    email: signInDto.email,
+    password: signInDto.password
   });
 };
 

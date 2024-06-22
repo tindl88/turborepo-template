@@ -7,7 +7,7 @@ import { Button } from '~ui/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
 import { Input } from '~ui/components/ui/input';
 
-import { SignDto } from '../interfaces/auth.interface';
+import { SignInDto } from '../interfaces/auth.interface';
 
 import Logo from '@/components/icons/logo';
 
@@ -22,17 +22,14 @@ const LoginForm = () => {
   const t = useTranslations();
   const authState = useAuthState();
 
-  const defaultValues = {
+  const defaultValues: SignInDto = {
     email: 'ammodesk@gmail.com',
-    password: 'Ammodesk123@'
-  } as SignDto;
+    password: 'Ammodesk123'
+  };
 
-  const form = useForm<SignDto>({
-    resolver: zodResolver(signInValidator),
-    defaultValues
-  });
+  const form = useForm<SignInDto>({ resolver: zodResolver(signInValidator), defaultValues });
 
-  const onSubmit: SubmitHandler<SignDto> = async formData => {
+  const onSubmit: SubmitHandler<SignInDto> = async formData => {
     authState.signIn({ ...formData, redirect: true, callbackUrl: '/' });
   };
 
@@ -62,7 +59,7 @@ const LoginForm = () => {
                   />
                 </FormControl>
                 {form.formState.errors.email?.message && (
-                  <FormMessage message={t(form.formState.errors.email.message)} />
+                  <FormMessage message={t(form.formState.errors.email.message, { min: 1, max: 320 })} />
                 )}
               </FormItem>
             )}
@@ -82,7 +79,7 @@ const LoginForm = () => {
                   />
                 </FormControl>
                 {form.formState.errors.password?.message && (
-                  <FormMessage message={t(form.formState.errors.password.message)} />
+                  <FormMessage message={t(form.formState.errors.password.message, { min: 8, max: 255 })} />
                 )}
               </FormItem>
             )}

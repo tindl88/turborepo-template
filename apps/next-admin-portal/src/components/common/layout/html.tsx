@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
-
-import { defaultLocale } from '@/navigation';
+import { defaultLocale } from '@/config';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

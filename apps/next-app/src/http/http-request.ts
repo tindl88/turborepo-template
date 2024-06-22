@@ -2,11 +2,18 @@ import { getCsrfToken, getSession, signOut } from 'next-auth/react';
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { merge } from 'lodash-es';
 
-import AuthApi from '@/modules/auth/api/auth.api';
+import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
+
+import { RefreshTokenResponse } from '@/modules/auth/interfaces/auth.interface';
 
 import { createAxiosInstance } from './http-client';
 
 const axiosClient = createAxiosInstance();
+
+const handleSignOut = async () => {
+  signOut({ redirect: true, callbackUrl: '/' });
+  await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.SIGN_OUT);
+};
 
 const updateSession = async (newSession: Record<string, string>) => {
   await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/session`, {
@@ -24,7 +31,7 @@ const interceptors = {
     const headers = config.headers;
     const session = await getSession();
 
-    if (session) headers.Authorization = `Bearer ${session.user.accessToken}`;
+    if (session) headers.Authorization = `Bearer ${session.accessToken}`;
 
     return config;
   },
@@ -41,20 +48,19 @@ const interceptors = {
 
       try {
         const session = await getSession();
-
-        const refreshTokenResponse = await AuthApi.refreshToken(session?.user.refreshToken as string);
-
+        const newTokens = await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {
+          token: session?.refreshToken
+        });
         const newSession = merge({}, session, {
-          user: merge({}, session?.user, refreshTokenResponse.data.data)
+          user: merge({}, session?.user, newTokens.data.data)
         });
 
         await updateSession(newSession as never);
-
-        originalConfig.headers.Authorization = `Bearer ${refreshTokenResponse.data.data.accessToken}`;
+        originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
         return axiosClient(originalConfig);
       } catch (err) {
-        signOut({ redirect: true, callbackUrl: '/' });
+        handleSignOut();
       }
     }
 

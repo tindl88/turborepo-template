@@ -1,13 +1,11 @@
-import React, { FC, forwardRef, Ref, useEffect, useState } from 'react';
-import { NativeSyntheticEvent, TextInput, TextInputChangeEventData, TextInputProps } from 'react-native';
+import React, { FC, forwardRef, useEffect, useState } from 'react';
+import { NativeSyntheticEvent, TextInput, TextInputChangeEventData } from 'react-native';
 import { Colors, ds } from '~react-native-design-system';
 import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-import { ICoreUIBaseProps } from './types';
-
-interface IInputTextProps extends ICoreUIBaseProps, TextInputProps {
+export interface IInputTextProps extends React.ComponentPropsWithRef<typeof TextInput> {
   placeholder?: string;
   value?: string;
   defaultValue?: string;
@@ -17,7 +15,7 @@ interface IInputTextProps extends ICoreUIBaseProps, TextInputProps {
   onChangeText?: (text: string) => void;
 }
 
-const InputText: FC<IInputTextProps> = forwardRef(
+const InputText: FC<IInputTextProps> = forwardRef<TextInput, IInputTextProps>(
   (
     {
       value,
@@ -26,12 +24,12 @@ const InputText: FC<IInputTextProps> = forwardRef(
       keyboardType,
       secureTextEntry,
       multiline = false,
-      visible = true,
+      style,
       onChange,
       onChangeText,
-      style
+      ...props
     },
-    ref: Ref<TextInput>
+    ref
   ) => {
     const [val, setVal] = useState(value);
     const { configs } = useThemeState();
@@ -41,38 +39,37 @@ const InputText: FC<IInputTextProps> = forwardRef(
     }, [value]);
 
     const handleChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
-      const target = event.nativeEvent;
+      const text = event.nativeEvent.text;
 
-      setVal(target.text);
+      setVal(text);
       onChange?.(event);
-      onChangeText?.(target.text);
+      onChangeText?.(text);
     };
-
-    if (!visible) return null;
 
     return (
       <TextInput
         ref={ref}
+        value={val}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        placeholderTextColor={Colors.stone[400]}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        multiline={multiline}
         style={[
           ds.border1,
           ds.rounded10,
-          ds.px10,
-          ds.text16,
+          ds.px14,
+          ds.text18,
           ds.leading20,
           dynamicStyles.color(configs.foreground),
           dynamicStyles.border(configs.border),
           dynamicStyles.background(configs.card),
-          multiline ? ds.h144 : ds.h48,
+          multiline ? ds.h144 : ds.h52,
           style
         ]}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        placeholder={placeholder}
-        placeholderTextColor={Colors.gray[400]}
-        defaultValue={defaultValue}
-        value={val}
-        multiline={multiline}
         onChange={handleChange}
+        {...props}
       />
     );
   }

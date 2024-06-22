@@ -57,7 +57,7 @@ const UserFormRole: FC<UserFormRoleProps> = ({ className, form }) => {
                 ))}
               </RadioGroup>
             </FormControl>
-            <FormMessage message={t(form.formState.errors.role?.message)} />
+            {form.formState.errors.role?.message && <FormMessage message={t(form.formState.errors.role?.message)} />}
           </FormItem>
         )}
       />

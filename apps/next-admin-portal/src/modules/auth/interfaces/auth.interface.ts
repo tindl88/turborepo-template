@@ -21,7 +21,7 @@ export type RefreshTokenEntity = {
   accessToken: string;
 };
 
-export type SignDto = { email: string; password: string } & SignInOptions;
+export type SignInDto = { email: string; password: string } & SignInOptions;
 
 export type SignInResponse = ResponseFormat<AuthEntity>;
 export type RefreshTokenResponse = ResponseFormat<RefreshTokenEntity>;

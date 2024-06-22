@@ -32,7 +32,7 @@ const Text = forwardRef<RNText, ITextProps>(
       fontName,
       fontStyle,
       fontWeight = 'Regular',
-      fontSize = 16,
+      fontSize = 18,
       lineHeight = 22,
       visible = true,
       onPress

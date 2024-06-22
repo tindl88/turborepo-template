@@ -14,7 +14,7 @@ import { LoginWithGoogleDoc } from './docs/login-with-google.doc';
 import { ResetPasswordDoc } from './docs/reset-password.doc';
 import { SignUpDoc } from './docs/sign-up.doc';
 import { VerifyResetPasswordDoc } from './docs/verify-reset-password.doc';
-import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
+import { OAuthFacebookSignInDto, OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
 import { AuthService } from './auth.service';
@@ -80,12 +80,12 @@ export class AuthController {
   async signInWithFacebook(
     @Req() req: Request,
     @Res({ passthrough: true }) response: ExpressResponse,
-    @Body() oAuthSignInDto: OAuthSignInDto
+    @Body() oAuthFacebookSignInDto: OAuthFacebookSignInDto
   ) {
     const ip = req.ip as string;
     const ua = req.headers['user-agent'] || '';
 
-    const resp = await this.authService.signInWithFacebook(oAuthSignInDto, ip, ua);
+    const resp = await this.authService.signInWithFacebook(oAuthFacebookSignInDto, ip, ua);
 
     response.cookie('refreshToken', resp.refreshToken);
 

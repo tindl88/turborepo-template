@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { Platform, PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Platform, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import Auth from '@react-native-firebase/auth';
 import { useMutation } from '@tanstack/react-query';
+import { ds } from '~react-native-design-system';
 
 import { OAuthAppleSignInDto, SignInResponse } from '../interfaces/auth.interface';
 
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
 
-import Button from '@/components/core-ui/button';
 import BrandApple from '@/components/svgs/brand-apple';
 
 import log from '@/utils/logger.util';
@@ -63,16 +63,16 @@ const AppleSignIn: FC<IAppleSignInProps> = ({ style }) => {
   if (Platform.OS !== 'ios') return null;
 
   return (
-    <Button
-      style={style}
+    <Pressable
+      style={[ds.row, ds.itemsCenter, ds.justifyCenter, style]}
       onPress={() => {
         mutation.mutate({
           authenticator: AUTH_AUTHENTICATOR.SELF_HOSTED
         });
       }}
     >
-      <BrandApple />
-    </Button>
+      <BrandApple size={36} />
+    </Pressable>
   );
 };
 

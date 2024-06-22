@@ -12,7 +12,6 @@ export type RefreshTokenEntity = {
   accessToken: string;
 };
 export type SignInDto = {
-  authenticator: AUTH_AUTHENTICATOR;
   email: string;
   password: string;
 };
@@ -31,16 +30,17 @@ export type OAuthAppleSignInDto = {
   authenticator: AUTH_AUTHENTICATOR;
 };
 
-export type ResetPasswordDto = { email: string };
+export type ForgotPasswordDto = {
+  email: string;
+};
+
+export type ResetPasswordDto = {
+  otpCode: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export type SignInResponse = ResponseFormat<AuthEntity>;
 export type SignOutResponse = ResponseFormat<{ status: string }>;
 export type RefreshTokenResponse = ResponseFormat<RefreshTokenEntity>;
-export type ResetPasswordResponse = ResponseFormat<{ code: string }>;
-export type NativeFirebaseError = {
-  code: string;
-  message: string;
-  namespace: string;
-  nativeErrorCode: string | number;
-  nativeErrorMessage: string;
-  stack: undefined | string;
-};
+export type ForgotPasswordResponse = ResponseFormat<{ code: string }>;

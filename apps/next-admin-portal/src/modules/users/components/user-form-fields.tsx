@@ -39,7 +39,9 @@ const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.email?.message && <FormMessage message={t(form.formState.errors.email.message)} />}
+            {form.formState.errors.email?.message && (
+              <FormMessage message={t(form.formState.errors.email.message, { min: 1, max: 320 })} />
+            )}
           </FormItem>
         )}
       />

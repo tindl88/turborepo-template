@@ -68,7 +68,6 @@ const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
           <FormField
             name="name"
             control={form.control}
-            rules={{ required: true }}
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>{t('profile_name')}</FormLabel>
@@ -80,7 +79,6 @@ const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
           <FormField
             name="phoneNumber"
             control={form.control}
-            rules={{ required: true }}
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>{t('profile_phone_number')}</FormLabel>

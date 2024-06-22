@@ -7,7 +7,7 @@ import { getSecondBetweenTwoDates } from '@/common/utils/datetime.util';
 import { UsersService } from '@/modules/users/users.service';
 
 import { AUTH_AUTHENTICATOR, AUTH_PROVIDER, AUTH_TYPE } from './constants/auth.constant';
-import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
+import { OAuthFacebookSignInDto, OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
 import { OAuthProfile } from './interfaces/auth.interface';
@@ -127,8 +127,8 @@ export class AuthService {
     };
   }
 
-  async signInWithFacebook(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
-    const { token, authenticator, isFacebookLimited } = oAuthSignInDto;
+  async signInWithFacebook(oAuthFacebookSignInDto: OAuthFacebookSignInDto, ipAddress: string, userAgent: string) {
+    const { token, authenticator, isFacebookLimited } = oAuthFacebookSignInDto;
     let userInfo: OAuthProfile = null;
 
     if (authenticator === AUTH_AUTHENTICATOR.FIREBASE) {

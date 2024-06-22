@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import Auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useMutation } from '@tanstack/react-query';
+import { ds } from '~react-native-design-system';
 
 import { OAuthGoogleSignInDto, SignInResponse } from '../interfaces/auth.interface';
 
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
 
-import Button from '@/components/core-ui/button';
 import BrandGoogle from '@/components/svgs/brand-google';
 
 import log from '@/utils/logger.util';
@@ -20,6 +20,11 @@ import { useAuthState } from '../states/auth.state';
 interface IGoogleSignInProps {
   style?: StyleProp<PressableProps | ViewStyle>;
 }
+
+GoogleSignin.configure({
+  webClientId: '839571110220-hmcb4ikmoripqlr1hctrh6qkndmd374j.apps.googleusercontent.com'
+});
+
 const GoogleSignIn: FC<IGoogleSignInProps> = ({ style }) => {
   const authState = useAuthState();
   const mutation = useMutation({
@@ -56,16 +61,16 @@ const GoogleSignIn: FC<IGoogleSignInProps> = ({ style }) => {
   });
 
   return (
-    <Button
-      style={style}
+    <Pressable
+      style={[ds.row, ds.itemsCenter, ds.justifyCenter, style]}
       onPress={() => {
         mutation.mutate({
           authenticator: AUTH_AUTHENTICATOR.SELF_HOSTED
         });
       }}
     >
-      <BrandGoogle />
-    </Button>
+      <BrandGoogle size={36} />
+    </Pressable>
   );
 };
 

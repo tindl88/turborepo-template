@@ -32,7 +32,7 @@ const interceptors = {
     const shouldCallRefreshToken = error.response && error.response.status === 401 && !originalConfig._retry;
 
     if (shouldCallRefreshToken) {
-      log.extend('AUTH').info('shouldCallRefreshToken');
+      log.extend('AUTH').info('Should call API Refresh Token to get new Access Token');
       originalConfig._retry = true;
       const authState = useAuthState.getState();
 
@@ -42,7 +42,6 @@ const interceptors = {
         });
 
         authState.setAccessToken(newTokens.data.data.accessToken);
-
         originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
         return axiosClient(originalConfig);

@@ -29,9 +29,9 @@ export type UnauthenticatedParamList = {
   Welcome: undefined;
   Login: undefined;
   Register: undefined;
-  ResetPassword: undefined;
+  ForgotPassword: undefined;
   VerifyOtp: undefined;
-  CreateNewPassword: undefined;
+  ResetPassword: undefined;
 };
 
 export type TravelDrawerParamList = {
@@ -84,6 +84,8 @@ export type AuthenticatedNavigationProps = CompositeNavigationProp<
     BottomTabNavigationProp<TravelBottomTabParamList>
   >
 >;
+
+export type UnauthenticatedNavigationProps = StackNavigationProp<UnauthenticatedParamList>;
 
 export type HomeStackProps<T extends keyof ExploreParamList> = CompositeScreenProps<
   StackScreenProps<ExploreParamList, T>,

@@ -7,11 +7,11 @@ export const baseValidator = {
     .string()
     .email('validator_email_is_invalid')
     .min(1, 'validator_at_least_n_character')
-    .max(320, 'validator_at_least_n_character'),
+    .max(320, 'validator_maximum_n_characters_allowed'),
   password: z
     .string()
-    .min(8, 'validator_subject_must_be_at_least_n_characters')
-    .max(50, 'validator_maximum_n_characters_allowed')
+    .min(8, 'validator_at_least_n_character')
+    .max(255, 'validator_maximum_n_characters_allowed')
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?])(?=.*[0-9]).{6,}$/,
       'validator_password_rule'

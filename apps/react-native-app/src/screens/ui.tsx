@@ -8,15 +8,6 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { Colors, ds } from '~react-native-design-system';
 
-import AutomaticModal from '@/components/common/popup/automatic-modal';
-import ConfirmBox from '@/components/common/popup/confirm-box';
-import ErrorBox from '@/components/common/popup/error-box';
-import Expandable from '@/components/common/popup/expandable';
-import LongContent from '@/components/common/popup/long-content';
-import NestedModal from '@/components/common/popup/nest-modal';
-import Progress from '@/components/common/popup/progress';
-import ScrollingContent from '@/components/common/popup/scrolling-content';
-import Button from '@/components/core-ui/button';
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
 import Input from '@/components/core-ui/input';
@@ -27,7 +18,6 @@ import StatusBar from '@/components/core-ui/statusbar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import { hideGlobalModal, showGlobalModal } from '@/components/global-modal/global-modal';
 import NavigationHeader from '@/components/navigation-header';
 
 import {
@@ -130,52 +120,7 @@ function UIScreen({ route }: Props) {
               }}
             />
           </TabsContent>
-          <TabsContent value="tab-components">
-            <View>
-              <Button
-                onPress={() => showGlobalModal({ modalKey: 'modal-error', Component: ErrorBox1, hideClose: true })}
-              >
-                Hiện lỗi
-              </Button>
-              <Button onPress={() => showGlobalModal({ Component: AutomaticModal })}>Open 3 Modals</Button>
-              <Button onPress={() => showGlobalModal({ Component: NestedModal })}>Nested Modal</Button>
-              <Button onPress={() => showGlobalModal({ Component: Progress })}>Progress Modal</Button>
-              <Button
-                onPress={() =>
-                  showGlobalModal({ modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true })
-                }
-              >
-                Confirmation Modal
-              </Button>
-              <Button onPress={() => showGlobalModal({ Component: LongContent })}>Long Content Modal</Button>
-              <Button onPress={() => showGlobalModal({ Component: ScrollingContent })}>Scrolling Content Modal</Button>
-              <Button onPress={() => showGlobalModal({ Component: Expandable, disableLayoutChangeAnimation: true })}>
-                Expandable
-              </Button>
-              <Button
-                onPress={() => {
-                  showGlobalModal({ Component: NestedModal });
-                  setTimeout(() => {
-                    showGlobalModal({ Component: Progress });
-                    setTimeout(() => {
-                      showGlobalModal({ modalKey: 'confirmation-modal', Component: Confirmation1, hideClose: true });
-                      setTimeout(() => {
-                        showGlobalModal({ Component: LongContent });
-                        setTimeout(() => {
-                          showGlobalModal({ Component: ScrollingContent });
-                          setTimeout(() => {
-                            showGlobalModal({ Component: Expandable });
-                          });
-                        }, 1000);
-                      }, 1000);
-                    }, 1000);
-                  }, 1000);
-                }}
-              >
-                Show All
-              </Button>
-            </View>
-          </TabsContent>
+          <TabsContent value="tab-components" />
         </Tabs>
       </ScrollView>
     </View>
@@ -183,26 +128,3 @@ function UIScreen({ route }: Props) {
 }
 
 export default UIScreen;
-
-const ErrorBox1 = () => {
-  return (
-    <ErrorBox
-      title={'Are you sure?'}
-      onClose={() => hideGlobalModal('modal-error')}
-      onAction={() => hideGlobalModal('modal-error')}
-    />
-  );
-};
-
-const Confirmation1 = () => {
-  return (
-    <ConfirmBox
-      title={'Are you sure?'}
-      message={'Are you sure?'}
-      btnConfirmText={'dsfa'}
-      btnCancelText={'dsfa'}
-      onCancel={() => hideGlobalModal('modal-confirmation')}
-      onConfirm={() => hideGlobalModal('modal-confirmation')}
-    />
-  );
-};
