@@ -9,7 +9,6 @@ setupEnv();
 expect.extend(matchers);
 
 vi.mock('next/navigation');
-vi.mock('next-intl/navigation');
 vi.mock('next/font/google');
 vi.mock('next-auth');
 vi.mock('next-auth/react');
