@@ -6,7 +6,7 @@ import { render } from '@tests/unit/utils/test.util';
 
 import TopBar from '../topbar';
 
-vi.mock('next/navigation');
+vi.mock('@/navigation');
 
 describe('TopBar Component', () => {
   const session: Session = {

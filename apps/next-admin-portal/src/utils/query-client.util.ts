@@ -1,4 +1,3 @@
-import { cache } from 'react';
 import { QueryClient } from '@tanstack/react-query';
 
 export function makeQueryClient() {
@@ -30,5 +29,3 @@ export function getQueryClient() {
     return browserQueryClient;
   }
 }
-
-export const getQueryClientCache = cache(() => makeQueryClient());

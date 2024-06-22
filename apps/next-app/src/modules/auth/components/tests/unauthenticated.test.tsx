@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
 
 import { ROUTES } from '@/constants/routes.constant';
 
@@ -6,9 +6,21 @@ import { act, fireEvent, render } from '@tests/unit/utils/test.util';
 
 import Unauthenticated from '../unauthenticated';
 
-vi.mock('next/navigation');
+vi.mock('@/navigation', () => ({
+  useRouter: vi.fn().mockReturnValue({
+    push: vi.fn()
+  })
+}));
 
 describe('Unauthenticated Component', () => {
+  test('should not renders the component if visible is false', async () => {
+    const { queryByTestId } = render(<Unauthenticated />);
+
+    const main = queryByTestId('unauthenticated');
+
+    expect(main).not.toBeInTheDocument();
+  });
+
   test('should renders the component if visible is true', async () => {
     const { findByTestId } = render(<Unauthenticated visible={true} />);
 
@@ -17,14 +29,6 @@ describe('Unauthenticated Component', () => {
 
     expect(btnSignIn).toBeInTheDocument();
     expect(btnSignUp).toBeInTheDocument();
-  });
-
-  test('should not renders the component if visible is false', async () => {
-    const { queryByTestId } = render(<Unauthenticated />);
-
-    const main = queryByTestId('unauthenticated');
-
-    expect(main).not.toBeInTheDocument();
   });
 
   test('should navigate to LOGIN route when Sign In button is clicked', async () => {
