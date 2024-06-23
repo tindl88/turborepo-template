@@ -32,7 +32,7 @@ async function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMes
   try {
     await displayNotification(remoteMessage);
   } catch (error) {
-    log.error('Failed to display notification:', error);
+    log.extend('MESSAGE').error(`Failed to display notification ${error}`);
   }
 }
 
@@ -47,11 +47,11 @@ async function handleTokenUpdate(deviceToken: string) {
     const currentDeviceToken = MMKVStorage.getItem('@fcmToken');
 
     if (deviceToken !== currentDeviceToken) {
-      MMKVStorage.setItem('@fcmToken', deviceToken);
       await UserApi.updateDeviceToken(deviceToken);
+      MMKVStorage.setItem('@fcmToken', deviceToken);
     }
   } catch (error) {
-    log.error('Failed to update device token:', error);
+    log.extend('MESSAGE').error(`Failed to update device token ${error}`);
   }
 }
 
@@ -59,7 +59,6 @@ const NotificationSetup: FC = () => {
   useEffect(() => {
     requestNotificationPermission().then(permissionResp => {
       if (!permissionResp) return;
-
       messaging().getToken().then(handleTokenUpdate);
     });
 
@@ -86,7 +85,7 @@ const NotificationSetup: FC = () => {
             await notifee.cancelNotification(notification.id);
           }
         } catch (error) {
-          log.error('Failed to cancel notification:', error);
+          log.extend('MESSAGE').error(`Failed to cancel notification ${error}`);
         }
       }
     });

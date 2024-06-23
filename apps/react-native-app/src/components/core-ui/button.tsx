@@ -9,12 +9,14 @@ import Text from './text';
 
 type ButtonSize = 'sm' | 'md' | 'lg';
 type ButtonVariant = 'default' | 'outlined' | 'danger';
+type RoundedVariant = 'sm' | 'md' | 'full';
 
 interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
   children?: ReactNode;
   size?: ButtonSize;
-  loading?: boolean;
+  rounded?: RoundedVariant;
   variant?: ButtonVariant;
+  loading?: boolean;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;
@@ -23,6 +25,7 @@ interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> 
 const Button: React.FC<IButtonProps> = ({
   children,
   size = 'md',
+  rounded = 'full',
   variant = 'default',
   disabled = false,
   loading = false,
@@ -108,16 +111,30 @@ const Button: React.FC<IButtonProps> = ({
     }
   };
 
+  const roundedVariants = {
+    sm: {
+      borderRadius: 12
+    },
+    md: {
+      borderRadius: 18
+    },
+    full: {
+      borderRadius: 9999
+    }
+  };
+
   const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
   const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor, borderColor } =
     buttonVariants[theme.key as keyof typeof buttonVariants][variant];
+  const { borderRadius } = roundedVariants[rounded];
 
   const buttonStyle: ViewStyle = {
     height,
     paddingHorizontal,
     backgroundColor: disabled ? disabledBgColor : isFocused ? focusedBgColor : bgColor,
     borderColor: borderColor || (isFocused ? focusedBgColor : 'transparent'),
-    borderWidth: variant === 'outlined' ? 1 : 0
+    borderWidth: variant === 'outlined' ? 1 : 0,
+    borderRadius
   };
 
   const textStyle: TextStyle = { fontSize, color: disabled ? disabledTextColor : textColor };

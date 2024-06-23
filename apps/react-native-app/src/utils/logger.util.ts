@@ -25,7 +25,8 @@ const config: configLoggerType = {
       ROOT: 'magenta',
       HOME: 'green',
       PROFILE: 'gray',
-      AUTH: 'maroon'
+      AUTH: 'maroon',
+      MESSAGE: 'slate'
     },
     FS: RNFS,
     fileName: 'bully-log.txt'

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '~react-native-design-system';
 
 import StatusBar from '@/components/core-ui/statusbar';
@@ -12,9 +11,7 @@ function TravelPlaceDetailScreen({ route }: HomeStackProps<'TravelPlaceDetail'>)
   return (
     <View style={ds.flex1}>
       <StatusBar background="transparent" />
-      <ScrollView style={[ds.flex1, ds.p14]}>
-        <TravelPlaceDetailRoot routeParams={route.params} />
-      </ScrollView>
+      <TravelPlaceDetailRoot routeParams={route.params} style={ds.flex1} />
     </View>
   );
 }
