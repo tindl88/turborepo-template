@@ -4,6 +4,7 @@ import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import FastImage, { ImageStyle, Source } from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import PagerView, { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
+import MaskedView from '@react-native-masked-view/masked-view';
 import { Colors, ds } from '~react-native-design-system';
 
 import Heading from '@/components/core-ui/heading';
@@ -102,7 +103,25 @@ export default function WelcomeSlider() {
                 style={[ds.bottom0]}
               >
                 <View style={[ds.pb208, ds.px14]}>
-                  <Heading color={Colors.white} text={item.title} style={[ds.textCenter]} />
+                  <MaskedView
+                    maskElement={
+                      <Heading fontWeight="Bold" color={Colors.white} text={item.title} style={[ds.textCenter]} />
+                    }
+                  >
+                    <LinearGradient
+                      colors={['rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 1)']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                    >
+                      <Heading
+                        fontWeight="Bold"
+                        color={Colors.white}
+                        text={item.title}
+                        style={[ds.textCenter, ds.opacity0]}
+                      />
+                    </LinearGradient>
+                  </MaskedView>
+
                   <Text
                     fontWeight="Medium"
                     color={Colors.white}

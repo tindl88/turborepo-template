@@ -1,12 +1,11 @@
 {
-  "get_started": "Get started",
-  "i_already_have_account": "I already have account",
   "please_wait": "Please wait a moment.",
   "ok": "Ok",
   "yes": "Yes",
   "no": "No",
   "close": "Close",
   "cancel": "Cancel",
+  "confirm": "Confirm",
   "contact": "Contact",
   "home": "Home",
   "setting": "Settings",
@@ -14,26 +13,16 @@
   "scancode": "Scan Code",
   "post": "Post",
   "email_address": "Email address",
-  "login_title": "Login to your account",
   "no_account": "Don't have an account?",
   "already_have_account": "Already have an account?",
-  "sign_up": "Sign Up",
-  "sign_up_title": "Create your account",
+  "i_already_have_account": "I already have account",
+  "get_started": "Get started",
+
   "create_account": "Create account",
   "password": "Password",
   "confirm_password": "Confirm password",
-  "signin": "Sign In",
-  "login": "Login",
-  "logout": "Logout",
   "or_continue_with": "or continue with",
   "or_continue_with_password": "or continue with password",
-  "reset_password": "Reset password",
-  "reset_password_title": "Reset password",
-  "reset_password_desc": "Please enter your email address to request a password reset",
-  "reset_password_btn": "Reset password",
-  "verification_title": "Verification",
-
-  "notifications": "Notifications",
 
   "help_center": "Help center",
   "edit_your_profile": "Edit your profile",
@@ -42,6 +31,39 @@
   "settings": "Settings",
   "languages": "Languages",
   "themes": "Themes",
+
+  "modal_success_message": "You're all set",
+
+  "signup": "Sign Up",
+  "signup_title": "Create your account",
+
+  "signin": "Sign In",
+  "signin_title": "Login to your account",
+  "signin_email": "Email",
+  "signin_password": "Password",
+  "signin_error": "Can not login",
+
+  "signout": "Logout",
+  "signout_confirm_title": "Logout",
+  "signout_confirm_message": "Are you sure?",
+
+  "forgot_password": "Reset password",
+  "forgot_password_title": "Reset password",
+  "forgot_password_desc": "Please enter your email address to request a password reset",
+  "forgot_password_btn": "Reset password",
+
+  "change_password": "Change password",
+  "change_password_title": "Change password",
+
+  "reset_password": "Reset password",
+  "reset_password_title": "Reset password",
+  "reset_password_desc": "Enter your email address to get the OTP code",
+  "reset_password_btn": "Reset password",
+
+  "verification_otp_title": "Verify OTP",
+  "verification_otp_desc": "We have sent the OTP code to your email <bold>{{email}}</bold>, please enter the code in the boxes below.",
+
+  "notifications": "Notifications",
 
   "travel_accommodations": "Hotels",
   "travel_tours": "Tours",

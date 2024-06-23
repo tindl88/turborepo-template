@@ -19,7 +19,7 @@ const InputPassword: FC<IInputTextProps> = forwardRef<TextInput, IInputTextProps
     return (
       <View style={[ds.row, ds.itemsCenter, ds.relative]}>
         <InputText ref={ref} secureTextEntry={isSecure} {...props} style={[ds.grow, ds.pr44]} />
-        <Pressable style={[ds.absolute, ds.right14]} onPress={toggleSecureEntry}>
+        <Pressable style={[ds.absolute, ds.right16]} onPress={toggleSecureEntry}>
           <Icon name={isSecure ? 'Eye' : 'EyeOff'} />
         </Pressable>
       </View>

@@ -58,11 +58,11 @@ const LoginForm = () => {
           <FormField
             name="email"
             control={form.control}
-            render={({ field, fieldState }) => (
+            render={({ field }) => (
               <FormItem>
                 <Input
                   {...field}
-                  style={fieldState.error && ds.borderRed500}
+                  error={!!form.formState.errors.email}
                   placeholder={t('signin_email')}
                   onChangeText={field.onChange}
                 />
@@ -77,11 +77,11 @@ const LoginForm = () => {
           <FormField
             name="password"
             control={form.control}
-            render={({ field, fieldState }) => (
+            render={({ field }) => (
               <FormItem>
                 <InputPassword
                   {...field}
-                  style={fieldState.error && ds.borderRed500}
+                  error={!!form.formState.errors.password}
                   placeholder={t('signin_password')}
                   onChangeText={field.onChange}
                 />

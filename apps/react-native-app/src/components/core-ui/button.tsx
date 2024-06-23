@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { ColorValue, Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
@@ -37,107 +37,60 @@ const Button: React.FC<IButtonProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const { theme, configs } = useThemeState();
 
-  const buttonSizes = {
-    sm: {
-      height: 46,
-      paddingHorizontal: 12,
-      fontSize: 16,
-      iconSize: 18
-    },
-    md: {
-      height: 52,
-      paddingHorizontal: 20,
-      fontSize: 18,
-      iconSize: 20
-    },
-    lg: {
-      height: 56,
-      paddingHorizontal: 28,
-      fontSize: 20,
-      iconSize: 22
-    }
+  const defaultTheme = {
+    bgColor: configs.primary[500],
+    focusedBgColor: Colors.primary[600],
+    textColor: configs.primaryForeground,
+    disabledBgColor: Colors.neutral[500],
+    disabledTextColor: Colors.neutral[600],
+    disabledBorderColor: 'transparent',
+    borderColor: 'transparent'
   };
+  const outlineTheme = {
+    bgColor: 'transparent',
+    focusedBgColor: Colors.amber[100],
+    textColor: configs.primary[500],
+    disabledBgColor: 'transparent',
+    disabledTextColor: Colors.neutral[600],
+    disabledBorderColor: Colors.neutral[600],
+    borderColor: configs.primary[500]
+  };
+  const dangerTheme = {
+    bgColor: Colors.red[500],
+    focusedBgColor: Colors.red[600],
+    textColor: configs.primaryForeground,
+    disabledBgColor: Colors.neutral[500],
+    disabledTextColor: Colors.neutral[600],
+    disabledBorderColor: 'transparent',
+    borderColor: 'transparent'
+  };
+
   const buttonVariants = {
-    light: {
-      default: {
-        bgColor: configs.primary[500],
-        focusedBgColor: Colors.primary[600],
-        textColor: configs.primaryForeground,
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: 'transparent'
-      },
-      outlined: {
-        bgColor: 'transparent',
-        focusedBgColor: Colors.amber[100],
-        textColor: configs.primary[500],
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: configs.primary[500]
-      },
-      danger: {
-        bgColor: Colors.red[500],
-        focusedBgColor: Colors.red[700],
-        textColor: Colors.white,
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: 'transparent'
-      }
-    },
-    dark: {
-      default: {
-        bgColor: configs.primary[500],
-        focusedBgColor: Colors.primary[600],
-        textColor: configs.primaryForeground,
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: 'transparent'
-      },
-      outlined: {
-        bgColor: 'transparent',
-        focusedBgColor: Colors.amber[100],
-        textColor: configs.primary[500],
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: configs.primary[500]
-      },
-      danger: {
-        bgColor: Colors.red[500],
-        focusedBgColor: Colors.red[700],
-        textColor: Colors.white,
-        disabledBgColor: Colors.slate[200],
-        disabledTextColor: Colors.slate[400],
-        borderColor: 'transparent'
-      }
-    }
+    light: { default: defaultTheme, outlined: outlineTheme, danger: dangerTheme },
+    dark: { default: defaultTheme, outlined: outlineTheme, danger: dangerTheme }
   };
-  const buttonButtonRoundedVariants = {
-    none: {
-      borderRadius: 0
-    },
-    sm: {
-      borderRadius: 4
-    },
-    md: {
-      borderRadius: 8
-    },
-    lg: {
-      borderRadius: 12
-    },
-    full: {
-      borderRadius: 9999
-    }
+  const buttonSizes = {
+    sm: { height: 46, paddingHorizontal: 12, fontSize: 16, iconSize: 18 },
+    md: { height: 52, paddingHorizontal: 20, fontSize: 18, iconSize: 20 },
+    lg: { height: 56, paddingHorizontal: 28, fontSize: 20, iconSize: 22 }
   };
-  const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
-  const { borderRadius } = buttonButtonRoundedVariants[rounded];
-  const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor, borderColor } =
+  const buttonRoundedVariants = {
+    none: { borderRadius: 0 },
+    sm: { borderRadius: 4 },
+    md: { borderRadius: 8 },
+    lg: { borderRadius: 12 },
+    full: { borderRadius: 9999 }
+  };
+  const { bgColor, textColor, disabledBgColor, disabledTextColor, disabledBorderColor, focusedBgColor, borderColor } =
     buttonVariants[theme.key as keyof typeof buttonVariants][variant];
+  const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
+  const { borderRadius } = buttonRoundedVariants[rounded];
 
   const buttonStyle: ViewStyle = {
     height,
     paddingHorizontal,
     backgroundColor: disabled ? disabledBgColor : isFocused ? focusedBgColor : bgColor,
-    borderColor: (borderColor as ColorValue) || (isFocused ? focusedBgColor : 'transparent'),
+    borderColor: disabled ? disabledBorderColor : borderColor,
     borderWidth: variant === 'outlined' ? 1 : 0,
     borderRadius
   };

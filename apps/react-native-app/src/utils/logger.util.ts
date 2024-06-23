@@ -16,17 +16,17 @@ const config: configLoggerType = {
   enabledExtensions: ['ROOT', 'HOME', 'PROFILE', 'AUTH'],
   transportOptions: {
     colors: {
-      info: 'green',
-      warn: 'yellow',
+      info: 'cyan',
+      warn: 'orange',
       error: 'red',
-      debug: 'cyan'
+      debug: 'yellow'
     },
     extensionColors: {
       ROOT: 'magenta',
-      HOME: 'green',
-      PROFILE: 'gray',
-      AUTH: 'maroon',
-      MESSAGE: 'slate'
+      HOME: 'gray',
+      PROFILE: 'slate',
+      AUTH: 'green',
+      MESSAGE: 'amber'
     },
     FS: RNFS,
     fileName: 'bully-log.txt'
