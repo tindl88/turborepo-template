@@ -10,7 +10,7 @@ import { TravelPlaceDetailScreenParams } from '@/modules/navigation/interfaces/n
 
 import TravelPlaceDetailBody from './travel-place-detail-body';
 import TravelPlaceDetailFooter from './travel-place-detail-footer';
-import TravelPlaceGallery from './travel-place-detail-gallery';
+import TravelPlaceDetailGallery from './travel-place-detail-gallery';
 import TravelPlaceDetailHeader from './travel-place-detail-header';
 
 type TravelPlaceDetailRootProps = {
@@ -22,7 +22,7 @@ const TravelPlaceDetailRoot: FC<TravelPlaceDetailRootProps> = ({ routeParams, st
   return (
     <View style={[ds.flex1, style]}>
       <ScrollView style={[ds.grow]}>
-        <TravelPlaceGallery routeParams={routeParams} />
+        <TravelPlaceDetailGallery routeParams={routeParams} />
         <TravelPlaceDetailHeader routeParams={routeParams} style={[ds.p14]} />
         <Separator />
         <TravelPlaceDetailBody routeParams={routeParams} style={[ds.p14]} />

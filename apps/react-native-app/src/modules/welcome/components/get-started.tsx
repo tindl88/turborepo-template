@@ -17,7 +17,7 @@ const GetStarted: FC<GetStartedProps> = () => {
 
   return (
     <View style={[ds.absolute, ds.bottom40, ds.wFull, ds.px14]}>
-      <Button style={ds.wFull} onPress={() => navigation.navigate('Login')}>
+      <Button size="lg" style={ds.wFull} onPress={() => navigation.navigate('Login')}>
         {t('get_started').toUpperCase()}
       </Button>
       <Text
