@@ -14,7 +14,7 @@ import {
   TravelBottomTabParamList,
   TravelDrawerParamList
 } from '@/modules/navigation/interfaces/navigation.interface';
-import Theme from '@/modules/theme/components/theme';
+import ThemeRoot from '@/modules/theme/components/theme-root';
 
 type Props = CompositeScreenProps<
   StackScreenProps<AuthenticatedParamList, 'SettingTheme'>,
@@ -26,7 +26,7 @@ function SettingThemeScreen({ route }: Props) {
     <View style={ds.flex1}>
       <StatusBar />
       <NavigationHeader title={route.name} />
-      <Theme />
+      <ThemeRoot />
     </View>
   );
 }

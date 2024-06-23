@@ -46,7 +46,7 @@ const PopularHotelItem: FC<PopularHotelItemProps> = ({ item, onPress }) => {
           </View>
 
           <View style={ds.row}>
-            <Text color={configs.primary} fontWeight="Bold">{`$${item.price}`}</Text>
+            <Text color={configs.primary[500]} fontWeight="Bold">{`$${item.price}`}</Text>
             <Text fontSize={13}>/night</Text>
           </View>
         </View>

@@ -86,7 +86,7 @@ function AccordionTrigger({ children, ...props }: IAccordionTriggerProps) {
         <Text fontWeight="Bold">{children}</Text>
       </View>
       <View style={[ds.absolute, ds.right10, ds.top10]}>
-        {isActive ? <ChevronUpIcon color={configs.primary} /> : <ChevronDownIcon color={configs.primary} />}
+        {isActive ? <ChevronUpIcon color={configs.primary[500]} /> : <ChevronDownIcon color={configs.primary[500]} />}
       </View>
     </Pressable>
   );

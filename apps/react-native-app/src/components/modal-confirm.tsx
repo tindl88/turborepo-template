@@ -49,7 +49,7 @@ const ModalConfirm: FC<IModalConfirmProps> = ({
         </Pressable>
         <Separator orientation="vertical" />
         <Pressable style={ds.grow} onPress={onConfirm}>
-          <Text fontWeight="Bold" color={configs.primary} style={[ds.textCenter, ds.p20]}>
+          <Text fontWeight="Bold" color={configs.primary[500]} style={[ds.textCenter, ds.p20]}>
             {btnConfirmText || t('confirm')}
           </Text>
         </Pressable>

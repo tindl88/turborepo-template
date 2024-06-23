@@ -34,7 +34,7 @@ const ThemeItem: React.FC<ThemeItemProps> = ({ item, selectedTheme, onSelectThem
       onPress={() => onSelectTheme(item)}
     >
       <Text fontWeight="Bold">{item.value}</Text>
-      {selectedTheme === item.key && <CheckIcon size={24} color={configs.primary} strokeWidth={1.5} />}
+      {selectedTheme === item.key && <CheckIcon size={24} color={configs.primary[500]} strokeWidth={1.5} />}
     </Pressable>
   );
 };

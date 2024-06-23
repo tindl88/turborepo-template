@@ -40,7 +40,7 @@ const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('UI') && dynamicStyles.background(configs.primary)
+            isActive('UI') && dynamicStyles.background(configs.primary[500])
           ]}
           onPress={() => props.navigation.navigate('UI')}
         >
@@ -59,7 +59,7 @@ const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('ScanCode') && dynamicStyles.background(configs.primary)
+            isActive('ScanCode') && dynamicStyles.background(configs.primary[500])
           ]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >

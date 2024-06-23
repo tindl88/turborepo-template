@@ -41,7 +41,7 @@ function NotificationsScreen({ route }: Props) {
         <Box style={ds.flex1}>
           <View style={[ds.row, ds.itemsCenter, ds.justifyBetween]}>
             <Heading as="h4" fontWeight="Medium" text="Account Notifications" />
-            <Link text="See All" color={configs.primary} onPress={() => {}} />
+            <Link text="See All" color={configs.primary[500]} onPress={() => {}} />
           </View>
           <Divider height={20} />
           <ScrollView showsVerticalScrollIndicator={false}>

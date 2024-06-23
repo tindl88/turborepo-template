@@ -1,4 +1,4 @@
-type ColorShades = {
+export type ColorShades = {
   '50': string;
   '100': string;
   '200': string;

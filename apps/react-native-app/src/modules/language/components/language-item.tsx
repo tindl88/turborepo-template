@@ -34,7 +34,7 @@ const LanguageItem: React.FC<LanguageItemProps> = ({ item, selectedLanguage, onS
       onPress={() => onSelectLanguage(item)}
     >
       <Text fontWeight="Bold">{item.value}</Text>
-      {selectedLanguage === item.key && <CheckIcon size={24} color={configs.primary} strokeWidth={1.5} />}
+      {selectedLanguage === item.key && <CheckIcon size={24} color={configs.primary[500]} strokeWidth={1.5} />}
     </Pressable>
   );
 };

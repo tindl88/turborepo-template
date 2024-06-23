@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { ColorValue, Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Colors, ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
@@ -7,18 +7,19 @@ import { useThemeState } from '@/modules/theme/states/theme.state';
 import Loading from './loading';
 import Text from './text';
 
-type ButtonSize = 'sm' | 'md' | 'lg';
 type ButtonVariant = 'default' | 'outlined' | 'danger';
-type RoundedVariant = 'sm' | 'md' | 'full';
+type ButtonSizeVariant = 'sm' | 'md' | 'lg';
+type ButtonRoundedVariant = 'none' | 'sm' | 'md' | 'full';
 
 interface IButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
   children?: ReactNode;
-  size?: ButtonSize;
-  rounded?: RoundedVariant;
+  size?: ButtonSizeVariant;
+  rounded?: ButtonRoundedVariant;
   variant?: ButtonVariant;
   loading?: boolean;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
 }
 
@@ -30,6 +31,7 @@ const Button: React.FC<IButtonProps> = ({
   disabled = false,
   loading = false,
   style,
+  textStyle,
   onPress
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -55,89 +57,94 @@ const Button: React.FC<IButtonProps> = ({
       iconSize: 22
     }
   };
-
   const buttonVariants = {
     light: {
       default: {
-        bgColor: configs.primary,
+        bgColor: configs.primary[500],
+        focusedBgColor: Colors.primary[600],
         textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[400],
         borderColor: 'transparent'
       },
       outlined: {
         bgColor: 'transparent',
-        textColor: configs.primary,
+        focusedBgColor: Colors.amber[100],
+        textColor: configs.primary[500],
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[100],
-        borderColor: configs.primary
+        borderColor: configs.primary[500]
       },
       danger: {
         bgColor: Colors.red[500],
+        focusedBgColor: Colors.red[700],
         textColor: Colors.white,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.red[700],
         borderColor: 'transparent'
       }
     },
     dark: {
       default: {
-        bgColor: configs.primary,
+        bgColor: configs.primary[500],
+        focusedBgColor: Colors.primary[600],
         textColor: configs.primaryForeground,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[400],
         borderColor: 'transparent'
       },
       outlined: {
         bgColor: 'transparent',
-        textColor: configs.primary,
+        focusedBgColor: Colors.amber[100],
+        textColor: configs.primary[500],
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.amber[100],
-        borderColor: configs.primary
+        borderColor: configs.primary[500]
       },
       danger: {
         bgColor: Colors.red[500],
+        focusedBgColor: Colors.red[700],
         textColor: Colors.white,
         disabledBgColor: Colors.slate[200],
         disabledTextColor: Colors.slate[400],
-        focusedBgColor: Colors.red[700],
         borderColor: 'transparent'
       }
     }
   };
-
-  const roundedVariants = {
+  const buttonButtonRoundedVariants = {
+    none: {
+      borderRadius: 0
+    },
     sm: {
-      borderRadius: 12
+      borderRadius: 4
     },
     md: {
-      borderRadius: 18
+      borderRadius: 8
+    },
+    lg: {
+      borderRadius: 12
     },
     full: {
       borderRadius: 9999
     }
   };
-
   const { height, paddingHorizontal, fontSize, iconSize } = buttonSizes[size];
+  const { borderRadius } = buttonButtonRoundedVariants[rounded];
   const { bgColor, textColor, disabledBgColor, disabledTextColor, focusedBgColor, borderColor } =
     buttonVariants[theme.key as keyof typeof buttonVariants][variant];
-  const { borderRadius } = roundedVariants[rounded];
 
   const buttonStyle: ViewStyle = {
     height,
     paddingHorizontal,
     backgroundColor: disabled ? disabledBgColor : isFocused ? focusedBgColor : bgColor,
-    borderColor: borderColor || (isFocused ? focusedBgColor : 'transparent'),
+    borderColor: (borderColor as ColorValue) || (isFocused ? focusedBgColor : 'transparent'),
     borderWidth: variant === 'outlined' ? 1 : 0,
     borderRadius
   };
-
-  const textStyle: TextStyle = { fontSize, color: disabled ? disabledTextColor : textColor };
+  const buttonTextStyle: TextStyle = {
+    fontSize,
+    color: disabled ? disabledTextColor : textColor
+  };
 
   return (
     <Pressable
@@ -149,7 +156,7 @@ const Button: React.FC<IButtonProps> = ({
     >
       {loading && <Loading size={iconSize} />}
       {children && (
-        <Text fontWeight="Bold" style={textStyle}>
+        <Text fontWeight="Bold" style={[buttonTextStyle, textStyle]}>
           {children}
         </Text>
       )}

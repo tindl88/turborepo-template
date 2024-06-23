@@ -48,7 +48,7 @@ const Loading: FC<ILoadingProps> = ({
         }
       ]}
     >
-      <View style={styles.circle(size, thickness, configs.primary || color, trackColor)} />
+      <View style={styles.circle(size, thickness, configs.primary[500] || color, trackColor)} />
     </Animated.View>
   );
 };

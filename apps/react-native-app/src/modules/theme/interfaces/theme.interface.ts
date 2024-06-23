@@ -1,3 +1,5 @@
+import { ColorShades } from '~react-native-design-system/config';
+
 export type ThemeEntity = {
   key: string;
   value: string;
@@ -10,7 +12,7 @@ export type Theme = {
   cardForeground: string;
   popover: string;
   popoverForeground: string;
-  primary: string;
+  primary: ColorShades;
   primaryForeground: string;
   secondary: string;
   secondaryForeground: string;

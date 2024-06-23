@@ -52,44 +52,44 @@ const Profile = () => {
 
   const profileActions: ProfileAction[] = [
     {
-      icon: <Icon size={28} color={configs.primary} name="User" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="User" />,
       name: t('edit_your_profile'),
       type: 'sub',
       action: () => navigation.navigate('ProfileEdit')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="LifeBuoy" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="LifeBuoy" />,
       name: t('help_center'),
       type: 'sub',
       action: () => navigation.navigate('HelpCenter')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="GlobeLock" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="GlobeLock" />,
       name: t('terms_and_conditions'),
       type: 'sub',
       action: () => navigation.navigate('TermsAndConditions')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="ShieldAlert" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="ShieldAlert" />,
       name: t('privacy_policy'),
       type: 'sub',
       action: () => navigation.navigate('PrivacyPolicy')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="Settings" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="Settings" />,
       name: t('settings'),
       type: 'sub',
       action: () => navigation.navigate('Settings')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="Languages" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="Languages" />,
       name: t('languages'),
       type: 'sub',
       value: language.value,
       action: () => navigation.navigate('SettingLanguage')
     },
     {
-      icon: <Icon size={28} color={configs.primary} name="Palette" />,
+      icon: <Icon size={28} color={configs.primary[500]} name="Palette" />,
       name: t('themes'),
       type: 'sub',
       value: theme.value,

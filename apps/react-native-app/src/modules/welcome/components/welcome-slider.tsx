@@ -118,7 +118,7 @@ export default function WelcomeSlider() {
       <View style={[ds.absolute, ds.bottom144, ds.wFull]}>
         <ExpandingDot
           data={slides}
-          activeDotColor={configs.primary}
+          activeDotColor={configs.primary[500]}
           inActiveDotColor={Colors.stone[400]}
           dotStyle={{}}
           //@ts-ignore

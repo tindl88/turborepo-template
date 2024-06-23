@@ -80,7 +80,14 @@ const AvatarFallback: React.FC<IAvatarFallbackProps> = ({ style, children, chars
 
   return (
     <View
-      style={[ds.wFull, ds.hFull, ds.itemsCenter, ds.justifyCenter, dynamicStyles.background(configs.primary), style]}
+      style={[
+        ds.wFull,
+        ds.hFull,
+        ds.itemsCenter,
+        ds.justifyCenter,
+        dynamicStyles.background(configs.primary[500]),
+        style
+      ]}
     >
       <Text fontWeight="Bold" fontSize={26} lineHeight={30} color={Colors.white} {...props}>
         {name}

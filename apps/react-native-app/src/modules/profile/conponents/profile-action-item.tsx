@@ -27,7 +27,7 @@ const ProfileActionItem: FC<ProfileActionItemProps> = ({ item, style }) => {
         </View>
         <View style={[ds.row, ds.itemsCenter, ds.gap6]}>
           {typeof item.value === 'string' && <Text>{item.value}</Text>}
-          {item.type === 'sub' && <ChevronRight color={configs.primary} />}
+          {item.type === 'sub' && <ChevronRight color={configs.primary[500]} />}
         </View>
       </Pressable>
     </>

@@ -68,7 +68,7 @@ const PopularHotelsRoot: FC<PopularHotelsRootProps> = () => {
         <Heading as="h3" fontWeight="Medium" text="Popular Hotels" />
         <Link
           text="See All"
-          color={configs.primary}
+          color={configs.primary[500]}
           onPress={() => navigation.navigate('Accommodations', { q: '', page: 1, limit: 10 })}
         />
       </View>

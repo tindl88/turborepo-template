@@ -30,7 +30,7 @@ const NotificationItem: FC<NotificationItemProps> = ({ item, onPress }) => {
     >
       <View style={[ds.row, ds.gap12]}>
         <View style={[ds.roundedFull, ds.w56, ds.h56, ds.itemsCenter, ds.justifyCenter, ds.bgStone200]}>
-          <RadioIcon size={28} color={configs.primary} />
+          <RadioIcon size={28} color={configs.primary[500]} />
         </View>
         <View style={[ds.shrink]}>
           <Text fontWeight="Bold" fontSize={20}>

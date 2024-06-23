@@ -51,7 +51,7 @@ const TravelPlacesRoot: FC<TravelPlacesRootProps> = ({}) => {
         <Heading as="h3" fontWeight="Medium" text="Travel Places" />
         <Link
           text="See All"
-          color={configs.primary}
+          color={configs.primary[500]}
           onPress={() => navigation.navigate('TravelPlaces', { limit: 10, page: 1, q: '' })}
         />
       </View>
