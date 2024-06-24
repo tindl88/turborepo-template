@@ -56,7 +56,7 @@ export default function ProductFormImages({ form }: ProductFormImagesProps) {
                   <FormField
                     control={form.control}
                     name={`images.${index}.id`}
-                    render={({ field }) => (
+                    render={({ field, fieldState: { error } }) => (
                       <FormItem>
                         <FormControl>
                           <Input readOnly {...field} className="hidden" />
@@ -71,9 +71,7 @@ export default function ProductFormImages({ form }: ProductFormImagesProps) {
                           />
                           <ButtonRemoveFile onClick={() => remove(index)} />
                         </div>
-                        {form.formState.errors.images?.message && (
-                          <FormMessage message={t(form.formState.errors.images.message)} />
-                        )}
+                        {error?.message && <FormMessage message={t(error.message)} />}
                       </FormItem>
                     )}
                   />

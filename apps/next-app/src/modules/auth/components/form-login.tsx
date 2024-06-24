@@ -49,7 +49,7 @@ const LoginForm = () => {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
@@ -58,9 +58,7 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                {form.formState.errors.email?.message && (
-                  <FormMessage message={t(form.formState.errors.email.message, { min: 1, max: 320 })} />
-                )}
+                {error?.message && <FormMessage message={t(error.message, { min: 1, max: 320 })} />}
               </FormItem>
             )}
           />
@@ -68,7 +66,7 @@ const LoginForm = () => {
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <FormItem className="mt-3">
                 <FormLabel>{t('password')}</FormLabel>
                 <FormControl>
@@ -78,9 +76,7 @@ const LoginForm = () => {
                     {...field}
                   />
                 </FormControl>
-                {form.formState.errors.password?.message && (
-                  <FormMessage message={t(form.formState.errors.password.message, { min: 8, max: 255 })} />
-                )}
+                {error?.message && <FormMessage message={t(error.message, { min: 8, max: 255 })} />}
               </FormItem>
             )}
           />

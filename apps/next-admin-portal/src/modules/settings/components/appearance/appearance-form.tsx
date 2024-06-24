@@ -96,7 +96,7 @@ export function AppearanceForm() {
         <FormField
           control={form.control}
           name="language"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
               <FormLabel>{t('language')}</FormLabel>
               <div className="relative w-max">
@@ -113,20 +113,18 @@ export function AppearanceForm() {
                 </FormControl>
               </div>
               <FormDescription>{t('sidebar_menu_settings_appearance_language_desc')}</FormDescription>
-              {form.formState.errors.language?.message && (
-                <FormMessage message={t(form.formState.errors.language.message)} />
-              )}
+              {error?.message && <FormMessage message={t(error.message)} />}
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
           name="theme"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem className="space-y-1">
               <FormLabel>{t('theme')}</FormLabel>
               <FormDescription>{t('sidebar_menu_settings_appearance_theme_desc')}</FormDescription>
-              {form.formState.errors.theme?.message && <FormMessage message={t(form.formState.errors.theme.message)} />}
+              {error?.message && <FormMessage message={t(error.message)} />}
               <RadioGroup
                 value={field.value}
                 className="grid max-w-md grid-cols-2 gap-8 pt-2"

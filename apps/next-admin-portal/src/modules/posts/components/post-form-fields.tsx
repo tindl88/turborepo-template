@@ -47,13 +47,13 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="name"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('post_title')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.name?.message && <FormMessage message={t(form.formState.errors.name.message)} />}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
@@ -61,13 +61,13 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="slug"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('post_slug')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.slug?.message && <FormMessage message={t(form.formState.errors.slug.message)} />}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
@@ -75,7 +75,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="description"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('post_description')}</FormLabel>
             <FormControl>
@@ -87,9 +87,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 onShowFileManager={() => setIsFileManagerVisible(true)}
               />
             </FormControl>
-            {form.formState.errors.description?.message && (
-              <FormMessage message={t(form.formState.errors.description.message)} />
-            )}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
@@ -97,7 +95,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="body"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('post_body')}</FormLabel>
             <FormControl>
@@ -112,7 +110,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 {/* <BlockEditor value={field.value} onChange={field.onChange} /> */}
               </>
             </FormControl>
-            {form.formState.errors.body?.message && <FormMessage message={t(form.formState.errors.body.message)} />}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />

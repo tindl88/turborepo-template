@@ -21,15 +21,13 @@ const CategoryFormFields: FC<CategoryFormFieldsProps> = ({ className, form }) =>
       <FormField
         control={form.control}
         name="name"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('category_title')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.name?.message && (
-              <FormMessage message={t(form.formState.errors.name.message, { count: 2 })} />
-            )}
+            {error?.message && <FormMessage message={t(error.message, { count: 2 })} />}
           </FormItem>
         )}
       />

@@ -55,30 +55,26 @@ const PushNotificationPlayGround = () => {
         <FormField
           control={form.control}
           name="title"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
               <FormLabel>{t('push_notification_title')}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
-              {form.formState.errors.title?.message && (
-                <FormMessage message={t(form.formState.errors.title.message, { count: 1 })} />
-              )}
+              {error?.message && <FormMessage message={t(error.message, { count: 1 })} />}
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
           name="content"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem className="mt-3">
               <FormLabel>{t('push_notification_content')}</FormLabel>
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
-              {form.formState.errors.content?.message && (
-                <FormMessage message={t(form.formState.errors.content?.message, { count: 1 })} />
-              )}
+              {error?.message && <FormMessage message={t(error.message, { count: 1 })} />}
             </FormItem>
           )}
         />

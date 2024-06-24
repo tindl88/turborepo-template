@@ -20,43 +20,39 @@ const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="name"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('user_name')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.name?.message && <FormMessage message={t(form.formState.errors.name.message)} />}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
       <FormField
         control={form.control}
         name="email"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('user_email')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.email?.message && (
-              <FormMessage message={t(form.formState.errors.email.message, { min: 1, max: 320 })} />
-            )}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 320 })} />}
           </FormItem>
         )}
       />
       <FormField
         control={form.control}
         name="phoneNumber"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('user_phone')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {form.formState.errors.phoneNumber?.message && (
-              <FormMessage message={t(form.formState.errors.phoneNumber.message)} />
-            )}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
