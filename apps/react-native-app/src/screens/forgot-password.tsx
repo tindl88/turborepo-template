@@ -8,9 +8,9 @@ import Heading from '@/components/core-ui/heading';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 
 import ForgotPasswordForm from '@/modules/auth/components/form-forgot-password';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { UnauthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 
 function ForgotPasswordScreen({ navigation }: UnauthenticatedStackProps<'ForgotPassword'>) {

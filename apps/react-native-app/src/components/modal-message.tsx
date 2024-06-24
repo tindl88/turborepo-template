@@ -13,7 +13,7 @@ interface IMessageBoxProps {
   onClose: () => void;
 }
 
-const MessageBox: FC<IMessageBoxProps> = ({ title = '', message = '', btnClose = 'Close', onClose }) => {
+const ModalMessage: FC<IMessageBoxProps> = ({ title = '', message = '', btnClose = 'Close', onClose }) => {
   return (
     <View>
       <Heading>{title}</Heading>
@@ -29,4 +29,4 @@ const MessageBox: FC<IMessageBoxProps> = ({ title = '', message = '', btnClose =
   );
 };
 
-export default MessageBox;
+export default ModalMessage;

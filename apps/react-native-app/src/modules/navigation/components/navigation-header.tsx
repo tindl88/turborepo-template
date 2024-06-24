@@ -8,7 +8,7 @@ import { dynamicStyles } from '~react-native-design-system/utils/common-style.ut
 import Heading from '@/components/core-ui/heading';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import IconArrowLeft from '@/components/svgs/ico-arrow-left';
+import Icon from '@/components/icon';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -49,7 +49,7 @@ const NavigationHeader: FC<NavigationHeaderProps> = ({
   };
 
   const renderLeftIcon = () => {
-    return leftIcon || <IconArrowLeft color={foregroundColor} />;
+    return leftIcon || <Icon name="ChevronLeft" size={28} color={foregroundColor} />;
   };
 
   return (

@@ -8,9 +8,9 @@ import Box from '@/components/box';
 import Heading from '@/components/core-ui/heading';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 import SearchBox from '@/components/search-box';
 
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';

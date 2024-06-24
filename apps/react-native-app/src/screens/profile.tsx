@@ -5,8 +5,8 @@ import { ds } from '~react-native-design-system';
 
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { ProfileStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import ProfileRoot from '@/modules/profile/conponents/profile-root';

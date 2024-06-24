@@ -6,9 +6,9 @@ import { ds } from '~react-native-design-system';
 import Box from '@/components/box';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 import SafeViewArea from '@/components/safe-view-area';
 
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PrivacyPolicy from '@/modules/privacy-policy/components/privacy-policy';

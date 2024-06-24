@@ -7,8 +7,8 @@ import Pagination from '@/components/core-ui/pagination';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PostFilters from '@/modules/post/components/post-filter';

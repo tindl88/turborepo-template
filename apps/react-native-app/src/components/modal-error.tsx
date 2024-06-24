@@ -6,7 +6,7 @@ import { Colors, ds } from '~react-native-design-system';
 import Button from '@/components/core-ui/button';
 import Heading from '@/components/core-ui/heading';
 
-interface IErrorBoxProps {
+interface INodalErrorProps {
   icon?: ReactNode;
   title?: string;
   message?: string;
@@ -17,7 +17,7 @@ interface IErrorBoxProps {
 }
 const { width, height } = Dimensions.get('window');
 
-const ErrorBox: FC<IErrorBoxProps> = ({
+const NodalError: FC<INodalErrorProps> = ({
   icon,
   title,
   message,
@@ -43,4 +43,4 @@ const ErrorBox: FC<IErrorBoxProps> = ({
   );
 };
 
-export default ErrorBox;
+export default NodalError;

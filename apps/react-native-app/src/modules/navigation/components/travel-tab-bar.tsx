@@ -23,19 +23,19 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
 
     switch (name) {
       case 'TravelExploreStack':
-        icon = <Icon name="Compass" size={28} color={iconColor} />;
+        icon = <Icon name="Compass" size={32} color={iconColor} />;
         break;
       case 'AccommodationStack':
-        icon = <Icon name="Hotel" size={28} color={iconColor} />;
+        icon = <Icon name="Hotel" size={32} color={iconColor} />;
         break;
       case 'TourStack':
-        icon = <Icon name="TentTree" size={28} color={iconColor} />;
+        icon = <Icon name="TentTree" size={32} color={iconColor} />;
         break;
       case 'NotificationStack':
-        icon = <Icon name="Bell" size={28} color={iconColor} />;
+        icon = <Icon name="Bell" size={32} color={iconColor} />;
         break;
       case 'ProfileStack':
-        icon = <Icon name="User" size={28} color={iconColor} />;
+        icon = <Icon name="User" size={32} color={iconColor} />;
         break;
     }
 

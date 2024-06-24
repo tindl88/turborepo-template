@@ -19,7 +19,7 @@ const Stack = createStackNavigator<AuthenticatedParamList>();
 
 const Authenticated = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="UI" screenOptions={{ headerShown: false }}>
       {/* BASE */}
       <Stack.Screen name="Preload" component={PreloadScreen} />
       <Stack.Screen name="Search" component={SearchScreen} options={{ presentation: 'transparentModal' }} />

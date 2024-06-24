@@ -6,8 +6,7 @@ import { dynamicStyles } from '~react-native-design-system/utils/common-style.ut
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/core-ui/avatar';
 import Text from '@/components/core-ui/text';
-import IconBell from '@/components/svgs/ico-bell';
-import IconMenu from '@/components/svgs/ico-menu';
+import Icon from '@/components/icon';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 import { AuthenticatedNavigationProps } from '@/modules/navigation/interfaces/navigation.interface';
@@ -29,7 +28,7 @@ function TravelHeader() {
           <View style={[ds.row, ds.shrink, ds.justifyBetween]}>
             <View style={[ds.row, ds.shrink, ds.itemsCenter]}>
               <Pressable style={ds.shrink} onPress={() => navigation.toggleDrawer()}>
-                <IconMenu color={foregroundColor} />
+                <Icon name="Menu" size={28} />
               </Pressable>
               <Text style={[ds.grow, ds.pl12]} color={foregroundColor} onPress={() => navigation.navigate('Search')}>
                 Search
@@ -40,7 +39,7 @@ function TravelHeader() {
                 style={ds.p6}
                 onPress={() => navigation.navigate('NotificationStack', { screen: 'Notifications' })}
               >
-                <IconBell color={foregroundColor} />
+                <Icon name="Bell" size={28} />
               </Pressable>
             </View>
           </View>

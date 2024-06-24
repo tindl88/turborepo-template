@@ -9,12 +9,12 @@ import Separator from '@/components/core-ui/separator';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 
 import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import RegisterForm from '@/modules/auth/components/form-register';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { UnauthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

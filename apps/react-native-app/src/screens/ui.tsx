@@ -15,8 +15,8 @@ import StatusBar from '@/components/core-ui/statusbar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/core-ui/tabs';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import NavigationHeader from '@/components/navigation-header';
 
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 

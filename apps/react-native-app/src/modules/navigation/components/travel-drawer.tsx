@@ -10,7 +10,7 @@ import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import IconPackage from '@/components/svgs/ico-package';
+import Icon from '@/components/icon';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -44,7 +44,7 @@ const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
           ]}
           onPress={() => props.navigation.navigate('UI')}
         >
-          <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
+          <Icon name="Camera" size={28} color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('UI') ? 'Bold' : 'Regular'}
             color={isActive('UI') ? primaryForegroundColor : foregroundColor}
@@ -63,7 +63,7 @@ const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
           ]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >
-          <IconPackage color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
+          <Icon name="Camera" size={28} color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('ScanCode') ? 'Bold' : 'Regular'}
             color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor}
