@@ -9,10 +9,9 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { TravelTourStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 import ToursRoot from '@/modules/travel-tours/components/tours-root';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function ToursScreen({ route }: TravelTourStackProps<'Tours'>) {
   const { t } = useTranslation();

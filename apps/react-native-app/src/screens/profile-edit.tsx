@@ -8,9 +8,8 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { ProfileStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import ProfileEditRoot from '@/modules/profile/conponents/profile-edit-root';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function ProfileEditScreen({ route }: ProfileStackProps<'ProfileEdit'>) {
   const { t } = useTranslation();

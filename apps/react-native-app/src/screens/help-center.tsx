@@ -12,8 +12,7 @@ import SearchBox from '@/components/search-box';
 
 import HelpCenter from '@/modules/help-center/components/help-center';
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 
 function HelpCenterScreen({ route }: AuthenticatedStackProps<'HelpCenter'>) {
   const { t } = useTranslation();

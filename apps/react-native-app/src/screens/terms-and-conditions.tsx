@@ -10,9 +10,8 @@ import NavigationHeader from '@/components/navigation-header';
 import SafeViewArea from '@/components/safe-view-area';
 
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import TermsAndConditions from '@/modules/terms-and-conditions/components/terms-and-conditions';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function TermsAndConditionsScreen({ route }: AuthenticatedStackProps<'TermsAndConditions'>) {
   const { t } = useTranslation();

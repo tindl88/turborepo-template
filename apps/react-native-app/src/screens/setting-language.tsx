@@ -8,8 +8,7 @@ import NavigationHeader from '@/components/navigation-header';
 
 import Language from '@/modules/language/components/language';
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 
 function SettingLanguageScreen({ route }: AuthenticatedStackProps<'SettingLanguage'>) {
   const { t } = useTranslation();

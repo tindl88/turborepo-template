@@ -9,10 +9,9 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { TravelAccommodationStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 import AccommodationsRoot from '@/modules/travel-accommodations/components/accommodation-root';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function AccommodationsScreen({ route }: TravelAccommodationStackProps<'Accommodations'>) {
   const { t } = useTranslation();

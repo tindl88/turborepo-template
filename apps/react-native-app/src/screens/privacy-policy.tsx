@@ -10,9 +10,8 @@ import NavigationHeader from '@/components/navigation-header';
 import SafeViewArea from '@/components/safe-view-area';
 
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PrivacyPolicy from '@/modules/privacy-policy/components/privacy-policy';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function PrivacyPolicyScreen({ route }: AuthenticatedStackProps<'PrivacyPolicy'>) {
   const { t } = useTranslation();

@@ -10,11 +10,10 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PostFilters from '@/modules/post/components/post-filter';
 import { PostList } from '@/modules/post/components/post-list';
 import { usePost } from '@/modules/post/hooks/use-post';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function TravelPlacesScreen({ route }: TravelExploreStackProps<'TravelPlaces'>) {
   const { t } = useTranslation();

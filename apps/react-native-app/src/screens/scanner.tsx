@@ -11,9 +11,8 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function ScanCodeScreen({ route }: AuthenticatedStackProps<'ScanCode'>) {
   const { t } = useTranslation();

@@ -13,10 +13,9 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import { NotificationStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import NotificationsRoot from '@/modules/notifications/components/notifications-root';
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function NotificationsScreen({ route }: NotificationStackProps<'Notifications'>) {
   const { t } = useTranslation();

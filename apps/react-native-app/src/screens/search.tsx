@@ -12,9 +12,8 @@ import NavigationHeader from '@/components/navigation-header';
 import SearchBox from '@/components/search-box';
 
 import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { getHeaderTitle } from '@/utils/header-title.util';
 
 function SearchScreen({ route }: AuthenticatedStackProps<'Search'>) {
   const { t } = useTranslation();
