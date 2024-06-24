@@ -21,8 +21,8 @@ type TourDetailRootProps = {
 const TourDetailRoot: FC<TourDetailRootProps> = ({ routeParams, style }) => {
   return (
     <View style={[ds.flex1, style]}>
-      <ScrollView style={[ds.grow]}>
-        <TourDetailGallery routeParams={routeParams} />
+      <ScrollView showsVerticalScrollIndicator={false} style={[ds.grow]}>
+        <TourDetailGallery routeParams={routeParams} style={[ds.px14]} />
         <TourDetailHeader routeParams={routeParams} style={[ds.p14]} />
         <Separator />
         <TourDetailBody routeParams={routeParams} style={[ds.p14]} />

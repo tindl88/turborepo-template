@@ -16,7 +16,7 @@ const AccommodationDetailGallery: FC<AccommodationDetailGalleryProps> = ({ style
     <View style={style}>
       <Image
         source={require('@/assets/travels/travel-place-taj-mahal.jpeg')}
-        style={ds.wFull as ImageStyle}
+        style={[ds.wFull, ds.rounded24, ds.overflowHidden] as ImageStyle}
         resizeMode="cover"
       />
     </View>

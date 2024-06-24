@@ -5,6 +5,6 @@ export function getHeaderTitle(routeName: string) {
     case 'ProfileEdit':
       return 'screen_profile_edit';
     default:
-      return '';
+      return routeName;
   }
 }

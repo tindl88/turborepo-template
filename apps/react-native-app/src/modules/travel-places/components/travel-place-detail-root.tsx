@@ -21,8 +21,8 @@ type TravelPlaceDetailRootProps = {
 const TravelPlaceDetailRoot: FC<TravelPlaceDetailRootProps> = ({ routeParams, style }) => {
   return (
     <View style={[ds.flex1, style]}>
-      <ScrollView style={[ds.grow]}>
-        <TravelPlaceDetailGallery routeParams={routeParams} />
+      <ScrollView showsVerticalScrollIndicator={false} style={[ds.grow]}>
+        <TravelPlaceDetailGallery routeParams={routeParams} style={[ds.px14]} />
         <TravelPlaceDetailHeader routeParams={routeParams} style={[ds.p14]} />
         <Separator />
         <TravelPlaceDetailBody routeParams={routeParams} style={[ds.p14]} />
