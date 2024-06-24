@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import VersionCheck from 'react-native-version-check';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';

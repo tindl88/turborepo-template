@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { NotificationEntity } from '../interfaces/notifications.interface';
 

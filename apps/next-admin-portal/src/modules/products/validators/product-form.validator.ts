@@ -1,10 +1,12 @@
 import { z } from 'zod';
 
+import { baseValidator } from '~shared-validators/zod';
+
 export const productFormValidator = z.object({
-  name: z.string({ required_error: 'Vui lòng nhập tiêu đề' }).min(2, 'Vui lòng nhập ít nhất 2 ký tự.'),
-  slug: z.string({ required_error: 'Vui lòng nhập slug' }).min(2, 'Vui lòng nhập ít nhất 2 ký tự.'),
-  body: z.string({ required_error: 'Vui lòng nhập nội dung' }).min(1, 'Vui lòng nhập ít nhất 1 ký tự.'),
-  status: z.string({ required_error: 'Vui lòng nhập trạng thái' }).min(1, 'Vui lòng nhập ít nhất 1 ký tự.'),
+  name: baseValidator.title,
+  slug: baseValidator.content,
+  body: baseValidator.content,
+  status: baseValidator.content,
   cover: z.string(),
-  images: z.object({ id: z.string().uuid({ message: 'It should be an UUID' }) }).array()
+  images: baseValidator.uuidArray
 });

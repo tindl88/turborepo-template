@@ -1,13 +1,12 @@
 import React from 'react';
-import { CompassIcon, HotelIcon, TentTreeIcon, UserRound } from 'lucide-react-native';
 import { Platform, Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import IconBell from '@/components/svgs/ico-bell';
+import Icon from '@/components/icon';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -20,23 +19,23 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
 
   const renderIcon = (name: string, isFocused: boolean) => {
     let icon = null;
-    const iconColor = isFocused ? configs.primary : configs.foreground;
+    const iconColor = isFocused ? configs.primary[500] : configs.foreground;
 
     switch (name) {
       case 'TravelExploreStack':
-        icon = <CompassIcon size={28} strokeWidth={1.5} color={iconColor} />;
+        icon = <Icon name="Compass" size={32} color={iconColor} />;
         break;
       case 'AccommodationStack':
-        icon = <HotelIcon size={28} strokeWidth={1.5} color={iconColor} />;
+        icon = <Icon name="Hotel" size={32} color={iconColor} />;
         break;
       case 'TourStack':
-        icon = <TentTreeIcon size={28} strokeWidth={1.5} color={iconColor} />;
+        icon = <Icon name="TentTree" size={32} color={iconColor} />;
         break;
       case 'NotificationStack':
-        icon = <IconBell size={28} strokeWidth={1.5} color={iconColor} />;
+        icon = <Icon name="Bell" size={32} color={iconColor} />;
         break;
       case 'ProfileStack':
-        icon = <UserRound size={28} strokeWidth={1.5} color={iconColor} />;
+        icon = <Icon name="User" size={32} color={iconColor} />;
         break;
     }
 
@@ -48,8 +47,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
       style={[
         ds.row,
         ds.justifyEvenly,
-        ds.roundedT24,
-        ds.overflowHidden,
+        ds.borderT1,
         dynamicStyles.background(configs.card),
         dynamicStyles.border(configs.border),
         Platform.OS === 'ios' && ds.h80
@@ -59,7 +57,7 @@ const TravelTabBar = ({ showText = false, ...rest }: TravelTabBarProps) => {
         const { options } = rest.descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
         const isFocused = rest.state.index === index;
-        const color = isFocused ? configs.primary : configs.foreground;
+        const color = isFocused ? configs.primary[500] : configs.foreground;
 
         const onPress = () => {
           const event = rest.navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });

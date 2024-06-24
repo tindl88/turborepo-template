@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ChevronRight } from 'lucide-react-native';
 import { Pressable, StyleProp, ViewStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { ProfileAction } from '../interfaces/profile.interface';
 
@@ -22,14 +22,12 @@ const ProfileActionItem: FC<ProfileActionItemProps> = ({ item, style }) => {
     <>
       <Pressable style={[ds.py14, ds.row, ds.itemsCenter, ds.justifyBetween, style]} onPress={item.action}>
         <View style={[ds.row, ds.itemsCenter, ds.gap10]}>
-          {item.icon && <item.icon color={configs.primary} />}
-          <Text fontSize={18} fontWeight="Bold">
-            {item.name}
-          </Text>
+          {item.icon}
+          <Text fontWeight="Bold">{item.name}</Text>
         </View>
         <View style={[ds.row, ds.itemsCenter, ds.gap6]}>
           {typeof item.value === 'string' && <Text>{item.value}</Text>}
-          {item.type === 'sub' && <ChevronRight color={configs.primary} />}
+          {item.type === 'sub' && <ChevronRight color={configs.primary[500]} />}
         </View>
       </Pressable>
     </>

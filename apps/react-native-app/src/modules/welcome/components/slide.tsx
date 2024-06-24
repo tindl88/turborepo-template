@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import VersionCheck from 'react-native-version-check';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';

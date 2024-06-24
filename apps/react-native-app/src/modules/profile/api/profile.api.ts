@@ -2,16 +2,16 @@ import { ProfileResponse, UpdateProfileDto } from '../interfaces/profile.interfa
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import HttpRequest from '@/http/http-request';
+import axiosClient from '@/http/http-request';
 
 export const updateProfile = (updateProfileDto: UpdateProfileDto) => {
-  return HttpRequest.patch<ProfileResponse>(API_ENDPOINTS.PROFILE, updateProfileDto);
+  return axiosClient.patch<ProfileResponse>(API_ENDPOINTS.PROFILE, updateProfileDto);
 };
 
-export const getMe = () => {
-  return HttpRequest.get<ProfileResponse>(API_ENDPOINTS.ME);
+export const me = () => {
+  return axiosClient.get<ProfileResponse>(API_ENDPOINTS.ME);
 };
 
-const ProfileApi = { updateProfile, getMe };
+const ProfileApi = { updateProfile, me };
 
 export default ProfileApi;

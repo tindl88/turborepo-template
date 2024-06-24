@@ -2,10 +2,10 @@ import { PreferenceResponse, UpdatePreferenceDto } from '../interfaces/settings.
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import HttpRequest from '@/http/http-request';
+import axiosClient from '@/http/http-request';
 
 export const updatePreference = (updatePreferenceDto: UpdatePreferenceDto) => {
-  return HttpRequest.patch<PreferenceResponse>(API_ENDPOINTS.USER_PREFERENCES, updatePreferenceDto);
+  return axiosClient.patch<PreferenceResponse>(API_ENDPOINTS.USER_PREFERENCES, updatePreferenceDto);
 };
 
 const SettingApi = { updatePreference };

@@ -34,7 +34,7 @@ export default function ProductFormCover({ form }: ProductFormCoverProps) {
         <FormField
           control={form.control}
           name={'cover'}
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <>
               <FormItem>
                 <FormControl>
@@ -52,8 +52,7 @@ export default function ProductFormCover({ form }: ProductFormCoverProps) {
                     <ButtonRemoveFile onClick={() => form.setValue('cover', '')} />
                   </div>
                 )}
-
-                <FormMessage />
+                {error?.message && <FormMessage message={t(error.message)} />}
               </FormItem>
               {!field.value && (
                 <ButtonSelectFile className="w-full py-12" onClick={() => setIsFileManagerVisible(true)} />

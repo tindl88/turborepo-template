@@ -1,32 +1,23 @@
 import React from 'react';
-import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
-import {
-  AuthenticatedParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
-import Theme from '@/modules/theme/components/theme';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
+import ThemeRoot from '@/modules/theme/components/theme-root';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<AuthenticatedParamList, 'SettingTheme'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+function SettingThemeScreen({ route }: AuthenticatedStackProps<'SettingTheme'>) {
+  const { t } = useTranslation();
 
-function SettingThemeScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
-      <Theme />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
+      <ThemeRoot />
     </View>
   );
 }

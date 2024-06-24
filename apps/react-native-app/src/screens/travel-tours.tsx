@@ -1,36 +1,26 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
-import NavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
-import {
-  TourParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { TravelTourStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 import ToursRoot from '@/modules/travel-tours/components/tours-root';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<TourParamList, 'Tours'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
-
-function ToursScreen({ route }: Props) {
+function ToursScreen({ route }: TravelTourStackProps<'Tours'>) {
+  const { t } = useTranslation();
   const { configs } = useThemeState();
 
   return (
     <View style={[ds.flex1, dynamicStyles.background(configs.background)]}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <ScrollView showsVerticalScrollIndicator={false} style={[ds.p14]}>
         <ToursRoot />
       </ScrollView>

@@ -123,6 +123,11 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
 
+    if (!user.deviceTokens) user.deviceTokens = [];
+    if (!user.deviceTokens.includes(updateUserDto.deviceToken)) {
+      user.deviceTokens.push(updateUserDto.deviceToken);
+    }
+
     const response = await this.userRepository.save(user);
 
     const userUpdatedEvent = new UserUpdatedEvent();
@@ -145,6 +150,13 @@ export class UsersService {
     user.status = USER_STATUS.DELETED;
 
     return this.userRepository.save(user);
+  }
+
+  async getAllDeviceTokens() {
+    const users = await this.userRepository.createQueryBuilder('user').select('user.deviceTokens').getMany();
+    const deviceTokens = users.flatMap(user => user.deviceTokens);
+
+    return deviceTokens;
   }
 
   async bulkDelete(bulkDeleteUserDto: BulkDeleteUserDto) {

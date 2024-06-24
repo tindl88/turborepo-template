@@ -2,25 +2,16 @@ import type { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from 'next-auth/middleware';
 import createIntlMiddleware from 'next-intl/middleware';
 
-import { defaultLocale, localeDetection, localePrefix, locales, pathnames } from './navigation';
+import { defaultLocale, localeDetection, localePrefix, locales, pathnames, publicPages } from './config';
 
-const intlMiddleware = createIntlMiddleware({
-  locales,
-  pathnames,
-  defaultLocale,
-  localePrefix,
-  localeDetection
-});
-
+const intlMiddleware = createIntlMiddleware({ locales, pathnames, defaultLocale, localePrefix, localeDetection });
 const authMiddleware = withAuth(
   function onSuccess(req) {
     return intlMiddleware(req);
   },
   {
     callbacks: {
-      authorized: ({ token }) => {
-        return token != null;
-      }
+      authorized: ({ token }) => token != null
     },
     pages: {
       signIn: '/login'
@@ -28,19 +19,20 @@ const authMiddleware = withAuth(
   }
 );
 
-export default async function middleware(request: NextRequest) {
-  const locale = request.headers.get('x-default-locale') || defaultLocale;
-
-  const isPublicPage = true; // request.nextUrl.pathname !== '/admin/';
+export default async function middleware(req: NextRequest) {
+  const publicPathnameRegex = RegExp(
+    `^(/(${locales.join('|')}))?(${publicPages.flatMap(p => (p === '/' ? ['', '/'] : p)).join('|')})/?$`,
+    'i'
+  );
+  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
   let response: NextResponse;
 
   if (isPublicPage) {
-    response = intlMiddleware(request);
-    response.headers.set('x-default-locale', locale);
+    response = intlMiddleware(req);
   } else {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    response = (authMiddleware as any)(request);
+    response = (authMiddleware as any)(req);
   }
 
   return response;
@@ -49,5 +41,5 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   // Skip all paths that should not be internationalized. This example skips
   // certain folders and all pathnames with a dot (e.g. favicon.ico)
-  matcher: ['/((?!api|_next|_vercel|sitemap.xml|sitemap-[\\d].xml|.*\\..*).*)']
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

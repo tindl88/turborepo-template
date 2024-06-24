@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Pressable, View, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 

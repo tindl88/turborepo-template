@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { LanguageEntity } from '../interfaces/language.interface';
 

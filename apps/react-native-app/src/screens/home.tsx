@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, ImageSourcePropType, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import Divider from '@/components/core-ui/divider';
 import Heading from '@/components/core-ui/heading';
@@ -9,7 +9,7 @@ import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
-import { HomeStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import {
   TravelCategories,
   TravelCategoryList,
@@ -19,7 +19,7 @@ import TravelHeader from '@/modules/travel-common/components/travel-header';
 import TravelPlacesRoot from '@/modules/travel-places/components/travel-places-root';
 import PopularHotelsRoot from '@/modules/travel-popular-hotels/components/popular-hotel-root';
 
-function HomeScreen({}: HomeStackProps<'Home'>) {
+function HomeScreen({}: TravelExploreStackProps<'Home'>) {
   const travelCategories = [
     { id: '1', name: 'Asia', image: require('@/assets/travels/category-asia.jpeg') },
     { id: '2', name: 'Europe', image: require('@/assets/travels/category-europe.jpeg') },

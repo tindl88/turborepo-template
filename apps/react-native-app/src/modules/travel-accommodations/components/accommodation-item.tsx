@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { MapPin } from 'lucide-react-native';
 import { Image, ImageSourcePropType, ImageStyle, Pressable } from 'react-native';
-import { Colors, ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { Colors, ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
@@ -46,7 +46,7 @@ const AccommodationItem: FC<AccommodationItemProps> = ({ item, onPress }) => {
           </View>
 
           <View style={ds.row}>
-            <Text color={configs.primary} fontWeight="Bold">{`$${item.price}`}</Text>
+            <Text color={configs.primary[500]} fontWeight="Bold">{`$${item.price}`}</Text>
             <Text fontSize={13}>/night</Text>
           </View>
         </View>

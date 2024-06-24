@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
 import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
 

@@ -1,31 +1,22 @@
 import React from 'react';
-import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
 import Language from '@/modules/language/components/language';
-import {
-  AuthenticatedParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<AuthenticatedParamList, 'SettingLanguage'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+function SettingLanguageScreen({ route }: AuthenticatedStackProps<'SettingLanguage'>) {
+  const { t } = useTranslation();
 
-function SettingLanguageScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Language />
     </View>
   );

@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react';
 import { StyleProp, Text as RNText, TextStyle } from 'react-native';
-import { FontStyle, FontWeight } from '@/design-system/interfaces/font.interface';
-import { fontMaker, FontMakerOptions } from '@/design-system/utils/font.util';
+import { FontStyle, FontWeight } from '~react-native-design-system/interfaces/font.interface';
+import { fontMaker, FontMakerOptions } from '~react-native-design-system/utils/font.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -32,7 +32,7 @@ const Text = forwardRef<RNText, ITextProps>(
       fontName,
       fontStyle,
       fontWeight = 'Regular',
-      fontSize = 16,
+      fontSize = 18,
       lineHeight = 22,
       visible = true,
       onPress

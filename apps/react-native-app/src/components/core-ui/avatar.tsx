@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Pressable, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
-import { Colors, ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { Colors, ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -80,7 +80,14 @@ const AvatarFallback: React.FC<IAvatarFallbackProps> = ({ style, children, chars
 
   return (
     <View
-      style={[ds.wFull, ds.hFull, ds.itemsCenter, ds.justifyCenter, dynamicStyles.background(configs.primary), style]}
+      style={[
+        ds.wFull,
+        ds.hFull,
+        ds.itemsCenter,
+        ds.justifyCenter,
+        dynamicStyles.background(configs.primary[500]),
+        style
+      ]}
     >
       <Text fontWeight="Bold" fontSize={26} lineHeight={30} color={Colors.white} {...props}>
         {name}

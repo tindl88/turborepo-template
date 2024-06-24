@@ -1,8 +1,8 @@
 import React from 'react';
 import { CheckIcon } from 'lucide-react-native';
 import { Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { LanguageEntity } from '../interfaces/language.interface';
 
@@ -34,7 +34,7 @@ const LanguageItem: React.FC<LanguageItemProps> = ({ item, selectedLanguage, onS
       onPress={() => onSelectLanguage(item)}
     >
       <Text fontWeight="Bold">{item.value}</Text>
-      {selectedLanguage === item.key && <CheckIcon size={24} color={configs.primary} strokeWidth={1.5} />}
+      {selectedLanguage === item.key && <CheckIcon size={24} color={configs.primary[500]} strokeWidth={1.5} />}
     </Pressable>
   );
 };

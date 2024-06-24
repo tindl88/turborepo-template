@@ -34,7 +34,7 @@ export default function PostFormCover({ form }: PostFormCoverProps) {
         <FormField
           control={form.control}
           name={'cover'}
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <>
               <FormItem>
                 <FormControl>
@@ -52,7 +52,7 @@ export default function PostFormCover({ form }: PostFormCoverProps) {
                     <ButtonRemoveFile onClick={() => form.setValue('cover', '')} />
                   </div>
                 )}
-                <FormMessage />
+                {error?.message && <FormMessage message={t(error.message)} />}
               </FormItem>
               {!field.value && (
                 <ButtonSelectFile className="w-full py-12" onClick={() => setIsFileManagerVisible(true)} />

@@ -1,20 +1,19 @@
 import { EntityId } from '@reduxjs/toolkit';
-import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
 import { PostFilter, PostResponse, PostsResponse } from '../interfaces/post.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import HttpRequest from '@/http/http-request';
+import axiosClient from '@/http/http-request';
 
-export const list = (filter: PostFilter) => {
-  const url = API_ENDPOINTS.POSTS + '?' + objectToQueryString(filter);
+export const list = (_filter: PostFilter) => {
+  const url = API_ENDPOINTS.POSTS;
 
-  return HttpRequest.get<PostsResponse>(url);
+  return axiosClient.get<PostsResponse>(url);
 };
 
 export const read = (id: EntityId) => {
-  return HttpRequest.get<PostResponse>(`${API_ENDPOINTS.POSTS}/${id}`);
+  return axiosClient.get<PostResponse>(`${API_ENDPOINTS.POSTS}/${id}`);
 };
 
 const PostApi = { list, read };

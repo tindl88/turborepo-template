@@ -3,6 +3,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import {
+  BellIcon,
   FileCode2Icon,
   FileTextIcon,
   FoldersIcon,
@@ -22,10 +23,11 @@ import SidebarIndicator from './sidebar-indicator';
 import SidebarMenuItem from './sidebar-menu-item';
 import CategoriesSubMenu from './sub-menu-categories';
 import DocumentationSubMenu from './sub-menu-documentation';
+import NotificationsSubMenu from './sub-menu-notifications';
 import PostsSubMenu from './sub-menu-posts';
 import ProductsSubMenu from './sub-menu-products';
 import SettingsSubMenu from './sub-menu-settings';
-import UsersSubMenu from './users-sub-menu';
+import UsersSubMenu from './sub-menu-users';
 
 type SidebarNavigationProps = ComponentBaseProps & {
   isExpand: boolean;
@@ -42,6 +44,7 @@ const SidebarNavigation: FC<SidebarNavigationProps> = ({ className, isExpand }) 
     posts: false,
     products: false,
     users: false,
+    notifications: false,
     files: false,
     audit_logs: false,
     settings: false,
@@ -56,6 +59,7 @@ const SidebarNavigation: FC<SidebarNavigationProps> = ({ className, isExpand }) 
       posts: pathname === '/posts',
       products: pathname === '/products',
       users: pathname === '/users',
+      notifications: pathname === '/notifications',
       files: pathname === '/files',
       audit_logs: pathname === '/audit-logs',
       settings: pathname === '/settings',
@@ -212,6 +216,40 @@ const SidebarNavigation: FC<SidebarNavigationProps> = ({ className, isExpand }) 
                 )}
               >
                 <UsersSubMenu type="list" />
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+          {/*************************************************************
+          NOTIFICATIONS
+          **************************************************************/}
+          <div className="relative px-3">
+            <Collapsible
+              open={isOpenSubMenu.notifications}
+              onOpenChange={value =>
+                setIsOpenSubMenu(prevState => ({
+                  ...prevState,
+                  notifications: value
+                }))
+              }
+            >
+              <SidebarMenuItem url={'/notifications/push'} isExpand={isExpand} options={{ icon: BellIcon }}>
+                {t('sidebar_menu_notifications')}
+              </SidebarMenuItem>
+              <CollapsibleTrigger asChild>
+                <div>
+                  <SidebarIndicator
+                    isExpand={isExpand}
+                    isActive={pathname === '/notifications/push'}
+                    isOpen={isOpenSubMenu.notifications}
+                  />
+                </div>
+              </CollapsibleTrigger>
+              <CollapsibleContent
+                className={classNames(
+                  'mt-1 overflow-hidden rounded [&[data-state=closed]]:animate-collapsible-up [&[data-state=open]]:animate-collapsible-down'
+                )}
+              >
+                <NotificationsSubMenu type="list" />
               </CollapsibleContent>
             </Collapsible>
           </div>
@@ -387,6 +425,19 @@ const SidebarNavigation: FC<SidebarNavigationProps> = ({ className, isExpand }) 
             </HoverCardTrigger>
             <HoverCardContent className="w-52 p-1" sideOffset={12} alignOffset={-6} side="right" align="start">
               <UsersSubMenu type="dropdown" />
+            </HoverCardContent>
+          </HoverCard>
+          {/*************************************************************
+          NOTIFICATIONS
+          **************************************************************/}
+          <HoverCard openDelay={250} closeDelay={250}>
+            <HoverCardTrigger asChild>
+              <div>
+                <SidebarMenuItem url={'/notifications/push'} isExpand={isExpand} options={{ icon: BellIcon }} />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-52 p-1" sideOffset={12} alignOffset={-6} side="right" align="start">
+              <NotificationsSubMenu type="dropdown" />
             </HoverCardContent>
           </HoverCard>
           {/*************************************************************

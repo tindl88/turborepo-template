@@ -1,33 +1,25 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
-import {
-  AuthenticatedParamList,
-  ProfileParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
-import Profile from '@/modules/profile/conponents/profile';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { ProfileStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
+import ProfileRoot from '@/modules/profile/conponents/profile-root';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<ProfileParamList, 'Profile'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, StackScreenProps<AuthenticatedParamList>>
->;
+function ProfileScreen({ route }: ProfileStackProps<'Profile'>) {
+  const { t } = useTranslation();
 
-function ProfileScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <ScrollView showsVerticalScrollIndicator={false} style={ds.p14}>
-        <Profile />
+        <ProfileRoot />
       </ScrollView>
     </View>
   );

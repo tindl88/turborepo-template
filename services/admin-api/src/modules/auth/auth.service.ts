@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -8,7 +7,7 @@ import { getSecondBetweenTwoDates } from '@/common/utils/datetime.util';
 import { UsersService } from '@/modules/users/users.service';
 
 import { AUTH_AUTHENTICATOR, AUTH_PROVIDER, AUTH_TYPE } from './constants/auth.constant';
-import { OAuthSignInDto, SignInDto } from './dto/auth.dto';
+import { OAuthFacebookSignInDto, OAuthSignInDto, SignInDto } from './dto/auth.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyResetPasswordDto } from './dto/verify-reset-password.dto';
 import { OAuthProfile } from './interfaces/auth.interface';
@@ -30,7 +29,6 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    private readonly configService: ConfigService,
     private usersService: UsersService,
     private refreshTokensService: RefreshTokensService,
     private tokenService: TokenService,
@@ -77,10 +75,10 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 
@@ -122,15 +120,15 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 
-  async signInWithFacebook(oAuthSignInDto: OAuthSignInDto, ipAddress: string, userAgent: string) {
-    const { token, authenticator, isFacebookLimited } = oAuthSignInDto;
+  async signInWithFacebook(oAuthFacebookSignInDto: OAuthFacebookSignInDto, ipAddress: string, userAgent: string) {
+    const { token, authenticator, isFacebookLimited } = oAuthFacebookSignInDto;
     let userInfo: OAuthProfile = null;
 
     if (authenticator === AUTH_AUTHENTICATOR.FIREBASE) {
@@ -170,10 +168,10 @@ export class AuthService {
         role: user.role,
         name: user.name,
         avatar: user.avatar,
-        preference: user.preference,
-        accessToken,
-        refreshToken
-      }
+        preference: user.preference
+      },
+      accessToken,
+      refreshToken
     };
   }
 

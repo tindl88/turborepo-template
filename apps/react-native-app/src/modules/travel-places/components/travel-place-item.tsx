@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Image, ImageSourcePropType, ImageStyle, Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { TravelPlaceEntity } from '../interfaces/travel-places.interface';
 

@@ -27,7 +27,7 @@ export default function UserFormStatus({ form }: UserFormStatusProps) {
           <FormField
             control={form.control}
             name="status"
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <FormItem>
                 <FormControl>
                   <Select value={field.value} onValueChange={field.onChange}>
@@ -50,7 +50,7 @@ export default function UserFormStatus({ form }: UserFormStatusProps) {
                     </SelectContent>
                   </Select>
                 </FormControl>
-                <FormMessage />
+                {error?.message && <FormMessage message={t(error.message)} />}
               </FormItem>
             )}
           />

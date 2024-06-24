@@ -56,7 +56,7 @@ export default function PostFormImages({ form }: PostFormImagesProps) {
                   <FormField
                     control={form.control}
                     name={`images.${index}.id`}
-                    render={({ field }) => (
+                    render={({ field, fieldState: { error } }) => (
                       <FormItem>
                         <FormControl>
                           <Input readOnly {...field} className="hidden" />
@@ -71,7 +71,7 @@ export default function PostFormImages({ form }: PostFormImagesProps) {
                           />
                           <ButtonRemoveFile onClick={() => remove(index)} />
                         </div>
-                        <FormMessage />
+                        {error?.message && <FormMessage message={t(error.message)} />}
                       </FormItem>
                     )}
                   />

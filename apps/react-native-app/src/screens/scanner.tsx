@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 import { PERMISSIONS, request } from 'react-native-permissions';
-import { ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import GeneralNavigationHeader from '@/components/common/header/general';
 import Button from '@/components/core-ui/button';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
-import { AuthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import GoogleMLKitScanner from '@/modules/scancode/components/google-ml-kit-scanner';
-import { useScreenState } from '@/modules/screen/states/screen.state';
 
-type Props = StackScreenProps<AuthenticatedParamList, 'ScanCode'>;
-
-function ScanCodeScreen({}: Props) {
+function ScanCodeScreen({ route }: AuthenticatedStackProps<'ScanCode'>) {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const [permissionResult, setPermissionResult] = useState('Not asked');
-  const screenState = useScreenState();
 
   useEffect(() => {
     request(Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA).then(result => {
@@ -30,7 +28,7 @@ function ScanCodeScreen({}: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={screenState.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <View style={ds.flex1}>
         {permissionResult === 'granted' && (
           <View style={ds.grow}>

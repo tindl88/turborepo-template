@@ -11,32 +11,32 @@ import {
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import HttpRequest from '@/http/http-request';
+import axiosClient from '@/http/http-request';
 
 export const list = (filter: CategoryFilter) => {
   const url = API_ENDPOINTS.CATEGORIES + '?' + objectToQueryString(filter);
 
-  return HttpRequest.get<CategoriesResponse>(url);
+  return axiosClient.get<CategoriesResponse>(url);
 };
 
 export const create = (createCategoryDto: CreateCategoryDto) => {
-  return HttpRequest.post<CategoryResponse>(API_ENDPOINTS.CATEGORIES, createCategoryDto);
+  return axiosClient.post<CategoryResponse>(API_ENDPOINTS.CATEGORIES, createCategoryDto);
 };
 
 export const read = (id: EntityId) => {
-  return HttpRequest.get<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`);
+  return axiosClient.get<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`);
 };
 
 export const update = (id: EntityId, updateCategoryDto: UpdateCategoryDto) => {
-  return HttpRequest.patch<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`, updateCategoryDto);
+  return axiosClient.patch<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`, updateCategoryDto);
 };
 
 export const destroy = (id: EntityId) => {
-  return HttpRequest.delete<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`);
+  return axiosClient.delete<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`);
 };
 
 export const bulkDestroy = (payload: { ids: EntityId[] }) => {
-  return HttpRequest.post<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/bulk-delete`, payload);
+  return axiosClient.post<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/bulk-delete`, payload);
 };
 
 const CategoryApi = { list, create, read, update, destroy, bulkDestroy };

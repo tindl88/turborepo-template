@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import View from './view';
 

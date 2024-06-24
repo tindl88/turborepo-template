@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { ds } from '@/design-system';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
 import Heading from '@/components/core-ui/heading';
 import Link from '@/components/core-ui/link';
@@ -68,7 +68,7 @@ const PopularHotelsRoot: FC<PopularHotelsRootProps> = () => {
         <Heading as="h3" fontWeight="Medium" text="Popular Hotels" />
         <Link
           text="See All"
-          color={configs.primary}
+          color={configs.primary[500]}
           onPress={() => navigation.navigate('Accommodations', { q: '', page: 1, limit: 10 })}
         />
       </View>

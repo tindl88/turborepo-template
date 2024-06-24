@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
@@ -86,7 +86,7 @@ function AccordionTrigger({ children, ...props }: IAccordionTriggerProps) {
         <Text fontWeight="Bold">{children}</Text>
       </View>
       <View style={[ds.absolute, ds.right10, ds.top10]}>
-        {isActive ? <ChevronUpIcon color={configs.primary} /> : <ChevronDownIcon color={configs.primary} />}
+        {isActive ? <ChevronUpIcon color={configs.primary[500]} /> : <ChevronDownIcon color={configs.primary[500]} />}
       </View>
     </Pressable>
   );

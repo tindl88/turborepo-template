@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Alert, AlertButton, Linking } from 'react-native';
 import { Camera, Code, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
-import { ds } from '@/design-system';
 import { useIsFocused } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/native';
+import { ds } from '~react-native-design-system';
 
 import { useIsForeground } from '@/hooks/use-is-foreground';
 

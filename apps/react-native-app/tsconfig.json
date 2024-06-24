@@ -7,9 +7,19 @@
       "@/*": ["src/*"],
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
-      "~shared-client/*": ["../../packages/shared-client/src/*"]
+      "~shared-validators/*": ["../../packages/shared-validators/src/*"],
+      "~react-native-design-system": ["../../packages/react-native-design-system/src/index.ts"],
+      "~react-native-design-system/*": ["../../packages/react-native-design-system/src/*"]
     }
   },
-  "include": ["src", "App.tsx", "types", "__tests__", "__mocks__", "../../packages/shared-client/src"],
-  "exclude": ["**/Pods/**", "../../packages/shared-client/src"]
+  "include": [
+    "src",
+    "App.tsx",
+    "types",
+    "__tests__",
+    "__mocks__",
+    "../../packages/shared-validators/src",
+    "../../packages/react-native-design-system/src"
+  ],
+  "exclude": ["**/Pods/**"]
 }

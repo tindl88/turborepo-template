@@ -28,7 +28,7 @@ const UserFormRole: FC<UserFormRoleProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="role"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('user_role')}</FormLabel>
             <FormControl>
@@ -57,7 +57,7 @@ const UserFormRole: FC<UserFormRoleProps> = ({ className, form }) => {
                 ))}
               </RadioGroup>
             </FormControl>
-            <FormMessage />
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />

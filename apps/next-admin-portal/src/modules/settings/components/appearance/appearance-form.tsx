@@ -23,14 +23,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 import { useRouter } from '@/navigation';
 
-import { PreferenceEntity } from '@/modules/auth/interfaces/auth.interface';
-
 import SettingApi from '../../api/settings.api';
+import { Languages, PreferenceEntity } from '../../interfaces/settings.interface';
 import { updateAppearanceValidator } from '../../validators/update-appearance.validator';
 
 type AppearanceFormValues = {
   theme: string;
-  language: string;
+  language: Languages;
   font: string;
   fontSize: number;
 };
@@ -77,7 +76,7 @@ export function AppearanceForm() {
           params: { type: 'appearance' },
           query: { sidebar: searchParams.get('sidebar') }
         },
-        { locale: formData.language }
+        { locale: formData.language as Languages }
       );
 
       router.refresh();
@@ -97,7 +96,7 @@ export function AppearanceForm() {
         <FormField
           control={form.control}
           name="language"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
               <FormLabel>{t('language')}</FormLabel>
               <div className="relative w-max">
@@ -114,18 +113,18 @@ export function AppearanceForm() {
                 </FormControl>
               </div>
               <FormDescription>{t('sidebar_menu_settings_appearance_language_desc')}</FormDescription>
-              <FormMessage />
+              {error?.message && <FormMessage message={t(error.message)} />}
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
           name="theme"
-          render={({ field }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem className="space-y-1">
               <FormLabel>{t('theme')}</FormLabel>
               <FormDescription>{t('sidebar_menu_settings_appearance_theme_desc')}</FormDescription>
-              <FormMessage />
+              {error?.message && <FormMessage message={t(error.message)} />}
               <RadioGroup
                 value={field.value}
                 className="grid max-w-md grid-cols-2 gap-8 pt-2"

@@ -46,13 +46,13 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="name"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('product_title')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
@@ -60,13 +60,13 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="slug"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('product_slug')}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            <FormMessage />
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />
@@ -74,7 +74,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
       <FormField
         control={form.control}
         name="body"
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <FormItem>
             <FormLabel>{t('product_body')}</FormLabel>
             <FormControl>
@@ -88,7 +88,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
                 />
               </>
             </FormControl>
-            <FormMessage />
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />

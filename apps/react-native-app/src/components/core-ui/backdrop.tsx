@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Pressable } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { ICoreUIBaseProps } from './types';
 

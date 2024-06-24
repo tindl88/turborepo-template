@@ -1,7 +1,14 @@
 import { z } from 'zod';
 
-export const resetPasswordValidator = z.object({
-  email: z
-    .string({ required_error: 'Vui lòng nhập email', invalid_type_error: 'Email không hợp lệ' })
-    .min(1, 'Vui lòng nhập ít nhất 1 ký tự.')
-});
+import { baseValidator } from '~shared-validators/zod';
+
+export const resetPasswordValidator = z
+  .object({
+    otpCode: z.string().min(5).max(5),
+    password: baseValidator.password,
+    confirmPassword: z.string({ message: 'validator_password_do_not_match' })
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'validator_password_do_not_match',
+    path: ['confirmPassword']
+  });

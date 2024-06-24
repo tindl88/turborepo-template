@@ -2,7 +2,6 @@ import { useAuthState } from '@/modules/auth/states/auth.state';
 
 import { act, fireEvent, render } from '@tests/unit/utils/test.util';
 
-import { AUTH_PROVIDER } from '../../constants/auth.constant';
 import GoogleSignInButton from '../google-signin';
 
 vi.mock('@/modules/auth/states/auth.state', () => ({
@@ -31,7 +30,6 @@ describe('GoogleSignInButton Component', () => {
 
     expect(btnElm).toBeInTheDocument();
     expect(useAuthState().googleSignIn).toHaveBeenCalledWith({
-      provider: AUTH_PROVIDER.GOOGLE,
       redirect: true,
       callbackUrl: '/'
     });

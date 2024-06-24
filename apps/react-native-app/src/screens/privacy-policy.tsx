@@ -1,40 +1,34 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
 
-import Box from '@/components/common/box';
-import GeneralNavigationHeader from '@/components/common/header/general';
+import Box from '@/components/box';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
+import SafeViewArea from '@/components/safe-view-area';
 
-import {
-  AuthenticatedParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PrivacyPolicy from '@/modules/privacy-policy/components/privacy-policy';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<AuthenticatedParamList, 'PrivacyPolicy'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+function PrivacyPolicyScreen({ route }: AuthenticatedStackProps<'PrivacyPolicy'>) {
+  const { t } = useTranslation();
 
-function PrivacyPolicyScreen({ route }: Props) {
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <GeneralNavigationHeader title={route.name} />
-      <Box hasBg={false} style={ds.flex1}>
-        <Box style={ds.flex1}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <PrivacyPolicy />
-          </ScrollView>
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
+      <SafeViewArea spacingBottom={true}>
+        <Box hasBg={false} style={ds.flex1}>
+          <Box style={ds.flex1}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <PrivacyPolicy />
+            </ScrollView>
+          </Box>
         </Box>
-      </Box>
+      </SafeViewArea>
     </View>
   );
 }

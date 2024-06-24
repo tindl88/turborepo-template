@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pressable } from 'react-native';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
 import { TravelDrawerParamList } from '../interfaces/navigation.interface';
 
@@ -10,24 +10,22 @@ import Heading from '@/components/core-ui/heading';
 import Separator from '@/components/core-ui/separator';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
-import IconPackage from '@/components/svgs/ico-package';
+import Icon from '@/components/icon';
 
-import { useScreenState } from '@/modules/screen/states/screen.state';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
 import TravelBottomTabNavigator from './travel-bottom-tab';
 
 const Drawer = createDrawerNavigator<TravelDrawerParamList>();
 
-const DrawerContent = (props: DrawerContentComponentProps) => {
-  const screenState = useScreenState();
+const DrawerContent = ({ ...props }: DrawerContentComponentProps) => {
   const { configs } = useThemeState();
 
   const primaryForegroundColor = configs.primaryForeground;
   const foregroundColor = configs.foreground;
   const borderColor = configs.border;
 
-  const isActive = (currentScreen: string) => screenState.name === currentScreen;
+  const isActive = (currentScreen: string) => currentScreen === 'home';
 
   return (
     <DrawerContentScrollView style={dynamicStyles.background(configs.card)} {...props}>
@@ -42,11 +40,11 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('UI') && dynamicStyles.background(configs.primary)
+            isActive('UI') && dynamicStyles.background(configs.primary[500])
           ]}
           onPress={() => props.navigation.navigate('UI')}
         >
-          <IconPackage color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
+          <Icon name="Camera" size={28} color={isActive('UI') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('UI') ? 'Bold' : 'Regular'}
             color={isActive('UI') ? primaryForegroundColor : foregroundColor}
@@ -61,11 +59,11 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             ds.itemsCenter,
             ds.roundedRFull,
             ds.p12,
-            isActive('ScanCode') && dynamicStyles.background(configs.primary)
+            isActive('ScanCode') && dynamicStyles.background(configs.primary[500])
           ]}
           onPress={() => props.navigation.navigate('ScanCode')}
         >
-          <IconPackage color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
+          <Icon name="Camera" size={28} color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor} />
           <Text
             fontWeight={isActive('ScanCode') ? 'Bold' : 'Regular'}
             color={isActive('ScanCode') ? primaryForegroundColor : foregroundColor}

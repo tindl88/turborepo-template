@@ -28,11 +28,9 @@ export const useWelcomeState = create<State & Actions>()(
             );
           }
         }),
-        {
-          name: 'welcome',
-          storage: createJSONStorage(() => MMKVStorage)
-        }
+        { name: '@welcome', storage: createJSONStorage(() => MMKVStorage) }
       )
-    )
+    ),
+    { enabled: process.env.NODE_ENV === 'development' }
   )
 );

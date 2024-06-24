@@ -1,27 +1,28 @@
 import React from 'react';
-import { ds } from '@/design-system';
+import { useTranslation } from 'react-i18next';
+import { ds } from '~react-native-design-system';
 
-import NavigationHeader from '@/components/common/header/general';
 import Loading from '@/components/core-ui/loading';
 import Pagination from '@/components/core-ui/pagination';
 import StatusBar from '@/components/core-ui/statusbar';
 import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 
-import { HomeStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import PostFilters from '@/modules/post/components/post-filter';
 import { PostList } from '@/modules/post/components/post-list';
 import { usePost } from '@/modules/post/hooks/use-post';
-import { useScreenState } from '@/modules/screen/states/screen.state';
 
-function TravelPlacesScreen({ route }: HomeStackProps<'TravelPlaces'>) {
-  const screenState = useScreenState();
+function TravelPlacesScreen({ route }: TravelExploreStackProps<'TravelPlaces'>) {
+  const { t } = useTranslation();
   const { isLoading, error, data, meta, filter, setFilter } = usePost(route.params);
 
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={screenState.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       {isLoading && (
         <View>
           <Loading />

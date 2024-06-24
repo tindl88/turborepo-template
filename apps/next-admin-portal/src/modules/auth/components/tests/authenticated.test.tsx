@@ -1,10 +1,10 @@
-import { Session } from 'next-auth';
+import { Session, User } from 'next-auth';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
+import { PreferenceEntity } from '@/modules/settings/interfaces/settings.interface';
 
 import { act, fireEvent, render, screen } from '@tests/unit/utils/test.util';
 
-import { PreferenceEntity } from '../../interfaces/auth.interface';
 import Authenticated from '../authenticated';
 
 const mockUseAuthState = {
@@ -29,10 +29,10 @@ describe('Authenticated Component', () => {
       preference: {
         language: 'en-us',
         theme: 'dark'
-      } as PreferenceEntity,
-      accessToken: 'access_token',
-      refreshToken: 'refresh_token'
-    },
+      } as PreferenceEntity
+    } as User,
+    accessToken: 'access_token',
+    refreshToken: 'refresh_token',
     expires: '2025-10-10T10:10:10.000Z'
   };
 

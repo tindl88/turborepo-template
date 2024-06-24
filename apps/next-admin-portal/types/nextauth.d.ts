@@ -10,8 +10,7 @@ declare module 'next-auth' {
     email: string;
     image: string;
     preference: PreferenceEntity;
-    accessToken: string;
-    refreshToken: string;
+    [key: string]: string;
   }
 
   interface Account {
@@ -41,6 +40,8 @@ declare module 'next-auth' {
 
   interface Session extends DefaultSession {
     user: User;
+    accessToken: string;
+    refreshToken: string;
   }
 }
 

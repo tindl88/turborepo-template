@@ -8,15 +8,15 @@
 Admin Portal Template for Startup
 
 - [x] 100% Typescript
-- [x] Authenticatin with Google, Facebook
+- [x] Authentication with Firebase or Non-Firebase (Google, Facebook, Apple)
 - [x] Support AccessToken & RefreshToken
 - [x] Post Management
 - [x] User Management
 - [x] File & Folder Management
 - [x] Settings & Preferences
+- [x] Push Notifications
 - [x] Unit testing
 - [x] End To End testing
-- [ ] ~~Integration testing~~
 - [x] Full API documentation with Swagger
 
 ## Installation

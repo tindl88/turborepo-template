@@ -1,4 +1,4 @@
-import { Colors } from '@/design-system';
+import { Colors } from '~react-native-design-system';
 
 import { ThemeConfig, ThemeEntity } from '../interfaces/theme.interface';
 
@@ -15,7 +15,7 @@ export const themeConfig: ThemeConfig = {
     cardForeground: Colors.stone[200],
     popover: Colors.stone[800],
     popoverForeground: Colors.stone[200],
-    primary: Colors.primary[500],
+    primary: Colors.primary,
     primaryForeground: Colors.primary[900],
     secondary: Colors.stone[700],
     secondaryForeground: Colors.stone[50],
@@ -36,7 +36,7 @@ export const themeConfig: ThemeConfig = {
     cardForeground: Colors.stone[900],
     popover: Colors.white,
     popoverForeground: Colors.stone[900],
-    primary: Colors.primary[600],
+    primary: Colors.primary,
     primaryForeground: Colors.slate[50],
     secondary: Colors.stone[100],
     secondaryForeground: Colors.stone[800],

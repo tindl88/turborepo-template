@@ -128,12 +128,12 @@ describe('AuthController (e2e)', () => {
     });
 
     it('should return 200 - Success if token is correct', async () => {
-      const loginResponse = await login(myApp, {
+      const SignInResponse = await login(myApp, {
         email: process.env.AP_USER_EMAIL,
         password: process.env.AP_USER_PASSWORD
       });
 
-      const cookies = Array.from(loginResponse.headers['set-cookie']);
+      const cookies = Array.from(SignInResponse.headers['set-cookie']);
       const refreshTokenNode = cookies?.filter(x => x.includes('refreshToken='));
       const refreshToken = refreshTokenNode?.[0].split('=')[1].split(';')[0];
 

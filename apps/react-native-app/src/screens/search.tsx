@@ -1,28 +1,28 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ds } from '@/design-system';
-import { dynamicStyles } from '@/design-system/utils/common-style.util';
-import { StackScreenProps } from '@react-navigation/stack';
+import { ds } from '~react-native-design-system';
+import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
-import Box from '@/components/common/box';
-import NavigationHeader from '@/components/common/header/general';
+import Box from '@/components/box';
 import Heading from '@/components/core-ui/heading';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 import SearchBox from '@/components/search-box';
 
-import { AuthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import NavigationHeader from '@/modules/navigation/components/navigation-header';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { getHeaderTitle } from '@/modules/navigation/utils/navigation.util';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-type Props = StackScreenProps<AuthenticatedParamList, 'Search'>;
-
-function SearchScreen({ route }: Props) {
+function SearchScreen({ route }: AuthenticatedStackProps<'Search'>) {
+  const { t } = useTranslation();
   const { configs } = useThemeState();
 
   return (
     <View style={[ds.flex1, dynamicStyles.background(configs.background)]}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Box hasBg={false}>
         <SearchBox value={''} />
       </Box>

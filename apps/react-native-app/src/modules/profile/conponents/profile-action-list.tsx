@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import { ProfileAction } from '../interfaces/profile.interface';
 
@@ -22,12 +22,8 @@ const ProfileActionList: FC<ProfileActionListProps> = ({ items, style }) => {
 
   return (
     <View style={[ds.px14, style]}>
-      {items?.map((item, index) => (
-        <ProfileActionItem
-          key={item.name}
-          item={item}
-          style={[index < items.length - 1 && ds.borderB1, styles.border(configs.border)]}
-        />
+      {items?.map(item => (
+        <ProfileActionItem key={item.name} item={item} style={[ds.borderB1, styles.border(configs.border)]} />
       ))}
     </View>
   );

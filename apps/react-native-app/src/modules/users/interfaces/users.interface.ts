@@ -24,3 +24,4 @@ export type UsersResponse = ResponseFormat<UserEntity[]>;
 export type UserResponse = ResponseFormat<UserEntity>;
 
 export type CreateUserResponse = ResponseFormat<{ email: string }>;
+export type UpdateDeviceTokenResponse = ResponseFormat<UserEntity>;

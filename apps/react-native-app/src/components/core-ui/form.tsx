@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 import { View } from 'react-native';
-import { ds } from '@/design-system';
+import { Colors, ds } from '~react-native-design-system';
 
 import Text from './text';
 
@@ -80,17 +80,29 @@ const FormLabel = React.forwardRef<React.ElementRef<typeof Text>, React.Componen
 
 FormLabel.displayName = 'FormLabel';
 
-const FormMessage = React.forwardRef<React.ElementRef<typeof Text>, React.ComponentPropsWithoutRef<typeof Text>>(
-  ({ children, ...props }, ref) => {
+interface IFormMessageProps extends React.ComponentPropsWithoutRef<typeof Text> {
+  message?: string;
+}
+
+const FormMessage = React.forwardRef<React.ElementRef<typeof Text>, IFormMessageProps>(
+  ({ children, message, ...props }, ref) => {
     const { error, formMessageId } = useFormField();
-    const body = error ? String(error?.message) : children;
+    const body = error ? (message ? message : String(error?.message)) : children;
 
     if (!body) {
       return null;
     }
 
     return (
-      <Text ref={ref} key={formMessageId} style={[ds.mt2, ds.fontMedium, ds.text14, ds.textRed500]} {...props}>
+      <Text
+        ref={ref}
+        key={formMessageId}
+        fontSize={15}
+        fontWeight="Medium"
+        color={Colors.red[500]}
+        style={ds.mt2}
+        {...props}
+      >
         {body}
       </Text>
     );

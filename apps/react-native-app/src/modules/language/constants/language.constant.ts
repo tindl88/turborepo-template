@@ -1,6 +1,6 @@
 import { LanguageEntity } from '../interfaces/language.interface';
 
 export const languageItems: LanguageEntity[] = [
-  { key: 'en', value: 'English' },
-  { key: 'vi', value: 'Tiếng Việt' }
+  { key: 'en-us', value: 'English' },
+  { key: 'vi-vn', value: 'Tiếng Việt' }
 ];

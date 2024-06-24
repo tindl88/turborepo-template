@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { SearchIcon } from 'lucide-react-native';
 import { Pressable } from 'react-native';
-import { ds } from '@/design-system';
+import { ds } from '~react-native-design-system';
 
 import View from '@/components/core-ui/view';
 

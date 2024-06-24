@@ -1,15 +1,14 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { ds } from '@/design-system';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ds } from '~react-native-design-system';
 
 import Button from '@/components/core-ui/button';
 import { Form, FormField, FormItem, FormMessage } from '@/components/core-ui/form';
 import Input from '@/components/core-ui/input';
 import View from '@/components/core-ui/view';
 
-import { useAuthState } from '@/modules/auth/states/auth.state';
 import { CreateUserDto } from '@/modules/users/interfaces/users.interface';
 
 import { signUpValidator } from '../validators/sign-up.validator';
@@ -20,7 +19,6 @@ type FormData = CreateUserDto & {
 
 const RegisterForm = () => {
   const { t } = useTranslation();
-  const auth = useAuthState();
 
   const defaultValues = {
     name: 'Tin Tran',
@@ -37,7 +35,6 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<FormData> = async data => {
     try {
       delete data.confirmPassword;
-      auth.createAccountRequest(data);
     } catch (error) {}
   };
 
@@ -47,16 +44,10 @@ const RegisterForm = () => {
         <FormField
           name="name"
           control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <Input
-                {...field}
-                placeholder="Name"
-                style={fieldState.error && ds.borderRed500}
-                onChangeText={field.onChange}
-              />
-              <FormMessage />
+              <Input {...field} placeholder="Name" error={!!error} onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 1, max: 255 })} />}
             </FormItem>
           )}
         />
@@ -65,16 +56,10 @@ const RegisterForm = () => {
         <FormField
           name="email"
           control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <Input
-                {...field}
-                placeholder="Email"
-                style={fieldState.error && ds.borderRed500}
-                onChangeText={field.onChange}
-              />
-              <FormMessage />
+              <Input {...field} placeholder="Email" error={!!error} onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 1, max: 320 })} />}
             </FormItem>
           )}
         />
@@ -83,16 +68,10 @@ const RegisterForm = () => {
         <FormField
           name="password"
           control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <Input
-                {...field}
-                placeholder={t('password')}
-                style={fieldState.error && ds.borderRed500}
-                onChangeText={field.onChange}
-              />
-              <FormMessage />
+              <Input {...field} placeholder={t('password')} error={!!error} onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 8, max: 255 })} />}
             </FormItem>
           )}
         />
@@ -101,22 +80,16 @@ const RegisterForm = () => {
         <FormField
           name="confirmPassword"
           control={form.control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <Input
-                {...field}
-                placeholder={t('confirm_password')}
-                style={fieldState.error && ds.borderRed500}
-                onChangeText={field.onChange}
-              />
-              <FormMessage />
+              <Input {...field} placeholder={t('confirm_password')} error={!!error} onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 8, max: 255 })} />}
             </FormItem>
           )}
         />
       </View>
       <View style={ds.mt32}>
-        <Button onPress={form.handleSubmit(onSubmit)}>{t('create_account').toUpperCase()}</Button>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('create_account')}</Button>
       </View>
     </Form>
   );
