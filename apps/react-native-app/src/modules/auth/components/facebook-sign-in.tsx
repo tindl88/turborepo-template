@@ -101,7 +101,7 @@ const FacebookSignIn: FC<IFacebookSignInProps> = ({ style }) => {
       authState.setAuthData(resp.data.data.user);
       log.extend('AUTH').info('Login Facebook Success');
     },
-    onError: error => log.extend('AUTH').error(`Login Facebook Failed: ${error}`)
+    onError: error => log.extend('AUTH').error('Login Facebook Failed', error)
   });
 
   return (

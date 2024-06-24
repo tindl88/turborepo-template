@@ -34,6 +34,15 @@ export type UnauthenticatedParamList = {
   ResetPassword: undefined;
 };
 
+export type NotificationParamList = {
+  Notifications: undefined;
+};
+
+export type ProfileParamList = {
+  Profile: undefined;
+  ProfileEdit: undefined;
+};
+
 export type TravelDrawerParamList = {
   TravelBottomTabStack: undefined;
 };
@@ -44,15 +53,6 @@ export type TravelBottomTabParamList = {
   TourStack: NavigatorScreenParams<TourParamList>;
   NotificationStack: NavigatorScreenParams<NotificationParamList>;
   ProfileStack: NavigatorScreenParams<ProfileParamList>;
-};
-
-export type NotificationParamList = {
-  Notifications: undefined;
-};
-
-export type ProfileParamList = {
-  Profile: undefined;
-  ProfileEdit: undefined;
 };
 
 export type TravelPlacesScreenParams = { q: string; page: number; limit: number };
@@ -77,6 +77,15 @@ export type TourParamList = {
   TourDetail: TourDetailScreenParams;
 };
 
+/**
+ * Type for hook useNavigation
+ *
+ * Usage:
+ * const navigation = useNavigation<AuthenticatedNavigationProps>()
+ * const navigation = useNavigation<UnauthenticatedNavigationProps>()
+ */
+export type UnauthenticatedNavigationProps = StackNavigationProp<UnauthenticatedParamList>;
+
 export type AuthenticatedNavigationProps = CompositeNavigationProp<
   StackNavigationProp<AuthenticatedParamList>,
   CompositeNavigationProp<
@@ -85,12 +94,49 @@ export type AuthenticatedNavigationProps = CompositeNavigationProp<
   >
 >;
 
-export type UnauthenticatedNavigationProps = StackNavigationProp<UnauthenticatedParamList>;
+/**
+ * Type for screens
+ *
+ * Usage:
+ * function HomeScreen({}: TravelExploreStack<'Home'>) {...}
+ * function ProfileScreen({}: ProfileStackProps<'Profile'>) {...}
+ */
+export type UnauthenticatedStackProps<T extends keyof UnauthenticatedParamList> = StackScreenProps<
+  UnauthenticatedParamList,
+  T
+>;
 
-export type HomeStackProps<T extends keyof ExploreParamList> = CompositeScreenProps<
+type RestProps = CompositeScreenProps<
+  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>,
+  StackScreenProps<AuthenticatedParamList>
+>;
+
+export type AuthenticatedStackProps<T extends keyof AuthenticatedParamList> = CompositeScreenProps<
+  StackScreenProps<AuthenticatedParamList, T>,
+  RestProps
+>;
+
+export type ProfileStackProps<T extends keyof ProfileParamList> = CompositeScreenProps<
+  StackScreenProps<ProfileParamList, T>,
+  RestProps
+>;
+
+export type NotificationStackProps<T extends keyof NotificationParamList> = CompositeScreenProps<
+  StackScreenProps<NotificationParamList, T>,
+  RestProps
+>;
+
+export type TravelExploreStackProps<T extends keyof ExploreParamList> = CompositeScreenProps<
   StackScreenProps<ExploreParamList, T>,
-  CompositeScreenProps<
-    CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>,
-    StackScreenProps<AuthenticatedParamList>
-  >
+  RestProps
+>;
+
+export type TravelTourStackProps<T extends keyof TourParamList> = CompositeScreenProps<
+  StackScreenProps<TourParamList, T>,
+  RestProps
+>;
+
+export type TravelAccommodationStackProps<T extends keyof AccommodationParamList> = CompositeScreenProps<
+  StackScreenProps<AccommodationParamList, T>,
+  RestProps
 >;

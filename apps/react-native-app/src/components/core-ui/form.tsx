@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 import { View } from 'react-native';
-import { ds } from '~react-native-design-system';
+import { Colors, ds } from '~react-native-design-system';
 
 import Text from './text';
 
@@ -94,7 +94,15 @@ const FormMessage = React.forwardRef<React.ElementRef<typeof Text>, IFormMessage
     }
 
     return (
-      <Text ref={ref} key={formMessageId} style={[ds.mt2, ds.fontMedium, ds.text14, ds.textRed500]} {...props}>
+      <Text
+        ref={ref}
+        key={formMessageId}
+        fontSize={15}
+        fontWeight="Medium"
+        color={Colors.red[500]}
+        style={ds.mt2}
+        {...props}
+      >
         {body}
       </Text>
     );

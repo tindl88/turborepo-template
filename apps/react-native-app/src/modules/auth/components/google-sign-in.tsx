@@ -57,7 +57,7 @@ const GoogleSignIn: FC<IGoogleSignInProps> = ({ style }) => {
       authState.setAuthData(resp.data.data.user);
       log.extend('AUTH').info('Login Google Success');
     },
-    onError: error => log.extend('AUTH').error(`Login Google Failed: ${error}`)
+    onError: error => log.extend('AUTH').error('Login Google Failed', error)
   });
 
   return (

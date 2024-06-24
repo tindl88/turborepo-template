@@ -43,7 +43,7 @@ const ResetPasswordForm = () => {
     });
     try {
     } catch (error) {
-      log.extend('AUTH').error(`Forgot Password Failed ${error}`);
+      log.extend('AUTH').error('Forgot Password Failed', error);
     }
   };
 
@@ -57,40 +57,31 @@ const ResetPasswordForm = () => {
         <FormField
           name="password"
           control={form.control}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <InputPassword
-                {...field}
-                style={fieldState.error && ds.borderRed500}
-                placeholder={t('password')}
-                onChangeText={field.onChange}
-              />
-              {form.formState.errors.password?.message && (
-                <FormMessage message={t(form.formState.errors.password.message, { count: 8, max: 255 })} />
-              )}
+              <InputPassword {...field} error={!!error} placeholder={t('password')} onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 8, max: 255 })} />}
             </FormItem>
           )}
         />
         <FormField
           name="confirmPassword"
           control={form.control}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
               <InputPassword
                 {...field}
-                style={fieldState.error && ds.borderRed500}
+                error={!!error}
                 placeholder={t('confirm_password')}
                 onChangeText={field.onChange}
               />
-              {form.formState.errors.confirmPassword?.message && (
-                <FormMessage message={t(form.formState.errors.confirmPassword.message)} />
-              )}
+              {error?.message && <FormMessage message={t(error.message, { count: 8, max: 255 })} />}
             </FormItem>
           )}
         />
       </View>
       <View style={ds.mt32}>
-        <Button onPress={form.handleSubmit(onSubmit)}>{t('reset_password_btn').toUpperCase()}</Button>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('reset_password_btn')}</Button>
       </View>
     </Form>
   );

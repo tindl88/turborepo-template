@@ -45,7 +45,7 @@ const LoginForm = () => {
     },
     onError: error => {
       toast.show(t('signin_error'), { type: 'danger' });
-      log.extend('AUTH').error(`Login Password Failed: ${error}`);
+      log.extend('AUTH').error('Login Password Failed', error);
     }
   });
 
@@ -58,17 +58,10 @@ const LoginForm = () => {
           <FormField
             name="email"
             control={form.control}
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <FormItem>
-                <Input
-                  {...field}
-                  error={!!form.formState.errors.email}
-                  placeholder={t('signin_email')}
-                  onChangeText={field.onChange}
-                />
-                {form.formState.errors.email?.message && (
-                  <FormMessage message={t(form.formState.errors.email.message, { count: 1, max: 320 })} />
-                )}
+                <Input {...field} error={!!error} placeholder={t('signin_email')} onChangeText={field.onChange} />
+                {error?.message && <FormMessage message={t(error.message, { count: 1, max: 320 })} />}
               </FormItem>
             )}
           />
@@ -77,24 +70,22 @@ const LoginForm = () => {
           <FormField
             name="password"
             control={form.control}
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <FormItem>
                 <InputPassword
                   {...field}
-                  error={!!form.formState.errors.password}
+                  error={!!error}
                   placeholder={t('signin_password')}
                   onChangeText={field.onChange}
                 />
-                {form.formState.errors.password?.message && (
-                  <FormMessage message={t(form.formState.errors.password.message, { count: 8, max: 255 })} />
-                )}
+                {error?.message && <FormMessage message={t(error.message, { count: 8, max: 255 })} />}
               </FormItem>
             )}
           />
         </View>
         <View>
-          <Button disabled={mutation.isPending} onPress={form.handleSubmit(onSubmit)}>
-            {t('signin').toUpperCase()}
+          <Button loading={mutation.isPending} disabled={mutation.isPending} onPress={form.handleSubmit(onSubmit)}>
+            {t('signin')}
           </Button>
         </View>
       </View>

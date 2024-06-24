@@ -1,9 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ds } from '~react-native-design-system';
 
 import Box from '@/components/box';
@@ -12,23 +9,18 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 import SafeViewArea from '@/components/safe-view-area';
 
-import {
-  AuthenticatedParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import TermsAndConditions from '@/modules/terms-and-conditions/components/terms-and-conditions';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<AuthenticatedParamList, 'TermsAndConditions'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+import { getHeaderTitle } from '@/utils/header-title.util';
 
-function TermsAndConditionsScreen({ route }: Props) {
+function TermsAndConditionsScreen({ route }: AuthenticatedStackProps<'TermsAndConditions'>) {
+  const { t } = useTranslation();
+
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <SafeViewArea spacingBottom={true}>
         <Box hasBg={false} style={ds.flex1}>
           <Box style={ds.flex1}>

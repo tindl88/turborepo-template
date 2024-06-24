@@ -10,6 +10,7 @@
   "home": "Home",
   "setting": "Settings",
   "profile": "Profile",
+  "update": "Update",
   "scancode": "Scan Code",
   "post": "Post",
   "email_address": "Email address",
@@ -17,7 +18,6 @@
   "already_have_account": "Already have an account?",
   "i_already_have_account": "I already have account",
   "get_started": "Get started",
-
   "create_account": "Create account",
   "password": "Password",
   "confirm_password": "Confirm password",
@@ -31,6 +31,9 @@
   "settings": "Settings",
   "languages": "Languages",
   "themes": "Themes",
+
+  "screen_profile": "Profile",
+  "screen_profile_edit": "Edit Your Profile",
 
   "modal_success_message": "You're all set",
 
@@ -59,6 +62,11 @@
   "reset_password_title": "Reset password",
   "reset_password_desc": "Enter your email address to get the OTP code",
   "reset_password_btn": "Reset password",
+
+  "profile_name": "Name",
+  "profile_phone_number": "Phone Number",
+  "profile_update_success": "Update your profile successfully",
+  "profile_update_error": "Can not update your profile",
 
   "verification_otp_title": "Verify OTP",
   "verification_otp_desc": "We have sent the OTP code to your email <bold>{{email}}</bold>, please enter the code in the boxes below.",

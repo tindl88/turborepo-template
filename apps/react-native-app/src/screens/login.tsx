@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ds } from '~react-native-design-system';
 
 import Heading from '@/components/core-ui/heading';
@@ -16,12 +15,10 @@ import AppleSignIn from '@/modules/auth/components/apple-sign-in';
 import FacebookSignIn from '@/modules/auth/components/facebook-sign-in';
 import LoginForm from '@/modules/auth/components/form-login';
 import GoogleSignIn from '@/modules/auth/components/google-sign-in';
-import { UnauthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import { UnauthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-type Props = StackScreenProps<UnauthenticatedParamList, 'Login'>;
-
-function LoginScreen({ navigation }: Props) {
+function LoginScreen({ navigation }: UnauthenticatedStackProps<'Login'>) {
   const { t } = useTranslation();
   const { configs } = useThemeState();
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ds } from '~react-native-design-system';
 
 import Loading from '@/components/core-ui/loading';
@@ -8,18 +9,21 @@ import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
-import { HomeStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import PostFilters from '@/modules/post/components/post-filter';
 import { PostList } from '@/modules/post/components/post-list';
 import { usePost } from '@/modules/post/hooks/use-post';
 
-function TravelPlacesScreen({ route }: HomeStackProps<'TravelPlaces'>) {
+import { getHeaderTitle } from '@/utils/header-title.util';
+
+function TravelPlacesScreen({ route }: TravelExploreStackProps<'TravelPlaces'>) {
+  const { t } = useTranslation();
   const { isLoading, error, data, meta, filter, setFilter } = usePost(route.params);
 
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       {isLoading && (
         <View>
           <Loading />

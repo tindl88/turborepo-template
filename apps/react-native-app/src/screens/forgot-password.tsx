@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ds } from '~react-native-design-system';
 
 import Heading from '@/components/core-ui/heading';
@@ -12,11 +11,9 @@ import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
 import ForgotPasswordForm from '@/modules/auth/components/form-forgot-password';
-import { UnauthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import { UnauthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 
-type Props = StackScreenProps<UnauthenticatedParamList, 'ForgotPassword'>;
-
-function ForgotPasswordScreen({ navigation }: Props) {
+function ForgotPasswordScreen({ navigation }: UnauthenticatedStackProps<'ForgotPassword'>) {
   const { t } = useTranslation();
 
   return (

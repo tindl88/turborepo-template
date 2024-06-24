@@ -23,8 +23,8 @@ const Loading: FC<ILoadingProps> = ({
   fadeSpeed = 0,
   size = 24,
   thickness = 3,
-  color = Colors.stone[700],
-  trackColor = Colors.stone[300],
+  color,
+  trackColor,
   visible = true
 }) => {
   const { configs } = useThemeState();
@@ -48,7 +48,7 @@ const Loading: FC<ILoadingProps> = ({
         }
       ]}
     >
-      <View style={styles.circle(size, thickness, configs.primary[500] || color, trackColor)} />
+      <View style={styles.circle(size, thickness, color || configs.primary[500], trackColor || Colors.gray[400])} />
     </Animated.View>
   );
 };
@@ -75,9 +75,6 @@ const styles = createStyle({
       width: '100%',
       height: '100%'
     };
-  },
-  test: {
-    backgroundColor: 'red'
   }
 });
 

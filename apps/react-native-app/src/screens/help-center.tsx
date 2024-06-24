@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ds } from '~react-native-design-system';
 
 import Box from '@/components/box';
@@ -11,15 +11,17 @@ import NavigationHeader from '@/components/navigation-header';
 import SearchBox from '@/components/search-box';
 
 import HelpCenter from '@/modules/help-center/components/help-center';
-import { AuthenticatedParamList } from '@/modules/navigation/interfaces/navigation.interface';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 
-type Props = StackScreenProps<AuthenticatedParamList, 'HelpCenter'>;
+import { getHeaderTitle } from '@/utils/header-title.util';
 
-function HelpCenterScreen({ route }: Props) {
+function HelpCenterScreen({ route }: AuthenticatedStackProps<'HelpCenter'>) {
+  const { t } = useTranslation();
+
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Box hasBg={false} style={ds.flex1}>
         <Box style={ds.flex1}>
           <SearchBox value={''} onChange={_text => {}} />

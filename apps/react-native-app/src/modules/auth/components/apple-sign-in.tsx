@@ -57,7 +57,7 @@ const AppleSignIn: FC<IAppleSignInProps> = ({ style }) => {
       authState.setAuthData(resp.data.data.user);
       log.extend('AUTH').info('Login Apple Success');
     },
-    onError: error => log.extend('AUTH').error(`Login Apple Failed: ${error}`)
+    onError: error => log.extend('AUTH').error('Login Apple Failed', error)
   });
 
   if (Platform.OS !== 'ios') return null;

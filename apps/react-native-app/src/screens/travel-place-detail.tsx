@@ -4,10 +4,10 @@ import { ds } from '~react-native-design-system';
 import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 
-import { HomeStackProps } from '@/modules/navigation/interfaces/navigation.interface';
+import { TravelExploreStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import TravelPlaceDetailRoot from '@/modules/travel-places/components/travel-place-detail-root';
 
-function TravelPlaceDetailScreen({ route }: HomeStackProps<'TravelPlaceDetail'>) {
+function TravelPlaceDetailScreen({ route }: TravelExploreStackProps<'TravelPlaceDetail'>) {
   return (
     <View style={ds.flex1}>
       <StatusBar background="transparent" />

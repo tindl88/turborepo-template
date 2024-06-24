@@ -1,9 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ds } from '~react-native-design-system';
 import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
 
@@ -15,20 +12,14 @@ import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
-import {
-  AuthenticatedParamList,
-  NotificationParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import { NotificationStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import NotificationsRoot from '@/modules/notifications/components/notifications-root';
 import { useThemeState } from '@/modules/theme/states/theme.state';
 
-type Props = CompositeScreenProps<
-  BottomTabScreenProps<NotificationParamList, 'Notifications'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, StackScreenProps<AuthenticatedParamList>>
->;
+import { getHeaderTitle } from '@/utils/header-title.util';
 
-function NotificationsScreen({ route }: Props) {
+function NotificationsScreen({ route }: NotificationStackProps<'Notifications'>) {
+  const { t } = useTranslation();
   const { configs } = useThemeState();
 
   const backgroundColor = configs.background;
@@ -36,7 +27,7 @@ function NotificationsScreen({ route }: Props) {
   return (
     <View style={[ds.flex1, dynamicStyles.background(backgroundColor)]}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Box hasBg={false} style={ds.flex1}>
         <Box style={ds.flex1}>
           <View style={[ds.row, ds.itemsCenter, ds.justifyBetween]}>

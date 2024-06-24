@@ -35,7 +35,7 @@ const ForgotPasswordForm = () => {
     navigation.navigate('VerifyOtp');
     try {
     } catch (error) {
-      log.extend('AUTH').error(`Forgot Password Failed ${error}`);
+      log.extend('AUTH').error('Forgot Password Failed', error);
     }
   };
 
@@ -45,23 +45,16 @@ const ForgotPasswordForm = () => {
         <FormField
           name="email"
           control={form.control}
-          render={({ field, fieldState }) => (
+          render={({ field, fieldState: { error } }) => (
             <FormItem>
-              <Input
-                {...field}
-                style={fieldState.error && ds.borderRed500}
-                placeholder="Email"
-                onChangeText={field.onChange}
-              />
-              {form.formState.errors.email?.message && (
-                <FormMessage message={t(form.formState.errors.email.message, { count: 1, max: 320 })} />
-              )}
+              <Input {...field} error={!!error} placeholder="Email" onChangeText={field.onChange} />
+              {error?.message && <FormMessage message={t(error.message, { count: 1, max: 320 })} />}
             </FormItem>
           )}
         />
       </View>
       <View style={ds.mt32}>
-        <Button onPress={form.handleSubmit(onSubmit)}>{t('forgot_password_btn').toUpperCase()}</Button>
+        <Button onPress={form.handleSubmit(onSubmit)}>{t('forgot_password_btn')}</Button>
       </View>
     </Form>
   );

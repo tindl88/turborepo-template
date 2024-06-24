@@ -1,8 +1,5 @@
 import React from 'react';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 import { ds } from '~react-native-design-system';
 
 import Box from '@/components/box';
@@ -10,23 +7,18 @@ import StatusBar from '@/components/core-ui/statusbar';
 import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
-import {
-  ProfileParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import { ProfileStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 import ProfileEditRoot from '@/modules/profile/conponents/profile-edit-root';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<ProfileParamList, 'ProfileEdit'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+import { getHeaderTitle } from '@/utils/header-title.util';
 
-function ProfileEditScreen({ route }: Props) {
+function ProfileEditScreen({ route }: ProfileStackProps<'ProfileEdit'>) {
+  const { t } = useTranslation();
+
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Box hasBg={false} style={ds.flex1}>
         <Box style={ds.flex1}>
           <ProfileEditRoot />

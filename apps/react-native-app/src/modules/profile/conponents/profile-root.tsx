@@ -46,8 +46,8 @@ const Profile = () => {
   const { theme, configs } = useThemeState();
   const mutation = useMutation({
     mutationFn: () => AuthApi.signOut(),
-    onSuccess: () => log.extend('AUTH').info('Logout success'),
-    onError: error => log.extend('AUTH').error(`Logout failed: ${error}`)
+    onSuccess: () => log.extend('AUTH').info('Logout Success'),
+    onError: error => log.extend('AUTH').error('Logout Failed', error)
   });
 
   const profileActions: ProfileAction[] = [

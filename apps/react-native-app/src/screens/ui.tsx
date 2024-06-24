@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, ImageStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
 import { Colors, ds } from '~react-native-design-system';
 
 import Divider from '@/components/core-ui/divider';
@@ -20,24 +17,18 @@ import Text from '@/components/core-ui/text';
 import View from '@/components/core-ui/view';
 import NavigationHeader from '@/components/navigation-header';
 
-import {
-  AuthenticatedParamList,
-  TravelBottomTabParamList,
-  TravelDrawerParamList
-} from '@/modules/navigation/interfaces/navigation.interface';
+import { AuthenticatedStackProps } from '@/modules/navigation/interfaces/navigation.interface';
 
-type Props = CompositeScreenProps<
-  StackScreenProps<AuthenticatedParamList, 'UI'>,
-  CompositeScreenProps<DrawerScreenProps<TravelDrawerParamList>, BottomTabScreenProps<TravelBottomTabParamList>>
->;
+import { getHeaderTitle } from '@/utils/header-title.util';
 
-function UIScreen({ route }: Props) {
+function UIScreen({ route }: AuthenticatedStackProps<'UI'>) {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <View style={ds.flex1}>
       <StatusBar />
-      <NavigationHeader title={route.name} />
+      <NavigationHeader title={t(getHeaderTitle(route.name))} />
       <Divider />
       <ScrollView style={[ds.flex1, ds.px10]}>
         <Tabs defaultValue="tab-ui-kit">

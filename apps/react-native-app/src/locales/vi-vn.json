@@ -10,6 +10,7 @@
   "home": "Home",
   "setting": "Cài đặt",
   "profile": "Hồ sơ",
+  "update": "Cập nhật",
   "scancode": "Quét mã",
   "post": "Bài viết",
   "email_address": "Email của bạn",
@@ -17,7 +18,6 @@
   "already_have_account": "Đã có tài khoản?",
   "i_already_have_account": "Tôi đã có tài khoản",
   "get_started": "Bắt đầu",
-
   "create_account": "Tạo tài khoản",
   "password": "Mật khẩu",
   "confirm_password": "Nhập lại mật khẩu",
@@ -31,6 +31,9 @@
   "settings": "Cài đặt",
   "languages": "Ngôn ngữ",
   "themes": "Giao diện",
+
+  "screen_profile": "Thông Tin Cá Nhân",
+  "screen_profile_edit": "Chỉnh Sửa Thông Tin Cá Nhân",
 
   "modal_success_message": "Bạn đã sẵn sàng",
 
@@ -59,6 +62,11 @@
   "reset_password_title": "Đặt lại mật khẩu",
   "reset_password_desc": "Nhập địa chỉ email của bạn để lấy mã OTP để đặt lại mật khẩu",
   "reset_password_btn": "Đặt lại mật khẩu",
+
+  "profile_name": "Tên",
+  "profile_phone_number": "Số điện thoại",
+  "profile_update_success": "Cập nhập thông tin cá nhân thành công",
+  "profile_update_error": "Không thể cập nhật thông tin cá nhân của bạn",
 
   "verification_otp_title": "Xác thực mã OTP",
   "verification_otp_desc": "Chúng tôi đã gửi mã OTP qua email <bold>{{email}}</bold> của bạn, vui lòng nhập mã vào các ô bên dưới.",

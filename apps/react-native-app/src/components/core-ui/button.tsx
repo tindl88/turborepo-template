@@ -103,13 +103,13 @@ const Button: React.FC<IButtonProps> = ({
     <Pressable
       style={[ds.rounded10, ds.itemsCenter, ds.justifyCenter, ds.row, ds.gap10, buttonStyle, style]}
       disabled={disabled}
-      onPress={disabled ? undefined : onPress}
+      onPress={disabled || loading ? undefined : onPress}
       onPressIn={() => setIsFocused(true)}
       onPressOut={() => setIsFocused(false)}
     >
       {loading && <Loading size={iconSize} />}
-      {children && (
-        <Text fontWeight="Bold" style={[buttonTextStyle, textStyle]}>
+      {!loading && children && (
+        <Text fontWeight="Bold" style={[ds.uppercase, buttonTextStyle, textStyle]}>
           {children}
         </Text>
       )}
