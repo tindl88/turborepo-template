@@ -50,7 +50,7 @@ export default function ProductFormStatus({ form }: ProductFormStatusProps) {
                     </SelectContent>
                   </Select>
                 </FormControl>
-                {error?.message && <FormMessage message={t(error.message)} />}
+                {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
               </FormItem>
             )}
           />

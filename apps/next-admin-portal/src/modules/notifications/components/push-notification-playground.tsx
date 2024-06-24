@@ -61,7 +61,7 @@ const PushNotificationPlayGround = () => {
               <FormControl>
                 <Input {...field} />
               </FormControl>
-              {error?.message && <FormMessage message={t(error.message, { count: 1 })} />}
+              {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
             </FormItem>
           )}
         />
@@ -74,7 +74,7 @@ const PushNotificationPlayGround = () => {
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
-              {error?.message && <FormMessage message={t(error.message, { count: 1 })} />}
+              {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
             </FormItem>
           )}
         />
