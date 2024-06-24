@@ -143,7 +143,6 @@ export const authOptions: NextAuthOptions = {
       if (trigger === 'update' && session) {
         token.preference = session.user.preference;
         token.accessToken = session.accessToken;
-        token.refreshToken = session.refreshToken;
       }
 
       return token;

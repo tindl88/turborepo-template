@@ -1,6 +1,6 @@
+import { Session } from 'next-auth';
 import { getCsrfToken, getSession, signOut } from 'next-auth/react';
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { merge } from 'lodash-es';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
@@ -15,7 +15,7 @@ const handleSignOut = async () => {
   await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.SIGN_OUT);
 };
 
-const updateSession = async (newSession: Record<string, string>) => {
+const updateSession = async (newSession: Session) => {
   await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/session`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
@@ -51,11 +51,12 @@ const interceptors = {
         const newTokens = await axiosClient.post<RefreshTokenResponse>(API_ENDPOINTS.REFRESH_TOKEN, {
           token: session?.refreshToken
         });
-        const newSession = merge({}, session, {
-          user: merge({}, session?.user, newTokens.data.data)
+
+        const newSession = Object.assign({}, session, {
+          accessToken: newTokens.data.data.accessToken
         });
 
-        await updateSession(newSession as never);
+        await updateSession(newSession);
         originalConfig.headers.Authorization = `Bearer ${newTokens.data.data.accessToken}`;
 
         return axiosClient(originalConfig);
