@@ -52,7 +52,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 255 })} />}
           </FormItem>
         )}
       />
@@ -66,7 +66,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 255 })} />}
           </FormItem>
         )}
       />
@@ -88,7 +88,7 @@ const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {
                 />
               </>
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
           </FormItem>
         )}
       />

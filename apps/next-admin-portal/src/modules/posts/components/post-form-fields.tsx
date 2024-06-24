@@ -53,7 +53,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 255 })} />}
           </FormItem>
         )}
       />
@@ -67,7 +67,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 255 })} />}
           </FormItem>
         )}
       />
@@ -87,7 +87,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 onShowFileManager={() => setIsFileManagerVisible(true)}
               />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
           </FormItem>
         )}
       />
@@ -110,7 +110,7 @@ const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {
                 {/* <BlockEditor value={field.value} onChange={field.onChange} /> */}
               </>
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message)} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
           </FormItem>
         )}
       />

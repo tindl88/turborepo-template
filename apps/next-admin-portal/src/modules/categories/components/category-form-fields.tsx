@@ -27,7 +27,7 @@ const CategoryFormFields: FC<CategoryFormFieldsProps> = ({ className, form }) =>
             <FormControl>
               <Input {...field} />
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message, { count: 2 })} />}
+            {error?.message && <FormMessage message={t(error.message, { min: 1, max: 255 })} />}
           </FormItem>
         )}
       />
