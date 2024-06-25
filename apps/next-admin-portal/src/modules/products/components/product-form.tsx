@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,55 +8,63 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { CreateProductDto, ProductEntity } from '../interfaces/products.interface';
+import { ProductEntity, ProductFormData } from '../interfaces/products.interface';
 
-import { PRODUCT_STATUS } from '../constants/products.constant';
+import { PRODUCT_STATUS, PRODUCT_STATUSES } from '../constants/products.constant';
 
 import FormToolbar from '@/components/common/form-toolbar';
 
+import { CategoryEntity } from '@/modules/categories/interfaces/categories.interface';
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 
 import { useProductsState } from '../states/products.state';
 import { productFormValidator } from '../validators/product-form.validator';
 
+import ProductFormCategory from './product-form-category';
 import ProductFormCover from './product-form-cover';
 import ProductFormFields from './product-form-fields';
 import ProductFormImages from './product-form-images';
 import ProductFormStatus from './product-form-status';
 
 type ProductFormProps = {
+  categories: CategoryEntity[];
   data?: ProductEntity;
 };
 
-const ProductForm: FC<ProductFormProps> = ({ data }) => {
+const ProductForm: FC<ProductFormProps> = ({ data, categories }) => {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const router = useRouter();
   const productsState = useProductsState();
 
-  const isEditMode = !!data;
+  const defaultValues: ProductFormData = {
+    status: data?.status ?? PRODUCT_STATUS.DRAFT,
+    name: data?.name ?? '',
+    slug: data?.slug ?? '',
+    cover: data?.cover ?? '',
+    images: data?.images ?? ([] as FileEntity[]),
+    body: data?.body ?? '',
+    categoryId: data?.category?.id ?? ''
+  };
 
-  const form = useForm<CreateProductDto>({
+  const form = useForm<ProductFormData>({
     resolver: zodResolver(productFormValidator),
-    defaultValues: {
-      status: data?.status ?? PRODUCT_STATUS.DRAFT,
-      name: data?.name ?? '',
-      slug: data?.slug ?? '',
-      cover: data?.cover ?? '',
-      images: data?.images ?? ([] as FileEntity[]),
-      body: data?.body ?? ''
-    }
+    defaultValues
   });
 
-  const onSubmit: SubmitHandler<CreateProductDto> = async formData => {
+  const onSubmit: SubmitHandler<ProductFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (isEditMode) {
+    if (data) {
       productsState.updateRequest({ id: data.id, data: formData });
     } else {
       productsState.createRequest(formData);
     }
   };
+
+  useEffect(() => {
+    form.reset(defaultValues);
+  }, [data]);
 
   return (
     <div data-testid="frm-product">
@@ -80,7 +88,8 @@ const ProductForm: FC<ProductFormProps> = ({ data }) => {
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <ProductFormStatus form={form} />
+                <ProductFormStatus form={form} statuses={PRODUCT_STATUSES} />
+                <ProductFormCategory form={form} categories={categories} />
                 <ProductFormCover form={form} />
                 <ProductFormImages form={form} />
               </div>

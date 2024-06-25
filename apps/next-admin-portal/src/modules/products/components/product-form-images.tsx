@@ -8,7 +8,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Input } from '~ui/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateProductDto } from '../interfaces/products.interface';
+import { ProductFormData } from '../interfaces/products.interface';
 
 import ButtonRemoveFile from '@/components/common/button-remove-file';
 import ButtonSelectFile from '@/components/common/button-select-file';
@@ -16,7 +16,7 @@ import ButtonSelectFile from '@/components/common/button-select-file';
 import FileDialog from '@/modules/files/components/file-dialog';
 
 type ProductFormImagesProps = {
-  form: UseFormReturn<CreateProductDto>;
+  form: UseFormReturn<ProductFormData>;
 } & ComponentBaseProps;
 
 export default function ProductFormImages({ form }: ProductFormImagesProps) {

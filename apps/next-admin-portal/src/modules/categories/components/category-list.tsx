@@ -14,6 +14,7 @@ import {
   useReactTable,
   VisibilityState
 } from '@tanstack/react-table';
+import { Badge } from '~ui/components/ui/badge';
 import { Checkbox } from '~ui/components/ui/checkbox';
 import Pagination from '~ui/components/ui/pagination-custom';
 
@@ -103,6 +104,18 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
                 {row.getValue('name')}
               </button>
             </div>
+          );
+        }
+      },
+      {
+        accessorKey: 'type',
+        size: 0,
+        header: ({ column }) => <DataTableColumnHeader column={column} title={t('category_type')} />,
+        cell: ({ row }) => {
+          return (
+            <Badge className="text-xs" variant="secondary">
+              {row.original.type.toUpperCase()}
+            </Badge>
           );
         }
       },

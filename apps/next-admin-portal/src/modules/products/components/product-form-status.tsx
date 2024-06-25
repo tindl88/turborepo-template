@@ -6,15 +6,15 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateProductDto } from '../interfaces/products.interface';
-
-import { PRODUCT_STATUSES } from '../constants/products.constant';
+import { StatusType } from '@/interfaces/status.interface';
+import { ProductFormData } from '../interfaces/products.interface';
 
 type ProductFormStatusProps = {
-  form: UseFormReturn<CreateProductDto>;
+  form: UseFormReturn<ProductFormData>;
+  statuses: StatusType[];
 } & ComponentBaseProps;
 
-export default function ProductFormStatus({ form }: ProductFormStatusProps) {
+export default function ProductFormStatus({ form, statuses }: ProductFormStatusProps) {
   const t = useTranslations();
 
   return (
@@ -35,7 +35,7 @@ export default function ProductFormStatus({ form }: ProductFormStatusProps) {
                       <SelectValue placeholder={t('select_status')} />
                     </SelectTrigger>
                     <SelectContent>
-                      {PRODUCT_STATUSES.map(status => {
+                      {statuses?.map(status => {
                         return (
                           <SelectItem key={status.value} value={status.value}>
                             <div className="flex items-center">

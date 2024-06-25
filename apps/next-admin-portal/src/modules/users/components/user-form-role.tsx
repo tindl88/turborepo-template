@@ -8,10 +8,10 @@ import { Label } from '~ui/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '~ui/components/ui/radio-group';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateUserDto } from '../interfaces/users.interface';
+import { UserFormData } from '../interfaces/users.interface';
 
 type UserFormRoleProps = {
-  form: UseFormReturn<CreateUserDto>;
+  form: UseFormReturn<UserFormData>;
 } & ComponentBaseProps;
 
 const roleOptions = [

@@ -6,12 +6,12 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateUserDto } from '../interfaces/users.interface';
+import { UserFormData } from '../interfaces/users.interface';
 
 import { USER_STATUSES } from '../constants/users.constant';
 
 type UserFormStatusProps = {
-  form: UseFormReturn<CreateUserDto>;
+  form: UseFormReturn<UserFormData>;
 } & ComponentBaseProps;
 
 export default function UserFormStatus({ form }: UserFormStatusProps) {

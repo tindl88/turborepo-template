@@ -6,15 +6,15 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreatePostDto } from '../interfaces/posts.interface';
-
-import { POST_STATUSES } from '../constants/posts.constant';
+import { StatusType } from '@/interfaces/status.interface';
+import { PostFormData } from '../interfaces/posts.interface';
 
 type PostFormStatusProps = {
-  form: UseFormReturn<CreatePostDto>;
+  form: UseFormReturn<PostFormData>;
+  statuses: StatusType[];
 } & ComponentBaseProps;
 
-export default function PostFormStatus({ form }: PostFormStatusProps) {
+export default function PostFormStatus({ form, statuses }: PostFormStatusProps) {
   const t = useTranslations();
 
   return (
@@ -35,7 +35,7 @@ export default function PostFormStatus({ form }: PostFormStatusProps) {
                       <SelectValue placeholder={t('select_status')} />
                     </SelectTrigger>
                     <SelectContent>
-                      {POST_STATUSES.map(status => {
+                      {statuses?.map(status => {
                         return (
                           <SelectItem key={status.value} value={status.value}>
                             <div className="flex items-center">

@@ -9,5 +9,6 @@ export const postFormValidator = z.object({
   body: baseValidator.content,
   status: baseValidator.content,
   cover: z.string(),
-  images: baseValidator.uuidArray
+  images: baseValidator.uuidArray,
+  categoryId: baseValidator.uuid
 });

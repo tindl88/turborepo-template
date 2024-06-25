@@ -6,15 +6,15 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateCategoryDto } from '../interfaces/categories.interface';
-
-import { CATEGORY_STATUSES } from '../constants/categories.constant';
+import { StatusType } from '@/interfaces/status.interface';
+import { CategoryFormData } from '../interfaces/categories.interface';
 
 type CategoryFormStatusProps = {
-  form: UseFormReturn<CreateCategoryDto>;
+  form: UseFormReturn<CategoryFormData>;
+  statuses: StatusType[];
 } & ComponentBaseProps;
 
-export default function CategoryFormStatus({ form }: CategoryFormStatusProps) {
+export default function CategoryFormStatus({ form, statuses }: CategoryFormStatusProps) {
   const t = useTranslations();
 
   return (
@@ -35,7 +35,7 @@ export default function CategoryFormStatus({ form }: CategoryFormStatusProps) {
                       <SelectValue placeholder={t('select_status')} />
                     </SelectTrigger>
                     <SelectContent>
-                      {CATEGORY_STATUSES.map(status => {
+                      {statuses?.map(status => {
                         return (
                           <SelectItem key={status.value} value={status.value}>
                             <div className="flex items-center">

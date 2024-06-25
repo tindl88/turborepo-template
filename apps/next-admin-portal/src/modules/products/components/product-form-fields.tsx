@@ -8,7 +8,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/co
 import { Input } from '~ui/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateProductDto } from '../interfaces/products.interface';
+import { ProductFormData } from '../interfaces/products.interface';
 
 import FileDialog from '@/modules/files/components/file-dialog';
 import {
@@ -26,7 +26,7 @@ const CKEditor = dynamic(() => import('@/components/common/ck-editor'), {
 });
 
 type ProductFormFieldsProps = {
-  form: UseFormReturn<CreateProductDto>;
+  form: UseFormReturn<ProductFormData>;
 } & ComponentBaseProps;
 
 const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {

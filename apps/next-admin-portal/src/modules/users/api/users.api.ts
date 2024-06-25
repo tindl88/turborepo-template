@@ -1,7 +1,7 @@
 import { EntityId } from '@reduxjs/toolkit';
 import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
-import { CreateUserDto, UpdateUserDto, UserFilter, UserResponse, UsersResponse } from '../interfaces/users.interface';
+import { UserFilter, UserFormData, UserResponse, UsersResponse } from '../interfaces/users.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
@@ -13,7 +13,7 @@ export const list = (filter: UserFilter) => {
   return axiosClient.get<UsersResponse>(url);
 };
 
-export const create = (createUserDto: CreateUserDto) => {
+export const create = (createUserDto: UserFormData) => {
   return axiosClient.post<UserResponse>(API_ENDPOINTS.USERS, createUserDto);
 };
 
@@ -21,7 +21,7 @@ export const read = (id: EntityId) => {
   return axiosClient.get<UserResponse>(`${API_ENDPOINTS.USERS}/${id}`);
 };
 
-export const update = (id: EntityId, updateUserDto: UpdateUserDto) => {
+export const update = (id: EntityId, updateUserDto: UserFormData) => {
   return axiosClient.patch<UserResponse>(`${API_ENDPOINTS.USERS}/${id}`, updateUserDto);
 };
 

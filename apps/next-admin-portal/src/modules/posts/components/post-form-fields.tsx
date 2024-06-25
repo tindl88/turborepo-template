@@ -8,7 +8,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/co
 import { Input } from '~ui/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreatePostDto } from '../interfaces/posts.interface';
+import { PostFormData } from '../interfaces/posts.interface';
 
 import FileDialog from '@/modules/files/components/file-dialog';
 import {
@@ -27,7 +27,7 @@ const CKEditor = dynamic(() => import('@/components/common/ck-editor'), {
 // const BlockEditor = dynamic(() => import('@/components/common/block-editor'), { ssr: false });
 
 type PostFormFieldsProps = {
-  form: UseFormReturn<CreatePostDto>;
+  form: UseFormReturn<PostFormData>;
 } & ComponentBaseProps;
 
 const PostFormFields: FC<PostFormFieldsProps> = ({ className, form }) => {

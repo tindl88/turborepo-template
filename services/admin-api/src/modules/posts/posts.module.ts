@@ -13,9 +13,10 @@ import { PostsService } from './posts.service';
 
 import { AuditLogsService } from '../audit-logs/audit-logs.service';
 import { AuditLog } from '../audit-logs/entities/audit-log.entity';
+import { CategoriesModule } from '../categories/categories.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post, PostFile, AuditLog])],
+  imports: [TypeOrmModule.forFeature([Post, PostFile, AuditLog]), CategoriesModule],
   controllers: [PostsController, AdminPostsController],
   providers: [PostsService, JwtService, PostCreatedListener, PostUpdatedListener, PostDeletedListener, AuditLogsService]
 })

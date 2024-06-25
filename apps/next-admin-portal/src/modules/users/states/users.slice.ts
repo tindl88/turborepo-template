@@ -4,14 +4,7 @@ import { createEntityAdapter, createSlice, EntityId, PayloadAction } from '@redu
 
 import { ResponseError } from '@/interfaces/api-response.interface';
 import { ReduxBaseState } from '@/interfaces/state.interface';
-import {
-  CreateUserDto,
-  UpdateUserDto,
-  UserEntity,
-  UserFilter,
-  UserResponse,
-  UsersResponse
-} from '../interfaces/users.interface';
+import { UserEntity, UserFilter, UserFormData, UserResponse, UsersResponse } from '../interfaces/users.interface';
 
 export const entityAdapter = createEntityAdapter<UserEntity, EntityId>({
   selectId: item => item.id
@@ -65,7 +58,7 @@ const slice = createSlice({
     /*****************************************************************
     CREATE
     *****************************************************************/
-    createRequest: (state, _action: PayloadAction<CreateUserDto>) => {
+    createRequest: (state, _action: PayloadAction<UserFormData>) => {
       state.isCreating = true;
       state.error = undefined;
       state.message = undefined;
@@ -117,7 +110,7 @@ const slice = createSlice({
     /*****************************************************************
     UPDATE
     *****************************************************************/
-    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: UpdateUserDto }>) => {
+    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: UserFormData }>) => {
       state.isUpdating = true;
       state.error = undefined;
       state.message = undefined;

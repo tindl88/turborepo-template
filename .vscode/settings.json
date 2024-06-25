@@ -31,5 +31,6 @@
       "iconColour": "#fcba03",
       "background": "#fcba0367"
     }
-  }
+  },
+  "codium.codeCompletion.enable": true
 }

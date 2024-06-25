@@ -3,15 +3,12 @@ import classNames from 'classnames';
 import { Tooltip, TooltipProvider, TooltipTrigger } from '~ui/components/ui/tooltip';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
+import { StatusType } from '@/interfaces/status.interface';
 
 import { PRODUCT_STATUSES } from '../constants/products.constant';
 
 type ProductRowStatusProps = {
-  status: {
-    value: string;
-    label: string;
-    icon: FC;
-  };
+  status: StatusType;
   rejectReason?: string;
 } & ComponentBaseProps;
 

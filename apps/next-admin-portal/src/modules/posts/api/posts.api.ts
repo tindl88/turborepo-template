@@ -1,7 +1,7 @@
 import { EntityId } from '@reduxjs/toolkit';
 import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
-import { CreatePostDto, PostFilter, PostResponse, PostsResponse, UpdatePostDto } from '../interfaces/posts.interface';
+import { PostFilter, PostFormData, PostResponse, PostsResponse } from '../interfaces/posts.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
@@ -13,7 +13,7 @@ export const list = (filter: PostFilter) => {
   return axiosClient.get<PostsResponse>(url);
 };
 
-export const create = (createPostDto: CreatePostDto) => {
+export const create = (createPostDto: PostFormData) => {
   return axiosClient.post<PostResponse>(API_ENDPOINTS.POSTS, createPostDto);
 };
 
@@ -21,7 +21,7 @@ export const read = (id: EntityId) => {
   return axiosClient.get<PostResponse>(`${API_ENDPOINTS.POSTS}/${id}`);
 };
 
-export const update = (id: EntityId, updatePostDto: UpdatePostDto) => {
+export const update = (id: EntityId, updatePostDto: PostFormData) => {
   return axiosClient.patch<PostResponse>(`${API_ENDPOINTS.POSTS}/${id}`, updatePostDto);
 };
 

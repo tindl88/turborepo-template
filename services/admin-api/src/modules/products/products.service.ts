@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PinoLogger } from 'nestjs-pino';
 import { Repository } from 'typeorm';
 
 import { PaginationDto } from '@/common/dtos/pagination.dto';
@@ -16,13 +17,19 @@ import { ProductCreatedEvent } from './events/product-created.event';
 import { ProductDeletedEvent } from './events/product-deleted.event';
 import { ProductUpdatedEvent } from './events/product-updated.event';
 
+import { CategoriesService } from '../categories/categories.service';
+
 @Injectable()
 export class ProductsService {
   constructor(
+    private readonly logger: PinoLogger,
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
-    private readonly eventEmitter: EventEmitter2
-  ) {}
+    private readonly eventEmitter: EventEmitter2,
+    private readonly categoriesService: CategoriesService
+  ) {
+    this.logger.setContext(ProductsService.name);
+  }
 
   async create(createProductDto: CreateProductDto) {
     const product = new Product();
@@ -47,6 +54,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
 
@@ -75,6 +83,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
     queryBuilder.where('product.id = :id', { id });
@@ -94,6 +103,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
     queryBuilder.where('product.slug = :slug', { slug });
@@ -109,22 +119,28 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    const product = await this.productRepository.preload({ id: id, ...updateProductDto });
+    try {
+      const product = await this.productRepository.preload({ id: id, ...updateProductDto });
 
-    if (!product) {
-      throw new NotFoundException('Product not found');
+      if (!product) {
+        throw new NotFoundException('Product not found');
+      }
+
+      product.category = await this.categoriesService.findOne(updateProductDto.categoryId);
+
+      const response = await this.productRepository.save(product);
+
+      const productUpdatedEvent = new ProductUpdatedEvent();
+
+      productUpdatedEvent.productDto = updateProductDto;
+      productUpdatedEvent.product = response;
+
+      this.eventEmitter.emit('product.updated', productUpdatedEvent);
+
+      return response;
+    } catch (error) {
+      this.logger.error(`Product Update Failed: ${error.message}`);
     }
-
-    const response = await this.productRepository.save(product);
-
-    const productUpdatedEvent = new ProductUpdatedEvent();
-
-    productUpdatedEvent.productDto = updateProductDto;
-    productUpdatedEvent.product = response;
-
-    this.eventEmitter.emit('product.updated', productUpdatedEvent);
-
-    return response;
   }
 
   async remove(id: string) {

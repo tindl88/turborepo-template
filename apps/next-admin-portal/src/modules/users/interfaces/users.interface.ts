@@ -19,8 +19,13 @@ export type UserEntity = {
   status: USER_STATUS;
 };
 
-export type CreateUserDto = Omit<UserEntity, 'id'>;
-export type UpdateUserDto = Partial<CreateUserDto>;
+export type UserFormData = {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  role: string;
+  status: USER_STATUS;
+};
 
 export type UsersResponse = ResponseFormat<UserEntity[]>;
 export type UserResponse = ResponseFormat<UserEntity>;

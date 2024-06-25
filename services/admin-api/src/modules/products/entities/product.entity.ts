@@ -3,6 +3,7 @@ import { AfterLoad, Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { AbstractEntity } from '@/common/entities/abstract.entity';
 
+import { Category } from '@/modules/categories/entities/category.entity';
 import { File } from '@/modules/files/entities/file.entity';
 import { User } from '@/modules/users/entities/user.entity';
 
@@ -26,6 +27,9 @@ export class Product extends AbstractEntity {
 
   @ManyToOne(() => User, user => user.products)
   creator: User;
+
+  @ManyToOne(() => Category, category => category.posts)
+  category: Category;
 
   @Column({ type: 'varchar', nullable: true })
   cover: string;

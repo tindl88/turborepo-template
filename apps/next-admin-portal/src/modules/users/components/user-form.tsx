@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,7 +8,7 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { CreateUserDto, UserEntity } from '../interfaces/users.interface';
+import { UserEntity, UserFormData } from '../interfaces/users.interface';
 
 import { USER_ROLE, USER_STATUS } from '../constants/users.constant';
 
@@ -30,10 +30,7 @@ const UserForm: FC<UserFormProps> = ({ data }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const usersState = useUsersState();
-
-  const isEditMode = !!data;
-
-  const form = useForm<CreateUserDto>({
+  const form = useForm<UserFormData>({
     resolver: zodResolver(userFormValidator),
     defaultValues: {
       status: data?.status ?? USER_STATUS.INACTIVE,
@@ -44,13 +41,17 @@ const UserForm: FC<UserFormProps> = ({ data }) => {
     }
   });
 
-  const onSubmit: SubmitHandler<CreateUserDto> = async formData => {
-    if (isEditMode) {
+  const onSubmit: SubmitHandler<UserFormData> = async formData => {
+    if (data) {
       usersState.updateRequest({ id: data.id, data: formData });
     } else {
       usersState.createRequest(formData);
     }
   };
+
+  useEffect(() => {
+    form.reset(data);
+  }, [data]);
 
   return (
     <div data-testid="frm-user">

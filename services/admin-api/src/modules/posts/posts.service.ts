@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PinoLogger } from 'nestjs-pino';
 import { Repository } from 'typeorm';
 
 import { PaginationDto } from '@/common/dtos/pagination.dto';
@@ -16,15 +17,20 @@ import { PostCreatedEvent } from './events/post-created.event';
 import { PostDeletedEvent } from './events/post-deleted.event';
 import { PostUpdatedEvent } from './events/post-updated.event';
 
+import { CategoriesService } from '../categories/categories.service';
 import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class PostsService {
   constructor(
+    private readonly logger: PinoLogger,
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
-    private readonly eventEmitter: EventEmitter2
-  ) {}
+    private readonly eventEmitter: EventEmitter2,
+    private readonly categoriesService: CategoriesService
+  ) {
+    this.logger.setContext(PostsService.name);
+  }
 
   async create(user: User, createPostDto: CreatePostDto) {
     const post = new Post();
@@ -51,6 +57,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
 
@@ -80,6 +87,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
     queryBuilder.where('post.id = :id', { id });
@@ -99,6 +107,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
     queryBuilder.where('post.slug = :slug', { slug });
@@ -114,24 +123,30 @@ export class PostsService {
   }
 
   async update(user: User, id: string, updatePostDto: UpdatePostDto) {
-    const post = await this.postRepository.preload({ id: id, ...updatePostDto });
+    try {
+      const post = await this.postRepository.preload({ id: id, ...updatePostDto });
 
-    if (!post) {
-      throw new NotFoundException('Post not found');
+      if (!post) {
+        throw new NotFoundException('Post not found');
+      }
+
+      post.category = await this.categoriesService.findOne(updatePostDto.categoryId);
+
+      const response = await this.postRepository.save(post);
+
+      const postUpdatedEvent = new PostUpdatedEvent();
+
+      postUpdatedEvent.user = user;
+      postUpdatedEvent.oldPost = post;
+      postUpdatedEvent.newPost = response;
+      postUpdatedEvent.postDto = updatePostDto;
+
+      this.eventEmitter.emit('post.updated', postUpdatedEvent);
+
+      return response;
+    } catch (error) {
+      this.logger.error(`Post Update Failed: ${error.message}`);
     }
-
-    const response = await this.postRepository.save(post);
-
-    const postUpdatedEvent = new PostUpdatedEvent();
-
-    postUpdatedEvent.user = user;
-    postUpdatedEvent.oldPost = post;
-    postUpdatedEvent.newPost = response;
-    postUpdatedEvent.postDto = updatePostDto;
-
-    this.eventEmitter.emit('post.updated', postUpdatedEvent);
-
-    return response;
   }
 
   async remove(user: User, id: string) {

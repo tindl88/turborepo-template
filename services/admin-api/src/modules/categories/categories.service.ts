@@ -1,4 +1,4 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { PaginationDto } from '@/common/dtos/pagination.dto';
 import { PaginationResponseDto } from '@/common/dtos/pagination-response.dto';
 
-import { CATEGORY_STATUS } from './constants/category.constant';
+import { CATEGORY_GET_FIELDS, CATEGORY_STATUS } from './constants/category.constant';
 import { BulkDeleteCategoryDto } from './dto/bulk-delete-category.dto';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { FilterCategoryDto } from './dto/filter-category.dto';
@@ -60,13 +60,10 @@ export class CategoriesService {
 
   async findAll(filterDto: FilterCategoryDto) {
     const { type } = filterDto;
-    const fields = 'category.id category.name category.type category.parent category.status category.createdAt'.split(
-      ' '
-    );
 
     const queryBuilder = this.categoryRepository
       .createQueryBuilder('category')
-      .select(fields)
+      .select(CATEGORY_GET_FIELDS)
       .leftJoinAndSelect('category.parent', 'parent');
 
     queryBuilder.where('category.status = :status', { status: CATEGORY_STATUS.VISIBLED });
@@ -81,21 +78,20 @@ export class CategoriesService {
   }
 
   async find(filterDto: FilterCategoryDto) {
-    const { q, order, status, sort } = filterDto;
-    const fields =
-      'category.id category.name category.type category.parent category.status category.createdAt parent.id parent.name'.split(
-        ' '
-      );
+    const { q, order, status, sort, type } = filterDto;
 
     const queryBuilder = this.categoryRepository.createQueryBuilder('category');
 
-    queryBuilder.select(fields);
+    queryBuilder.select(CATEGORY_GET_FIELDS);
     queryBuilder.leftJoin('category.parent', 'parent');
     queryBuilder.where('parent.id IS NULL');
 
     if (status) queryBuilder.andWhere('category.status in (:...status)', { status });
     if (q) {
       queryBuilder.andWhere('LOWER(category.name) LIKE LOWER(:name)', { name: `%${q}%` });
+    }
+    if (type) {
+      queryBuilder.andWhere('category.type = :type', { type });
     }
     if (sort) {
       queryBuilder.orderBy(`category.${sort}`, order.toUpperCase() as 'ASC' | 'DESC');
@@ -145,10 +141,6 @@ export class CategoriesService {
 
     if (!categoryData) {
       throw new NotFoundException('Category not found');
-    }
-
-    if (updateCategoryDto.type && updateCategoryDto.type !== categoryData.type) {
-      throw new BadRequestException('Category Type change is not allowed');
     }
 
     Object.assign(categoryData, updateCategoryDto);

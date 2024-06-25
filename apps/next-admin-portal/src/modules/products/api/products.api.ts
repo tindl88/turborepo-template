@@ -1,13 +1,7 @@
 import { EntityId } from '@reduxjs/toolkit';
 import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
-import {
-  CreateProductDto,
-  ProductFilter,
-  ProductResponse,
-  ProductsResponse,
-  UpdateProductDto
-} from '../interfaces/products.interface';
+import { ProductFilter, ProductFormData, ProductResponse, ProductsResponse } from '../interfaces/products.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
@@ -19,7 +13,7 @@ export const list = (filter: ProductFilter) => {
   return axiosClient.get<ProductsResponse>(url);
 };
 
-export const create = (createProductDto: CreateProductDto) => {
+export const create = (createProductDto: ProductFormData) => {
   return axiosClient.post<ProductResponse>(API_ENDPOINTS.PRODUCTS, createProductDto);
 };
 
@@ -27,7 +21,7 @@ export const read = (id: EntityId) => {
   return axiosClient.get<ProductResponse>(`${API_ENDPOINTS.PRODUCTS}/${id}`);
 };
 
-export const update = (id: EntityId, updateProductDto: UpdateProductDto) => {
+export const update = (id: EntityId, updateProductDto: ProductFormData) => {
   return axiosClient.patch<ProductResponse>(`${API_ENDPOINTS.PRODUCTS}/${id}`, updateProductDto);
 };
 

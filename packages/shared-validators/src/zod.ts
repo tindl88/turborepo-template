@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const baseValidator = {
+  uuid: z.string().uuid({ message: 'validator_id_should_be_an_uuid' }),
   uuidArray: z.object({ id: z.string().uuid({ message: 'validator_id_should_be_an_uuid' }) }).array(),
   userName: z.string().min(1, 'validator_at_least_n_character').max(50, 'validator_maximum_n_characters_allowed'),
   email: z

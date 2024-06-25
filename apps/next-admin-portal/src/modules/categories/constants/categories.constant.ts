@@ -1,5 +1,6 @@
 import { CheckCircle2Icon, XCircleIcon } from 'lucide-react';
 
+import { StatusType } from '@/interfaces/status.interface';
 import { CategoryFilter } from '../interfaces/categories.interface';
 
 export enum CATEGORY_STATUS {
@@ -9,7 +10,9 @@ export enum CATEGORY_STATUS {
 
 export enum CATEGORY_TYPE {
   UNCATEGORIZED = 'uncategorized',
-  FILE = 'file'
+  FILE = 'file',
+  PRODUCT = 'product',
+  POST = 'post'
 }
 
 export enum CATEGORY_ACTION {
@@ -26,7 +29,22 @@ export const CATEGORY_DEFAULT_FILTER: CategoryFilter = {
   status: []
 };
 
-export const CATEGORY_STATUSES = [
+export const CATEGORY_TYPES = [
+  {
+    label: 'File',
+    value: CATEGORY_TYPE.FILE
+  },
+  {
+    label: 'Product',
+    value: CATEGORY_TYPE.PRODUCT
+  },
+  {
+    label: 'Post',
+    value: CATEGORY_TYPE.POST
+  }
+] as unknown as StatusType[];
+
+export const CATEGORY_STATUSES: StatusType[] = [
   {
     label: 'Visibled',
     value: CATEGORY_STATUS.VISIBLED,

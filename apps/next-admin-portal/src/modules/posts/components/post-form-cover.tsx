@@ -7,7 +7,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Input } from '~ui/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreatePostDto } from '../interfaces/posts.interface';
+import { PostFormData } from '../interfaces/posts.interface';
 
 import ButtonRemoveFile from '@/components/common/button-remove-file';
 import ButtonSelectFile from '@/components/common/button-select-file';
@@ -15,7 +15,7 @@ import ButtonSelectFile from '@/components/common/button-select-file';
 import FileDialog from '@/modules/files/components/file-dialog';
 
 type PostFormCoverProps = {
-  form: UseFormReturn<CreatePostDto>;
+  form: UseFormReturn<PostFormData>;
 } & ComponentBaseProps;
 
 export default function PostFormCover({ form }: PostFormCoverProps) {

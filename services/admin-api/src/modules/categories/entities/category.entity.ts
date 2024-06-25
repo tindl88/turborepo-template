@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { AbstractEntity } from '@/common/entities/abstract.entity';
 
 import { File } from '@/modules/files/entities/file.entity';
+import { Post } from '@/modules/posts/entities/post.entity';
 
 import { CATEGORY_STATUS, CATEGORY_TYPE } from '../constants/category.constant';
 
@@ -10,6 +11,9 @@ import { CATEGORY_STATUS, CATEGORY_TYPE } from '../constants/category.constant';
 export class Category extends AbstractEntity {
   @Column()
   name: string;
+
+  @Column({ type: 'varchar', unique: true, length: 255 })
+  slug: string;
 
   @Column({ type: 'enum', enum: CATEGORY_TYPE, default: CATEGORY_TYPE.UNCATEGORIZED })
   type: CATEGORY_TYPE;
@@ -25,4 +29,7 @@ export class Category extends AbstractEntity {
 
   @OneToMany(() => File, file => file.category)
   files: File[];
+
+  @OneToMany(() => Post, post => post.category)
+  posts: Post[];
 }

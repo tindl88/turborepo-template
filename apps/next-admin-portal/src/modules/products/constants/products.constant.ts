@@ -1,5 +1,6 @@
 import { CheckCircle2Icon, CircleSlashIcon, XCircleIcon } from 'lucide-react';
 
+import { StatusType } from '@/interfaces/status.interface';
 import { ProductFilter } from '../interfaces/products.interface';
 
 export enum PRODUCT_STATUS {
@@ -27,7 +28,7 @@ export const PRODUCT_DEFAULT_FILTER: ProductFilter = {
   status: []
 };
 
-export const PRODUCT_STATUSES = [
+export const PRODUCT_STATUSES: StatusType[] = [
   {
     label: 'Published',
     value: PRODUCT_STATUS.PUBLISHED,

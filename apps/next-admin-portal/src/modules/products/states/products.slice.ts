@@ -5,12 +5,11 @@ import { createEntityAdapter, createSlice, EntityId, PayloadAction } from '@redu
 import { ResponseError } from '@/interfaces/api-response.interface';
 import { ReduxBaseState } from '@/interfaces/state.interface';
 import {
-  CreateProductDto,
   ProductEntity,
   ProductFilter,
+  ProductFormData,
   ProductResponse,
-  ProductsResponse,
-  UpdateProductDto
+  ProductsResponse
 } from '../interfaces/products.interface';
 
 export const entityAdapter = createEntityAdapter<ProductEntity, EntityId>({
@@ -65,7 +64,7 @@ const slice = createSlice({
     /*****************************************************************
     CREATE
     *****************************************************************/
-    createRequest: (state, _action: PayloadAction<CreateProductDto>) => {
+    createRequest: (state, _action: PayloadAction<ProductFormData>) => {
       state.isCreating = true;
       state.error = undefined;
       state.message = undefined;
@@ -117,7 +116,7 @@ const slice = createSlice({
     /*****************************************************************
     UPDATE
     *****************************************************************/
-    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: UpdateProductDto }>) => {
+    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: ProductFormData }>) => {
       state.isUpdating = true;
       state.error = undefined;
       state.message = undefined;

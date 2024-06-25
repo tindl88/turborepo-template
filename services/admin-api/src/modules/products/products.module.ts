@@ -11,8 +11,10 @@ import { AdminProductsController } from './admin-products.controller';
 import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 
+import { CategoriesModule } from '../categories/categories.module';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, ProductFile])],
+  imports: [TypeOrmModule.forFeature([Product, ProductFile]), CategoriesModule],
   controllers: [ProductsController, AdminProductsController],
   providers: [ProductsService, JwtService, ProductCreatedListener, ProductUpdatedListener, ProductDeletedListener]
 })

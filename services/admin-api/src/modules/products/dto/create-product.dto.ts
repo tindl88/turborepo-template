@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional, IsString, IsUUID, ValidateNested } from 'class-validator';
 
 import { toSlug } from '@/common/utils/string.util';
 
@@ -43,4 +43,9 @@ export class CreateProductDto {
   @ValidateNested({ each: true })
   @Type(() => FileDto)
   images: File[];
+
+  @ApiProperty({ description: 'Category ID', example: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' })
+  @IsUUID()
+  @IsNotEmpty()
+  categoryId: string;
 }

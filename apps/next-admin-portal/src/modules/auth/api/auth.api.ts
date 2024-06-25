@@ -3,11 +3,11 @@ import { RefreshTokenResponse, SignInDto, SignInResponse } from '../interfaces/a
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 import { AUTH_AUTHENTICATOR } from '../constants/auth.constant';
 
-import { CreateUserDto, UserEntity } from '@/modules/users/interfaces/users.interface';
+import { UserEntity, UserFormData } from '@/modules/users/interfaces/users.interface';
 
 import axiosClient from '@/http/http-request';
 
-export const signUp = (userDto: CreateUserDto) => {
+export const signUp = (userDto: UserFormData) => {
   return axiosClient.post<UserEntity>(API_ENDPOINTS.SIGN_UP, userDto);
 };
 

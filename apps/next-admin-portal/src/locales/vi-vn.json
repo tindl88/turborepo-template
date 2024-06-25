@@ -144,6 +144,7 @@
   "category_created_at": "Ngày tạo",
   "category_status": "Trạng thái",
   "category_title": "Tên",
+  "category_type": "Loại",
   "category_actions": "Hành động",
   "category_records": "danh mục",
   "category_delete": "Xoá",

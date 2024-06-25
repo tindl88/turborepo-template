@@ -23,7 +23,7 @@ const DataTableRowStatus: FC<DataTableRowStatusProps> = ({ className, status }) 
                 status?.borderClassName
               )}
             >
-              <span>{status?.label}</span>
+              <span className="text-xs font-bold">{status?.label.toUpperCase()}</span>
             </div>
           </TooltipTrigger>
         </Tooltip>

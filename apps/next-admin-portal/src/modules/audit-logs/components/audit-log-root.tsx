@@ -41,9 +41,11 @@ export const AuditLogRoot: FC<AuditLogRootProps> = ({ className }) => {
         header: () => <strong>{t('audit_log_table_name')}</strong>,
         cell: ({ row }) => {
           return (
-            <Badge className="text-base" variant="secondary">
-              {row.getValue('tableName')}
-            </Badge>
+            <div className="flex items-center justify-center">
+              <Badge className="text-xs" variant="secondary">
+                {row.original.tableName.toUpperCase()}
+              </Badge>
+            </div>
           );
         }
       },
