@@ -4,6 +4,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { CategoriesService } from '@/modules/categories/categories.service';
+import { Category } from '@/modules/categories/entities/category.entity';
 import { User } from '@/modules/users/entities/user.entity';
 
 import { POST_GET_FIELDS, POST_STATUS } from '../constants/post.constant';
@@ -19,6 +21,7 @@ describe('PostsService', () => {
   let service: PostsService;
   let repository: Repository<Post>;
   let eventEmitter: EventEmitter2;
+  let categoriesService: CategoriesService;
 
   const mockPostRepository = {
     createQueryBuilder: jest.fn().mockReturnValue({
@@ -39,6 +42,10 @@ describe('PostsService', () => {
     remove: jest.fn()
   };
 
+  const mockCategoriesService = {
+    findOne: jest.fn()
+  };
+
   const mockEventEmitter = {
     emit: jest.fn()
   };
@@ -54,6 +61,10 @@ describe('PostsService', () => {
           useValue: mockPostRepository
         },
         {
+          provide: CategoriesService,
+          useValue: mockCategoriesService
+        },
+        {
           provide: EventEmitter2,
           useValue: mockEventEmitter
         }
@@ -63,6 +74,7 @@ describe('PostsService', () => {
     service = module.get<PostsService>(PostsService);
     repository = module.get<Repository<Post>>(getRepositoryToken(Post));
     eventEmitter = module.get<EventEmitter2>(EventEmitter2);
+    categoriesService = module.get<CategoriesService>(CategoriesService);
   });
 
   describe('create', () => {
@@ -168,12 +180,14 @@ describe('PostsService', () => {
     it('should update post successfully', async () => {
       const id = '1';
       const user = { id: '1', name: 'Tester' } as User;
-      const updatePostDto = { name: 'NestJS' } as UpdatePostDto;
+      const updatePostDto = { name: 'NestJS', categoryId: 'cat-1' } as UpdatePostDto;
+      const category = { id: 'cat-1', name: 'Test Category' } as Category;
       const originalPost = { id: '1', name: 'Test Post', slug: 'test-slug' } as Post;
-      const updatedPost = { id: '1', name: 'Test Post', slug: 'test-slug' } as Post;
+      const updatedPost = { id: '1', name: 'Test Post', slug: 'test-slug', category } as Post;
 
       mockPostRepository.preload.mockResolvedValue(originalPost);
       mockPostRepository.save.mockResolvedValue(updatedPost);
+      mockCategoriesService.findOne.mockResolvedValue(category);
 
       const expectedEvent = new PostUpdatedEvent();
 
@@ -185,7 +199,8 @@ describe('PostsService', () => {
       const result = await service.update(user, id, updatePostDto);
 
       expect(mockPostRepository.preload).toHaveBeenCalledWith({ id, ...updatePostDto });
-      expect(mockPostRepository.save).toHaveBeenCalledWith(updatedPost);
+      expect(mockPostRepository.save).toHaveBeenCalledWith(originalPost);
+      expect(categoriesService.findOne).toHaveBeenCalledWith(updatePostDto.categoryId);
       expect(mockEventEmitter.emit).toHaveBeenCalledWith('post.updated', expectedEvent);
       expect(result).toEqual(updatedPost);
     });
@@ -193,9 +208,24 @@ describe('PostsService', () => {
     it('should throw NotFoundException when post is not found', async () => {
       const id = '1';
       const user = { id: '1', name: 'Tester' } as User;
-      const updatePostDto = {};
+      const updatePostDto = { name: 'NestJS', categoryId: 'cat-1' } as UpdatePostDto;
 
       mockPostRepository.preload.mockResolvedValue(undefined);
+
+      await expect(service.update(user, id, updatePostDto)).rejects.toThrow(NotFoundException);
+      expect(mockPostRepository.preload).toHaveBeenCalledWith({ id, ...updatePostDto });
+      expect(mockPostRepository.save).not.toHaveBeenCalled();
+      expect(mockEventEmitter.emit).not.toHaveBeenCalled();
+    });
+
+    it('should throw NotFoundException when category is not found', async () => {
+      const id = '1';
+      const user = { id: '1', name: 'Tester' } as User;
+      const updatePostDto = { name: 'NestJS', categoryId: 'cat-1' } as UpdatePostDto;
+      const originalPost = { id: '1', name: 'Test Post', slug: 'test-slug' } as Post;
+
+      mockPostRepository.preload.mockResolvedValue(originalPost);
+      mockCategoriesService.findOne.mockResolvedValue(undefined);
 
       await expect(service.update(user, id, updatePostDto)).rejects.toThrow(NotFoundException);
       expect(mockPostRepository.preload).toHaveBeenCalledWith({ id, ...updatePostDto });
