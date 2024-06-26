@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PinoLogger } from 'nestjs-pino';
 import { Repository } from 'typeorm';
 
 import { PaginationDto } from '@/common/dtos/pagination.dto';
@@ -22,14 +21,11 @@ import { CategoriesService } from '../categories/categories.service';
 @Injectable()
 export class ProductsService {
   constructor(
-    private readonly logger: PinoLogger,
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
     private readonly eventEmitter: EventEmitter2,
     private readonly categoriesService: CategoriesService
-  ) {
-    this.logger.setContext(ProductsService.name);
-  }
+  ) {}
 
   async create(createProductDto: CreateProductDto) {
     const product = new Product();
@@ -119,28 +115,24 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    try {
-      const product = await this.productRepository.preload({ id: id, ...updateProductDto });
+    const product = await this.productRepository.preload({ id: id, ...updateProductDto });
 
-      if (!product) {
-        throw new NotFoundException('Product not found');
-      }
-
-      product.category = await this.categoriesService.findOne(updateProductDto.categoryId);
-
-      const response = await this.productRepository.save(product);
-
-      const productUpdatedEvent = new ProductUpdatedEvent();
-
-      productUpdatedEvent.productDto = updateProductDto;
-      productUpdatedEvent.product = response;
-
-      this.eventEmitter.emit('product.updated', productUpdatedEvent);
-
-      return response;
-    } catch (error) {
-      this.logger.error(`Product Update Failed: ${error.message}`);
+    if (!product) {
+      throw new NotFoundException('Product not found');
     }
+
+    product.category = await this.categoriesService.findOne(updateProductDto.categoryId);
+
+    const response = await this.productRepository.save(product);
+
+    const productUpdatedEvent = new ProductUpdatedEvent();
+
+    productUpdatedEvent.productDto = updateProductDto;
+    productUpdatedEvent.product = response;
+
+    this.eventEmitter.emit('product.updated', productUpdatedEvent);
+
+    return response;
   }
 
   async remove(id: string) {
