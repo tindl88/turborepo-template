@@ -20,7 +20,7 @@ export class FilterCategoryDto extends BaseFilterDto {
   @IsOptional()
   status?: CATEGORY_STATUS[];
 
-  @ApiPropertyOptional({ enum: CATEGORY_TYPE, default: CATEGORY_TYPE.UNCATEGORIZED })
+  @ApiPropertyOptional({ enum: CATEGORY_TYPE, default: CATEGORY_TYPE.POST })
   @IsEnum(CATEGORY_TYPE)
   @IsOptional()
   type?: CATEGORY_TYPE;

@@ -16,7 +16,7 @@ export class CreateCategoryDto {
   @IsString()
   slug: string;
 
-  @ApiPropertyOptional({ enum: CATEGORY_TYPE, example: CATEGORY_TYPE.UNCATEGORIZED })
+  @ApiPropertyOptional({ enum: CATEGORY_TYPE, example: CATEGORY_TYPE.POST })
   @IsOptional()
   type: CATEGORY_TYPE;
 

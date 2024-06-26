@@ -15,7 +15,7 @@ export class Category extends AbstractEntity {
   @Column({ type: 'varchar', unique: true, length: 255 })
   slug: string;
 
-  @Column({ type: 'enum', enum: CATEGORY_TYPE, default: CATEGORY_TYPE.UNCATEGORIZED })
+  @Column({ type: 'enum', enum: CATEGORY_TYPE, default: CATEGORY_TYPE.POST })
   type: CATEGORY_TYPE;
 
   @Column({ type: 'enum', enum: CATEGORY_STATUS, default: CATEGORY_STATUS.VISIBLED })

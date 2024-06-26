@@ -59,7 +59,7 @@ export class CategoriesService {
   }
 
   async findAll(filterDto: FilterCategoryDto) {
-    const { type } = filterDto;
+    const { type, excludeId } = filterDto;
 
     const queryBuilder = this.categoryRepository
       .createQueryBuilder('category')
@@ -70,6 +70,9 @@ export class CategoriesService {
 
     if (type) {
       queryBuilder.andWhere('category.type = :type', { type });
+    }
+    if (excludeId) {
+      queryBuilder.andWhere('category.id != :id', { id: excludeId });
     }
 
     const categories = await queryBuilder.getMany();
