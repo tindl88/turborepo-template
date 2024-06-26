@@ -28,7 +28,7 @@ import { DataTable } from '@/components/common/data-table/data-table';
 import { DataTableColumnHeader } from '@/components/common/data-table/data-table-column-header';
 import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
 import DataTableRowAction from '@/components/common/data-table/data-table-row-action';
-import ModalConfirmDialog from '@/components/common/modal-confirm';
+import ModalConfirm from '@/components/common/modal-confirm';
 import PaginationInfo from '@/components/common/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
@@ -266,7 +266,7 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
           onChange={page => postsState.setFilter({ page })}
         />
       </div>
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === POST_ACTION.DELETE}
         title="Delete"
         content={
@@ -281,7 +281,7 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
         }}
         onNo={() => setAction({ name: '' })}
       />
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === POST_ACTION.BULK_DELETE}
         title="Bulk Delete"
         content={

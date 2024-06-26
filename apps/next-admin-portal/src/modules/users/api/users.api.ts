@@ -5,10 +5,12 @@ import { UserFilter, UserFormData, UserResponse, UsersResponse } from '../interf
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
+import { removeUndefined } from '@/utils/object.util';
+
 import axiosClient from '@/http/http-request';
 
 export const list = (filter: UserFilter) => {
-  const url = API_ENDPOINTS.USERS + '?' + objectToQueryString(filter);
+  const url = API_ENDPOINTS.USERS + '?' + objectToQueryString(removeUndefined(filter));
 
   return axiosClient.get<UsersResponse>(url);
 };

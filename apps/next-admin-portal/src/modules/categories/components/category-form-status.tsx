@@ -11,6 +11,7 @@ import { CategoryFormData } from '../interfaces/categories.interface';
 
 type CategoryFormStatusProps = {
   form: UseFormReturn<CategoryFormData>;
+  isEditMode: boolean;
   statuses: StatusType[];
 } & ComponentBaseProps;
 

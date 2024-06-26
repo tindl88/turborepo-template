@@ -10,7 +10,7 @@ import {
   AlertDialogTitle
 } from '~ui/components/ui/alert-dialog';
 
-type ModalConfirmDialogProps = {
+type ModalConfirmProps = {
   visible: boolean;
   title: string;
   content?: ReactNode;
@@ -20,7 +20,7 @@ type ModalConfirmDialogProps = {
   onNo: () => void;
 };
 
-const ModalConfirmDialog: FC<ModalConfirmDialogProps> = ({
+const ModalConfirm: FC<ModalConfirmProps> = ({
   visible = false,
   title,
   content,
@@ -45,4 +45,4 @@ const ModalConfirmDialog: FC<ModalConfirmDialogProps> = ({
   );
 };
 
-export default ModalConfirmDialog;
+export default ModalConfirm;

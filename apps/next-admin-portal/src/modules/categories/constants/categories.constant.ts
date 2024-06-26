@@ -9,7 +9,6 @@ export enum CATEGORY_STATUS {
 }
 
 export enum CATEGORY_TYPE {
-  UNCATEGORIZED = 'uncategorized',
   FILE = 'file',
   PRODUCT = 'product',
   POST = 'post'

@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,13 +8,15 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { ProductEntity, ProductFormData } from '../interfaces/products.interface';
+import { ProductFormData } from '../interfaces/products.interface';
 
 import { PRODUCT_STATUS, PRODUCT_STATUSES } from '../constants/products.constant';
 
-import FormToolbar from '@/components/common/form-toolbar';
+import useProducts from '../hooks/use-products';
 
-import { CategoryEntity } from '@/modules/categories/interfaces/categories.interface';
+import FormToolbar from '@/components/common/form-toolbar';
+import ModalLoading from '@/components/common/modal-loading';
+
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 
 import { useProductsState } from '../states/products.state';
@@ -27,24 +29,25 @@ import ProductFormImages from './product-form-images';
 import ProductFormStatus from './product-form-status';
 
 type ProductFormProps = {
-  categories: CategoryEntity[];
-  data?: ProductEntity;
+  isEditMode: boolean;
 };
 
-const ProductForm: FC<ProductFormProps> = ({ data, categories }) => {
+const ProductForm: FC<ProductFormProps> = ({ isEditMode }) => {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
   const productsState = useProductsState();
+  const { product, categories, isFetched, isFetching } = useProducts({ productId: params.id as string });
 
   const defaultValues: ProductFormData = {
-    status: data?.status ?? PRODUCT_STATUS.DRAFT,
-    name: data?.name ?? '',
-    slug: data?.slug ?? '',
-    cover: data?.cover ?? '',
-    images: data?.images ?? ([] as FileEntity[]),
-    body: data?.body ?? '',
-    categoryId: data?.category?.id ?? ''
+    status: product?.status ?? PRODUCT_STATUS.DRAFT,
+    name: product?.name ?? '',
+    slug: product?.slug ?? '',
+    cover: product?.cover ?? '',
+    images: product?.images ?? ([] as FileEntity[]),
+    body: product?.body ?? '',
+    categoryId: product?.category?.id ?? ''
   };
 
   const form = useForm<ProductFormData>({
@@ -55,8 +58,8 @@ const ProductForm: FC<ProductFormProps> = ({ data, categories }) => {
   const onSubmit: SubmitHandler<ProductFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (data) {
-      productsState.updateRequest({ id: data.id, data: formData });
+    if (isFetched && isEditMode) {
+      productsState.updateRequest({ id: params.id as string, data: formData });
     } else {
       productsState.createRequest(formData);
     }
@@ -64,7 +67,7 @@ const ProductForm: FC<ProductFormProps> = ({ data, categories }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [data]);
+  }, [product]);
 
   return (
     <div data-testid="frm-product">
@@ -83,20 +86,21 @@ const ProductForm: FC<ProductFormProps> = ({ data, categories }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <ProductFormFields form={form} />
+                <ProductFormFields form={form} isEditMode={isEditMode} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <ProductFormStatus form={form} statuses={PRODUCT_STATUSES} />
-                <ProductFormCategory form={form} categories={categories} />
-                <ProductFormCover form={form} />
-                <ProductFormImages form={form} />
+                <ProductFormStatus form={form} isEditMode={isEditMode} statuses={PRODUCT_STATUSES} />
+                <ProductFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
+                <ProductFormCover form={form} isEditMode={isEditMode} />
+                <ProductFormImages form={form} isEditMode={isEditMode} />
               </div>
             </div>
           </div>
         </form>
       </Form>
+      <ModalLoading visible={isFetching} />
     </div>
   );
 };

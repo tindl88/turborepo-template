@@ -10,11 +10,15 @@ import { CategoryFormData } from '../interfaces/categories.interface';
 
 type CategoryFormTypeProps = {
   form: UseFormReturn<CategoryFormData>;
+  isEditMode: boolean;
   types: StatusType[];
+  onChange?: (value: string) => void;
 } & ComponentBaseProps;
 
-export default function CategoryFormType({ form, types }: CategoryFormTypeProps) {
+export default function CategoryFormType({ form, isEditMode, types, onChange }: CategoryFormTypeProps) {
   const t = useTranslations();
+
+  if (isEditMode) return null;
 
   return (
     <div className="grid gap-3">
@@ -25,7 +29,13 @@ export default function CategoryFormType({ form, types }: CategoryFormTypeProps)
           <FormItem>
             <FormLabel>{t('category_type')}</FormLabel>
             <FormControl>
-              <Select value={field.value} onValueChange={field.onChange}>
+              <Select
+                value={field.value}
+                onValueChange={value => {
+                  field.onChange(value);
+                  onChange?.(value);
+                }}
+              >
                 <SelectTrigger id="type" aria-label={t('select_type')}>
                   <SelectValue placeholder={t('select_type')} />
                 </SelectTrigger>
@@ -43,7 +53,7 @@ export default function CategoryFormType({ form, types }: CategoryFormTypeProps)
                 </SelectContent>
               </Select>
             </FormControl>
-            {error?.message && <FormMessage message={t(error.message, { min: 1 })} />}
+            {error?.message && <FormMessage message={t(error.message)} />}
           </FormItem>
         )}
       />

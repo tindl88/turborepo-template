@@ -12,6 +12,7 @@ import { toSlug } from '@/utils/string.util';
 
 type CategoryFormFieldsProps = {
   form: UseFormReturn<CategoryFormData>;
+  isEditMode: boolean;
 } & ComponentBaseProps;
 
 const CategoryFormFields: FC<CategoryFormFieldsProps> = ({ className, form }) => {

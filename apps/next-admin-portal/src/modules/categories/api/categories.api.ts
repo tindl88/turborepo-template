@@ -10,10 +10,12 @@ import {
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
+import { removeUndefined } from '@/utils/object.util';
+
 import axiosClient from '@/http/http-request';
 
 export const list = (filter: CategoryFilter) => {
-  const url = API_ENDPOINTS.CATEGORIES + '?' + objectToQueryString(filter);
+  const url = API_ENDPOINTS.CATEGORIES_TREES + '?' + objectToQueryString(removeUndefined(filter));
 
   return axiosClient.get<CategoriesResponse>(url);
 };

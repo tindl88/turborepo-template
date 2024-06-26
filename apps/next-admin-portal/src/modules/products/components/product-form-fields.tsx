@@ -27,6 +27,7 @@ const CKEditor = dynamic(() => import('@/components/common/ck-editor'), {
 
 type ProductFormFieldsProps = {
   form: UseFormReturn<ProductFormData>;
+  isEditMode: boolean;
 } & ComponentBaseProps;
 
 const ProductFormFields: FC<ProductFormFieldsProps> = ({ className, form }) => {

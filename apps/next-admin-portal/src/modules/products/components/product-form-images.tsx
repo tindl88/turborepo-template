@@ -17,6 +17,7 @@ import FileDialog from '@/modules/files/components/file-dialog';
 
 type ProductFormImagesProps = {
   form: UseFormReturn<ProductFormData>;
+  isEditMode: boolean;
 } & ComponentBaseProps;
 
 export default function ProductFormImages({ form }: ProductFormImagesProps) {

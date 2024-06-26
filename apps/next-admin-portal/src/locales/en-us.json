@@ -205,8 +205,9 @@
   "validator_password_rule": "Password must contain at least one uppercase letter, one special character and one number",
   "validator_password_do_not_match": "Passwords do not match",
   "validator_id_should_be_an_uuid": "It should be an UUID",
-  "validator_select_theme": "Please select a theme.",
-  "validator_select_language": "Please select a language.",
-  "validator_select_role": "Please select a role.",
-  "validator_select_status": "Please select a status."
+  "validator_select_theme": "Please select a theme",
+  "validator_select_language": "Please select a language",
+  "validator_select_role": "Please select a role",
+  "validator_select_status": "Please select a status",
+  "validator_require_select": "Please select an option"
 }

@@ -8,10 +8,11 @@ import { ComponentBaseProps } from '@/interfaces/component.interface';
 
 type FormToolbarProps = {
   title?: string;
+  submitDisabled?: boolean;
   onBackClick: () => void;
 } & ComponentBaseProps;
 
-const FormToolbar: FC<FormToolbarProps> = ({ className, title, onBackClick }) => {
+const FormToolbar: FC<FormToolbarProps> = ({ className, title, submitDisabled = true, onBackClick }) => {
   const t = useTranslations();
 
   return (
@@ -22,7 +23,9 @@ const FormToolbar: FC<FormToolbarProps> = ({ className, title, onBackClick }) =>
         </Button>
         {title && <h3 className="text-xl font-bold">{title}</h3>}
       </div>
-      <Button type="submit">{t('save')}</Button>
+      <Button disabled={submitDisabled} type="submit">
+        {t('save')}
+      </Button>
     </div>
   );
 };

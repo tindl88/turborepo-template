@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,13 +8,15 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { PostEntity, PostFormData } from '../interfaces/posts.interface';
+import { PostFormData } from '../interfaces/posts.interface';
 
 import { POST_STATUS, POST_STATUSES } from '../constants/posts.constant';
 
-import FormToolbar from '@/components/common/form-toolbar';
+import usePosts from '../hooks/use-posts';
 
-import { CategoryEntity } from '@/modules/categories/interfaces/categories.interface';
+import FormToolbar from '@/components/common/form-toolbar';
+import ModalLoading from '@/components/common/modal-loading';
+
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 
 import { usePostsState } from '../states/posts.state';
@@ -27,25 +29,26 @@ import PostFormImages from './post-form-images';
 import PostFormStatus from './post-form-status';
 
 type PostFormProps = {
-  categories: CategoryEntity[];
-  data?: PostEntity;
+  isEditMode: boolean;
 };
 
-const PostForm: FC<PostFormProps> = ({ data, categories }) => {
+const PostForm: FC<PostFormProps> = ({ isEditMode }) => {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
   const postsState = usePostsState();
+  const { post, categories, isFetched, isFetching } = usePosts({ postId: params.id as string });
 
   const defaultValues: PostFormData = {
-    status: data?.status ?? POST_STATUS.DRAFT,
-    name: data?.name ?? '',
-    slug: data?.slug ?? '',
-    cover: data?.cover ?? '',
-    images: data?.images ?? ([] as FileEntity[]),
-    description: data?.description ?? '',
-    body: data?.body ?? '',
-    categoryId: data?.category?.id ?? ''
+    status: post?.status ?? POST_STATUS.DRAFT,
+    name: post?.name ?? '',
+    slug: post?.slug ?? '',
+    cover: post?.cover ?? '',
+    images: post?.images ?? ([] as FileEntity[]),
+    description: post?.description ?? '',
+    body: post?.body ?? '',
+    categoryId: post?.category?.id ?? ''
   };
 
   const form = useForm<PostFormData>({ resolver: zodResolver(postFormValidator), defaultValues });
@@ -53,8 +56,8 @@ const PostForm: FC<PostFormProps> = ({ data, categories }) => {
   const onSubmit: SubmitHandler<PostFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (data) {
-      postsState.updateRequest({ id: data.id, data: formData });
+    if (isFetched && isEditMode) {
+      postsState.updateRequest({ id: params.id as string, data: formData });
     } else {
       postsState.createRequest(formData);
     }
@@ -62,7 +65,7 @@ const PostForm: FC<PostFormProps> = ({ data, categories }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [data]);
+  }, [post]);
 
   return (
     <div data-testid="frm-post">
@@ -71,6 +74,7 @@ const PostForm: FC<PostFormProps> = ({ data, categories }) => {
           <FormToolbar
             className="mb-4"
             title={t('post_details')}
+            submitDisabled={isFetching}
             onBackClick={() =>
               router.push({
                 pathname: '/posts',
@@ -81,20 +85,21 @@ const PostForm: FC<PostFormProps> = ({ data, categories }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <PostFormFields form={form} />
+                <PostFormFields form={form} isEditMode={isEditMode} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <PostFormStatus form={form} statuses={POST_STATUSES} />
-                <PostFormCategory form={form} categories={categories} />
-                <PostFormCover form={form} />
-                <PostFormImages form={form} />
+                <PostFormStatus form={form} isEditMode={isEditMode} statuses={POST_STATUSES} />
+                <PostFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
+                <PostFormCover form={form} isEditMode={isEditMode} />
+                <PostFormImages form={form} isEditMode={isEditMode} />
               </div>
             </div>
           </div>
         </form>
       </Form>
+      <ModalLoading visible={isFetching} />
     </div>
   );
 };

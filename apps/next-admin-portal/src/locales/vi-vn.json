@@ -207,5 +207,6 @@
   "validator_select_theme": "Bạn chưa chọn màu sắc giao diện",
   "validator_select_language": "Bạn chưa chọn ngôn ngữ",
   "validator_select_role": "Bạn chưa chọn vai trò",
-  "validator_select_status": "Bạn chưa chọn trạng thái"
+  "validator_select_status": "Bạn chưa chọn trạng thái",
+  "validator_require_select": "Bạn chưa chọn giá trị"
 }

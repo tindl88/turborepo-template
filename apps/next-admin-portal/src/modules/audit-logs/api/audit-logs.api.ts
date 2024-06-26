@@ -4,10 +4,12 @@ import { AuditLogFilter, AuditLogsResponse } from '../interfaces/audit-logs.inte
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
+import { removeUndefined } from '@/utils/object.util';
+
 import axiosClient from '@/http/http-request';
 
 export const list = (filter: AuditLogFilter) => {
-  const url = API_ENDPOINTS.AUDIT_LOGS + '?' + objectToQueryString(filter);
+  const url = API_ENDPOINTS.AUDIT_LOGS + '?' + objectToQueryString(removeUndefined(filter));
 
   return axiosClient.get<AuditLogsResponse>(url);
 };

@@ -5,10 +5,12 @@ import { PostFilter, PostFormData, PostResponse, PostsResponse } from '../interf
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
+import { removeUndefined } from '@/utils/object.util';
+
 import axiosClient from '@/http/http-request';
 
 export const list = (filter: PostFilter) => {
-  const url = API_ENDPOINTS.POSTS + '?' + objectToQueryString(filter);
+  const url = API_ENDPOINTS.POSTS + '?' + objectToQueryString(removeUndefined(filter));
 
   return axiosClient.get<PostsResponse>(url);
 };

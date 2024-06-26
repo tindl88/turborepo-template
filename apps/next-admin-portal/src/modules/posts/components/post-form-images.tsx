@@ -17,6 +17,7 @@ import FileDialog from '@/modules/files/components/file-dialog';
 
 type PostFormImagesProps = {
   form: UseFormReturn<PostFormData>;
+  isEditMode: boolean;
 } & ComponentBaseProps;
 
 export default function PostFormImages({ form }: PostFormImagesProps) {

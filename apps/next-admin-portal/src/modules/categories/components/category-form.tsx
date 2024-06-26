@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,11 +8,14 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { CategoryEntity, CategoryFormData } from '../interfaces/categories.interface';
+import { CategoryFormData } from '../interfaces/categories.interface';
 
-import { CATEGORY_STATUS, CATEGORY_STATUSES, CATEGORY_TYPE } from '../constants/categories.constant';
+import { CATEGORY_STATUS, CATEGORY_STATUSES, CATEGORY_TYPE, CATEGORY_TYPES } from '../constants/categories.constant';
+
+import useCategories from '../hooks/use-categories';
 
 import FormToolbar from '@/components/common/form-toolbar';
+import ModalLoading from '@/components/common/modal-loading';
 
 import { useCategoriesState } from '../states/categories.state';
 import { categoryFormValidator } from '../validators/category-form.validator';
@@ -20,31 +23,36 @@ import { categoryFormValidator } from '../validators/category-form.validator';
 import CategoryFormCategory from './category-form-category';
 import CategoryFormFields from './category-form-fields';
 import CategoryFormStatus from './category-form-status';
+import CategoryFormType from './category-form-type';
 
 type CategoryFormProps = {
-  categories: CategoryEntity[];
-  data?: CategoryEntity;
+  isEditMode: boolean;
 };
 
-const CategoryForm: FC<CategoryFormProps> = ({ data, categories }) => {
+const CategoryForm: FC<CategoryFormProps> = ({ isEditMode }) => {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
   const categoriesState = useCategoriesState();
+  const { category, categories, isFetched, isFetching, refetchCategories } = useCategories({
+    isEditMode,
+    categoryId: params.id as string
+  });
 
   const defaultValues: CategoryFormData = {
-    status: data?.status ?? CATEGORY_STATUS.VISIBLED,
-    name: data?.name ?? '',
-    slug: data?.slug ?? '',
-    type: data?.type ?? CATEGORY_TYPE.POST,
-    parentId: data?.category?.id ?? ''
+    status: category?.status ?? CATEGORY_STATUS.VISIBLED,
+    name: category?.name ?? '',
+    slug: category?.slug ?? '',
+    type: category?.type ?? ('' as CATEGORY_TYPE),
+    parentId: category?.category?.id ?? ''
   };
 
   const form = useForm<CategoryFormData>({ resolver: zodResolver(categoryFormValidator), defaultValues });
 
   const onSubmit: SubmitHandler<CategoryFormData> = async formData => {
-    if (data) {
-      categoriesState.updateRequest({ id: data.id, data: formData });
+    if (isFetched && isEditMode) {
+      categoriesState.updateRequest({ id: params.id as string, data: formData });
     } else {
       categoriesState.createRequest(formData);
     }
@@ -52,7 +60,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ data, categories }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [data]);
+  }, [category]);
 
   return (
     <div data-testid="frm-category">
@@ -61,28 +69,35 @@ const CategoryForm: FC<CategoryFormProps> = ({ data, categories }) => {
           <FormToolbar
             className="mb-4"
             title={t('category_details')}
+            submitDisabled={isFetching}
             onBackClick={() =>
-              router.push({
-                pathname: '/categories',
-                query: { sidebar: searchParams.get('sidebar') }
-              })
+              router.push({ pathname: '/categories', query: { sidebar: searchParams.get('sidebar') } })
             }
           />
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <CategoryFormFields form={form} />
+                <CategoryFormFields form={form} isEditMode={isEditMode} />
+                {!category && (
+                  <CategoryFormType
+                    form={form}
+                    isEditMode={isEditMode}
+                    types={CATEGORY_TYPES}
+                    onChange={value => refetchCategories({ type: value as CATEGORY_TYPE })}
+                  />
+                )}
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <CategoryFormStatus form={form} statuses={CATEGORY_STATUSES} />
-                <CategoryFormCategory form={form} categories={categories} />
+                <CategoryFormStatus form={form} isEditMode={isEditMode} statuses={CATEGORY_STATUSES} />
+                <CategoryFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
               </div>
             </div>
           </div>
         </form>
       </Form>
+      <ModalLoading visible={isFetching} />
     </div>
   );
 };
