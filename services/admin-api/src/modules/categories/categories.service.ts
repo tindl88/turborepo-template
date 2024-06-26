@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -78,7 +78,7 @@ export class CategoriesService {
   }
 
   async find(filterDto: FilterCategoryDto) {
-    const { q, order, status, sort, type } = filterDto;
+    const { q, order, status, sort, type, excludeId } = filterDto;
 
     const queryBuilder = this.categoryRepository.createQueryBuilder('category');
 
@@ -89,6 +89,9 @@ export class CategoriesService {
     if (status) queryBuilder.andWhere('category.status in (:...status)', { status });
     if (q) {
       queryBuilder.andWhere('LOWER(category.name) LIKE LOWER(:name)', { name: `%${q}%` });
+    }
+    if (excludeId) {
+      queryBuilder.andWhere('category.id != :id', { id: excludeId });
     }
     if (type) {
       queryBuilder.andWhere('category.type = :type', { type });
@@ -137,15 +140,22 @@ export class CategoriesService {
     if (updateCategoryDto.parentId && !parent) {
       throw new NotFoundException('Parent category does not exist.');
     }
-    const categoryData = await this.categoryRepository.findOneBy({ id: id });
 
-    if (!categoryData) {
+    const category = await this.categoryRepository.findOneBy({ id: id });
+
+    if (!category) {
       throw new NotFoundException('Category not found');
     }
 
-    Object.assign(categoryData, updateCategoryDto);
+    if (updateCategoryDto.type && updateCategoryDto.type !== category.type) {
+      throw new BadRequestException('Category Type change is not allowed');
+    }
 
-    const categoryResponse = await this.categoryRepository.save(categoryData);
+    category.parent = parent;
+
+    Object.assign(category, updateCategoryDto);
+
+    const categoryResponse = await this.categoryRepository.save(category);
 
     const categoryUpdatedEvent = new CategoryUpdatedEvent();
 

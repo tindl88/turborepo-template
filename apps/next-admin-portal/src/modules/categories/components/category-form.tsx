@@ -10,7 +10,7 @@ import { useRouter } from '@/navigation';
 
 import { CategoryEntity, CategoryFormData } from '../interfaces/categories.interface';
 
-import { CATEGORY_STATUS, CATEGORY_STATUSES, CATEGORY_TYPE, CATEGORY_TYPES } from '../constants/categories.constant';
+import { CATEGORY_STATUS, CATEGORY_STATUSES, CATEGORY_TYPE } from '../constants/categories.constant';
 
 import FormToolbar from '@/components/common/form-toolbar';
 
@@ -20,7 +20,6 @@ import { categoryFormValidator } from '../validators/category-form.validator';
 import CategoryFormCategory from './category-form-category';
 import CategoryFormFields from './category-form-fields';
 import CategoryFormStatus from './category-form-status';
-import CategoryFormType from './category-form-type';
 
 type CategoryFormProps = {
   categories: CategoryEntity[];
@@ -38,7 +37,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ data, categories }) => {
     name: data?.name ?? '',
     slug: data?.slug ?? '',
     type: data?.type ?? CATEGORY_TYPE.POST,
-    categoryId: data?.category?.id ?? ''
+    parentId: data?.category?.id ?? ''
   };
 
   const form = useForm<CategoryFormData>({ resolver: zodResolver(categoryFormValidator), defaultValues });
@@ -73,7 +72,6 @@ const CategoryForm: FC<CategoryFormProps> = ({ data, categories }) => {
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
                 <CategoryFormFields form={form} />
-                <CategoryFormType form={form} types={CATEGORY_TYPES} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">

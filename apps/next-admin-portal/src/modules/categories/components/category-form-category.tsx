@@ -19,32 +19,35 @@ export default function CategoryFormCategory({ form, categories }: CategoryFormC
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Category</CardTitle>
+        <CardTitle>{t('category_parent')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid gap-3">
           <FormField
             control={form.control}
-            name="categoryId"
-            render={({ field, fieldState: { error } }) => (
-              <FormItem>
-                <FormControl>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger aria-label="Select category">
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map(category => (
-                        <SelectItem key={category.id} value={category.id}>
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                {error?.message && <FormMessage message={t(error.message)} />}
-              </FormItem>
-            )}
+            name="parentId"
+            render={({ field, fieldState: { error } }) => {
+              return (
+                <FormItem>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={value => field.onChange(value === 'root' ? '' : value)}>
+                      <SelectTrigger aria-label="Select category">
+                        <SelectValue placeholder="Select category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="root">Root</SelectItem>
+                        {categories.map(category => (
+                          <SelectItem key={category.id} value={category.id}>
+                            {category.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  {error?.message && <FormMessage message={t(error.message)} />}
+                </FormItem>
+              );
+            }}
           />
         </div>
       </CardContent>

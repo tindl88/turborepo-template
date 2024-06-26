@@ -22,7 +22,7 @@ export type CategoryFormData = {
   slug: string;
   type: CATEGORY_TYPE;
   status: CATEGORY_STATUS;
-  categoryId: string;
+  parentId: string;
 };
 
 export type CategoriesResponse = ResponseFormat<CategoryEntity[]>;
@@ -31,4 +31,5 @@ export type CategoryResponse = ResponseFormat<CategoryEntity>;
 export type CategoryFilter = BaseFilter & {
   parentId?: string | null;
   type?: CATEGORY_TYPE;
+  excludeId?: string;
 };

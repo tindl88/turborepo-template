@@ -17,17 +17,6 @@ export default function CategoryEditPage(_pageProps: PageBaseProps) {
 
   useCategoryToast();
 
-  const { data: categories, isFetched: isCategoriesFetched } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const categoriesResp = await CategoryApi.list({});
-
-      return categoriesResp.data.data;
-    },
-    gcTime: 0,
-    staleTime: 0
-  });
-
   const { data: category, isFetched: isCategoryFetched } = useQuery({
     queryKey: ['category', params.id],
     queryFn: async () => {
@@ -35,6 +24,18 @@ export default function CategoryEditPage(_pageProps: PageBaseProps) {
 
       return categoryResp.data.data;
     },
+    gcTime: 0,
+    staleTime: 0
+  });
+
+  const { data: categories, isFetched: isCategoriesFetched } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
+      const categoriesResp = await CategoryApi.list({ type: category?.type, excludeId: category?.id });
+
+      return categoriesResp.data.data;
+    },
+    enabled: !!category,
     gcTime: 0,
     staleTime: 0
   });

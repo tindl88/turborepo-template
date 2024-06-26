@@ -146,6 +146,7 @@
   "category_status": "Status",
   "category_title": "Name",
   "category_type": "Type",
+  "category_parent": "Parent category",
   "category_actions": "Actions",
   "category_records": "category records",
   "category_delete": "Delete",
