@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { ds } from '~react-native-design-system';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import { ProfileAction } from '../interfaces/profile.interface';
 
 import View from '@/components/core-ui/view';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { createStyle } from '@/utils/stylesheet.util';
 
 import ProfileActionItem from './profile-action-item';
 

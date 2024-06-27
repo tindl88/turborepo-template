@@ -3,10 +3,9 @@ import { Pressable, View, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '~react-native-design-system';
 import { dynamicStyles } from '~react-native-design-system/utils/common-style.util';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { createStyle } from '@/utils/stylesheet.util';
 
 interface IContextProps {
   active: string;

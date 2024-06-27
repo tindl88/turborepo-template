@@ -2,10 +2,9 @@ import React, { createContext, useContext, useState } from 'react';
 import { Pressable, StyleProp, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ds } from '~react-native-design-system';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { createStyle } from '@/utils/stylesheet.util';
 
 import View from './view';
 
