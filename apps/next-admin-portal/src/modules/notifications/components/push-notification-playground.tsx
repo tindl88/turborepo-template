@@ -4,12 +4,19 @@ import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { Button } from '~ui/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
-import { Input } from '~ui/components/ui/input';
-import { Loading } from '~ui/components/ui/loading';
-import { Textarea } from '~ui/components/ui/textarea';
-import { useToast } from '~ui/components/ui/use-toast';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '~react-web-ui-shadcn/components/ui/form';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import { Textarea } from '~react-web-ui-shadcn/components/ui/textarea';
+import { useToast } from '~react-web-ui-shadcn/components/ui/use-toast';
 
 import { SendNotificationDto } from '../interfaces/notifications.interface';
 

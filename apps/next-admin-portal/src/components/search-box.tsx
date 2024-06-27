@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { SearchIcon } from 'lucide-react';
-import { Button } from '~ui/components/ui/button';
-import { Input } from '~ui/components/ui/input';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

@@ -1,5 +1,11 @@
 import { FC } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '~react-web-ui-shadcn/components/ui/select';
 
 interface IDataTableItemsPerPageProps {
   limit?: number;

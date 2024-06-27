@@ -1,0 +1,54 @@
+{
+  "name": "@repo/shared-web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Common utilities, hooks",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "test:watch": "vitest",
+    "test": "vitest --watch=false",
+    "test:cov": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:uicov": "vitest --ui --coverage.enabled"
+  },
+  "exports": {
+    "./hooks/*": "./src/hooks/*.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./components/*": [
+      "./src/components/*.tsx",
+      "./src/components/*.ts"
+    ]
+  },
+  "devDependencies": {
+    "@repo/config-tailwindcss": "*",
+    "@repo/config-typescript": "*",
+    "@repo/eslint-config": "*",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.3",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "msw": "^2.3.0",
+    "postcss": "^8.4.38",
+    "sass": "^1.77.2",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "slugify": "^1.6.6"
+  }
+}

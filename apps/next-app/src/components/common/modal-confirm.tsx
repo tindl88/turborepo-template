@@ -8,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle
-} from '~ui/components/ui/alert-dialog';
+} from '~react-web-ui-shadcn/components/ui/alert-dialog';
 
 type ModalConfirmProps = {
   visible: boolean;

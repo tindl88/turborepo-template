@@ -17,9 +17,9 @@ import {
   useReactTable,
   VisibilityState
 } from '@tanstack/react-table';
-import { Badge } from '~ui/components/ui/badge';
-import { Checkbox } from '~ui/components/ui/checkbox';
-import Pagination from '~ui/components/ui/pagination-custom';
+import { Badge } from '~react-web-ui-shadcn/components/ui/badge';
+import { Checkbox } from '~react-web-ui-shadcn/components/ui/checkbox';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
 
 import { useRouter } from '@/navigation';
 
@@ -36,7 +36,8 @@ import ModalConfirm from '@/components/modals/modal-confirm';
 import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
-import { repeatStr } from '@/utils/string.util';
+
+import { repeatStr } from '~shared-universal/utils/string.util';
 
 import { useCategoriesState } from '../states/categories.state';
 

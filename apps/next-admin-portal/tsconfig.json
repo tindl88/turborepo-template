@@ -6,9 +6,9 @@
       "@/*": ["./src/*"],
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
-      "~ui/*": ["../../packages/ui/src/*"],
-      "~shared-client/*": ["../../packages/shared-client/src/*"],
-      "~shared-validators/*": ["../../packages/shared-validators/src/*"]
+      "~react-web-ui-shadcn/*": ["../../packages/react-web-ui-shadcn/src/*"],
+      "~shared-web/*": ["../../packages/shared-web/src/*"],
+      "~shared-universal/*": ["../../packages/shared-universal/src/*"]
     }
   },
   "include": [
@@ -18,9 +18,9 @@
     "types",
     "__tests__",
     "__mocks__",
-    "../../packages/ui/src",
-    "../../packages/shared-client/src",
-    "../../packages/shared-validators/src"
+    "../../packages/react-web-ui-shadcn/src",
+    "../../packages/shared-web/src",
+    "../../packages/shared-universal/src"
   ],
   "exclude": ["node_modules"]
 }

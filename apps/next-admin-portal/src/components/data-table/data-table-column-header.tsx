@@ -3,14 +3,14 @@ import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { ArrowDownIcon, ArrowUpIcon, CaretSortIcon, EyeNoneIcon } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '~ui/components/ui/dropdown-menu';
+} from '~react-web-ui-shadcn/components/ui/dropdown-menu';
 
 import { SORT_ORDER } from '@/constants/sort.constant';
 

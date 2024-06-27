@@ -1,6 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { createStyle } from './stylesheet.util';
 
 export const dynamicStyles = createStyle({
   background: (color: string): ViewStyle => {

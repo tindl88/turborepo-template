@@ -3,10 +3,9 @@ import { Dimensions, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 import Carousel from 'react-native-reanimated-carousel';
 import { ds } from '~react-native-design-system';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import View from '@/components/core-ui/view';
-
-import { createStyle } from '@/utils/stylesheet.util';
 
 const WINDOW_SIZES = Dimensions.get('window');
 const banners = [

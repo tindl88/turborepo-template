@@ -5,8 +5,8 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogTitle
-} from '~ui/components/ui/alert-dialog';
-import { Button } from '~ui/components/ui/button';
+} from '~react-web-ui-shadcn/components/ui/alert-dialog';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import ErrorIcon from '../icons/error';
 

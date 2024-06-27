@@ -1,12 +1,11 @@
-import { objectToQueryString } from '~shared-client/utils/querystring.util';
-
 import { AuditLogFilter, AuditLogsResponse } from '../interfaces/audit-logs.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import { removeUndefined } from '@/utils/object.util';
-
 import axiosClient from '@/http/http-request';
+
+import { removeUndefined } from '~shared-universal/utils/object.util';
+import { objectToQueryString } from '~shared-universal/utils/string.util';
 
 export const list = (filter: AuditLogFilter) => {
   const url = API_ENDPOINTS.AUDIT_LOGS + '?' + objectToQueryString(removeUndefined(filter));

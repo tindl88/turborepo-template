@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { UseFormReturn } from 'react-hook-form';
 import { Editor } from '@ckeditor/ckeditor5-core';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
-import { Input } from '~ui/components/ui/input';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~react-web-ui-shadcn/components/ui/form';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { PostFormData } from '../interfaces/posts.interface';
@@ -19,7 +19,7 @@ import {
   VALID_VIDEO_MIME_TYPES
 } from '@/modules/files/constants/files.constant';
 
-import { toSlug } from '@/utils/string.util';
+import { toSlug } from '~shared-universal/utils/string.util';
 
 const CKEditor = dynamic(() => import('@/components/editors/ck-editor'), {
   ssr: false

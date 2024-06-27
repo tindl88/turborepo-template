@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { User } from 'next-auth';
 import classNames from 'classnames';
 import { LogOutIcon, UserIcon } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '~ui/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '~react-web-ui-shadcn/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '~ui/components/ui/dropdown-menu';
+} from '~react-web-ui-shadcn/components/ui/dropdown-menu';
 
 import { useRouter } from '@/navigation';
 
@@ -19,7 +19,7 @@ import { ComponentBaseProps } from '@/interfaces/component.interface';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
-import { getShortName } from '@/utils/string.util';
+import { getShortName } from '~shared-universal/utils/string.util';
 
 type HeaderAvatarProps = {
   user?: User;

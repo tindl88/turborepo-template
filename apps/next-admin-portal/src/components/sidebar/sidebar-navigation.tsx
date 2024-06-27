@@ -14,8 +14,8 @@ import {
   SettingsIcon,
   UsersIcon
 } from 'lucide-react';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~ui/components/ui/collapsible';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '~ui/components/ui/hover-card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~react-web-ui-shadcn/components/ui/collapsible';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '~react-web-ui-shadcn/components/ui/hover-card';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

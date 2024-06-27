@@ -1,0 +1,11 @@
+{
+  "extends": "@repo/config-typescript/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~shared-web/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "__tests__"],
+  "exclude": ["node_modules"]
+}

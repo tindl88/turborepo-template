@@ -64,15 +64,7 @@ module.exports = {
       {
         groups: [
           // `react` first, `next` second, then packages starting with a character
-          [
-            '^react$',
-            '^[a-z]',
-            '^@',
-            '^@/libs',
-            '^~react-native-ui',
-            '^~react-native-design-system',
-            '^~shared-client'
-          ],
+          ['^react$', '^[a-z]', '^@', '^@/libs', '^~react-native-ui', '^~react-native-design-system', '^~shared-web'],
           ['^@/navigation'],
           ['^@/interfaces', '^\\.\\./interfaces'],
           ['^@/constants', '^\\.\\./constants'],

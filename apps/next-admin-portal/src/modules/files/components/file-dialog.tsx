@@ -1,11 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '~ui/components/ui/button';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '~ui/components/ui/dialog';
-import { Loading } from '~ui/components/ui/loading';
-import Pagination from '~ui/components/ui/pagination-custom';
-import { useToast } from '~ui/components/ui/use-toast';
-import useDeepCompareEffect from '~shared-client/hooks/use-deep-compare-effect';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '~react-web-ui-shadcn/components/ui/dialog';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
+import { useToast } from '~react-web-ui-shadcn/components/ui/use-toast';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { FileEntity, FileFilter } from '../interfaces/files.interface';
@@ -22,6 +27,8 @@ import { useFileDialogState } from '../hooks/use-file-dialog-state';
 import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
 import NoData from '@/components/no-data';
 import Uploader from '@/components/uploader';
+
+import useDeepCompareEffect from '~shared-universal/hooks/use-deep-compare-effect';
 
 import FileApi from '../api/files.api';
 import { useFilesState } from '../states/files.state';

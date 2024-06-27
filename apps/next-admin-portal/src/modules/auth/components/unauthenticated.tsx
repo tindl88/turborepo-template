@@ -3,7 +3,7 @@
 import React, { FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

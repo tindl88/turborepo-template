@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { debounce } from 'lodash-es';
 import { ChevronUpIcon } from 'lucide-react';
-import useScrollTo from '~shared-client/hooks/use-scroll-to';
+import useScrollTo from '~shared-web/hooks/use-scroll-to';
 
 type ScrollToTopProps = {
   offset?: number;

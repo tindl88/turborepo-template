@@ -1,13 +1,13 @@
 import { EntityId } from '@reduxjs/toolkit';
-import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
 import { PostFilter, PostFormData, PostResponse, PostsResponse } from '../interfaces/posts.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import { removeUndefined } from '@/utils/object.util';
-
 import axiosClient from '@/http/http-request';
+
+import { removeUndefined } from '~shared-universal/utils/object.util';
+import { objectToQueryString } from '~shared-universal/utils/string.util';
 
 export const list = (filter: PostFilter) => {
   const url = API_ENDPOINTS.POSTS + '?' + objectToQueryString(removeUndefined(filter));

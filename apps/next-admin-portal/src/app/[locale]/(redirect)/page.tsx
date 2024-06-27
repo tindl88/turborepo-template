@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { Loading } from '~ui/components/ui/loading';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
 
 import { useRouter } from '@/navigation';
 

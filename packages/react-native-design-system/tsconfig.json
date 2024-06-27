@@ -4,9 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "~react-native-design-system": ["./src/index.ts"],
-      "~react-native-design-system/*": ["./src/*"]
+      "~react-native-design-system/*": ["./src/*"],
+      "~shared-universal/*": ["../shared-universal/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../shared-universal/src"],
   "exclude": ["node_modules"]
 }

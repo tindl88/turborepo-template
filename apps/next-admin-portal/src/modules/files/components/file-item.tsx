@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Checkbox } from '~ui/components/ui/checkbox';
+import { Checkbox } from '~react-web-ui-shadcn/components/ui/checkbox';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { FileEntity } from '../interfaces/files.interface';
 
 import { FileDialogType } from '../constants/files.constant';
 
-import { convertBytes } from '@/utils/string.util';
+import { convertBytes } from '~shared-universal/utils/string.util';
 
 import FileIcon from './file-icon';
 import FileThumbnail from './file-thumbnail';

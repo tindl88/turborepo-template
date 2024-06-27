@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, FC } from 'react';
 import classNames from 'classnames';
-import { Input } from '~ui/components/ui/input';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

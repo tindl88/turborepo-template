@@ -1,11 +1,11 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '~ui/components/ui/dropdown-menu';
+} from '~react-web-ui-shadcn/components/ui/dropdown-menu';
 
 type DataTableRowActionProps<T> = {
   onAction?: (action: T) => void;

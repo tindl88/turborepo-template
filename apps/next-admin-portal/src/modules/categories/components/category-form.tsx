@@ -3,8 +3,8 @@ import { useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Card, CardContent } from '~ui/components/ui/card';
-import { Form } from '~ui/components/ui/form';
+import { Card, CardContent } from '~react-web-ui-shadcn/components/ui/card';
+import { Form } from '~react-web-ui-shadcn/components/ui/form';
 
 import { useRouter } from '@/navigation';
 

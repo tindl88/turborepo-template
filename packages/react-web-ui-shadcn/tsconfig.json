@@ -1,0 +1,11 @@
+{
+  "extends": "@repo/config-typescript/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~react-web-ui-shadcn/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

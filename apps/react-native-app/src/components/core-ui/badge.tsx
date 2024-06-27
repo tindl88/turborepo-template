@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-
-import { createStyle } from '@/utils/stylesheet.util';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import Text from './text';
 import { ICoreUIBaseProps } from './types';

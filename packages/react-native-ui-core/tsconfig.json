@@ -1,0 +1,13 @@
+{
+  "extends": "@repo/config-typescript/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~react-native-ui-core/*": ["./src/*"],
+      "~react-native-design-system": ["../../packages/react-native-design-system/src/index.ts"],
+      "~react-native-design-system/*": ["../../packages/react-native-design-system/src/*"]
+    }
+  },
+  "include": ["src", "../../packages/react-native-design-system/src"],
+  "exclude": ["node_modules"]
+}

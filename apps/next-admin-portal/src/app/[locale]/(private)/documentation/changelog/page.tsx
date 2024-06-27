@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { Badge } from '~ui/components/ui/badge';
-import { Separator } from '~ui/components/ui/separator';
+import { Badge } from '~react-web-ui-shadcn/components/ui/badge';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 

@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import Chart, { ChartDataset } from 'chart.js/auto';
 import classNames from 'classnames';
-import { Card, CardContent, CardHeader, CardTitle } from '~ui/components/ui/card';
-import { Separator } from '~ui/components/ui/separator';
-import { Switch } from '~ui/components/ui/switch';
+import { Card, CardContent, CardHeader, CardTitle } from '~react-web-ui-shadcn/components/ui/card';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
+import { Switch } from '~react-web-ui-shadcn/components/ui/switch';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

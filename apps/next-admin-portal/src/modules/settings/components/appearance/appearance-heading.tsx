@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { Separator } from '~ui/components/ui/separator';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 const AppearanceHeading = () => {
   const t = useTranslations();

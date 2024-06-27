@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
-import { buttonVariants } from '~ui/components/ui/button';
+import { buttonVariants } from '~react-web-ui-shadcn/components/ui/button';
 
 import { Link } from '@/navigation';
 

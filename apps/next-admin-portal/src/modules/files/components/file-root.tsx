@@ -4,10 +4,10 @@ import React, { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
-import { Loading } from '~ui/components/ui/loading';
-import Pagination from '~ui/components/ui/pagination-custom';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '~ui/components/ui/resizable';
-import { useToast } from '~ui/components/ui/use-toast';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '~react-web-ui-shadcn/components/ui/resizable';
+import { useToast } from '~react-web-ui-shadcn/components/ui/use-toast';
 
 import { useRouter } from '@/navigation';
 

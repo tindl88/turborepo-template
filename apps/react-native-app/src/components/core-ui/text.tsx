@@ -2,10 +2,9 @@ import React, { forwardRef, ReactNode } from 'react';
 import { StyleProp, Text as RNText, TextStyle } from 'react-native';
 import { FontStyle, FontWeight } from '~react-native-design-system/interfaces/font.interface';
 import { fontMaker, FontMakerOptions } from '~react-native-design-system/utils/font.util';
+import { createStyle } from '~react-native-design-system/utils/stylesheet.util';
 
 import { useThemeState } from '@/modules/theme/states/theme.state';
-
-import { createStyle } from '@/utils/stylesheet.util';
 
 import { ICoreUIBaseProps } from './types';
 

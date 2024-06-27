@@ -1,0 +1,37 @@
+{
+  "name": "@repo/react-native-ui-core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "React Native Core UI",
+  "license": "MIT",
+  "scripts": {},
+  "exports": {
+    "./lib/*": "./src/lib/*.ts",
+    "./components/*": [
+      "./src/components/*.tsx",
+      "./src/components/*.ts"
+    ]
+  },
+  "devDependencies": {
+    "@repo/config-tailwindcss": "*",
+    "@repo/config-typescript": "*",
+    "@repo/eslint-config": "*",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.3",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@repo/shared-universal": "*",
+    "@repo/react-native-design-system": "*"
+  }
+}
