@@ -10,7 +10,8 @@
   },
   "exports": {
     "./utils/*": "./src/utils/*.ts",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./hooks/*": "./src/hooks/*.ts",
+    "./validators/*": "./src/validators/*.ts"
   },
   "devDependencies": {
     "@repo/config-typescript": "*",

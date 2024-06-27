@@ -12,8 +12,7 @@ export default defineConfig({
       '@mocks': path.resolve(__dirname, './__mocks__'),
       '~ui': path.resolve(__dirname, '../../packages/ui/src'),
       '~shared-client': path.resolve(__dirname, '../../packages/shared-client/src'),
-      '~shared-universal': path.resolve(__dirname, '../../packages/shared-universal/src'),
-      '~shared-validators': path.resolve(__dirname, '../../packages/shared-validators/src')
+      '~shared-universal': path.resolve(__dirname, '../../packages/shared-universal/src')
     }
   },
   test: {

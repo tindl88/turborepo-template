@@ -19,7 +19,6 @@ config.watchFolders = [workspaceRoot];
 config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
   path.resolve(projectRoot, 'node_modules'),
-  path.resolve(projectRoot, 'node_modules/@repo/shared-validators'),
   path.resolve(projectRoot, 'node_modules/@repo/shared-universal'),
   path.resolve(projectRoot, 'node_modules/@repo/react-native-design-system')
 ];

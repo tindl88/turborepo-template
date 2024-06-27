@@ -7,7 +7,6 @@
       "@/*": ["src/*"],
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
-      "~shared-validators/*": ["../../packages/shared-validators/src/*"],
       "~shared-universal/*": ["../../packages/shared-universal/src/*"],
       "~react-native-design-system": ["../../packages/react-native-design-system/src/index.ts"],
       "~react-native-design-system/*": ["../../packages/react-native-design-system/src/*"]
@@ -19,7 +18,6 @@
     "types",
     "__tests__",
     "__mocks__",
-    "../../packages/shared-validators/src",
     "../../packages/shared-universal/src",
     "../../packages/react-native-design-system/src"
   ],
