@@ -9,7 +9,8 @@
       "@mocks/*": ["./__mocks__/*"],
       "~shared-universal/*": ["../../packages/shared-universal/src/*"],
       "~react-native-design-system": ["../../packages/react-native-design-system/src/index.ts"],
-      "~react-native-design-system/*": ["../../packages/react-native-design-system/src/*"]
+      "~react-native-design-system/*": ["../../packages/react-native-design-system/src/*"],
+      "~react-native-ui-core/*": ["../../packages/react-native-ui-core/src/*"]
     }
   },
   "include": [
@@ -19,7 +20,8 @@
     "__tests__",
     "__mocks__",
     "../../packages/shared-universal/src",
-    "../../packages/react-native-design-system/src"
+    "../../packages/react-native-design-system/src",
+    "../../packages/react-native-ui-core/src"
   ],
   "exclude": ["**/Pods/**"]
 }

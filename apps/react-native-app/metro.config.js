@@ -20,7 +20,8 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
   path.resolve(projectRoot, 'node_modules'),
   path.resolve(projectRoot, 'node_modules/@repo/shared-universal'),
-  path.resolve(projectRoot, 'node_modules/@repo/react-native-design-system')
+  path.resolve(projectRoot, 'node_modules/@repo/react-native-design-system'),
+  path.resolve(projectRoot, 'node_modules/@repo/react-native-ui-core')
 ];
 
 // config.resolver.disableHierarchicalLookup = true;

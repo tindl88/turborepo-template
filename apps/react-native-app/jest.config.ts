@@ -12,7 +12,8 @@ const jestConfig: JestConfigWithTsJest = {
     '^@tests/(.*)$': '<rootDir>/__tests__/$1',
     '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
     '^~shared-universal/(.*)$': '<rootDir>/../../packages/shared-universal/$1',
-    '^~react-native-design-system/(.*)$': '<rootDir>/../../packages/react-native-design-system/$1'
+    '^~react-native-design-system/(.*)$': '<rootDir>/../../packages/react-native-design-system/$1',
+    '^~react-native-ui-core/(.*)$': '<rootDir>/../../packages/react-native-ui-core/$1'
   },
   testMatch: ['<rootDir>/src/**/*.(test|spec).{ts,tsx}', '<rootDir>/__tests__/**/*.(test|spec).{ts,tsx}'],
   collectCoverageFrom: ['<rootDir>/src/**/*.(t|j)s', '!<rootDir>/src/**/docs/*'],
