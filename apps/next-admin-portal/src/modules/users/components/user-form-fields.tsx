@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { UseFormReturn } from 'react-hook-form';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
-import { Input } from '~ui/components/ui/input';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~react-web-ui-shadcn/components/ui/form';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { UserFormData } from '../interfaces/users.interface';

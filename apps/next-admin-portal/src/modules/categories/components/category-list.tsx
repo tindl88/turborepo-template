@@ -17,9 +17,9 @@ import {
   useReactTable,
   VisibilityState
 } from '@tanstack/react-table';
-import { Badge } from '~ui/components/ui/badge';
-import { Checkbox } from '~ui/components/ui/checkbox';
-import Pagination from '~ui/components/ui/pagination-custom';
+import { Badge } from '~react-web-ui-shadcn/components/ui/badge';
+import { Checkbox } from '~react-web-ui-shadcn/components/ui/checkbox';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
 
 import { useRouter } from '@/navigation';
 

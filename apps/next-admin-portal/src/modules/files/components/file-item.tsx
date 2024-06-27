@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Checkbox } from '~ui/components/ui/checkbox';
+import { Checkbox } from '~react-web-ui-shadcn/components/ui/checkbox';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { FileEntity } from '../interfaces/files.interface';

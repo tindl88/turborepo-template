@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useToast } from '~ui/components/ui/use-toast';
+import { useToast } from '~react-web-ui-shadcn/components/ui/use-toast';
 
 import { useRouter } from '@/navigation';
 

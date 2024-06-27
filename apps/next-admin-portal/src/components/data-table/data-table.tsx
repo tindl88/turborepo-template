@@ -3,8 +3,15 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { ColumnDef, flexRender, Table as TTable } from '@tanstack/react-table';
-import { Loading } from '~ui/components/ui/loading';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~ui/components/ui/table';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '~react-web-ui-shadcn/components/ui/table';
 import { useSmoothDragToScroll } from '~shared-web/hooks/use-smooth-drag-to-scroll';
 
 import NoData from '../no-data';

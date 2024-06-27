@@ -4,14 +4,14 @@ import { useTranslations } from 'next-intl';
 import { ColumnsIcon } from 'lucide-react';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Table } from '@tanstack/react-table';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator
-} from '~ui/components/ui/dropdown-menu';
+} from '~react-web-ui-shadcn/components/ui/dropdown-menu';
 
 interface IDataTableViewOptionsProps<TData> {
   table: Table<TData>;

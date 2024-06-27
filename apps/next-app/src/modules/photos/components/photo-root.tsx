@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import Pagination from '~ui/components/ui/pagination-custom';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
 
 import { PhotoEntity } from '../interfaces/photos.interface';
 

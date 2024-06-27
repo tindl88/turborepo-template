@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
-import { Separator } from '~ui/components/ui/separator';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 import { Link } from '@/navigation';
 

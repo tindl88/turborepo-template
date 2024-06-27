@@ -97,7 +97,7 @@ module.exports = {
       {
         groups: [
           // `react` first, `next` second, then packages starting with a character
-          ['^react$', '^next', '^[a-z]', '^@', '^@/libs', '^~ui', '^~shared-web'],
+          ['^react$', '^next', '^[a-z]', '^@', '^@/libs', '^~react-web-ui-shadcn', '^~shared-web'],
           ['^@/navigation'],
           ['^@/interfaces', '^\\.\\./interfaces'],
           ['^@/constants', '^\\.\\./constants'],

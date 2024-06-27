@@ -5,8 +5,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { EyeIcon } from 'lucide-react';
 import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { Badge } from '~ui/components/ui/badge';
-import Pagination from '~ui/components/ui/pagination-custom';
+import { Badge } from '~react-web-ui-shadcn/components/ui/badge';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { AuditLogEntity } from '../interfaces/audit-logs.interface';

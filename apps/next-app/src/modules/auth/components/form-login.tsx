@@ -3,9 +3,16 @@
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '~ui/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/components/ui/form';
-import { Input } from '~ui/components/ui/input';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '~react-web-ui-shadcn/components/ui/form';
+import { Input } from '~react-web-ui-shadcn/components/ui/input';
 
 import { SignInDto } from '../interfaces/auth.interface';
 

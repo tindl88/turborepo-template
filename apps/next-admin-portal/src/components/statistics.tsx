@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { CheckCircleIcon, DollarSignIcon, ShoppingBagIcon } from 'lucide-react';
-import { Progress } from '~ui/components/ui/progress';
+import { Progress } from '~react-web-ui-shadcn/components/ui/progress';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

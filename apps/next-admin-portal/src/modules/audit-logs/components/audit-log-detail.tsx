@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader } from '~ui/components/ui/dialog';
-import { Loading } from '~ui/components/ui/loading';
-import { Separator } from '~ui/components/ui/separator';
+import { Dialog, DialogContent, DialogHeader } from '~react-web-ui-shadcn/components/ui/dialog';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 import ContentRenderer from '@/components/content-renderer';
 

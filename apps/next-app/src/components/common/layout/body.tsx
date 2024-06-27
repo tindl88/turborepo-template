@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
-import { Toaster } from '~ui/components/ui/toaster';
+import { Toaster } from '~react-web-ui-shadcn/components/ui/toaster';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

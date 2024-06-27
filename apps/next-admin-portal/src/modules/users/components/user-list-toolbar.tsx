@@ -1,7 +1,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Table } from '@tanstack/react-table';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import { useRouter } from '@/navigation';
 

@@ -1,9 +1,15 @@
 import { Fragment, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { UseFormReturn } from 'react-hook-form';
-import { Card, CardContent, CardHeader, CardTitle } from '~ui/components/ui/card';
-import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui/form';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
+import { Card, CardContent, CardHeader, CardTitle } from '~react-web-ui-shadcn/components/ui/card';
+import { FormControl, FormField, FormItem, FormMessage } from '~react-web-ui-shadcn/components/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '~react-web-ui-shadcn/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { PostFormData } from '../interfaces/posts.interface';

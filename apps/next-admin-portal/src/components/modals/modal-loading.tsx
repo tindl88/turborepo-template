@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { AlertDialog, AlertDialogContent } from '~ui/components/ui/alert-dialog';
-import { Loading } from '~ui/components/ui/loading';
+import { AlertDialog, AlertDialogContent } from '~react-web-ui-shadcn/components/ui/alert-dialog';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
 
 type ModalLoadingProps = {
   visible: boolean;

@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
-import { Badge } from '~ui/components/ui/badge';
-import { Button } from '~ui/components/ui/button';
+import { Badge } from '~react-web-ui-shadcn/components/ui/badge';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -13,9 +13,9 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator
-} from '~ui/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '~ui/components/ui/popover';
-import { Separator } from '~ui/components/ui/separator';
+} from '~react-web-ui-shadcn/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '~react-web-ui-shadcn/components/ui/popover';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 interface IDataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;

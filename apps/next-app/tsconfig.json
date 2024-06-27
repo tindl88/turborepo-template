@@ -6,7 +6,7 @@
       "@/*": ["./src/*"],
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
-      "~ui/*": ["../../packages/ui/src/*"],
+      "~react-web-ui-shadcn/*": ["../../packages/react-web-ui-shadcn/src/*"],
       "~shared-web/*": ["../../packages/shared-web/src/*"],
       "~shared-universal/*": ["../../packages/shared-universal/src/*"]
     }
@@ -18,7 +18,7 @@
     "types",
     "__tests__",
     "__mocks__",
-    "../../packages/ui/src",
+    "../../packages/react-web-ui-shadcn/src",
     "../../packages/shared-web/src",
     "../../packages/shared-universal/src"
   ],

@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 import { ListFilterIcon } from 'lucide-react';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger
-} from '~ui/components/ui/dropdown-menu';
+} from '~react-web-ui-shadcn/components/ui/dropdown-menu';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

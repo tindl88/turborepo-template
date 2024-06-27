@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

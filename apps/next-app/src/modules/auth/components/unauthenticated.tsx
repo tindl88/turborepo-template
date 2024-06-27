@@ -2,7 +2,7 @@
 
 import React, { FC } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import { useRouter } from '@/navigation';
 

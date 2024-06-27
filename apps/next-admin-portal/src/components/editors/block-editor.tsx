@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames';
 import { useCreateBlockNote } from '@blocknote/react';
 import { BlockNoteView } from '@blocknote/shadcn';
-import { Textarea } from '~ui/components/ui/textarea';
+import { Textarea } from '~react-web-ui-shadcn/components/ui/textarea';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 

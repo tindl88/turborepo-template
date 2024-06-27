@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import classNames from 'classnames';
-import { Separator } from '~ui/components/ui/separator';
+import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 

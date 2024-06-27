@@ -16,7 +16,7 @@ import { getQueryClient } from '@/utils/query-client.util';
 import ErrorBoundary from '../error-boundary';
 
 import '@/libs/svg-icons/dist/svg-icons.scss';
-import '~ui/globals.css';
+import '~react-web-ui-shadcn/globals.css';
 
 const queryClient = getQueryClient();
 const asyncStoragePersister = createAsyncStoragePersister({ storage: AsyncStorage });

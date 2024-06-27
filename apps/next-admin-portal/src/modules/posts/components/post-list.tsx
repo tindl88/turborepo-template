@@ -14,8 +14,8 @@ import {
   useReactTable,
   VisibilityState
 } from '@tanstack/react-table';
-import { Checkbox } from '~ui/components/ui/checkbox';
-import Pagination from '~ui/components/ui/pagination-custom';
+import { Checkbox } from '~react-web-ui-shadcn/components/ui/checkbox';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
 
 import { useRouter } from '@/navigation';
 

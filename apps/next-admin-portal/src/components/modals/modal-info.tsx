@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle
-} from '~ui/components/ui/dialog';
+} from '~react-web-ui-shadcn/components/ui/dialog';
 
 type ModalInfoProps = {
   visible: boolean;

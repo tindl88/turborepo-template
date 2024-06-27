@@ -1,10 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '~ui/components/ui/button';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '~ui/components/ui/dialog';
-import { Loading } from '~ui/components/ui/loading';
-import Pagination from '~ui/components/ui/pagination-custom';
-import { useToast } from '~ui/components/ui/use-toast';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '~react-web-ui-shadcn/components/ui/dialog';
+import { Loading } from '~react-web-ui-shadcn/components/ui/loading';
+import Pagination from '~react-web-ui-shadcn/components/ui/pagination-custom';
+import { useToast } from '~react-web-ui-shadcn/components/ui/use-toast';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { FileEntity, FileFilter } from '../interfaces/files.interface';

@@ -8,7 +8,7 @@ import { HttpStatusCode } from 'axios';
 import { merge } from 'lodash-es';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '~ui/components/ui/button';
+import { Button } from '~react-web-ui-shadcn/components/ui/button';
 import {
   Form,
   FormControl,
@@ -17,9 +17,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '~ui/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '~ui/components/ui/radio-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
+} from '~react-web-ui-shadcn/components/ui/form';
+import { RadioGroup, RadioGroupItem } from '~react-web-ui-shadcn/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '~react-web-ui-shadcn/components/ui/select';
 
 import { useRouter } from '@/navigation';
 
