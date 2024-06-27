@@ -19,7 +19,7 @@ import { getQueryClient } from '@/utils/query-client.util';
 
 import { startAppListening, store } from '@/stores/redux/store';
 
-import ErrorBoundary from '../error-boundary';
+import ErrorBoundary from '../errors/error-boundary';
 
 import '@/libs/svg-icons/dist/svg-icons.scss';
 import '~react-web-ui-shadcn/globals.css';

@@ -4,12 +4,12 @@ import classNames from 'classnames';
 
 import { LayoutProps } from '@/interfaces/layout.interface';
 
-import Footer from '@/components/common/footer';
-import Body from '@/components/common/layout/body';
-import Head from '@/components/common/layout/head';
-import Html from '@/components/common/layout/html';
-import Root from '@/components/common/layout/root';
-import TopBar from '@/components/common/topbar';
+import Footer from '@/components/footers/footer';
+import TopBar from '@/components/headers/topbar';
+import Body from '@/components/layout/body';
+import Head from '@/components/layout/head';
+import Html from '@/components/layout/html';
+import Root from '@/components/layout/root';
 
 import { authOptions } from '@/modules/auth/constants/auth.constant';
 
