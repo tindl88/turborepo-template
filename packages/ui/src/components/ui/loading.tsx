@@ -28,7 +28,7 @@ const loadingVariants = cva('origin-center rounded-full animate-spin', {
   defaultVariants: {
     variant: 'default',
     size: 'md',
-    thickness: 3
+    thickness: 4
   }
 });
 

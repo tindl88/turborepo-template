@@ -16,12 +16,15 @@ import { ProductCreatedEvent } from './events/product-created.event';
 import { ProductDeletedEvent } from './events/product-deleted.event';
 import { ProductUpdatedEvent } from './events/product-updated.event';
 
+import { CategoriesService } from '../categories/categories.service';
+
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
-    private readonly eventEmitter: EventEmitter2
+    private readonly eventEmitter: EventEmitter2,
+    private readonly categoriesService: CategoriesService
   ) {}
 
   async create(createProductDto: CreateProductDto) {
@@ -47,6 +50,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
 
@@ -75,6 +79,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
     queryBuilder.where('product.id = :id', { id });
@@ -94,6 +99,7 @@ export class ProductsService {
 
     queryBuilder.select(PRODUCT_GET_FIELDS);
     queryBuilder.leftJoin('product.creator', 'user');
+    queryBuilder.leftJoin('product.category', 'category');
     queryBuilder.leftJoin('product.productFiles', 'productFile');
     queryBuilder.leftJoin('productFile.image', 'image');
     queryBuilder.where('product.slug = :slug', { slug });
@@ -114,6 +120,8 @@ export class ProductsService {
     if (!product) {
       throw new NotFoundException('Product not found');
     }
+
+    product.category = await this.categoriesService.findOne(updateProductDto.categoryId);
 
     const response = await this.productRepository.save(product);
 

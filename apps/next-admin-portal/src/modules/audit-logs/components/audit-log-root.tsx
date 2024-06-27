@@ -15,10 +15,10 @@ import { AUDIT_LOG_STATUSES } from '../constants/audit-logs.constant';
 
 import { useAuditLogs } from '../hooks/use-audit-logs';
 
-import { DataTable } from '@/components/common/data-table/data-table';
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import DataTableRowStatus from '@/components/common/data-table/data-table-row-status';
-import PaginationInfo from '@/components/common/pagination-info';
+import { DataTable } from '@/components/data-table/data-table';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import DataTableRowStatus from '@/components/data-table/data-table-row-status';
+import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
 
@@ -41,9 +41,11 @@ export const AuditLogRoot: FC<AuditLogRootProps> = ({ className }) => {
         header: () => <strong>{t('audit_log_table_name')}</strong>,
         cell: ({ row }) => {
           return (
-            <Badge className="text-base" variant="secondary">
-              {row.getValue('tableName')}
-            </Badge>
+            <div className="flex items-center justify-center">
+              <Badge className="text-xs" variant="secondary">
+                {row.original.tableName.toUpperCase()}
+              </Badge>
+            </div>
           );
         }
       },

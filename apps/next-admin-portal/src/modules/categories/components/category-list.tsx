@@ -2,10 +2,13 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import classNames from 'classnames';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import {
   ColumnDef,
   ColumnFiltersState,
+  ExpandedState,
   getCoreRowModel,
+  getExpandedRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
   getSortedRowModel,
@@ -14,6 +17,7 @@ import {
   useReactTable,
   VisibilityState
 } from '@tanstack/react-table';
+import { Badge } from '~ui/components/ui/badge';
 import { Checkbox } from '~ui/components/ui/checkbox';
 import Pagination from '~ui/components/ui/pagination-custom';
 
@@ -24,14 +28,15 @@ import { CategoryEntity, CategoryFilter } from '../interfaces/categories.interfa
 
 import { CATEGORY_ACTION, CATEGORY_DEFAULT_FILTER, CATEGORY_STATUSES } from '../constants/categories.constant';
 
-import { DataTable } from '@/components/common/data-table/data-table';
-import { DataTableColumnHeader } from '@/components/common/data-table/data-table-column-header';
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import DataTableRowAction from '@/components/common/data-table/data-table-row-action';
-import ModalConfirmDialog from '@/components/common/modal-confirm';
-import PaginationInfo from '@/components/common/pagination-info';
+import { DataTable } from '@/components/data-table/data-table';
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import DataTableRowAction from '@/components/data-table/data-table-row-action';
+import ModalConfirm from '@/components/modals/modal-confirm';
+import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
+import { repeatStr } from '@/utils/string.util';
 
 import { useCategoriesState } from '../states/categories.state';
 
@@ -48,6 +53,7 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [expanded, setExpanded] = useState<ExpandedState>({});
 
   const { items, filter, meta, fetchedAt, filteredAt, deletedAt, isFetching, selected, selectSingle, selectAll } =
     categoriesState;
@@ -99,10 +105,34 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
         cell: ({ row }) => {
           return (
             <div className="flex items-center space-x-1">
-              <button className="text-left hover:underline" onClick={() => handleEdit(row.original.id)}>
-                {row.getValue('name')}
+              <button className="space-x-2 text-left hover:underline" onClick={() => handleEdit(row.original.id)}>
+                <span>
+                  {repeatStr('└', '─', row.depth)}
+                  {row.getValue('name')}
+                </span>
               </button>
+              {row.getCanExpand() && (
+                <button {...{ onClick: row.getToggleExpandedHandler() }}>
+                  {row.getIsExpanded() ? (
+                    <ChevronDown size={18} className="text-primary" />
+                  ) : (
+                    <ChevronRight size={18} className="text-primary" />
+                  )}
+                </button>
+              )}
             </div>
+          );
+        }
+      },
+      {
+        accessorKey: 'type',
+        size: 0,
+        header: ({ column }) => <DataTableColumnHeader column={column} title={t('category_type')} />,
+        cell: ({ row }) => {
+          return (
+            <Badge className="text-xs" variant="secondary">
+              {row.original.type.toUpperCase()}
+            </Badge>
           );
         }
       },
@@ -167,21 +197,24 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
   const table = useReactTable({
     data: items,
     columns,
-    state: { sorting, columnVisibility, rowSelection, columnFilters },
+    state: { sorting, columnVisibility, rowSelection, columnFilters, expanded },
     enableColumnResizing: false,
     enableRowSelection: true,
     manualPagination: true,
     enableFilters: true,
     enableSorting: true,
     getRowId: row => row.id.toString(),
+    getSubRows: row => row.children as CategoryEntity[],
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
+    onExpandedChange: setExpanded,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues()
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+    getExpandedRowModel: getExpandedRowModel()
   });
 
   const getFilter = (): CategoryFilter => {
@@ -241,14 +274,14 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
           onChange={page => categoriesState.setFilter({ page })}
         />
       </div>
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === CATEGORY_ACTION.DELETE}
-        title="Delete"
+        title={t('delete')}
         content={
-          <>
-            <span>Delete Category:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
+          <div className="space-x-1">
+            <span>{t('category_delete_message')}</span>
+            <strong>{action.data?.name}?</strong>
+          </div>
         }
         onYes={() => {
           categoriesState.destroyRequest(action.data?.id as string);
@@ -256,15 +289,10 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
         }}
         onNo={() => setAction({ name: '' })}
       />
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === CATEGORY_ACTION.BULK_DELETE}
-        title="Bulk Delete"
-        content={
-          <>
-            <span>Delete all selected categories:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
-        }
+        title={t('bulk_delete')}
+        content={<span>{t('category_bulk_delete_message')}</span>}
         onYes={() => {
           categoriesState.bulkDestroyRequest({ ids: categoriesState.selected });
           setAction({ name: '' });

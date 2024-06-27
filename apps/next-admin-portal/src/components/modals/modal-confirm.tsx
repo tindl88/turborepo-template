@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +11,7 @@ import {
   AlertDialogTitle
 } from '~ui/components/ui/alert-dialog';
 
-type ModalConfirmDialogProps = {
+type ModalConfirmProps = {
   visible: boolean;
   title: string;
   content?: ReactNode;
@@ -20,15 +21,9 @@ type ModalConfirmDialogProps = {
   onNo: () => void;
 };
 
-const ModalConfirmDialog: FC<ModalConfirmDialogProps> = ({
-  visible = false,
-  title,
-  content,
-  btnYes = 'OK',
-  btnNo = 'Cancel',
-  onYes,
-  onNo
-}) => {
+const ModalConfirm: FC<ModalConfirmProps> = ({ visible = false, title, content, btnYes, btnNo, onYes, onNo }) => {
+  const t = useTranslations();
+
   return (
     <AlertDialog open={visible}>
       <AlertDialogContent>
@@ -37,12 +32,12 @@ const ModalConfirmDialog: FC<ModalConfirmDialogProps> = ({
           <AlertDialogDescription>{content}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onNo}>{btnNo}</AlertDialogCancel>
-          <AlertDialogAction onClick={onYes}>{btnYes}</AlertDialogAction>
+          <AlertDialogCancel onClick={onNo}>{btnYes ?? t('btn_no')}</AlertDialogCancel>
+          <AlertDialogAction onClick={onYes}>{btnNo ?? t('btn_yes')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
 };
 
-export default ModalConfirmDialog;
+export default ModalConfirm;

@@ -1,4 +1,4 @@
-import tracker from '@/components/common/third-party/tracking/utils/tracker';
+import tracker from '@/components/third-party/tracking/utils/tracker';
 
 const useTracking = () => {
   return {

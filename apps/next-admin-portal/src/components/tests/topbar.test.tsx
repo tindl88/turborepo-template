@@ -4,7 +4,7 @@ import { PreferenceEntity } from '@/modules/settings/interfaces/settings.interfa
 
 import { render } from '@tests/unit/utils/test.util';
 
-import TopBar from '../topbar';
+import TopBar from '../headers/topbar';
 
 describe('TopBar Component', () => {
   const session: Session = {

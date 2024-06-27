@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { FC, useEffect } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,55 +8,66 @@ import { Form } from '~ui/components/ui/form';
 
 import { useRouter } from '@/navigation';
 
-import { CreateProductDto, ProductEntity } from '../interfaces/products.interface';
+import { ProductFormData } from '../interfaces/products.interface';
 
-import { PRODUCT_STATUS } from '../constants/products.constant';
+import { PRODUCT_STATUS, PRODUCT_STATUSES } from '../constants/products.constant';
 
-import FormToolbar from '@/components/common/form-toolbar';
+import useProducts from '../hooks/use-products';
+
+import FormToolbar from '@/components/form-toolbar';
+import ModalLoading from '@/components/modals/modal-loading';
 
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 
 import { useProductsState } from '../states/products.state';
 import { productFormValidator } from '../validators/product-form.validator';
 
+import ProductFormCategory from './product-form-category';
 import ProductFormCover from './product-form-cover';
 import ProductFormFields from './product-form-fields';
 import ProductFormImages from './product-form-images';
 import ProductFormStatus from './product-form-status';
 
 type ProductFormProps = {
-  data?: ProductEntity;
+  isEdit: boolean;
 };
 
-const ProductForm: FC<ProductFormProps> = ({ data }) => {
+const ProductForm: FC<ProductFormProps> = ({ isEdit }) => {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
   const productsState = useProductsState();
+  const { product, categories, isFetching } = useProducts({ productId: params.id as string });
 
-  const isEditMode = !!data;
+  const defaultValues: ProductFormData = {
+    status: product?.status ?? PRODUCT_STATUS.DRAFT,
+    name: product?.name ?? '',
+    slug: product?.slug ?? '',
+    cover: product?.cover ?? '',
+    images: product?.images ?? ([] as FileEntity[]),
+    body: product?.body ?? '',
+    categoryId: product?.category?.id ?? ''
+  };
 
-  const form = useForm<CreateProductDto>({
+  const form = useForm<ProductFormData>({
     resolver: zodResolver(productFormValidator),
-    defaultValues: {
-      status: data?.status ?? PRODUCT_STATUS.DRAFT,
-      name: data?.name ?? '',
-      slug: data?.slug ?? '',
-      cover: data?.cover ?? '',
-      images: data?.images ?? ([] as FileEntity[]),
-      body: data?.body ?? ''
-    }
+    defaultValues
   });
 
-  const onSubmit: SubmitHandler<CreateProductDto> = async formData => {
+  const onSubmit: SubmitHandler<ProductFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (isEditMode) {
-      productsState.updateRequest({ id: data.id, data: formData });
+    if (isEdit) {
+      productsState.updateRequest({ id: params.id as string, data: formData });
     } else {
       productsState.createRequest(formData);
     }
   };
+
+  useEffect(() => {
+    form.reset(defaultValues);
+  }, [product]);
 
   return (
     <div data-testid="frm-product">
@@ -65,6 +76,7 @@ const ProductForm: FC<ProductFormProps> = ({ data }) => {
           <FormToolbar
             className="mb-4"
             title={t('product_details')}
+            submitDisabled={isFetching}
             onBackClick={() =>
               router.push({
                 pathname: '/products',
@@ -75,19 +87,21 @@ const ProductForm: FC<ProductFormProps> = ({ data }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <ProductFormFields form={form} />
+                <ProductFormFields form={form} isEdit={isEdit} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <ProductFormStatus form={form} />
-                <ProductFormCover form={form} />
-                <ProductFormImages form={form} />
+                <ProductFormStatus form={form} isEdit={isEdit} statuses={PRODUCT_STATUSES} />
+                <ProductFormCategory form={form} isEdit={isEdit} categories={categories ?? []} />
+                <ProductFormCover form={form} isEdit={isEdit} />
+                <ProductFormImages form={form} isEdit={isEdit} />
               </div>
             </div>
           </div>
         </form>
       </Form>
+      <ModalLoading visible={isFetching} />
     </div>
   );
 };

@@ -1,14 +1,22 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
+import { toSlug } from '@/common/utils/string.util';
 
 import { CATEGORY_STATUS, CATEGORY_TYPE } from '../constants/category.constant';
 
 export class CreateCategoryDto {
   @ApiProperty({ example: 'New Category' })
   @IsNotEmpty()
+  @IsString()
   name: string;
 
-  @ApiPropertyOptional({ enum: CATEGORY_TYPE, example: CATEGORY_TYPE.UNCATEGORIZED })
+  @ApiProperty({ example: toSlug('new-category') })
+  @IsNotEmpty()
+  @IsString()
+  slug: string;
+
+  @ApiPropertyOptional({ enum: CATEGORY_TYPE, example: CATEGORY_TYPE.POST })
   @IsOptional()
   type: CATEGORY_TYPE;
 

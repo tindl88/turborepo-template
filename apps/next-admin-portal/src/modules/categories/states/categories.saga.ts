@@ -6,9 +6,8 @@ import { ResponseError } from '@/interfaces/api-response.interface';
 import {
   CategoriesResponse,
   CategoryFilter,
-  CategoryResponse,
-  CreateCategoryDto,
-  UpdateCategoryDto
+  CategoryFormData,
+  CategoryResponse
 } from '../interfaces/categories.interface';
 
 import CategoryApi from '../api/categories.api';
@@ -25,7 +24,7 @@ export function* list(action: PayloadAction<{ filter: CategoryFilter }>) {
   }
 }
 
-export function* create(action: PayloadAction<CreateCategoryDto>) {
+export function* create(action: PayloadAction<CategoryFormData>) {
   try {
     const response: AxiosResponse<CategoryResponse> = yield call(() => CategoryApi.create(action.payload));
 
@@ -45,7 +44,7 @@ export function* read(action: PayloadAction<EntityId>) {
   }
 }
 
-export function* update(action: PayloadAction<{ id: EntityId; data: UpdateCategoryDto }>) {
+export function* update(action: PayloadAction<{ id: EntityId; data: CategoryFormData }>) {
   try {
     const response: AxiosResponse<CategoryResponse> = yield call(() =>
       CategoryApi.update(action.payload.id, action.payload.data)

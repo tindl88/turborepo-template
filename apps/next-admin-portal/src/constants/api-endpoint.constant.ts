@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
   PRODUCTS: '/api/v1/admin/products',
   FILES: '/api/v1/admin/files',
   CATEGORIES: '/api/v1/admin/categories',
+  CATEGORIES_TREES: '/api/v1/admin/categories/trees',
   NOTIFICATIONS: '/api/v1/admin/notifications',
   AUDIT_LOGS: '/api/v1/admin/audit-logs'
 };

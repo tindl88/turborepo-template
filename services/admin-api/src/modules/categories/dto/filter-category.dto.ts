@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsArray, IsEnum, IsOptional } from 'class-validator';
+import { IsArray, IsEnum, IsOptional, IsString } from 'class-validator';
 
 import { BaseFilterDto } from '@/common/dtos/base-filter.dto';
 
@@ -20,8 +20,13 @@ export class FilterCategoryDto extends BaseFilterDto {
   @IsOptional()
   status?: CATEGORY_STATUS[];
 
-  @ApiPropertyOptional({ enum: CATEGORY_TYPE, default: CATEGORY_TYPE.UNCATEGORIZED })
+  @ApiPropertyOptional({ enum: CATEGORY_TYPE, default: CATEGORY_TYPE.POST })
   @IsEnum(CATEGORY_TYPE)
   @IsOptional()
   type?: CATEGORY_TYPE;
+
+  @ApiPropertyOptional({ description: 'Category ID', example: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' })
+  @IsOptional()
+  @IsString()
+  excludeId?: string;
 }

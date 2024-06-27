@@ -4,22 +4,23 @@ import { objectToQueryString } from '~shared-client/utils/querystring.util';
 import {
   CategoriesResponse,
   CategoryFilter,
-  CategoryResponse,
-  CreateCategoryDto,
-  UpdateCategoryDto
+  CategoryFormData,
+  CategoryResponse
 } from '../interfaces/categories.interface';
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
+import { removeUndefined } from '@/utils/object.util';
+
 import axiosClient from '@/http/http-request';
 
 export const list = (filter: CategoryFilter) => {
-  const url = API_ENDPOINTS.CATEGORIES + '?' + objectToQueryString(filter);
+  const url = API_ENDPOINTS.CATEGORIES_TREES + '?' + objectToQueryString(removeUndefined(filter));
 
   return axiosClient.get<CategoriesResponse>(url);
 };
 
-export const create = (createCategoryDto: CreateCategoryDto) => {
+export const create = (createCategoryDto: CategoryFormData) => {
   return axiosClient.post<CategoryResponse>(API_ENDPOINTS.CATEGORIES, createCategoryDto);
 };
 
@@ -27,7 +28,7 @@ export const read = (id: EntityId) => {
   return axiosClient.get<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`);
 };
 
-export const update = (id: EntityId, updateCategoryDto: UpdateCategoryDto) => {
+export const update = (id: EntityId, updateCategoryDto: CategoryFormData) => {
   return axiosClient.patch<CategoryResponse>(`${API_ENDPOINTS.CATEGORIES}/${id}`, updateCategoryDto);
 };
 

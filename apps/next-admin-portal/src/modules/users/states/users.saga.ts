@@ -3,7 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { EntityId, PayloadAction } from '@reduxjs/toolkit';
 
 import { ResponseError } from '@/interfaces/api-response.interface';
-import { CreateUserDto, UpdateUserDto, UserFilter, UserResponse, UsersResponse } from '../interfaces/users.interface';
+import { UserFilter, UserFormData, UserResponse, UsersResponse } from '../interfaces/users.interface';
 
 import UserApi from '../api/users.api';
 
@@ -19,7 +19,7 @@ export function* list(action: PayloadAction<{ filter: UserFilter }>) {
   }
 }
 
-export function* create(action: PayloadAction<CreateUserDto>) {
+export function* create(action: PayloadAction<UserFormData>) {
   try {
     const response: AxiosResponse<UserResponse> = yield call(() => UserApi.create(action.payload));
 
@@ -41,7 +41,7 @@ export function* read(action: PayloadAction<EntityId>) {
   }
 }
 
-export function* update(action: PayloadAction<{ id: EntityId; data: UpdateUserDto }>) {
+export function* update(action: PayloadAction<{ id: EntityId; data: UserFormData }>) {
   try {
     const response: AxiosResponse<UserResponse> = yield call(() =>
       UserApi.update(action.payload.id, action.payload.data)

@@ -16,6 +16,7 @@ import { PostCreatedEvent } from './events/post-created.event';
 import { PostDeletedEvent } from './events/post-deleted.event';
 import { PostUpdatedEvent } from './events/post-updated.event';
 
+import { CategoriesService } from '../categories/categories.service';
 import { User } from '../users/entities/user.entity';
 
 @Injectable()
@@ -23,7 +24,8 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
-    private readonly eventEmitter: EventEmitter2
+    private readonly eventEmitter: EventEmitter2,
+    private readonly categoriesService: CategoriesService
   ) {}
 
   async create(user: User, createPostDto: CreatePostDto) {
@@ -51,6 +53,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
 
@@ -80,6 +83,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
     queryBuilder.where('post.id = :id', { id });
@@ -99,6 +103,7 @@ export class PostsService {
 
     queryBuilder.select(POST_GET_FIELDS);
     queryBuilder.leftJoin('post.creator', 'user');
+    queryBuilder.leftJoin('post.category', 'category');
     queryBuilder.leftJoin('post.postFiles', 'postFile');
     queryBuilder.leftJoin('postFile.image', 'image');
     queryBuilder.where('post.slug = :slug', { slug });
@@ -114,11 +119,19 @@ export class PostsService {
   }
 
   async update(user: User, id: string, updatePostDto: UpdatePostDto) {
-    const post = await this.postRepository.preload({ id: id, ...updatePostDto });
+    const post = await this.postRepository.preload({ id, ...updatePostDto });
 
     if (!post) {
       throw new NotFoundException('Post not found');
     }
+
+    const category = await this.categoriesService.findOne(updatePostDto.categoryId);
+
+    if (!category) {
+      throw new NotFoundException("Post's category not found");
+    }
+
+    post.category = category;
 
     const response = await this.postRepository.save(post);
 

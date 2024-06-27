@@ -6,15 +6,16 @@ import { FormControl, FormField, FormItem, FormMessage } from '~ui/components/ui
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~ui/components/ui/select';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateUserDto } from '../interfaces/users.interface';
-
-import { USER_STATUSES } from '../constants/users.constant';
+import { StatusType } from '@/interfaces/status.interface';
+import { UserFormData } from '../interfaces/users.interface';
 
 type UserFormStatusProps = {
-  form: UseFormReturn<CreateUserDto>;
+  form: UseFormReturn<UserFormData>;
+  isEdit: boolean;
+  statuses: StatusType[];
 } & ComponentBaseProps;
 
-export default function UserFormStatus({ form }: UserFormStatusProps) {
+export default function UserFormStatus({ form, statuses }: UserFormStatusProps) {
   const t = useTranslations();
 
   return (
@@ -35,7 +36,7 @@ export default function UserFormStatus({ form }: UserFormStatusProps) {
                       <SelectValue placeholder={t('select_status')} />
                     </SelectTrigger>
                     <SelectContent>
-                      {USER_STATUSES.map(status => {
+                      {statuses?.map(status => {
                         return (
                           <SelectItem key={status.value} value={status.value}>
                             <div className="flex items-center">

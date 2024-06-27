@@ -1,6 +1,6 @@
 import { render } from '@tests/unit/utils/test.util';
 
-import Languages from '../languages';
+import Languages from '../languages/languages';
 
 describe('Languages Component', () => {
   test('should renders the languages', async () => {

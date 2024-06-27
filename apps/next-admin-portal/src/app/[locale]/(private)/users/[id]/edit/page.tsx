@@ -2,11 +2,10 @@
 
 import { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { Loading } from '~ui/components/ui/loading';
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageWrapper from '@/components/common/page-wrapper';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import UserForm from '@/modules/users/components/user-form';
 import useUserToast from '@/modules/users/hooks/use-user-toast';
@@ -24,12 +23,7 @@ export default function UserEditPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      {userState.isReading && (
-        <div className="flex h-full items-center justify-center p-4">
-          <Loading />
-        </div>
-      )}
-      {userState.detail && <UserForm data={userState.detail} />}
+      <UserForm isEdit={true} />
     </PageWrapper>
   );
 }

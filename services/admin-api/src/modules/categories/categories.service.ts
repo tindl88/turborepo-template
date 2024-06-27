@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { PaginationDto } from '@/common/dtos/pagination.dto';
 import { PaginationResponseDto } from '@/common/dtos/pagination-response.dto';
 
-import { CATEGORY_STATUS } from './constants/category.constant';
+import { CATEGORY_GET_FIELDS, CATEGORY_STATUS } from './constants/category.constant';
 import { BulkDeleteCategoryDto } from './dto/bulk-delete-category.dto';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { FilterCategoryDto } from './dto/filter-category.dto';
@@ -59,20 +59,20 @@ export class CategoriesService {
   }
 
   async findAll(filterDto: FilterCategoryDto) {
-    const { type } = filterDto;
-    const fields = 'category.id category.name category.type category.parent category.status category.createdAt'.split(
-      ' '
-    );
+    const { type, excludeId } = filterDto;
 
     const queryBuilder = this.categoryRepository
       .createQueryBuilder('category')
-      .select(fields)
+      .select(CATEGORY_GET_FIELDS)
       .leftJoinAndSelect('category.parent', 'parent');
 
     queryBuilder.where('category.status = :status', { status: CATEGORY_STATUS.VISIBLED });
 
     if (type) {
       queryBuilder.andWhere('category.type = :type', { type });
+    }
+    if (excludeId) {
+      queryBuilder.andWhere('category.id != :id', { id: excludeId });
     }
 
     const categories = await queryBuilder.getMany();
@@ -81,21 +81,23 @@ export class CategoriesService {
   }
 
   async find(filterDto: FilterCategoryDto) {
-    const { q, order, status, sort } = filterDto;
-    const fields =
-      'category.id category.name category.type category.parent category.status category.createdAt parent.id parent.name'.split(
-        ' '
-      );
+    const { q, order, status, sort, type, excludeId } = filterDto;
 
     const queryBuilder = this.categoryRepository.createQueryBuilder('category');
 
-    queryBuilder.select(fields);
+    queryBuilder.select(CATEGORY_GET_FIELDS);
     queryBuilder.leftJoin('category.parent', 'parent');
     queryBuilder.where('parent.id IS NULL');
 
     if (status) queryBuilder.andWhere('category.status in (:...status)', { status });
     if (q) {
       queryBuilder.andWhere('LOWER(category.name) LIKE LOWER(:name)', { name: `%${q}%` });
+    }
+    if (excludeId) {
+      queryBuilder.andWhere('category.id != :id', { id: excludeId });
+    }
+    if (type) {
+      queryBuilder.andWhere('category.type = :type', { type });
     }
     if (sort) {
       queryBuilder.orderBy(`category.${sort}`, order.toUpperCase() as 'ASC' | 'DESC');
@@ -141,19 +143,22 @@ export class CategoriesService {
     if (updateCategoryDto.parentId && !parent) {
       throw new NotFoundException('Parent category does not exist.');
     }
-    const categoryData = await this.categoryRepository.findOneBy({ id: id });
 
-    if (!categoryData) {
+    const category = await this.categoryRepository.findOneBy({ id: id });
+
+    if (!category) {
       throw new NotFoundException('Category not found');
     }
 
-    if (updateCategoryDto.type && updateCategoryDto.type !== categoryData.type) {
+    if (updateCategoryDto.type && updateCategoryDto.type !== category.type) {
       throw new BadRequestException('Category Type change is not allowed');
     }
 
-    Object.assign(categoryData, updateCategoryDto);
+    category.parent = parent;
 
-    const categoryResponse = await this.categoryRepository.save(categoryData);
+    Object.assign(category, updateCategoryDto);
+
+    const categoryResponse = await this.categoryRepository.save(category);
 
     const categoryUpdatedEvent = new CategoryUpdatedEvent();
 

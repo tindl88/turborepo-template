@@ -24,12 +24,12 @@ import { PostEntity, PostFilter } from '../interfaces/posts.interface';
 
 import { POST_ACTION, POST_DEFAULT_FILTER, POST_STATUSES } from '../constants/posts.constant';
 
-import { DataTable } from '@/components/common/data-table/data-table';
-import { DataTableColumnHeader } from '@/components/common/data-table/data-table-column-header';
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import DataTableRowAction from '@/components/common/data-table/data-table-row-action';
-import ModalConfirmDialog from '@/components/common/modal-confirm';
-import PaginationInfo from '@/components/common/pagination-info';
+import { DataTable } from '@/components/data-table/data-table';
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import DataTableRowAction from '@/components/data-table/data-table-row-action';
+import ModalConfirm from '@/components/modals/modal-confirm';
+import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
 
@@ -266,14 +266,14 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
           onChange={page => postsState.setFilter({ page })}
         />
       </div>
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === POST_ACTION.DELETE}
-        title="Delete"
+        title={t('delete')}
         content={
-          <>
-            <span>Delete Post:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
+          <div className="space-x-1">
+            <span>{t('post_delete_message')}</span>
+            <strong>{action.data?.name}?</strong>
+          </div>
         }
         onYes={() => {
           postsState.destroyRequest(action.data?.id as string);
@@ -281,15 +281,10 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
         }}
         onNo={() => setAction({ name: '' })}
       />
-      <ModalConfirmDialog
+      <ModalConfirm
         visible={action.name === POST_ACTION.BULK_DELETE}
-        title="Bulk Delete"
-        content={
-          <>
-            <span>Delete all selected posts:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
-        }
+        title={t('bulk_delete')}
+        content={<span>{t('post_bulk_delete_message')}</span>}
         onYes={() => {
           postsState.bulkDestroyRequest({ ids: postsState.selected });
           setAction({ name: '' });

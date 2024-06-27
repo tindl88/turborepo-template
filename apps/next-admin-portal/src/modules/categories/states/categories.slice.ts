@@ -8,9 +8,8 @@ import {
   CategoriesResponse,
   CategoryEntity,
   CategoryFilter,
-  CategoryResponse,
-  CreateCategoryDto,
-  UpdateCategoryDto
+  CategoryFormData,
+  CategoryResponse
 } from '../interfaces/categories.interface';
 
 export const entityAdapter = createEntityAdapter<CategoryEntity, EntityId>({
@@ -65,7 +64,7 @@ const slice = createSlice({
     /*****************************************************************
     CREATE
     *****************************************************************/
-    createRequest: (state, _action: PayloadAction<CreateCategoryDto>) => {
+    createRequest: (state, _action: PayloadAction<CategoryFormData>) => {
       state.isCreating = true;
       state.error = undefined;
       state.message = undefined;
@@ -117,7 +116,7 @@ const slice = createSlice({
     /*****************************************************************
     UPDATE
     *****************************************************************/
-    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: UpdateCategoryDto }>) => {
+    updateRequest: (state, _action: PayloadAction<{ id: EntityId; data: CategoryFormData }>) => {
       state.isUpdating = true;
       state.error = undefined;
       state.message = undefined;

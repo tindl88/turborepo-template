@@ -4,15 +4,12 @@ import { InfoIcon } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~ui/components/ui/tooltip';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
+import { StatusType } from '@/interfaces/status.interface';
 
 import { POST_STATUS, POST_STATUSES } from '../constants/posts.constant';
 
 type PostRowStatusProps = {
-  status: {
-    value: string;
-    label: string;
-    icon: FC;
-  };
+  status: StatusType;
   rejectReason?: string;
 } & ComponentBaseProps;
 

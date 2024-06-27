@@ -2,7 +2,7 @@
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageWrapper from '@/components/common/page-wrapper';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import CategoryForm from '@/modules/categories/components/category-form';
 import useCategoryToast from '@/modules/categories/hooks/use-category-toast';
@@ -12,7 +12,7 @@ export default function CategoryAddNewPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      <CategoryForm />
+      <CategoryForm isEdit={false} />
     </PageWrapper>
   );
 }

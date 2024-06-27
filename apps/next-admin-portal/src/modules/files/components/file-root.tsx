@@ -21,10 +21,10 @@ import {
   VALID_ALL_MIME_TYPES
 } from '../constants/files.constant';
 
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import NoData from '@/components/common/no-data';
-import PaginationInfo from '@/components/common/pagination-info';
-import Uploader from '@/components/common/uploader';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import NoData from '@/components/no-data';
+import PaginationInfo from '@/components/pagination-info';
+import Uploader from '@/components/uploader';
 
 import DirectoryTree from '@/modules/categories/components/directory-tree';
 import { CATEGORY_TYPE } from '@/modules/categories/constants/categories.constant';

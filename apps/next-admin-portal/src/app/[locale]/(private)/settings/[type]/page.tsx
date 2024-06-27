@@ -6,8 +6,8 @@ import { Separator } from '~ui/components/ui/separator';
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageHeader from '@/components/common/page-header';
-import PageWrapper from '@/components/common/page-wrapper';
+import PageHeader from '@/components/pages/page-header';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import { SettingNav } from '@/modules/settings/components/setting-nav';
 import SettingRoot from '@/modules/settings/components/setting-root';

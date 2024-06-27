@@ -1,5 +1,5 @@
 export const PRODUCT_GET_FIELDS =
-  'product.id product.name product.slug product.body product.status product.cover product.createdAt user.id user.name user.email productFile.fileId productFile.position image.id image.uniqueName'.split(
+  'product.id product.name product.slug product.body product.status product.cover product.createdAt user.id user.name user.email productFile.fileId productFile.position image.id image.uniqueName category.id category.name'.split(
     ' '
   );
 

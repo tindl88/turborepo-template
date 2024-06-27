@@ -6,10 +6,11 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~ui/co
 import { Input } from '~ui/components/ui/input';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
-import { CreateUserDto } from '../interfaces/users.interface';
+import { UserFormData } from '../interfaces/users.interface';
 
 type UserFormFieldsProps = {
-  form: UseFormReturn<CreateUserDto>;
+  form: UseFormReturn<UserFormData>;
+  isEdit: boolean;
 } & ComponentBaseProps;
 
 const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {

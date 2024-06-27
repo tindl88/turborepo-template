@@ -1,5 +1,6 @@
 import { CheckCircle2Icon, CircleSlashIcon, XCircleIcon } from 'lucide-react';
 
+import { StatusType } from '@/interfaces/status.interface';
 import { PostFilter } from '../interfaces/posts.interface';
 
 export enum POST_STATUS {
@@ -23,7 +24,7 @@ export const POST_DEFAULT_FILTER: PostFilter = {
   status: []
 };
 
-export const POST_STATUSES = [
+export const POST_STATUSES: StatusType[] = [
   {
     label: 'Published',
     value: POST_STATUS.PUBLISHED,

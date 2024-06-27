@@ -44,7 +44,7 @@ const DocumentationSubMenu: FC<DocumentationSubMenuProps> = ({ type }) => {
           type === 'list' && pathname.includes('/documentation/components') && '!text-primary'
         )}
       >
-        <p className={classNames('whitespace-nowrap', classNames)}>Components</p>
+        <p className={classNames('whitespace-nowrap', className)}>Components</p>
       </Link>
       {type === 'dropdown' && <Separator className="-mx-1 my-1 h-px w-auto bg-muted" />}
       <Link
@@ -59,7 +59,7 @@ const DocumentationSubMenu: FC<DocumentationSubMenuProps> = ({ type }) => {
           type === 'list' && pathname.includes('/documentation/changelog') && '!text-primary'
         )}
       >
-        <p className={classNames('whitespace-nowrap', classNames)}>Changelog</p>
+        <p className={classNames('whitespace-nowrap', className)}>Changelog</p>
       </Link>
     </div>
   );

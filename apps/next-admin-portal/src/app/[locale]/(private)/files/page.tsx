@@ -1,6 +1,6 @@
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageWrapper from '@/components/common/page-wrapper';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import FilesRoot from '@/modules/files/components/file-root';
 

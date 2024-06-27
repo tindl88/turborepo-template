@@ -4,8 +4,8 @@ import { SessionProvider } from 'next-auth/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { render, RenderOptions } from '@testing-library/react';
 
-import ErrorBoundary from '@/components/common/error-boundary';
-import { MediaContextProvider } from '@/components/common/media';
+import ErrorBoundary from '@/components/error-boundary';
+import { MediaContextProvider } from '@/components/media';
 
 import enus from '@/locales/en-us.json';
 

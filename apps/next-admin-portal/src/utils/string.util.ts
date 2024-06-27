@@ -29,3 +29,9 @@ export const toSlug = (text: string): string => {
     remove: /[:;.,*+~!@#^&?(){}"'/[\]]/g
   });
 };
+
+export function repeatStr(firstChar: string, char: string, length: number): string {
+  if (length === 0) return '';
+
+  return firstChar + char.repeat(length);
+}
