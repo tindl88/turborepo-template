@@ -24,12 +24,12 @@ import { ProductEntity, ProductFilter } from '../interfaces/products.interface';
 
 import { PRODUCT_ACTION, PRODUCT_DEFAULT_FILTER, PRODUCT_STATUSES } from '../constants/products.constant';
 
-import { DataTable } from '@/components/common/data-table/data-table';
-import { DataTableColumnHeader } from '@/components/common/data-table/data-table-column-header';
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import DataTableRowAction from '@/components/common/data-table/data-table-row-action';
-import ModalConfirm from '@/components/common/modal-confirm';
-import PaginationInfo from '@/components/common/pagination-info';
+import { DataTable } from '@/components/data-table/data-table';
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import DataTableRowAction from '@/components/data-table/data-table-row-action';
+import ModalConfirm from '@/components/modals/modal-confirm';
+import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
 

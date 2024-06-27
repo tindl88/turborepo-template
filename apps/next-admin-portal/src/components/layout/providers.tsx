@@ -9,9 +9,9 @@ import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persi
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
-import { MediaContextProvider } from '@/components/common/media';
-import ServiceWorker from '@/components/common/service-worker';
-import Tracking from '@/components/common/third-party/tracking';
+import { MediaContextProvider } from '@/components/media';
+import ServiceWorker from '@/components/service-worker';
+import Tracking from '@/components/third-party/tracking';
 
 import { setupPostListeners } from '@/modules/posts/states/posts.listener';
 

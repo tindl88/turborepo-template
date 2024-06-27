@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader } from '~ui/components/ui/dialog';
 import { Loading } from '~ui/components/ui/loading';
 import { Separator } from '~ui/components/ui/separator';
 
-import ContentRenderer from '@/components/common/content-renderer';
+import ContentRenderer from '@/components/content-renderer';
 
 import { usePostsState } from '@/modules/posts/states/posts.state';
 

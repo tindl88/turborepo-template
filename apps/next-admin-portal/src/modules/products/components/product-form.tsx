@@ -14,8 +14,8 @@ import { PRODUCT_STATUS, PRODUCT_STATUSES } from '../constants/products.constant
 
 import useProducts from '../hooks/use-products';
 
-import FormToolbar from '@/components/common/form-toolbar';
-import ModalLoading from '@/components/common/modal-loading';
+import FormToolbar from '@/components/form-toolbar';
+import ModalLoading from '@/components/modals/modal-loading';
 
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 

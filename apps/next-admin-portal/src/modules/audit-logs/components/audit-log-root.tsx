@@ -15,10 +15,10 @@ import { AUDIT_LOG_STATUSES } from '../constants/audit-logs.constant';
 
 import { useAuditLogs } from '../hooks/use-audit-logs';
 
-import { DataTable } from '@/components/common/data-table/data-table';
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import DataTableRowStatus from '@/components/common/data-table/data-table-row-status';
-import PaginationInfo from '@/components/common/pagination-info';
+import { DataTable } from '@/components/data-table/data-table';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import DataTableRowStatus from '@/components/data-table/data-table-row-status';
+import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
 

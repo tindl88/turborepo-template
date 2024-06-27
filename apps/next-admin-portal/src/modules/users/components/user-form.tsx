@@ -14,8 +14,8 @@ import { USER_ROLE, USER_STATUS, USER_STATUSES } from '../constants/users.consta
 
 import useUsers from '../hooks/use-users';
 
-import FormToolbar from '@/components/common/form-toolbar';
-import ModalLoading from '@/components/common/modal-loading';
+import FormToolbar from '@/components/form-toolbar';
+import ModalLoading from '@/components/modals/modal-loading';
 
 import { useUsersState } from '../states/users.state';
 import { userFormValidator } from '../validators/user-form.validator';

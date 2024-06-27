@@ -2,7 +2,7 @@
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageWrapper from '@/components/common/page-wrapper';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import CategoryList from '@/modules/categories/components/category-list';
 import useCategoryToast from '@/modules/categories/hooks/use-category-toast';

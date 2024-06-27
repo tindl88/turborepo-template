@@ -9,8 +9,8 @@ import { Input } from '~ui/components/ui/input';
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { PostFormData } from '../interfaces/posts.interface';
 
-import ButtonRemoveFile from '@/components/common/button-remove-file';
-import ButtonSelectFile from '@/components/common/button-select-file';
+import ButtonRemoveFile from '@/components/button-remove-file';
+import ButtonSelectFile from '@/components/button-select-file';
 
 import FileDialog from '@/modules/files/components/file-dialog';
 

@@ -21,10 +21,10 @@ import {
 
 import { toSlug } from '@/utils/string.util';
 
-const CKEditor = dynamic(() => import('@/components/common/ck-editor'), {
+const CKEditor = dynamic(() => import('@/components/editors/ck-editor'), {
   ssr: false
 });
-// const BlockEditor = dynamic(() => import('@/components/common/block-editor'), { ssr: false });
+// const BlockEditor = dynamic(() => import('@/components/block-editor'), { ssr: false });
 
 type PostFormFieldsProps = {
   form: UseFormReturn<PostFormData>;

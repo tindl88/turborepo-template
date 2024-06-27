@@ -19,9 +19,9 @@ import {
 
 import { useFileDialogState } from '../hooks/use-file-dialog-state';
 
-import DataTableItemsPerPage from '@/components/common/data-table/data-table-item-per-page';
-import NoData from '@/components/common/no-data';
-import Uploader from '@/components/common/uploader';
+import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
+import NoData from '@/components/no-data';
+import Uploader from '@/components/uploader';
 
 import FileApi from '../api/files.api';
 import { useFilesState } from '../states/files.state';

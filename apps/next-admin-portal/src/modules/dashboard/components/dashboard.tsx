@@ -4,10 +4,10 @@ import classNames from 'classnames';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 
-import ChartAudience from '@/components/common/charts/chart-audience';
-import ChartConversions from '@/components/common/charts/chart-conversions';
-import ChartTraffic from '@/components/common/charts/chart-traffic';
-import Statistics from '@/components/common/statistics';
+import ChartAudience from '@/components/charts/chart-audience';
+import ChartConversions from '@/components/charts/chart-conversions';
+import ChartTraffic from '@/components/charts/chart-traffic';
+import Statistics from '@/components/statistics';
 
 // Conversion
 const conversionLabels = ['Feb 1', 'Feb 2', 'Feb 3', 'Feb 4', 'Feb 5', 'Feb 6', 'Feb 7', 'Feb 8', 'Feb 9', 'Feb 10'];

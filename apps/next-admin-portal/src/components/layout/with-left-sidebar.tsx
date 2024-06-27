@@ -8,8 +8,8 @@ import { ComponentBaseProps } from '@/interfaces/component.interface';
 
 import useSidebar from '@/hooks/use-sidebar';
 
-import Header from '@/components/common/header/header';
-import Sidebar from '@/components/common/sidebar/sidebar';
+import Header from '@/components/headers/header';
+import Sidebar from '@/components/sidebar/sidebar';
 
 type LayoutWithLeftSidebarProps = {
   children?: ReactNode;

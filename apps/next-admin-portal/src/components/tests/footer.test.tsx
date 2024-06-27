@@ -1,6 +1,6 @@
 import { render } from '@tests/unit/utils/test.util';
 
-import Footer from '../footer';
+import Footer from '../footers/footer';
 
 describe('Footer Component', () => {
   test('should renders the footer', async () => {

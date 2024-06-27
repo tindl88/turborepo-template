@@ -2,7 +2,7 @@
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import BackgroundImage from '@/components/common/background-image';
+import BackgroundImage from '@/components/background-image';
 
 import LoginForm from '@/modules/auth/components/form-login';
 

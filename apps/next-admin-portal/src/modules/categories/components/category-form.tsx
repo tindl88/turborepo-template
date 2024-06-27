@@ -14,8 +14,8 @@ import { CATEGORY_STATUS, CATEGORY_STATUSES, CATEGORY_TYPE, CATEGORY_TYPES } fro
 
 import useCategories from '../hooks/use-categories';
 
-import FormToolbar from '@/components/common/form-toolbar';
-import ModalLoading from '@/components/common/modal-loading';
+import FormToolbar from '@/components/form-toolbar';
+import ModalLoading from '@/components/modals/modal-loading';
 
 import { useCategoriesState } from '../states/categories.state';
 import { categoryFormValidator } from '../validators/category-form.validator';

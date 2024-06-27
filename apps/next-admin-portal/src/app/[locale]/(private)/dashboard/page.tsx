@@ -2,7 +2,7 @@
 
 import { PageBaseProps } from '@/interfaces/page.interface';
 
-import PageWrapper from '@/components/common/page-wrapper';
+import PageWrapper from '@/components/pages/page-wrapper';
 
 import DashboardRoot from '@/modules/dashboard/components/dashboard';
 

@@ -7,9 +7,9 @@ import { useRouter } from '@/navigation';
 
 import { CATEGORY_DEFAULT_FILTER } from '../constants/categories.constant';
 
-import { DataTableViewOptions } from '@/components/common/data-table/data-table-view-options';
-import DropdownBulkActions from '@/components/common/dropdown-bulk-actions';
-import SearchBox from '@/components/common/search-box';
+import { DataTableViewOptions } from '@/components/data-table/data-table-view-options';
+import DropdownBulkActions from '@/components/dropdown-bulk-actions';
+import SearchBox from '@/components/search-box';
 
 import { useCategoriesState } from '../states/categories.state';
 

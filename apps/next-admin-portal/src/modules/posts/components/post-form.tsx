@@ -14,8 +14,8 @@ import { POST_STATUS, POST_STATUSES } from '../constants/posts.constant';
 
 import usePosts from '../hooks/use-posts';
 
-import FormToolbar from '@/components/common/form-toolbar';
-import ModalLoading from '@/components/common/modal-loading';
+import FormToolbar from '@/components/form-toolbar';
+import ModalLoading from '@/components/modals/modal-loading';
 
 import { FileEntity } from '@/modules/files/interfaces/files.interface';
 
