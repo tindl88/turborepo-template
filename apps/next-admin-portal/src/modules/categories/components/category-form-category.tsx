@@ -9,7 +9,7 @@ import { ComponentBaseProps } from '@/interfaces/component.interface';
 
 import { CategoryEntity, CategoryFormData } from '@/modules/categories/interfaces/categories.interface';
 
-import { repeatStr } from '@/utils/string.util';
+import { repeatStr } from '~shared-universal/utils/string.util';
 
 const renderCategories = (cates: CategoryEntity[], depth = 0) => {
   return cates.map(category => (

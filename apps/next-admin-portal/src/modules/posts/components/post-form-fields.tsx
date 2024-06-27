@@ -19,7 +19,7 @@ import {
   VALID_VIDEO_MIME_TYPES
 } from '@/modules/files/constants/files.constant';
 
-import { toSlug } from '@/utils/string.util';
+import { toSlug } from '~shared-universal/utils/string.util';
 
 const CKEditor = dynamic(() => import('@/components/editors/ck-editor'), {
   ssr: false

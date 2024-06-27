@@ -8,6 +8,14 @@ module.exports = {
   extends: ['@repo/eslint-config/next.js'],
   parser: '@typescript-eslint/parser',
   parserOptions: { project },
+  settings: {
+    'import/resolver': {
+      typescript: { project }
+    },
+    react: {
+      version: 'detect'
+    }
+  },
   ignorePatterns: [
     'next.config.mjs',
     'playwright.config.ts',

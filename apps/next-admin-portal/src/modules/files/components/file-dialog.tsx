@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Loading } from '~ui/components/ui/loading';
 import Pagination from '~ui/components/ui/pagination-custom';
 import { useToast } from '~ui/components/ui/use-toast';
-import useDeepCompareEffect from '~shared-client/hooks/use-deep-compare-effect';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { FileEntity, FileFilter } from '../interfaces/files.interface';
@@ -22,6 +21,8 @@ import { useFileDialogState } from '../hooks/use-file-dialog-state';
 import DataTableItemsPerPage from '@/components/data-table/data-table-item-per-page';
 import NoData from '@/components/no-data';
 import Uploader from '@/components/uploader';
+
+import useDeepCompareEffect from '~shared-universal/hooks/use-deep-compare-effect';
 
 import FileApi from '../api/files.api';
 import { useFilesState } from '../states/files.state';

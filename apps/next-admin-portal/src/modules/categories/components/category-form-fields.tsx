@@ -8,7 +8,7 @@ import { Input } from '~ui/components/ui/input';
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 import { CategoryFormData } from '../interfaces/categories.interface';
 
-import { toSlug } from '@/utils/string.util';
+import { toSlug } from '~shared-universal/utils/string.util';
 
 type CategoryFormFieldsProps = {
   form: UseFormReturn<CategoryFormData>;

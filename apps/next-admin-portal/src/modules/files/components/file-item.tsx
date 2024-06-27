@@ -7,7 +7,7 @@ import { FileEntity } from '../interfaces/files.interface';
 
 import { FileDialogType } from '../constants/files.constant';
 
-import { convertBytes } from '@/utils/string.util';
+import { convertBytes } from '~shared-universal/utils/string.util';
 
 import FileIcon from './file-icon';
 import FileThumbnail from './file-thumbnail';

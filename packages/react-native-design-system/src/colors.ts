@@ -1,7 +1,6 @@
-import { toCapitalized } from '@/utils/string.util';
-
 import { BackgroundColorType, BorderColorType, ColorStyles, TextColorType } from './interfaces/color.interface';
 import { designSystemConfigs } from './config';
+import { toCapitalized } from '~shared-universal/utils/string.util';
 
 const generateColorStyles = (
   prefix: 'bg' | 'text' | 'border',

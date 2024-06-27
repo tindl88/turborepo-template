@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~shared-client/*": ["./src/*"]
+      "~shared-universal/*": ["./src/*"]
     }
   },
   "include": ["src", "__tests__"],

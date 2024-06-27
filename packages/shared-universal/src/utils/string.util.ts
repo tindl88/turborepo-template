@@ -35,3 +35,25 @@ export function repeatStr(firstChar: string, char: string, length: number): stri
 
   return firstChar + char.repeat(length);
 }
+
+export function toCapitalized(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function objectToQueryString(obj: { [key: string]: any }): string {
+  return Object.keys(obj)
+    .map(key => {
+      if (Array.isArray(obj[key])) {
+        return (
+          obj[key]
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .map((value: any, index: number) => `${encodeURIComponent(key)}[${index}]=${encodeURIComponent(value)}`)
+            .join('&')
+        );
+      }
+
+      return `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`;
+    })
+    .join('&');
+}

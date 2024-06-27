@@ -19,7 +19,7 @@ import { ComponentBaseProps } from '@/interfaces/component.interface';
 
 import { useAuthState } from '@/modules/auth/states/auth.state';
 
-import { getShortName } from '@/utils/string.util';
+import { getShortName } from '~shared-universal/utils/string.util';
 
 type HeaderAvatarProps = {
   user?: User;

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import useDeepCompareEffect from '~shared-client/hooks/use-deep-compare-effect';
 
 import { useRouter } from '@/navigation';
 
@@ -11,6 +10,8 @@ import { ResponseMeta } from '@/interfaces/api-response.interface';
 import { AuditLogEntity, AuditLogFilter } from '../interfaces/audit-logs.interface';
 
 import { AUDIT_LOG_DEFAULT_FILTER } from '../constants/audit-logs.constant';
+
+import useDeepCompareEffect from '~shared-universal/hooks/use-deep-compare-effect';
 
 import AuditLogApi from '../api/audit-logs.api';
 

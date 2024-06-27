@@ -8,6 +8,7 @@
       "@mocks/*": ["./__mocks__/*"],
       "~ui/*": ["../../packages/ui/src/*"],
       "~shared-client/*": ["../../packages/shared-client/src/*"],
+      "~shared-universal/*": ["../../packages/shared-universal/src/*"],
       "~shared-validators/*": ["../../packages/shared-validators/src/*"]
     }
   },
@@ -20,6 +21,7 @@
     "__mocks__",
     "../../packages/ui/src",
     "../../packages/shared-client/src",
+    "../../packages/shared-universal/src",
     "../../packages/shared-validators/src"
   ],
   "exclude": ["node_modules"]

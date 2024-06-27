@@ -1,5 +1,4 @@
 import { EntityId } from '@reduxjs/toolkit';
-import { objectToQueryString } from '~shared-client/utils/querystring.util';
 
 import {
   CategoriesResponse,
@@ -10,9 +9,10 @@ import {
 
 import { API_ENDPOINTS } from '@/constants/api-endpoint.constant';
 
-import { removeUndefined } from '@/utils/object.util';
-
 import axiosClient from '@/http/http-request';
+
+import { removeUndefined } from '~shared-universal/utils/object.util';
+import { objectToQueryString } from '~shared-universal/utils/string.util';
 
 export const list = (filter: CategoryFilter) => {
   const url = API_ENDPOINTS.CATEGORIES_TREES + '?' + objectToQueryString(removeUndefined(filter));

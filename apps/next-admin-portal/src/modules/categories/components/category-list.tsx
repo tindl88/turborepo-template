@@ -36,7 +36,8 @@ import ModalConfirm from '@/components/modals/modal-confirm';
 import PaginationInfo from '@/components/pagination-info';
 
 import { toDateTime } from '@/utils/date.util';
-import { repeatStr } from '@/utils/string.util';
+
+import { repeatStr } from '~shared-universal/utils/string.util';
 
 import { useCategoriesState } from '../states/categories.state';
 
