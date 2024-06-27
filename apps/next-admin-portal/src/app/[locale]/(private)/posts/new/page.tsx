@@ -12,7 +12,7 @@ export default function PostAddNewPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      <PostForm isEditMode={false} />
+      <PostForm isEdit={false} />
     </PageWrapper>
   );
 }

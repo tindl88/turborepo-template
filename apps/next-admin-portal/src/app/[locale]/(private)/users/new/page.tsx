@@ -12,7 +12,7 @@ export default function UserAddNewPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      <UserForm />
+      <UserForm isEdit={false} />
     </PageWrapper>
   );
 }

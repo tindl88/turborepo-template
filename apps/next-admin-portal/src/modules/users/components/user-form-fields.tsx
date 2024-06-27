@@ -10,6 +10,7 @@ import { UserFormData } from '../interfaces/users.interface';
 
 type UserFormFieldsProps = {
   form: UseFormReturn<UserFormData>;
+  isEdit: boolean;
 } & ComponentBaseProps;
 
 const UserFormFields: FC<UserFormFieldsProps> = ({ className, form }) => {

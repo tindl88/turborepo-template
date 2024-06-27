@@ -11,7 +11,7 @@ import { PostFormData } from '../interfaces/posts.interface';
 
 type PostFormStatusProps = {
   form: UseFormReturn<PostFormData>;
-  isEditMode: boolean;
+  isEdit: boolean;
   statuses: StatusType[];
 } & ComponentBaseProps;
 

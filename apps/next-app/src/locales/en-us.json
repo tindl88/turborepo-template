@@ -29,9 +29,9 @@
 
   "password": "Password",
   "login": "Login",
-  "sign_in": "Sign in",
-  "sign_up": "Sign up",
-  "sign_out": "Sign out",
+  "signin": "Sign in",
+  "signup": "Sign up",
+  "signout": "Sign out",
 
   "sort_ascending": "Ascending",
   "sort_descending": "Descending",

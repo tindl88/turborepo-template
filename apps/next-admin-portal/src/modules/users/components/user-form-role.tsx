@@ -12,6 +12,7 @@ import { UserFormData } from '../interfaces/users.interface';
 
 type UserFormRoleProps = {
   form: UseFormReturn<UserFormData>;
+  isEdit: boolean;
 } & ComponentBaseProps;
 
 const roleOptions = [

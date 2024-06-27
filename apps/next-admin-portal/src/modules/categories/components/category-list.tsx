@@ -276,12 +276,12 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
       </div>
       <ModalConfirm
         visible={action.name === CATEGORY_ACTION.DELETE}
-        title="Delete"
+        title={t('delete')}
         content={
-          <>
-            <span>Delete Category:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
+          <div className="space-x-1">
+            <span>{t('category_delete_message')}</span>
+            <strong>{action.data?.name}?</strong>
+          </div>
         }
         onYes={() => {
           categoriesState.destroyRequest(action.data?.id as string);
@@ -291,13 +291,8 @@ const CategoryList: FC<ComponentBaseProps> = ({ className }) => {
       />
       <ModalConfirm
         visible={action.name === CATEGORY_ACTION.BULK_DELETE}
-        title="Bulk Delete"
-        content={
-          <>
-            <span>Delete all selected categories:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
-        }
+        title={t('bulk_delete')}
+        content={<span>{t('category_bulk_delete_message')}</span>}
         onYes={() => {
           categoriesState.bulkDestroyRequest({ ids: categoriesState.selected });
           setAction({ name: '' });

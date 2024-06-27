@@ -22,7 +22,7 @@ const Authenticated: FC<AuthenticatedProps> = ({ userSession, ...rest }) => {
   return (
     <div className="flex items-center space-x-1" data-testid="authenticated" {...rest}>
       <strong data-testid="username">{userSession.user.name}</strong>
-      <Button onClick={() => authState.signOut({ redirect: true, callbackUrl: '/' })}>{t('sign_out')}</Button>
+      <Button onClick={() => authState.signOut({ redirect: true, callbackUrl: '/' })}>{t('signout')}</Button>
     </div>
   );
 };

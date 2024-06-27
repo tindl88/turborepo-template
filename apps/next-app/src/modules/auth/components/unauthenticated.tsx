@@ -19,10 +19,10 @@ const Unauthenticated: FC<ComponentBaseProps> = ({ visible = false, ...rest }) =
   return (
     <div className="flex items-center gap-x-3" data-testid="unauthenticated" {...rest}>
       <Button data-testid="btn-signin" onClick={() => router.push(ROUTES.SIGN_IN)}>
-        {t('sign_in')}
+        {t('signin')}
       </Button>
       <Button data-testid="btn-signup" onClick={() => router.push(ROUTES.REGISTER)}>
-        {t('sign_up')}
+        {t('signup')}
       </Button>
     </div>
   );

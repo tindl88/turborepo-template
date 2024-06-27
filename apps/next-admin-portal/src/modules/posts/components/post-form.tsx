@@ -29,16 +29,16 @@ import PostFormImages from './post-form-images';
 import PostFormStatus from './post-form-status';
 
 type PostFormProps = {
-  isEditMode: boolean;
+  isEdit: boolean;
 };
 
-const PostForm: FC<PostFormProps> = ({ isEditMode }) => {
+const PostForm: FC<PostFormProps> = ({ isEdit }) => {
   const t = useTranslations();
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const postsState = usePostsState();
-  const { post, categories, isFetched, isFetching } = usePosts({ postId: params.id as string });
+  const { post, categories, isFetching } = usePosts({ postId: params.id as string });
 
   const defaultValues: PostFormData = {
     status: post?.status ?? POST_STATUS.DRAFT,
@@ -56,7 +56,7 @@ const PostForm: FC<PostFormProps> = ({ isEditMode }) => {
   const onSubmit: SubmitHandler<PostFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (isFetched && isEditMode) {
+    if (isEdit) {
       postsState.updateRequest({ id: params.id as string, data: formData });
     } else {
       postsState.createRequest(formData);
@@ -85,15 +85,15 @@ const PostForm: FC<PostFormProps> = ({ isEditMode }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <PostFormFields form={form} isEditMode={isEditMode} />
+                <PostFormFields form={form} isEdit={isEdit} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <PostFormStatus form={form} isEditMode={isEditMode} statuses={POST_STATUSES} />
-                <PostFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
-                <PostFormCover form={form} isEditMode={isEditMode} />
-                <PostFormImages form={form} isEditMode={isEditMode} />
+                <PostFormStatus form={form} isEdit={isEdit} statuses={POST_STATUSES} />
+                <PostFormCategory form={form} isEdit={isEdit} categories={categories ?? []} />
+                <PostFormCover form={form} isEdit={isEdit} />
+                <PostFormImages form={form} isEdit={isEdit} />
               </div>
             </div>
           </div>

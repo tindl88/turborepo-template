@@ -9,5 +9,5 @@ export const productFormValidator = z.object({
   status: baseValidator.content,
   cover: z.string(),
   images: baseValidator.uuidArray,
-  categoryId: baseValidator.uuid
+  categoryId: z.string()
 });

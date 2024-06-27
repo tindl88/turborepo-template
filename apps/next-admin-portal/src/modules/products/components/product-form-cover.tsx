@@ -16,7 +16,7 @@ import FileDialog from '@/modules/files/components/file-dialog';
 
 type ProductFormCoverProps = {
   form: UseFormReturn<ProductFormData>;
-  isEditMode: boolean;
+  isEdit: boolean;
 } & ComponentBaseProps;
 
 export default function ProductFormCover({ form }: ProductFormCoverProps) {

@@ -10,11 +10,11 @@ type CategoryFormFilter = {
 };
 
 type UseCategoriesProps = {
-  isEditMode: boolean;
+  isEdit: boolean;
   categoryId: string;
 };
 
-function useCategories({ isEditMode, categoryId }: UseCategoriesProps) {
+function useCategories({ isEdit, categoryId }: UseCategoriesProps) {
   const [formFilter, refetchCategories] = useState<CategoryFormFilter>({ type: undefined });
   const {
     data: category,
@@ -27,7 +27,7 @@ function useCategories({ isEditMode, categoryId }: UseCategoriesProps) {
 
       return categoryResp.data.data;
     },
-    enabled: isEditMode,
+    enabled: isEdit,
     staleTime: 0,
     gcTime: 0
   });
@@ -42,7 +42,7 @@ function useCategories({ isEditMode, categoryId }: UseCategoriesProps) {
 
       return categoriesResp.data.data;
     },
-    enabled: isEditMode ? !!category : true,
+    enabled: isEdit ? !!category : true,
     staleTime: 0,
     gcTime: 0
   });

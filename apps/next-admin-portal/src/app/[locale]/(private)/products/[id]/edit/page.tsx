@@ -12,7 +12,7 @@ export default function ProductEditPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      <ProductForm isEditMode={true} />
+      <ProductForm isEdit={true} />
     </PageWrapper>
   );
 }

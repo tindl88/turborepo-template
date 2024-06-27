@@ -6,5 +6,5 @@ export const categoryFormValidator = z.object({
   name: baseValidator.title,
   slug: baseValidator.content,
   type: baseValidator.requireSelect,
-  parentId: baseValidator.requireSelect
+  parentId: z.string()
 });

@@ -29,16 +29,16 @@ import ProductFormImages from './product-form-images';
 import ProductFormStatus from './product-form-status';
 
 type ProductFormProps = {
-  isEditMode: boolean;
+  isEdit: boolean;
 };
 
-const ProductForm: FC<ProductFormProps> = ({ isEditMode }) => {
+const ProductForm: FC<ProductFormProps> = ({ isEdit }) => {
   const t = useTranslations();
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const productsState = useProductsState();
-  const { product, categories, isFetched, isFetching } = useProducts({ productId: params.id as string });
+  const { product, categories, isFetching } = useProducts({ productId: params.id as string });
 
   const defaultValues: ProductFormData = {
     status: product?.status ?? PRODUCT_STATUS.DRAFT,
@@ -58,7 +58,7 @@ const ProductForm: FC<ProductFormProps> = ({ isEditMode }) => {
   const onSubmit: SubmitHandler<ProductFormData> = async formData => {
     formData.images = formData.images.map(item => ({ id: item.id }) as FileEntity);
 
-    if (isFetched && isEditMode) {
+    if (isEdit) {
       productsState.updateRequest({ id: params.id as string, data: formData });
     } else {
       productsState.createRequest(formData);
@@ -76,6 +76,7 @@ const ProductForm: FC<ProductFormProps> = ({ isEditMode }) => {
           <FormToolbar
             className="mb-4"
             title={t('product_details')}
+            submitDisabled={isFetching}
             onBackClick={() =>
               router.push({
                 pathname: '/products',
@@ -86,15 +87,15 @@ const ProductForm: FC<ProductFormProps> = ({ isEditMode }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <ProductFormFields form={form} isEditMode={isEditMode} />
+                <ProductFormFields form={form} isEdit={isEdit} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <ProductFormStatus form={form} isEditMode={isEditMode} statuses={PRODUCT_STATUSES} />
-                <ProductFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
-                <ProductFormCover form={form} isEditMode={isEditMode} />
-                <ProductFormImages form={form} isEditMode={isEditMode} />
+                <ProductFormStatus form={form} isEdit={isEdit} statuses={PRODUCT_STATUSES} />
+                <ProductFormCategory form={form} isEdit={isEdit} categories={categories ?? []} />
+                <ProductFormCover form={form} isEdit={isEdit} />
+                <ProductFormImages form={form} isEdit={isEdit} />
               </div>
             </div>
           </div>

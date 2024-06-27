@@ -26,17 +26,17 @@ import CategoryFormStatus from './category-form-status';
 import CategoryFormType from './category-form-type';
 
 type CategoryFormProps = {
-  isEditMode: boolean;
+  isEdit: boolean;
 };
 
-const CategoryForm: FC<CategoryFormProps> = ({ isEditMode }) => {
+const CategoryForm: FC<CategoryFormProps> = ({ isEdit }) => {
   const t = useTranslations();
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const categoriesState = useCategoriesState();
-  const { category, categories, isFetched, isFetching, refetchCategories } = useCategories({
-    isEditMode,
+  const { category, categories, isFetching, refetchCategories } = useCategories({
+    isEdit,
     categoryId: params.id as string
   });
 
@@ -51,7 +51,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ isEditMode }) => {
   const form = useForm<CategoryFormData>({ resolver: zodResolver(categoryFormValidator), defaultValues });
 
   const onSubmit: SubmitHandler<CategoryFormData> = async formData => {
-    if (isFetched && isEditMode) {
+    if (isEdit) {
       categoriesState.updateRequest({ id: params.id as string, data: formData });
     } else {
       categoriesState.createRequest(formData);
@@ -77,21 +77,21 @@ const CategoryForm: FC<CategoryFormProps> = ({ isEditMode }) => {
           <div className="flex gap-4">
             <Card className="grow">
               <CardContent className="grid gap-4 pt-4">
-                <CategoryFormFields form={form} isEditMode={isEditMode} />
-                {!category && (
-                  <CategoryFormType
-                    form={form}
-                    isEditMode={isEditMode}
-                    types={CATEGORY_TYPES}
-                    onChange={value => refetchCategories({ type: value as CATEGORY_TYPE })}
-                  />
-                )}
+                <CategoryFormFields form={form} isEdit={isEdit} />
               </CardContent>
             </Card>
             <div className="w-72 shrink-0">
               <div className="grid gap-4">
-                <CategoryFormStatus form={form} isEditMode={isEditMode} statuses={CATEGORY_STATUSES} />
-                <CategoryFormCategory form={form} isEditMode={isEditMode} categories={categories ?? []} />
+                <CategoryFormStatus form={form} isEdit={isEdit} statuses={CATEGORY_STATUSES} />
+                {!category && (
+                  <CategoryFormType
+                    form={form}
+                    isEdit={isEdit}
+                    types={CATEGORY_TYPES}
+                    onChange={value => refetchCategories({ type: value as CATEGORY_TYPE })}
+                  />
+                )}
+                <CategoryFormCategory form={form} isEdit={isEdit} categories={categories ?? []} />
               </div>
             </div>
           </div>

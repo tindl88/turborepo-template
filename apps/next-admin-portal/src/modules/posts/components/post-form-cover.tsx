@@ -16,7 +16,7 @@ import FileDialog from '@/modules/files/components/file-dialog';
 
 type PostFormCoverProps = {
   form: UseFormReturn<PostFormData>;
-  isEditMode: boolean;
+  isEdit: boolean;
 } & ComponentBaseProps;
 
 export default function PostFormCover({ form }: PostFormCoverProps) {

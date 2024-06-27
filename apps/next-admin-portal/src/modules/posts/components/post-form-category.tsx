@@ -26,7 +26,7 @@ const renderCategories = (cates: CategoryEntity[], depth = 0) => {
 
 type PostFormCategoryProps = {
   form: UseFormReturn<PostFormData>;
-  isEditMode: boolean;
+  isEdit: boolean;
   categories: CategoryEntity[];
   onChange?: (value: string) => void;
 } & ComponentBaseProps;
@@ -57,8 +57,8 @@ export default function PostFormCategory({ form, categories, onChange }: PostFor
                       onChange?.(val);
                     }}
                   >
-                    <SelectTrigger aria-label={t('select_category')}>
-                      <SelectValue placeholder={t('select_category')} />
+                    <SelectTrigger aria-label={t('category_select_category')}>
+                      <SelectValue placeholder={t('category_select_category')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="root">Root</SelectItem>

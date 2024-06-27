@@ -12,7 +12,7 @@ export default function CategoryAddNewPage(_pageProps: PageBaseProps) {
 
   return (
     <PageWrapper>
-      <CategoryForm isEditMode={false} />
+      <CategoryForm isEdit={false} />
     </PageWrapper>
   );
 }

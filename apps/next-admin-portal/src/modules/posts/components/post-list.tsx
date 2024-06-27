@@ -268,12 +268,12 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
       </div>
       <ModalConfirm
         visible={action.name === POST_ACTION.DELETE}
-        title="Delete"
+        title={t('delete')}
         content={
-          <>
-            <span>Delete Post:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
+          <div className="space-x-1">
+            <span>{t('post_delete_message')}</span>
+            <strong>{action.data?.name}?</strong>
+          </div>
         }
         onYes={() => {
           postsState.destroyRequest(action.data?.id as string);
@@ -283,13 +283,8 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
       />
       <ModalConfirm
         visible={action.name === POST_ACTION.BULK_DELETE}
-        title="Bulk Delete"
-        content={
-          <>
-            <span>Delete all selected posts:</span>
-            <strong className="text-primary">{action.data?.name}?</strong>
-          </>
-        }
+        title={t('bulk_delete')}
+        content={<span>{t('post_bulk_delete_message')}</span>}
         onYes={() => {
           postsState.bulkDestroyRequest({ ids: postsState.selected });
           setAction({ name: '' });

@@ -11,7 +11,7 @@ import { ProductFormData } from '../interfaces/products.interface';
 
 type ProductFormStatusProps = {
   form: UseFormReturn<ProductFormData>;
-  isEditMode: boolean;
+  isEdit: boolean;
   statuses: StatusType[];
 } & ComponentBaseProps;
 
