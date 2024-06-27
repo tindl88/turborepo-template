@@ -4,7 +4,7 @@ import path from 'path';
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@repo/ui', '@repo/shared-client', '@repo/shared-universal'],
+  transpilePackages: ['@repo/ui', '@repo/shared-web', '@repo/shared-universal'],
   images: {
     remotePatterns: [{ protocol: 'http', hostname: 'localhost' }]
   },

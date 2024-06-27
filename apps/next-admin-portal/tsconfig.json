@@ -7,7 +7,7 @@
       "@tests/*": ["./__tests__/*"],
       "@mocks/*": ["./__mocks__/*"],
       "~ui/*": ["../../packages/ui/src/*"],
-      "~shared-client/*": ["../../packages/shared-client/src/*"],
+      "~shared-web/*": ["../../packages/shared-web/src/*"],
       "~shared-universal/*": ["../../packages/shared-universal/src/*"]
     }
   },
@@ -19,7 +19,7 @@
     "__tests__",
     "__mocks__",
     "../../packages/ui/src",
-    "../../packages/shared-client/src",
+    "../../packages/shared-web/src",
     "../../packages/shared-universal/src"
   ],
   "exclude": ["node_modules"]

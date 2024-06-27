@@ -11,7 +11,7 @@ export default defineConfig({
       '@tests': path.resolve(__dirname, './__tests__'),
       '@mocks': path.resolve(__dirname, './__mocks__'),
       '~ui': path.resolve(__dirname, '../../packages/ui/src'),
-      '~shared-client': path.resolve(__dirname, '../../packages/shared-client/src'),
+      '~shared-web': path.resolve(__dirname, '../../packages/shared-web/src'),
       '~shared-universal': path.resolve(__dirname, '../../packages/shared-universal/src')
     }
   },
