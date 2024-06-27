@@ -15,11 +15,13 @@ type ModalConfirmProps = {
   visible: boolean;
   title: string;
   content?: ReactNode;
+  btnYes?: string;
+  btnNo?: string;
   onYes: () => void;
   onNo: () => void;
 };
 
-const ModalConfirm: FC<ModalConfirmProps> = ({ visible = false, title, content, onYes, onNo }) => {
+const ModalConfirm: FC<ModalConfirmProps> = ({ visible = false, title, content, btnYes, btnNo, onYes, onNo }) => {
   const t = useTranslations();
 
   return (
@@ -30,8 +32,8 @@ const ModalConfirm: FC<ModalConfirmProps> = ({ visible = false, title, content, 
           <AlertDialogDescription>{content}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onNo}>{t('btn_no')}</AlertDialogCancel>
-          <AlertDialogAction onClick={onYes}>{t('btn_yes')}</AlertDialogAction>
+          <AlertDialogCancel onClick={onNo}>{btnYes ?? t('btn_no')}</AlertDialogCancel>
+          <AlertDialogAction onClick={onYes}>{btnNo ?? t('btn_yes')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

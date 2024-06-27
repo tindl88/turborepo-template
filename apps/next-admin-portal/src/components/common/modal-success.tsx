@@ -8,9 +8,9 @@ import {
 } from '~ui/components/ui/alert-dialog';
 import { Button } from '~ui/components/ui/button';
 
-import ErrorIcon from '../icons/error';
+import SuccessIcon from '../icons/success';
 
-type ModalErrorProps = {
+type ModalSuccessProps = {
   visible: boolean;
   title: string;
   content?: ReactNode;
@@ -18,14 +18,14 @@ type ModalErrorProps = {
   onClose: () => void;
 };
 
-const ModalError: FC<ModalErrorProps> = ({ visible = false, title, content, btnClose, onClose }) => {
+const ModalSuccess: FC<ModalSuccessProps> = ({ visible = false, title, content, btnClose, onClose }) => {
   const t = useTranslations();
 
   return (
     <AlertDialog open={visible}>
       <AlertDialogContent className="flex-col justify-center text-center">
-        <ErrorIcon className="mx-auto" width={60} />
-        <AlertDialogTitle className="text-red-500">{title}</AlertDialogTitle>
+        <SuccessIcon className="mx-auto" width={60} />
+        <AlertDialogTitle className="text-green-500">{title}</AlertDialogTitle>
         <AlertDialogDescription>{content}</AlertDialogDescription>
         <Button variant="outline" onClick={onClose}>
           {btnClose ?? t('btn_close')}
@@ -35,4 +35,4 @@ const ModalError: FC<ModalErrorProps> = ({ visible = false, title, content, btnC
   );
 };
 
-export default ModalError;
+export default ModalSuccess;
