@@ -6,8 +6,8 @@ import { Session } from 'next-auth';
 import Authenticated from '@/modules/auth/components/authenticated';
 import Unauthenticated from '@/modules/auth/components/unauthenticated';
 
-import Languages from './languages';
-import Menu from './menu';
+import Languages from '../languages/languages';
+import Menu from '../menus/menu';
 
 interface ITopBarProps {
   userSession: Session | null;

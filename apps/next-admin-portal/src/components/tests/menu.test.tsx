@@ -1,6 +1,6 @@
 import { render } from '@tests/unit/utils/test.util';
 
-import Menu from '../menu';
+import Menu from '../menus/menu';
 
 describe('Menu Component', () => {
   test('should renders the menu', async () => {

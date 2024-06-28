@@ -7,13 +7,13 @@ import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persi
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
-import { MediaContextProvider } from '@/components/common/media';
-import ServiceWorker from '@/components/common/service-worker';
-import Tracking from '@/components/common/third-party/tracking';
+import { MediaContextProvider } from '@/components/media';
+import ServiceWorker from '@/components/service-worker';
+import Tracking from '@/components/third-party/tracking';
 
 import { getQueryClient } from '@/utils/query-client.util';
 
-import ErrorBoundary from '../error-boundary';
+import ErrorBoundary from '../errors/error-boundary';
 
 import '@/libs/svg-icons/dist/svg-icons.scss';
 import '~react-web-ui-shadcn/globals.css';
@@ -24,6 +24,10 @@ const asyncStoragePersister = createAsyncStoragePersister({ storage: AsyncStorag
 type ProvidersProps = {
   children: ReactNode;
 };
+
+// if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+//   store.dispatch(themeActions.changeColorScheme('dark'));
+// }
 
 function Providers({ children }: ProvidersProps) {
   return (

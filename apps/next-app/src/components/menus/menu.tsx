@@ -13,14 +13,20 @@ const Menu: FC<MenuProps> = ({ className, ...rest }) => {
       <Link className="p-2 text-white" href={'/'}>
         Home
       </Link>
-      <Link className="p-2 text-white" href={'/blogs'}>
-        Blogs
+      <Link className="p-2 text-white" href={'/posts'}>
+        Posts
       </Link>
       <Link className="p-2 text-white" href={'/photos'}>
         Photos
       </Link>
+      <Link className="p-2 text-white" href={'/animations'}>
+        Animations
+      </Link>
       <Link className="p-2 text-white" href={'/game'}>
         Game
+      </Link>
+      <Link className="p-2 text-white" href={'/ui'}>
+        UI Kit
       </Link>
     </div>
   );

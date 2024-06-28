@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { mediaStyles } from '@/components/common/media';
+import { mediaStyles } from '@/components/media';
 
 const HeadInjector = () => {
   return (
