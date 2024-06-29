@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import { Button } from '~react-web-ui-shadcn/components/ui/button';
 

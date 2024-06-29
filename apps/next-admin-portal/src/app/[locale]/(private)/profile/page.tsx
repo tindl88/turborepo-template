@@ -1,3 +1,5 @@
+'use client';
+
 import { Metadata } from 'next';
 import classNames from 'classnames';
 import { Separator } from '~react-web-ui-shadcn/components/ui/separator';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, ReactNode } from 'react';
 
 import HeadInjector from './head-injector';

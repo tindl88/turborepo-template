@@ -38,7 +38,7 @@ const PostForm: FC<PostFormProps> = ({ isEdit }) => {
   const params = useParams();
   const searchParams = useSearchParams();
   const postsState = usePostsState();
-  const { post, categories, isFetching } = usePosts({ postId: params.id as string });
+  const { post, categories, isFetching } = usePosts({ isEdit, postId: params.id as string });
 
   const defaultValues: PostFormData = {
     status: post?.status ?? POST_STATUS.DRAFT,

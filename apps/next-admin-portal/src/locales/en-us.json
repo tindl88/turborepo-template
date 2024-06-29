@@ -97,6 +97,7 @@
   "user_delete_success": "Delete user successfully.",
   "user_delete_failure": "Can't delete user.",
   "user_delete_message": "Are you sure you want to delete user:",
+  "user_bulk_delete_message": "Are you sure you want to delete selected users?",
   "user_details": "User Details",
   "user_created_at": "Created At",
   "user_status": "Status",

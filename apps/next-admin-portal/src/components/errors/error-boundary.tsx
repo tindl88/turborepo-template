@@ -1,5 +1,3 @@
-'use client';
-
 import { FC, ReactNode } from 'react';
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 

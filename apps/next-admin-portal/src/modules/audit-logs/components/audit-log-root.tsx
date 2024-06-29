@@ -1,5 +1,3 @@
-'use client';
-
 import { FC, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import classNames from 'classnames';

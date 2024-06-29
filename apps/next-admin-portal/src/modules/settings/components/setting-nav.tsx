@@ -1,5 +1,3 @@
-'use client';
-
 import { usePathname, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
 import { buttonVariants } from '~react-web-ui-shadcn/components/ui/button';

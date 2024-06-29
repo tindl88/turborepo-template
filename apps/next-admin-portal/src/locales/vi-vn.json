@@ -96,6 +96,7 @@
   "user_delete_success": "Xoá thành viên thành công.",
   "user_delete_failure": "Không thể xoá thành viên.",
   "user_delete_message": "Bạn chắc chắn sẽ xoá thành viên:",
+  "user_bulk_delete_message": "Bạn chắc chắn sẽ xoá các thành viên đã chọn?",
   "user_details": "Chi Tiết Thành Viên",
   "user_created_at": "Ngày tạo",
   "user_status": "Trạng thái",

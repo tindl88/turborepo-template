@@ -3,10 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import UserApi from '../api/users.api';
 
 type UseUsersProps = {
+  isEdit: boolean;
   userId: string;
 };
 
-function useUsers({ userId }: UseUsersProps) {
+function useUsers({ isEdit, userId }: UseUsersProps) {
   const {
     data: user,
     isFetched: isUserFetched,
@@ -18,6 +19,7 @@ function useUsers({ userId }: UseUsersProps) {
 
       return userResp.data.data;
     },
+    enabled: isEdit,
     staleTime: 0,
     gcTime: 0
   });

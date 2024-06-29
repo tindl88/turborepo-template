@@ -1,3 +1,5 @@
+'use client';
+
 import { PageBaseProps } from '@/interfaces/page.interface';
 
 import PageWrapper from '@/components/pages/page-wrapper';

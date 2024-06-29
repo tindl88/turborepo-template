@@ -11,10 +11,11 @@ type CategoryFormFilter = {
 };
 
 type UseProductsProps = {
+  isEdit: boolean;
   productId: string;
 };
 
-function useProducts({ productId }: UseProductsProps) {
+function useProducts({ isEdit, productId }: UseProductsProps) {
   const [formFilter, refetchCategories] = useState<CategoryFormFilter>({ type: CATEGORY_TYPE.PRODUCT });
   const {
     data: product,
@@ -27,6 +28,7 @@ function useProducts({ productId }: UseProductsProps) {
 
       return productResp.data.data;
     },
+    enabled: isEdit,
     staleTime: 0,
     gcTime: 0
   });
