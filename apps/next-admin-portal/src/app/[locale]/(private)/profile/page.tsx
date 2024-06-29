@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import classNames from 'classnames';
 import { Separator } from '~react-web-ui-shadcn/components/ui/separator';
 
@@ -25,11 +24,4 @@ export default function ProfilePage(_pageProps: PageBaseProps) {
       </div>
     </PageWrapper>
   );
-}
-
-export async function generateMetadata(_pageProps: PageBaseProps): Promise<Metadata> {
-  return {
-    title: 'Profile',
-    description: 'Profile Description'
-  };
 }
