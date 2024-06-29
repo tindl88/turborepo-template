@@ -1,5 +1,3 @@
-'use client';
-
 import React, { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 

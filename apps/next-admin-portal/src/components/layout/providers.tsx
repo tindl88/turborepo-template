@@ -31,10 +31,6 @@ type ProvidersProps = {
   children: ReactNode;
 };
 
-// if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//   store.dispatch(themeActions.changeColorScheme('dark'));
-// }
-
 function Providers({ children }: ProvidersProps) {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [setupPostListeners(startAppListening)];

@@ -25,10 +25,6 @@ type ProvidersProps = {
   children: ReactNode;
 };
 
-// if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//   store.dispatch(themeActions.changeColorScheme('dark'));
-// }
-
 function Providers({ children }: ProvidersProps) {
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: asyncStoragePersister }}>

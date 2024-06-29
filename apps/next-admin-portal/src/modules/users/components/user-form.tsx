@@ -34,7 +34,7 @@ const UserForm: FC<UserFormProps> = ({ isEdit }) => {
   const params = useParams();
   const searchParams = useSearchParams();
   const usersState = useUsersState();
-  const { user, isFetching } = useUsers({ userId: params.id as string });
+  const { user, isFetching } = useUsers({ isEdit, userId: params.id as string });
 
   const defaultValues: UserFormData = {
     status: user?.status ?? USER_STATUS.INACTIVE,

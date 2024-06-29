@@ -11,10 +11,11 @@ type CategoryFormFilter = {
 };
 
 type UsePostsProps = {
+  isEdit: boolean;
   postId: string;
 };
 
-function usePosts({ postId }: UsePostsProps) {
+function usePosts({ isEdit, postId }: UsePostsProps) {
   const [formFilter, refetchCategories] = useState<CategoryFormFilter>({ type: CATEGORY_TYPE.POST });
   const {
     data: post,
@@ -27,6 +28,7 @@ function usePosts({ postId }: UsePostsProps) {
 
       return postResp.data.data;
     },
+    enabled: isEdit,
     staleTime: 0,
     gcTime: 0
   });

@@ -1,5 +1,3 @@
-'use client';
-
 import { useTranslations } from 'next-intl';
 import { ColumnsIcon } from 'lucide-react';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';

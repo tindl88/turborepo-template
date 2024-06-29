@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { ColumnDef, flexRender, Table as TTable } from '@tanstack/react-table';

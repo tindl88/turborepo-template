@@ -1,5 +1,3 @@
-'use client';
-
 import React, { FC } from 'react';
 import { Session } from 'next-auth';
 import { useTranslations } from 'next-intl';

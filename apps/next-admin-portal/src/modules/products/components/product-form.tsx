@@ -38,7 +38,7 @@ const ProductForm: FC<ProductFormProps> = ({ isEdit }) => {
   const params = useParams();
   const searchParams = useSearchParams();
   const productsState = useProductsState();
-  const { product, categories, isFetching } = useProducts({ productId: params.id as string });
+  const { product, categories, isFetching } = useProducts({ isEdit, productId: params.id as string });
 
   const defaultValues: ProductFormData = {
     status: product?.status ?? PRODUCT_STATUS.DRAFT,
