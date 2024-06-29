@@ -31,7 +31,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@repo/shared-universal": "*",
-    "@repo/react-native-design-system": "*"
+    "@repo/react-native-design-system": "*",
+    "@repo/shared-universal": "*"
   }
 }
