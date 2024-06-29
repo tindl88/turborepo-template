@@ -27,15 +27,15 @@ export class ProductsService {
     private readonly categoriesService: CategoriesService
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createDto: CreateProductDto) {
     const product = new Product();
 
-    Object.assign(product, createProductDto);
+    Object.assign(product, createDto);
     const response = await this.productRepository.save(product);
 
     const productCreatedEvent = new ProductCreatedEvent();
 
-    productCreatedEvent.productDto = createProductDto;
+    productCreatedEvent.productDto = createDto;
     productCreatedEvent.product = response;
 
     this.eventEmitter.emit('product.created', productCreatedEvent);
@@ -114,20 +114,28 @@ export class ProductsService {
     return product;
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto) {
-    const product = await this.productRepository.preload({ id: id, ...updateProductDto });
+  async update(id: string, updateDto: UpdateProductDto) {
+    const product = await this.productRepository.preload({ id: id, ...updateDto });
 
     if (!product) {
       throw new NotFoundException('Product not found');
     }
 
-    product.category = await this.categoriesService.findOne(updateProductDto.categoryId);
+    if (updateDto.categoryId) {
+      const category = await this.categoriesService.findOne(updateDto.categoryId);
+
+      if (!category) {
+        throw new NotFoundException('Category not found');
+      }
+
+      product.category = category;
+    }
 
     const response = await this.productRepository.save(product);
 
     const productUpdatedEvent = new ProductUpdatedEvent();
 
-    productUpdatedEvent.productDto = updateProductDto;
+    productUpdatedEvent.productDto = updateDto;
     productUpdatedEvent.product = response;
 
     this.eventEmitter.emit('product.updated', productUpdatedEvent);
@@ -155,12 +163,12 @@ export class ProductsService {
     return productResponse;
   }
 
-  async bulkDelete(bulkDeleteProductDto: BulkDeleteProductDto) {
+  async bulkDelete(bulkDeleteDto: BulkDeleteProductDto) {
     const queryBuilder = this.productRepository
       .createQueryBuilder()
       .update(Product)
       .set({ status: PRODUCT_STATUS.DELETED })
-      .whereInIds(bulkDeleteProductDto.ids);
+      .whereInIds(bulkDeleteDto.ids);
     const data = await queryBuilder.returning('id, status').execute();
 
     const productDeletedEvent = new ProductDeletedEvent();

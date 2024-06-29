@@ -10,7 +10,7 @@ export class SignInDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'Password123@' })
+  @ApiProperty({ example: 'Ammodesk123@' })
   @IsNotEmpty()
   @IsString()
   @Length(6, 50, { message: 'password has to be at between 6 and 50 chars' })

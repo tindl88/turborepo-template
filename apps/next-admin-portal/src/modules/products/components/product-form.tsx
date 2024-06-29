@@ -67,7 +67,7 @@ const ProductForm: FC<ProductFormProps> = ({ isEdit }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [product]);
+  }, [product, categories]);
 
   return (
     <div data-testid="frm-product">

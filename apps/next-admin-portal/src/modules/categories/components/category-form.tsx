@@ -45,7 +45,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ isEdit }) => {
     name: category?.name ?? '',
     slug: category?.slug ?? '',
     type: category?.type ?? ('' as CATEGORY_TYPE),
-    parentId: category?.category?.id ?? ''
+    parentId: category?.parent?.id ?? ''
   };
 
   const form = useForm<CategoryFormData>({ resolver: zodResolver(categoryFormValidator), defaultValues });
@@ -60,7 +60,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ isEdit }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [category]);
+  }, [category, categories]);
 
   return (
     <div data-testid="frm-category">

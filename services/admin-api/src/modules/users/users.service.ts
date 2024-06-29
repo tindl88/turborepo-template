@@ -27,14 +27,14 @@ export class UsersService {
     private readonly eventEmitter: EventEmitter2
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const user = this.userRepository.create(createUserDto);
+  async create(createDto: CreateUserDto) {
+    const user = this.userRepository.create(createDto);
 
     const response = await this.userRepository.save(user);
 
     const userCreatedEvent = new UserCreatedEvent();
 
-    userCreatedEvent.userDto = createUserDto;
+    userCreatedEvent.userDto = createDto;
     userCreatedEvent.user = response;
 
     this.eventEmitter.emit('user.created', userCreatedEvent);
@@ -116,23 +116,23 @@ export class UsersService {
     return user;
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.preload({ id: id, ...updateUserDto });
+  async update(id: string, updateDto: UpdateUserDto) {
+    const user = await this.userRepository.preload({ id: id, ...updateDto });
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
     if (!user.deviceTokens) user.deviceTokens = [];
-    if (!user.deviceTokens.includes(updateUserDto.deviceToken)) {
-      user.deviceTokens.push(updateUserDto.deviceToken);
+    if (!user.deviceTokens.includes(updateDto.deviceToken)) {
+      user.deviceTokens.push(updateDto.deviceToken);
     }
 
     const response = await this.userRepository.save(user);
 
     const userUpdatedEvent = new UserUpdatedEvent();
 
-    userUpdatedEvent.userDto = updateUserDto;
+    userUpdatedEvent.userDto = updateDto;
     userUpdatedEvent.user = response;
 
     this.eventEmitter.emit('user.updated', userUpdatedEvent);
@@ -159,12 +159,12 @@ export class UsersService {
     return deviceTokens;
   }
 
-  async bulkDelete(bulkDeleteUserDto: BulkDeleteUserDto) {
+  async bulkDelete(bulkDeleteDto: BulkDeleteUserDto) {
     const queryBuilder = this.userRepository
       .createQueryBuilder()
       .update(User)
       .set({ status: USER_STATUS.DELETED })
-      .whereInIds(bulkDeleteUserDto.ids);
+      .whereInIds(bulkDeleteDto.ids);
     const data = await queryBuilder.returning('id, status').execute();
 
     return data.raw;
