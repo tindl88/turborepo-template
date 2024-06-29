@@ -28,10 +28,10 @@ export class PostsService {
     private readonly categoriesService: CategoriesService
   ) {}
 
-  async create(user: User, createPostDto: CreatePostDto) {
+  async create(user: User, createDto: CreatePostDto) {
     const post = new Post();
 
-    Object.assign(post, createPostDto);
+    Object.assign(post, createDto);
 
     const response = await this.postRepository.save(post);
 
@@ -39,7 +39,7 @@ export class PostsService {
 
     postCreatedEvent.user = user;
     postCreatedEvent.post = response;
-    postCreatedEvent.postDto = createPostDto;
+    postCreatedEvent.postDto = createDto;
 
     this.eventEmitter.emit('post.created', postCreatedEvent);
 
@@ -118,20 +118,22 @@ export class PostsService {
     return post;
   }
 
-  async update(user: User, id: string, updatePostDto: UpdatePostDto) {
-    const post = await this.postRepository.preload({ id, ...updatePostDto });
+  async update(user: User, id: string, updateDto: UpdatePostDto) {
+    const post = await this.postRepository.preload({ id, ...updateDto });
 
     if (!post) {
       throw new NotFoundException('Post not found');
     }
 
-    const category = await this.categoriesService.findOne(updatePostDto.categoryId);
+    if (updateDto.categoryId) {
+      const category = await this.categoriesService.findOne(updateDto.categoryId);
 
-    if (!category) {
-      throw new NotFoundException("Post's category not found");
+      if (!category) {
+        throw new NotFoundException('Category not found');
+      }
+
+      post.category = category;
     }
-
-    post.category = category;
 
     const response = await this.postRepository.save(post);
 
@@ -140,7 +142,7 @@ export class PostsService {
     postUpdatedEvent.user = user;
     postUpdatedEvent.oldPost = post;
     postUpdatedEvent.newPost = response;
-    postUpdatedEvent.postDto = updatePostDto;
+    postUpdatedEvent.postDto = updateDto;
 
     this.eventEmitter.emit('post.updated', postUpdatedEvent);
 
@@ -169,12 +171,12 @@ export class PostsService {
     return postResponse;
   }
 
-  async bulkDelete(user: User, bulkDeletePostDto: BulkDeletePostDto) {
+  async bulkDelete(user: User, bulkDeleteDto: BulkDeletePostDto) {
     const oldPosts: Post[] = [];
     const newPosts: Post[] = [];
 
-    for (let i = 0; i < bulkDeletePostDto.ids.length; i++) {
-      const id = bulkDeletePostDto.ids[i];
+    for (let i = 0; i < bulkDeleteDto.ids.length; i++) {
+      const id = bulkDeleteDto.ids[i];
       const post = await this.postRepository.createQueryBuilder('post').where('post.id = :id', { id }).getOne();
 
       oldPosts.push(post);

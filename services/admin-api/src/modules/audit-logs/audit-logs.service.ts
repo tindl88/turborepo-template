@@ -17,8 +17,8 @@ export class AuditLogsService {
     private readonly auditLogRepository: Repository<AuditLog>
   ) {}
 
-  async create(createAuditLogDto: CreateAuditLogDto) {
-    const auditLog = this.auditLogRepository.create(createAuditLogDto);
+  async create(createDto: CreateAuditLogDto) {
+    const auditLog = this.auditLogRepository.create(createDto);
 
     const response = await this.auditLogRepository.save(auditLog);
 

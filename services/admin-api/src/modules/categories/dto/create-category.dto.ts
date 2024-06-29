@@ -3,6 +3,8 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import { toSlug } from '@/common/utils/string.util';
 
+import { IsEmptyOrUUID } from '@/common/validators/is-empty-or-uuid';
+
 import { CATEGORY_STATUS, CATEGORY_TYPE } from '../constants/category.constant';
 
 export class CreateCategoryDto {
@@ -26,5 +28,7 @@ export class CreateCategoryDto {
 
   @ApiPropertyOptional({ description: 'Category ID', example: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' })
   @IsOptional()
-  parentId?: string | null;
+  @IsEmptyOrUUID()
+  @IsString()
+  parentId: string;
 }

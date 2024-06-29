@@ -65,7 +65,7 @@ const PostForm: FC<PostFormProps> = ({ isEdit }) => {
 
   useEffect(() => {
     form.reset(defaultValues);
-  }, [post]);
+  }, [post, categories]);
 
   return (
     <div data-testid="frm-post">

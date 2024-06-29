@@ -11,7 +11,6 @@
   "keyword": "Từ khoá",
   "add_new": "Thêm mới",
   "delete": "Xoá",
-  "bulk_delete": "Xoá Hàng Loạt",
   "save": "Lưu",
   "status": "Trạng thái",
   "select_status": "Chọn trạng thái",
@@ -19,6 +18,9 @@
   "select_files": "Chọn tệp",
   "remove_file": "Xoá tệp",
   "show_hide_column": "Hiện/Ẩn cột",
+  "view_detail": "Chi tiết",
+
+  "bulk_delete": "Xoá Hàng Loạt",
   "bulk_actions": "Bulk actions",
   "bulk_actions_delete_selected_rows": "Xoá các dòng đã chọn",
 

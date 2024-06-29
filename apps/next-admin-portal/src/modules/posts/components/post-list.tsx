@@ -102,12 +102,12 @@ const PostList: FC<ComponentBaseProps> = ({ className }) => {
         header: ({ column }) => <DataTableColumnHeader column={column} title={t('post_title')} />,
         cell: ({ row }) => {
           return (
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center">
               <button className="text-left hover:underline" onClick={() => handleEdit(row.original.id)}>
                 {row.getValue('name')}
               </button>
               <button className="p-1.5" onClick={() => setViewDetailId(row.original.id)}>
-                <span>(Detail)</span>
+                <span className="text-primary">({t('view_detail')})</span>
               </button>
             </div>
           );

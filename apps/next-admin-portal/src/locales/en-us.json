@@ -11,7 +11,6 @@
   "keyword": "Keyword",
   "add_new": "Add new",
   "delete": "Delete",
-  "bulk_delete": "Bulk Delete",
   "save": "Save",
   "status": "Status",
   "select_status": "Select status",
@@ -20,7 +19,10 @@
   "select_files": "Select files",
   "remove_file": "Remove file",
   "show_hide_column": "Show/Hide column",
+  "view_detail": "Detail",
+
   "bulk_actions": "Bulk actions",
+  "bulk_delete": "Bulk Delete",
   "bulk_actions_delete_selected_rows": "Delete selected rows",
 
   "btn_apply": "Apply",

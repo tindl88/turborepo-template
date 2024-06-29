@@ -18,8 +18,8 @@ export class AuditLogsController {
   constructor(private readonly auditLogsService: AuditLogsService) {}
 
   @Post()
-  create(@Body() createAuditLogDto: CreateAuditLogDto) {
-    return this.auditLogsService.create(createAuditLogDto);
+  create(@Body() createDto: CreateAuditLogDto) {
+    return this.auditLogsService.create(createDto);
   }
 
   @Get()
