@@ -7,6 +7,8 @@ export const API_ENDPOINTS = {
   SIGN_UP: '/api/v1/auth/signup',
   USER_PREFERENCES: '/api/v1/users/preferences',
   USERS: '/api/v1/admin/users',
+  PROFILE: '/api/v1/users/profile',
+  ME: '/api/v1/users/me',
   POSTS: '/api/v1/admin/posts',
   PRODUCTS: '/api/v1/admin/products',
   FILES: '/api/v1/admin/files',

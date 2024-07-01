@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
-import { User } from 'next-auth';
 import classNames from 'classnames';
 import { MenuIcon } from 'lucide-react';
 import { Button } from '~react-web-ui-shadcn/components/ui/button';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 
-import HeaderAvatar from './header-avatar';
+import { UserEntity } from '@/modules/users/interfaces/users.interface';
+
+import HeaderProfile from './header-profile';
 import HeaderTitle from './header-title';
 
 type HeaderProps = {
-  user?: User;
+  user?: UserEntity;
   onSidebarCollapseClick?: () => void;
 } & ComponentBaseProps;
 
@@ -28,7 +29,7 @@ const Header: FC<HeaderProps> = ({ className, user, onSidebarCollapseClick }) =>
         </Button>
         <HeaderTitle />
       </div>
-      <HeaderAvatar user={user} />
+      <HeaderProfile user={user} />
     </div>
   );
 };

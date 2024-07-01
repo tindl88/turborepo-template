@@ -53,6 +53,7 @@
   "filter_clear": "Clear filter",
   "filter_status": "Status",
 
+  "page_profile": "Profile",
   "page_dashboard": "Dashboard",
   "page_users": "Users",
   "page_posts": "Posts",
@@ -115,6 +116,8 @@
   "user_role_user": "User",
   "user_role_admin": "Admin",
   "user_role_super_admin": "Super Admin",
+
+  "profile": "Profile",
 
   "post_list_toast_title": "Post List",
   "post_list_failure": "Can't get posts.",

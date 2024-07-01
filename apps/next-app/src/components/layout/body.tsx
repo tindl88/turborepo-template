@@ -4,8 +4,7 @@ import { Toaster } from '~react-web-ui-shadcn/components/ui/toaster';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
 
-import BodyInjector from './body-injector';
-import Providers from './providers';
+import AllTheProviders from '../all-the-providers';
 
 type BodyProps = {
   children: ReactNode;
@@ -14,11 +13,11 @@ type BodyProps = {
 const Body: FC<BodyProps> = ({ className, children }) => {
   return (
     <body className={classNames('scrollbar flex h-full flex-col antialiased', className)}>
-      <Providers>
+      <AllTheProviders>
         {children}
-        <BodyInjector />
         <Toaster />
-      </Providers>
+        <div className="transform-gpu"></div>
+      </AllTheProviders>
     </body>
   );
 };

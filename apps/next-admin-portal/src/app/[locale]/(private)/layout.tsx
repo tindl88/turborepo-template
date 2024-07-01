@@ -7,8 +7,8 @@ import { LayoutProps } from '@/interfaces/layout.interface';
 import Body from '@/components/layout/body';
 import Head from '@/components/layout/head';
 import Html from '@/components/layout/html';
+import LeftSidebar from '@/components/layout/left-sidebar';
 import Root from '@/components/layout/root';
-import LayoutWithLeftSidebar from '@/components/layout/with-left-sidebar';
 
 import { authOptions } from '@/modules/auth/constants/auth.constant';
 
@@ -27,7 +27,7 @@ export default async function AuthLayout({ children, params }: LayoutProps) {
       <Head />
       <Body className={classNames(fontNunito.variable, session?.user?.preference?.themeColor, 'font-nunito')}>
         <Root>
-          <LayoutWithLeftSidebar>{children}</LayoutWithLeftSidebar>
+          <LeftSidebar>{children}</LeftSidebar>
         </Root>
       </Body>
     </Html>
