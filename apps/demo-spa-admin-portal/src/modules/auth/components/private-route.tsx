@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthState } from '../states/auth.state';
-import AuthenticatedLayout from '../../../layouts/authenticated.layout';
 import { useLocale } from 'use-intl';
+import AuthenticatedLayout from '@/layouts/authenticated.layout';
 
 const PrivateRoute: React.FC = () => {
   const locale = useLocale();

@@ -52,6 +52,7 @@
   "filter_clear": "Xoá bộ lọc",
   "filter_status": "Trạng thái",
 
+  "page_profile": "Thông tin cá nhân",
   "page_dashboard": "Bảng điều khiển",
   "page_users": "Thành viên",
   "page_posts": "Bài viết",
@@ -114,6 +115,8 @@
   "user_role_user": "User",
   "user_role_admin": "Admin",
   "user_role_super_admin": "Super Admin",
+
+  "profile": "Thông tin cá nhân",
 
   "post_list_toast_title": "Danh Sách Bài Viết",
   "post_list_failure": "Không thể lấy bài viết.",

@@ -155,7 +155,8 @@ const config: Omit<Config, 'content'> = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'collapsible-down': 'collapsible-down 0.2s ease-out',
-        'collapsible-up': 'collapsible-up 0.2s ease-out'
+        'collapsible-up': 'collapsible-up 0.2s ease-out',
+        gradient: 'gradient 15s ease infinite'
       },
       keyframes: {
         hLine: {
@@ -185,6 +186,11 @@ const config: Omit<Config, 'content'> = {
         'collapsible-up': {
           from: { height: 'var(--radix-collapsible-content-height)' },
           to: { height: '0' }
+        },
+        gradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' }
         }
       },
       typography: (theme: (param: string) => any) => ({

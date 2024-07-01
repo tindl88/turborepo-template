@@ -1,7 +1,6 @@
 'use client';
 
 import React, { FC, ReactNode } from 'react';
-import { useSession } from 'next-auth/react';
 import classNames from 'classnames';
 
 import { ComponentBaseProps } from '@/interfaces/component.interface';
@@ -11,12 +10,14 @@ import useSidebar from '@/hooks/use-sidebar';
 import Header from '@/components/headers/header';
 import Sidebar from '@/components/sidebar/sidebar';
 
-type LayoutWithLeftSidebarProps = {
+import { useAppData } from '@/modules/app-data/hooks/use-app-data';
+
+type LeftSidebarProps = {
   children?: ReactNode;
 } & ComponentBaseProps;
 
-const LayoutWithLeftSidebar: FC<LayoutWithLeftSidebarProps> = ({ children }) => {
-  const session = useSession();
+const LeftSidebar: FC<LeftSidebarProps> = ({ children }) => {
+  const { user } = useAppData();
   const sidebar = useSidebar();
 
   return (
@@ -28,11 +29,11 @@ const LayoutWithLeftSidebar: FC<LayoutWithLeftSidebarProps> = ({ children }) => 
           sidebar.isExpanded ? 'pl-64' : 'pl-20'
         )}
       >
-        <Header user={session.data?.user} onSidebarCollapseClick={sidebar.toggle} />
+        <Header user={user} onSidebarCollapseClick={sidebar.toggle} />
         {children}
       </div>
     </div>
   );
 };
 
-export default LayoutWithLeftSidebar;
+export default LeftSidebar;
